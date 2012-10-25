@@ -7,20 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="container">
-  	<div id="user_header">
-  		<% if current_user %>
-  			Logged in as <%= current_user.email %>
-  			<%= link_to "Log Out", logout_path, method: "delete" %>
-  		<% else %>
-  			<%= link_to "Sign up", signup_path %> or
-  			<%= link_to "Log In", login_path %>
-  		<% end %>
-  		
-  	</div>
-  </div>
 
-<%= yield %>
+<%= render 'shared/header' %>
+
+  
+<div class="container">
+	<div class="row">
+		<div class="span9"><%= yield %></div>
+		<div class="span3">This is the sidebar</div>
+	</div>
+</div>
 
 </body>
 </html>
