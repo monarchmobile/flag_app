@@ -1,0 +1,40 @@
+<h1><%= @user.email %></h1>
+
+<%= form_for([@user, @user.images.build]) do |f| %>
+  
+
+  
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :date_taken %><br />
+    <%= f.datetime_select :date_taken %>
+  </div>
+  <div class="field">
+    <%= f.label :week %><br />
+    <%= f.check_box :week %>
+  </div>
+  <div class="field">
+    <%= f.label :month %><br />
+    <%= f.check_box :month %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.check_box :year %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

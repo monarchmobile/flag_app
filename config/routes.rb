@@ -1,7 +1,7 @@
 FlagApp::Application.routes.draw do
 
 
-  
+  resources :images
 
   get "static_pages/home"
 

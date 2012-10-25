@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @image.user_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @image.title %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @image.url %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @image.content %>
+</p>
+
+<p>
+  <b>Date taken:</b>
+  <%= @image.date_taken %>
+</p>
+
+<p>
+  <b>Week:</b>
+  <%= @image.week %>
+</p>
+
+<p>
+  <b>Month:</b>
+  <%= @image.month %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @image.year %>
+</p>
+
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>
