@@ -1,11 +1,11 @@
 FlagApp::Application.routes.draw do
 
 
-  resources :images
+  
 
-  get "static_pages/home"
-
-  get "static_pages/scrapbook"
+  
+  
+  
 
   get "static_pages/profile"
 
@@ -14,8 +14,13 @@ FlagApp::Application.routes.draw do
   match 'signup', to: "users#new"
   match 'login', to: "sessions#new"
   match 'logout', to: "sessions#destroy"
+  match 'scrapbook', to: "static_pages#scrapbook"
+  match 'profile', to: "static_pages#profile"
+  match 'about', to: "static_pages#about"
   
-  resources :users   
+  resources :users do 
+  	resources :images
+  end 
   resources :sessions
   
   

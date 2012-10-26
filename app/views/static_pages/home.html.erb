@@ -1,2 +1,17 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+
+<% if current_user %>
+
+<ul class="nav pull-right">
+
+  <h1><%= @current_user.email %></h1>
+  <li class="dropdown">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
+    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+      	<%= render 'images/form' %>
+	</div>
+  </li>	  	  
+
+</ul>
+	        
+<%= render 'users/user_images' %>
+<% end %>

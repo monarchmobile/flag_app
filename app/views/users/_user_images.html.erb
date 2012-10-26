@@ -1,13 +1,13 @@
-<h1>Scrapbook</h1>
-
-<% for image in @user.images %>
+<div id="images">
+	<% for image in @user.images %>
 		<div class="image">
-			<%= image_tag image.image_url, width: 200, height: 200 %>
+			<%= image_tag image.image_url(:thumb).to_s, width: 75, height: 75 %>
 			<div class="name"><%= image.title %></div>
 			<div class="actions">
 				<%= link_to "Edit", [:edit, @user, image] %>
 				<%= link_to "Delete", [@user, image ], :confirm => 'Are you sure?', :method => :delete %>
-
 			</div>
 		</div>
 	<% end %>
+	<div class="clear"></div>
+</div>

@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
-  # GET /images
-  # GET /images.json
+
+  # INDEX
   def index
     @images = Image.all
 
@@ -10,9 +10,9 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/1
-  # GET /images/1.json
+  # SHOW
   def show
+  	@current_user = @user 
     @image = Image.find(params[:id])
 
     respond_to do |format|
@@ -21,8 +21,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/new
-  # GET /images/new.json
+  # NEW
   def new
     @image = Image.new
 
@@ -32,19 +31,21 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/1/edit
+  # EDIT
   def edit
+  	@user = User.find(params[:id])
+  	
     @image = Image.find(params[:id])
   end
 
-  # POST /images
-  # POST /images.json
+  # CREATE
   def create
-    @image = Image.new(params[:image])
+  	@user = User.find(params[:image][:user_id])
+    @image = @user.images.build(params[:image])
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.html { redirect_to root_path(@user.id), notice: 'Image was successfully created.' }
         format.json { render json: @image, status: :created, location: @image }
       else
         format.html { render action: "new" }
@@ -53,9 +54,9 @@ class ImagesController < ApplicationController
     end
   end
 
-  # PUT /images/1
-  # PUT /images/1.json
+  # UPDATE
   def update
+  
     @image = Image.find(params[:id])
 
     respond_to do |format|
@@ -69,14 +70,14 @@ class ImagesController < ApplicationController
     end
   end
 
-  # DELETE /images/1
-  # DELETE /images/1.json
+  # DESTROY
   def destroy
+  
     @image = Image.find(params[:id])
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to scrapbook_url }
       format.json { head :no_content }
     end
   end

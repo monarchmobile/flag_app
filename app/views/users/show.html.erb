@@ -1,17 +1,17 @@
 <h1><%= @user.email %></h1>
 
-<div id="images">
-	<% for image in @user.images %>
-		<div class="image">
-			<%= image_tag image.image_url(:thumb).to_s %>
-			<div class="name"><%= image.title %></div>
-			<div class="actions">
-				<%= link_to "edit", edit_image_path(image) %>
-				<%= link_to "remove", image, :confirm => 'Are you sure?', :method => :delete %>
-			</div>
-		</div>
-	<% end %>
-	<div class="clear"></div>
-</div>
 
+<ul class="nav pull-right">
+<% if current_user %>
+  
+  <li class="dropdown">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
+    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+      	<%= render 'images/form' %>
+	</div>
+  </li>	  	  
+<% end %>
+</ul>
+	        
+<%= render 'users/user_images' %>
 
