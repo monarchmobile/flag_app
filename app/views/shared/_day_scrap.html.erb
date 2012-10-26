@@ -1,0 +1,40 @@
+<script>
+jQuery(document).ready(function() {
+
+	$('.images ul li').hover(
+	
+		function() {
+			$(this).addClass("current");
+			$('.current .actions').show();
+		}, 
+		
+		function() {
+			
+			$('.current .actions').hide();	
+			$(this).removeClass("current");
+		}
+	)	
+
+})
+</script>
+
+<li class="dropdown">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
+    <div class="dropdown-menu image_form">
+    	<%= render 'images/form' %>
+	</div>
+  </li>
+  
+<div class="images">
+	<ul>			
+	<% for image in @user.images %>
+		<li> 
+			<%= image_tag image.image_url, width: 175, height: 175 %>				
+			<div class="actions">					
+			<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X" %>
+		
+			</div>
+		</li>
+	<% end %>
+	</ul>
+</div>
