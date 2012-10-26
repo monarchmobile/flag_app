@@ -33,7 +33,7 @@ class ImagesController < ApplicationController
 
   # EDIT
   def edit
-  	@user = User.find(params[:id])
+  	@user = User.find(params[:user_id])
   	
     @image = Image.find(params[:id])
   end
@@ -45,7 +45,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to root_path, notice: 'Image was successfully created.' }
+        format.html { redirect_to scrapbook_path, notice: 'Image was successfully created.' }
         format.json { render json: @image, status: :created, location: @image }
       else
         format.html { render action: "new" }
@@ -57,11 +57,12 @@ class ImagesController < ApplicationController
   # UPDATE
   def update
   
+    @user = User.find(params[:image][:user_id])
     @image = Image.find(params[:id])
 
     respond_to do |format|
       if @image.update_attributes(params[:image])
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.html { redirect_to scrapbook_path, notice: 'Image was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -77,7 +78,7 @@ class ImagesController < ApplicationController
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to scrapbook_url }
+      format.html { redirect_to scrapbook_path }
       format.json { head :no_content }
     end
   end

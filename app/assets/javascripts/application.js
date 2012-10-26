@@ -25,4 +25,16 @@ $(function() {
   $('.dropdown input, .dropdown label').click(function(e) {
     e.stopPropagation();
   });
+  
+  
+  // ability to delete individual pics on scrap:day page
+  $('.images ul li').hover(function() {
+	$(this).addClass("current");
+	$('.current .actions').show();
+  }, function() {
+	$('.current .actions').hide();	
+	$(this).removeClass("current");
+  })	
+
+  
 });

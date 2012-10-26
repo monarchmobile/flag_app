@@ -1,22 +1,4 @@
-<script>
-jQuery(document).ready(function() {
 
-	$('.images ul li').hover(
-	
-		function() {
-			$(this).addClass("current");
-			$('.current .actions').show();
-		}, 
-		
-		function() {
-			
-			$('.current .actions').hide();	
-			$(this).removeClass("current");
-		}
-	)	
-
-})
-</script>
 
 <li class="dropdown">
     <a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
@@ -24,10 +6,16 @@ jQuery(document).ready(function() {
     	<%= render 'images/form' %>
 	</div>
   </li>
-  
+
+<!--  Render Max 5 images for User   -->  
 <div class="images">
-	<ul>			
-	<% for image in @user.images %>
+	<ul>
+	<%= @lists = @user.images.select('date_taken').group('date_taken') %>
+	
+	<% start_range = Time.now.midnight - 1.day %>
+	<% end_range = Time.now.midnight %>
+	<% @today = @user.images.where(date_taken: (start_range..end_range)).limit(5) %>		
+	<% for image in @today %>
 		<li> 
 			<%= image_tag image.image_url, width: 175, height: 175 %>				
 			<div class="actions">					

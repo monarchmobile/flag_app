@@ -17,3 +17,53 @@
 	clear:both;
 	margin-top:50px;
 }
+
+.images {
+		margin:auto;
+		width:950px;
+		min-height:250px;
+		height:auto;				
+		margin-top:50px;
+		position: absolute;
+		padding:10px;
+	}
+	
+	.images li {
+		float:left;
+		list-style:none;
+		margin-left:10px;
+		width:175px;
+		height:175px;		
+	}
+	
+	.images li img{
+		width:175px;
+		height:175px;
+	}
+	
+	ul li .actions {
+		display:none;
+	}
+	
+	.actions a.scrap_image_X img{
+		margin: 10px 71px;
+		width: 25px;		
+		height: 25px;		
+	}
+	
+	.actions a.scrap_image_X:hover{
+		background: transparent;
+		
+	}
+	
+	.image_form {
+		width:225px;
+		position: absolute;
+		z-index:100;
+		background:gray;
+		margin-left:100px;
+		padding:20px;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+	}	
