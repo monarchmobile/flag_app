@@ -11,7 +11,10 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :user_id %>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
  
   <div class="field">
     <%= f.label :title %><br />
@@ -19,6 +22,10 @@
   </div>
   <div class="field">
     <%= f.file_field :image %>
+  </div>
+  <div class="field">
+  	<%= f.label :remote_image_url, "or image url" %><br />
+  	<%= f.text_field :remote_image_url %>
   </div>
   <div class="field">
     <%= f.label :content %><br />
