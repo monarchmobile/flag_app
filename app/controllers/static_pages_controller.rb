@@ -12,6 +12,9 @@ class StaticPagesController < ApplicationController
   def scrapbook
   	@user = @current_user
   	@image = Image.new
+  	
+  	@scraps = @user.images.find(:all, :order => 'date_taken, id', limit: 50)
+  	@scrap_days = @scraps.group_by { |t| t.date_taken.beginning_of_day }
   end
 
   def profile

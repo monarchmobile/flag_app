@@ -28,11 +28,11 @@ $(function() {
   
   
   // ability to delete individual pics on scrap:day page
-  $('.images ul li').hover(function() {
+  $('.images_container li').hover(function() {
 	$(this).addClass("current");
-	$('.current .actions').show();
+	$('.current .scrap_image_X').show();
   }, function() {
-	$('.current .actions').hide();	
+	$('.current .scrap_image_X').hide();	
 	$(this).removeClass("current");
   })	
 

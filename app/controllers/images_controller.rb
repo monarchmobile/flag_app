@@ -33,9 +33,12 @@ class ImagesController < ApplicationController
 
   # EDIT
   def edit
-  	@user = User.find(params[:user_id])
-  	
-    @image = Image.find(params[:id])
+  	@user = User.find(params[:user_id])	
+    @image = @user.images.find(params[:id])
+    
+    #@user = User.find(params[:image][:user_id])
+    #@image = @user.images.build(params[:image])
+
   end
 
   # CREATE
