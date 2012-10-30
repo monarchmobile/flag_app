@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-	$('#image_date_taken').datepicker
+	$('#journal_entry_date').datepicker
 		dateFormat: 'yy-mm-dd'

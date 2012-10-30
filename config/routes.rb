@@ -1,11 +1,6 @@
 FlagApp::Application.routes.draw do
 
-
-  
-
-  
-  
-  
+  resources :journals
 
   get "static_pages/profile"
 
@@ -20,6 +15,7 @@ FlagApp::Application.routes.draw do
   
   resources :users do 
   	resources :images
+  	resources :journals
   end 
   resources :sessions
   

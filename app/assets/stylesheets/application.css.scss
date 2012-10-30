@@ -8,6 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require jquery.ui.datepicker
  *= require_self
  *= require_tree .
  */
@@ -35,11 +36,12 @@
 
 	.images_container {
 		
-		width:650px;
+		width:600px;
 		min-height:400px;
 		height:auto;				
 		margin-top:50px;	
 		padding:10px;
+		float:left;
 		
 		li {
 			float:left;
@@ -93,9 +95,23 @@
 							
 			}	// image_container
 			
-		}	// images_container li
+		}	// li
 		
 	}  // images_container
+	
+	.journal_container {
+		width:250px;
+		min-height:400px;
+		height:auto;				
+		margin-top:50px;	
+		padding:10px;
+		float:left;
+		
+		p {
+			padding:10px;
+			color:gray;
+		}
+	}
 	
 }	// day_container
 
@@ -117,7 +133,7 @@ ul.dom_container {
 	margin: auto;
 	width: auto;
 	clear: both;
-	bottom: 0px;
+	bottom: 30px;
 	position:fixed;
 	height: 34px;
 	padding: 10px 0px;		
@@ -127,7 +143,7 @@ ul.dom_container {
 		-moz-box-shadow: 0px 0px 5px;
 		-webkit-box-shadow: 0px 0px 5px;
 		padding:5px;
-		width:50px;
+		width:45px;
 		float:left;
 		list-style: none;
 		margin-left:10px;
@@ -137,5 +153,9 @@ ul.dom_container {
 	a:hover li.days_of_month {
 		color:#fff;
 		background:gray;	
+	}
+	
+	a li.include {
+		background:blue;
 	}
 }

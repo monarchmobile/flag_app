@@ -7,6 +7,7 @@
 		days_of_month.on("click", function() {
 			day_container.hide();
 			dom_btn = $(this).data("date");
+			
 			$('#'+dom_btn).show();
 		})	
 	})
@@ -15,48 +16,93 @@
 
 
 <!--  Render Max 5 images for User   -->  
-
+<ul>
+<% days = [] %>
+<% user_images = @user.images.find(:all, :order => 'date_taken') %>
+<% for image in user_images do %>
 	
-	<%= Time.now.strftime('%m/%d') %>		
-	<ul>
-	<% @scrap_days.each do |day, scraps| %>
-		<div class="day_container" id="<%=day.strftime('%m-%d-%Y') %>">
-			<h2><%= day.strftime('%m/%d') %></h2>
-			<!-- Add a photo dropdown -->
-			<li class="dropdown">
-				<a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
-				<div class="dropdown-menu image_form">
-					<%= render 'images/form' %>
-				</div>
-			</li>
-			<!-- Add a photo dropdown -->
-			<div class="images_container">
-				<% for scrap in scraps %>
+	<% days << image.date_taken.strftime("%m-%d-%Y") %>
+<% end %>
+
+<% user_entries = @user.journals.find(:all, :order => 'entry_date') %>
+<% for entry in user_entries do %>
+	
+	<% days << entry.entry_date.strftime("%m-%d-%Y") %>
+<% end %>
+
+<% days.uniq.sort.each do |d| %>
+	<div class="day_container" id="<%= d %>">
+		<h2><%= d %></h2>
+		<!-- Add a photo dropdown -->
+		<li class="dropdown">
+			<a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
+			<div class="dropdown-menu image_form">
+				<%= render 'images/form' %>
+			</div>
+		</li>
+		<!-- End photo dropdown -->
+		
+		<!-- Add a journal-entry dropdown -->
+		<li class="dropdown">
+			<a class="dropdown-toggle" href="#" data-toggle="dropdown">Journal Entry<strong class="caret"></strong></a>
+			<div class="dropdown-menu image_form">
+				<%= render 'journals/form' %>
+			</div>
+		</li>
+		<!-- End journal-entry dropdown -->
+		<div class="images_container">
+			<% @images = @user.images.where(:date_taken => d) %>
+			<% for image in @images do %>
 				<li>
 				<div class="image_container">
-					<%= image_tag scrap.image_url, width:175, height:175 %>
-					<%= content_tag :h3, scrap.title %>
-					<%= content_tag :p, scrap.content, class: "image_content" %>
+					<%= image_tag image.image_url, width:175, height:175 %>
+					<%= content_tag :h3, image.title %>
+					<%= content_tag :p, image.content, class: "image_content" %>
 					<div class="actions">					
-					<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, scrap ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X" %>
+					<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X" %>
 			
 					</div>
 				</div>
 				</li>
-				<% end %>
-			</div>	
+			<% end %>
+			
 		</div>
-	<% end %>
-	</ul>
+		<div class="journal_container">
+			<% @entries = @user.journals.where(:entry_date => d) %>
+			<% for entry in @entries do %>
+				
+				<div class="journal_entry">
+					<%= content_tag :p, entry.content %>
+									
+					<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, entry ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X" %>
+					<%= link_to "Edit", [:edit, @user, entry] %>
+				</div>
+				
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+
+
+
+
+  
+
+
+</ul>
 
 
 <ul class="dom_container">
-	<% @scrap_days.each do |day, scraps| %>
-		<a href="#">
-			<li class="days_of_month" data-date="<%=day.strftime('%m-%d-%Y') %>"><%= day.strftime('%d') %></li>
-			
-		</a>
+<% (Date.today.beginning_of_month..Date.today).each do |d| %>
+ 	<% if @user.images.find_by_date_taken(d) || @user.journals.find_by_entry_date(d) %>
+ 		<a href="#"><li class="days_of_month" style="background:blue" data-date="<%= d.strftime("%m-%d-%Y") %>"><%=  d.strftime("%d")  %></li></a>
+	<% else %>
+		<a href="#"><li class="days_of_month" data-date="<%= d.strftime("%m-%d-%Y") %>"><%=  d.strftime("%d")  %></li></a>
 	<% end %>
+	
+<% end %>
+
 </ul>
+<br class="clear" />
 <div class="test"></div>
-<br class="clear"/>
