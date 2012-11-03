@@ -19,12 +19,21 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
+  #gem 'less'
+  #gem 'twitter-bootstrap-rails'
   
 end
 
-#gem 'twitter-bootstrap-rails'
+#gem 'therubyracer', '~> 0.11.0beta5'
+#group :libv8 do
+#  gem 'libv8', "~> 3.11.8"
+#end
+
+
 
 gem 'jquery-rails'
+
+
 
 # To use ActiveModel has_secure_password
  gem 'bcrypt-ruby', '~> 3.0.0'
