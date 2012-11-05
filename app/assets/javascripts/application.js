@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.datepicker
+
 //= require_tree .
 
 
@@ -29,12 +29,10 @@ $(function() {
   
   // ability to delete individual pics on scrap:day page
   $('.images_container li').hover(function() {
-	$(this).addClass("current");
-	$('.current .scrap_image_X').show();
+	   $(this).addClass("current");
+	   $('.current .scrap_image_X').show();
   }, function() {
-	$('.current .scrap_image_X').hide();	
-	$(this).removeClass("current");
-  })	
-
-  
+	   $('.current .scrap_image_X').hide();	
+	   $(this).removeClass("current");
+  })	 
 });
