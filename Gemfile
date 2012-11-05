@@ -8,7 +8,6 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -19,11 +18,9 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-ui-rails', :git => 'https://github.com/joliss/jquery-ui-rails'
-  
+  gem 'jquery-ui-rails', :git => 'https://github.com/joliss/jquery-ui-rails'  
   #, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-  
-  
+
 end
 
   gem 'therubyracer', '~> 0.11.0beta5'
@@ -34,8 +31,6 @@ end
 gem 'twitter-bootstrap-rails'
 gem 'less-rails-bootstrap'
 gem 'jquery-rails'
-
-
 
 # To use ActiveModel has_secure_password
  gem 'bcrypt-ruby', '~> 3.0.0'
