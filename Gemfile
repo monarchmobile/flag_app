@@ -20,8 +20,9 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails', :git => 'https://github.com/joliss/jquery-ui-rails'
-  #gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-  #gem 'less-rails-bootstrap'
+  gem 'twitter-bootstrap-rails'
+  #, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+  gem 'less-rails-bootstrap'
   
 end
 
