@@ -14,35 +14,18 @@ class StaticPagesController < ApplicationController
   	@image = Image.new
   	@journal = Journal.new
   	
-  	# @scrap_images = @user.images.find(:all, :order => 'date_taken, id')
-#   	
-#   	
-#   	@scrap_entries = @user.journals.find(:all, :order => 'entry_date, id', limit: 1)
-#   	
-#   	
-#   	@days_with_scrap_images = @scrap_images.group_by { |t| t.date_taken } 
-#   	@days_with_scrap_entries = @scrap_entries.group_by {|t| t.entry_date.beginning_of_day }
-#   	
-#   	 @days = [] 
-# 
-# 	 @days_with_scrap_images.each do |day, scrap_images| 	
-# 		 @days << day 	
-# 	 end 
-# 	 @days_with_scrap_entries.each do |day, scrap_entries| 	
-# 		 @days << day 	
-# 	 end 
-	
-	 
-  	
-  	
-  	
-	
-  	
-  	
-  	
-  	#@days_with_scraps = @days_with_scrap_images|| @days_with_scrap_entries  	
-   	
-  	
+  	 days = [] 
+     user_images = @user.images.find(:all, :order => 'date_taken') 
+     for image in user_images do 
+       days << image.date_taken.strftime("%m-%d-%Y") 
+     end 
+
+     user_entries = @user.journals.find(:all, :order => 'entry_date') 
+     for entry in user_entries do   
+       days << entry.entry_date.strftime("%m-%d-%Y") 
+     end 
+
+     @days = days
   	
   	
   end

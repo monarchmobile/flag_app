@@ -7,4 +7,12 @@ class User < ActiveRecord::Base
   
   has_many :images
   has_many :journals
+
+  def has_not_reached_daily_image_limit?(d)
+      images.where(:date_taken => d).count < 5
+  end
+
+
+ 
+
 end

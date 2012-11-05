@@ -3,4 +3,9 @@ class Image < ActiveRecord::Base
   
   belongs_to :user
   mount_uploader :image, ImageUploader
+
+  validates :image, :date_taken, :title, :presence => true
+
+  
+
 end

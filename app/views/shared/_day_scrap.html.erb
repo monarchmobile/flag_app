@@ -17,30 +17,23 @@
 
 <!--  Render Max 5 images for User   -->  
 <ul>
-<% days = [] %>
-<% user_images = @user.images.find(:all, :order => 'date_taken') %>
-<% for image in user_images do %>
-	
-	<% days << image.date_taken.strftime("%m-%d-%Y") %>
-<% end %>
 
-<% user_entries = @user.journals.find(:all, :order => 'entry_date') %>
-<% for entry in user_entries do %>
-	
-	<% days << entry.entry_date.strftime("%m-%d-%Y") %>
-<% end %>
 
-<% days.uniq.sort.each do |d| %>
+<% @days.uniq.sort.each do |d| %>
 	<div class="day_container" id="<%= d %>">
 		<h2><%= d %></h2>
-		<!-- Add a photo dropdown -->
-		<li class="dropdown">
-			<a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
-			<div class="dropdown-menu image_form">
-				<%= render 'images/form' %>
-			</div>
-		</li>
-		<!-- End photo dropdown -->
+		<% if @user.has_not_reached_daily_image_limit?(d) %>
+			<!-- Add a photo dropdown -->
+			<li class="dropdown">
+				<a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
+				<div class="dropdown-menu image_form">
+					<%= render 'images/form' %>
+				</div>
+			</li>
+			<!-- End photo dropdown -->
+		<% else %>
+			<p>You have reached your daily upload limit.  In order to add new photos, you must delete one of the existing 5 below</p>
+		<% end %>
 		
 		<!-- Add a journal-entry dropdown -->
 		<li class="dropdown">
@@ -82,14 +75,6 @@
 		</div>
 	</div>
 <% end %>
-
-
-
-
-
-  
-
-
 </ul>
 
 

@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  helper_method :converted_date
   
   def converted_date(date)
   	date.split(' ')[0]
   end
   
-  helper_method :converted_date
   
 private 
 	def current_user
@@ -21,4 +22,6 @@ private
   	def current_user?(user)
     	user == current_user
   	end
+
+    
 end
