@@ -1,0 +1,1 @@
+(function(){jQuery(function(){return $("#image_date_taken").datepicker({dateFormat:"yy-mm-dd"})})}).call(this),function(){jQuery(function(){return $("#journal_entry_date").datepicker({dateFormat:"yy-mm-dd"})})}.call(this),function(){}.call(this),function(){}.call(this),function(){}.call(this);
