@@ -17,26 +17,27 @@
 //= require_tree .
 
 
-$(function() {
-  // Setup drop down menu
-  $('.dropdown-toggle').dropdown();
- 
-  // Fix input element click problem
-  $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
-      e.stopPropagation();
-  });
-  
-  
-  // ability to delete individual pics on scrap:day page
-  $('.images_container li').hover(function() {
-	   $(this).addClass("current");
-	   $('.current .scrap_image_X').show();
-  }, function() {
-     $('.current .scrap_image_X').hide();	
-     $(this).removeClass("current");
-  })	
+jQuery(document).ready(function() {
+    // Setup drop down menu
+    alert('hi');
+    // $('a.dropdown-toggle').click(function() {
+        
+    // });
+   
+    // Fix input element click problem
+    // $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+    //     e.stopPropagation();
+    // });
+    
+    
+    // ability to delete individual pics on scrap:day page
+    // $('.images_container li').hover(function() {
+  	 //   $(this).addClass("current");
+  	 //   $('.current .scrap_image_X').show();
+    // }, function() {
+    //    $('.current .scrap_image_X').hide();	
+    //    $(this).removeClass("current");
+    // })	
 
-  // show day based on which day is clicked
-     
-
+    // show day based on which day is clicked
 });

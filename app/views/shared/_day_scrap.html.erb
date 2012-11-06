@@ -7,14 +7,14 @@
        days_of_month.on("click", function() {    
           dom_btn = $(this).data("date");     
           $('#'+dom_btn).show();
-          $('.test').html(dom_btn)
+          
        }) 
 	})
 </script>
 <!-- Add a photo dropdown -->
-<li class="dropdown">
-	<a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
-	<div class="dropdown-menu image_form">
+<li class="drop-image">
+	<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
+	<div class="image_form hide">
 		<%= render 'images/form' %>
 	</div>
 </li>
@@ -26,11 +26,9 @@
 		<h2><%= d %></h2>
 		<% if @user.has_not_reached_daily_image_limit?(d) %>
 			<!-- Add a photo dropdown -->
-			<li class="dropdown">
-				<a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
-				<div class="dropdown-menu image_form">
-					<%= render 'images/form' %>
-				</div>
+			<li class="drop-image" data-which-day="<%= d %>">
+				<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
+				
 			</li>
 			<!-- End photo dropdown -->
 		<% else %>
@@ -40,7 +38,7 @@
 		<!-- Add a journal-entry dropdown -->
 		<li class="dropdown">
 			<a class="dropdown-toggle" href="#" data-toggle="dropdown">Journal Entry<strong class="caret"></strong></a>
-			<div class="dropdown-menu image_form">
+			<div class="dropdown-menu journal_form">
 				<%= render 'journals/form' %>
 			</div>
 		</li>

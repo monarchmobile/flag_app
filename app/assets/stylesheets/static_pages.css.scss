@@ -1,3 +1,235 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.hide {
+	
+	display:none;
+}
+
+.clear {
+	clear:both;
+}
+.master_container {
+	clear:both;
+	margin-top: 50px;
+}
+
+.header_container {
+	width: 100%;
+	height: 60px;
+
+	.thousand_wide_container {
+		width: 1000px;
+		margin:auto;	
+	}	
+}
+
+
+.auth-form {
+	margin-top: 35px;
+	margin-left: -128px;
+	border-radius: 5px;
+	webkit-border-radius: 5px;
+	moz-border-radius: 5px;
+	border:1px solid black;
+	width:230px;
+}
+
+.image_form {
+	margin-top: 35px;
+	margin-left: 500px;
+	border-radius: 5px;
+	webkit-border-radius: 5px;
+	moz-border-radius: 5px;
+	border:1px solid black;
+	width:230px;
+}
+
+
+.gradient_gray {
+		background: #eaeaea; /* Old browsers */
+		background: -moz-linear-gradient(top,  #eaeaea 0%, #d8d8d8 40%, #c9c9c9 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eaeaea), color-stop(40%,#d8d8d8), color-stop(100%,#c9c9c9)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#c9c9c9',GradientType=0 ); /* IE6-9 */
+	}
+
+.nav_items {
+	float:left;
+	margin-top:15px;
+}
+
+.pull_left {
+	width:200px;
+}
+
+.nav_content {
+	text-align: center;
+
+	li {
+		list-style: none;
+	}
+}
+
+.brand {
+	width:150px;
+	margin:auto;
+}
+
+.pull_center {
+	margin: auto;
+	width: 500px;
+	padding: 15px 0px;
+}
+
+.nav {
+	margin:auto;
+	width:auto;
+}
+.pull_right {
+	
+	width:200px;
+}
+
+.thousand_wide_container ul li {
+	float: left;
+	width:100px;
+	text-align: center;
+}
+
+
+
+
+.day_container {
+	height:540px; 
+	width:auto; 
+	padding: 10px;
+	
+	
+	.day_container h2 {
+		font-size:18px;
+		color:#3b5998;
+		width:160px;
+		text-align: center;
+		margin:auto;
+	}
+
+	.images_container {
+		
+		width:600px;
+		min-height:400px;
+		height:auto;				
+		margin-top:50px;	
+		padding:10px;
+		float:left;
+		
+		li {
+			float:left;
+			list-style:none;
+			margin-left:10px;
+			
+			.image_container {
+				width:175px;
+				min-height:325px;
+				box-shadow:1px 1px 5px;
+				-moz-box-shadow: 1px 1px 5px;
+				-webkit-box-shadow: 1px 1px 5px;
+				padding:10px;
+				height:auto;
+			
+				img{
+					width:175px;
+					height:175px;
+				}
+				h3{
+					font-size:16px;
+					color:gray;
+					width:150px;
+					text-align: center;
+					margin:auto;
+				}
+			
+				 p.image_content {
+					margin:auto;
+					padding:10px;
+				}
+			
+				
+			
+				.actions a.scrap_image_X{
+					display:none;
+					
+					img{
+						margin: 10px 71px;
+						width: 25px;		
+						height: 25px;		
+					}
+
+				}
+			
+							
+				.actions a.scrap_image_X:hover{
+					background: transparent;
+					
+				}
+							
+			}	// image_container
+			
+		}	// li
+		
+	}  // images_container
+	
+	.journal_container {
+		width:250px;
+		min-height:400px;
+		height:auto;				
+		margin-top:50px;	
+		padding:10px;
+		float:left;
+		
+		p {
+			padding:10px;
+			color:gray;
+		}
+	}
+	
+}	// day_container
+
+
+
+// bottom days menu bar  //
+ul.dom_container {
+	min-width: 100px;
+	margin: auto;
+	width: auto;
+	clear: both;
+	margin-top:20px;
+	
+	height: 34px;
+	padding: 10px 0px;		
+
+	a li.days_of_month {
+		box-shadow:0px 0px 5px;
+		-moz-box-shadow: 0px 0px 5px;
+		-webkit-box-shadow: 0px 0px 5px;
+		padding:5px;
+		width:45px;
+		float:left;
+		list-style: none;
+		margin-left:10px;
+		text-align: center;	
+	}
+
+	a:hover li.days_of_month {
+		color:#fff;
+		background:gray;	
+	}
+	
+	a li.include {
+		background:blue;
+	}
+}
