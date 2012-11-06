@@ -61,7 +61,7 @@ FlagApp::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.assets.precompile += %w[ stylesheets/*, javascripts/* ]
+  #config.assets.precompile += %w[ stylesheets/*, javascripts/* ]
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

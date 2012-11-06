@@ -29,8 +29,6 @@ end
 #  gem 'libv8', "~> 3.11.8"
 #end
 
-gem 'twitter-bootstrap-rails'
-gem 'less-rails'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
