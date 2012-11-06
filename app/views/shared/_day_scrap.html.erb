@@ -11,7 +11,14 @@
        }) 
 	})
 </script>
-
+<!-- Add a photo dropdown -->
+<li class="dropdown">
+	<a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
+	<div class="dropdown-menu image_form">
+		<%= render 'images/form' %>
+	</div>
+</li>
+<!-- End photo dropdown -->
 <!--  Render Max 5 images for User   -->  
 <ul>
 <% @days.uniq.sort.each do |d| %>
@@ -69,7 +76,6 @@
 	</div>
 <% end %>
 </ul>
-
 
 <ul class="dom_container">
 <% (Date.today.beginning_of_month..Date.today).each do |d| %>
