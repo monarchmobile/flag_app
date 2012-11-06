@@ -29,7 +29,7 @@ end
 #end
 
 gem 'twitter-bootstrap-rails'
-gem 'less-rails-bootstrap'
+#gem 'less-rails-bootstrap'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

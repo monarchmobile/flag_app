@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.hide {
+	
+	display:none;
+}
 
 .clear {
 	clear:both;
@@ -15,6 +19,7 @@
 	height:540px; 
 	width:auto; 
 	padding: 10px;
+	
 	
 	.day_container h2 {
 		font-size:18px;

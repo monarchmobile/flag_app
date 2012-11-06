@@ -1,24 +1,19 @@
 <script>
 	jQuery(document).ready(function() {
-		day_container = $('.day_container');
-		day_container.hide();
-		days_of_month = $('.days_of_month');
-		// day_container.hide();
-		days_of_month.on("click", function() {
-			day_container.hide();
-			dom_btn = $(this).data("date");
-			
-			$('#'+dom_btn).show();
-		})	
+	   day_container = $('.day_container');
+       day_container.hide();
+       days_of_month = $('.days_of_month');
+       // day_container.hide();
+       days_of_month.on("click", function() {    
+          dom_btn = $(this).data("date");     
+          $('#'+dom_btn).show();
+          $('.test').html(dom_btn)
+       }) 
 	})
 </script>
 
-
-
 <!--  Render Max 5 images for User   -->  
 <ul>
-
-
 <% @days.uniq.sort.each do |d| %>
 	<div class="day_container" id="<%= d %>">
 		<h2><%= d %></h2>
@@ -53,12 +48,10 @@
 					<%= content_tag :p, image.content, class: "image_content" %>
 					<div class="actions">					
 					<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X" %>
-			
 					</div>
 				</div>
 				</li>
 			<% end %>
-			
 		</div>
 		<div class="journal_container">
 			<% @entries = @user.journals.where(:entry_date => d) %>
