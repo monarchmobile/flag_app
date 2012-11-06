@@ -61,7 +61,7 @@ FlagApp::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.assets.precompile = [/^[-_a-zA-Z0-9]*\..*/]
+  config.assets.precompile += %w[ application.css.scss, application.js ]
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
