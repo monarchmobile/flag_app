@@ -19,11 +19,12 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails', :git => 'https://github.com/joliss/jquery-ui-rails'  
+  gem 'therubyracer', '~> 0.11.0beta5'
   #, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 end
 
-  gem 'therubyracer', '~> 0.11.0beta5'
+  
 #group :libv8 do
 #  gem 'libv8', "~> 3.11.8"
 #end
