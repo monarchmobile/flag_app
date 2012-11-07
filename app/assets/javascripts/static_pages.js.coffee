@@ -3,14 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
 
-	$('.auth-form').hide()
-	$('.image_form').hide
-
 	$(".images_container li").hover (->
 	  $(this).addClass "current"
-	  $(".current .scrap_image_X").show()
+	  $(".current .actions").show()
 	), ->
-	  $(".current .scrap_image_X").hide()
+	  $(".current .actions").hide()
 	  $(this).removeClass "current"
 
 	$(".drop-auth").toggle (->
@@ -24,8 +21,54 @@ jQuery ->
   ), ->
     $(".image_form").hide()
 
-  	$(".auth-form input, .auth-form label").click (e) ->
+  $(" .auth-form input, 
+      .auth-form label,
+      .image_form input,
+      .image_form label,
+      .journal_form input,
+      .journal_form label
+      ").click (e) ->
   		e.stopPropagation()
+
+  $(".drop-journal").toggle (->
+    $(".journal_form").show()
+  ), ->
+    $(".journal_form").hide()
+
+  day_container = $(".day_container")
+  days_of_month = $(".days_of_month")
+
+  day_container.hide();
+  days_of_month.on "click", ->
+    $('.outside_add').hide();
+    day_container.hide();
+    dom_btn = $(this).data("date")
+    $("#" + dom_btn).show()
+
+    $('.test2').html "current_day "+dom_btn
+
+  $('.month-of-year').hide()
+  $('.current_month').show()
+
+  $('.prev').click ->
+    which_month = $(this).parent().parent().next().attr('id')
+    $('.test1').html "current_month:"+which_month 
+
+    $('.month-of-year').removeClass "current_month" 
+    $('.dom_container').removeClass "current_month"
+    $(this).parent().parent().next().addClass "current_month" 
+    $(this).parent().parent().next().find('ul').addClass "current_month"
+    $('.month-of-year').hide()
+    $('.current_month').show();
+
+  $('.next').click ->
+    which_month = $(this).parent().parent().prev().attr('id')
+    $('.test1').html "current_month:"+which_month
+
+    $('.month-of-year').removeClass "current_month"                             
+    $(this).parent().parent().prev().addClass "current_month" 
+    $('.month-of-year').hide()
+    $('.current_month').show();
 
 
 
