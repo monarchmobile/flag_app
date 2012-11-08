@@ -40,30 +40,30 @@ jQuery ->
 
   day_container.hide();
   days_of_month.on "click", ->
+    $('.days_of_month').css("color" , "inherit")
     $('.outside_add').hide();
     day_container.hide();
     dom_btn = $(this).data("date")
     $("#" + dom_btn).show()
+    $(this).css("color" , "#3b5998")
 
-    $('.test2').html "current_day "+dom_btn
+    $('.test2').html "current_day: "+dom_btn
 
   $('.month-of-year').hide()
   $('.current_month').show()
 
   $('.prev').click ->
     which_month = $(this).parent().parent().next().attr('id')
-    $('.test1').html "current_month:"+which_month 
+    $('.test1').html "current_month: "+which_month 
 
     $('.month-of-year').removeClass "current_month" 
-    $('.dom_container').removeClass "current_month"
     $(this).parent().parent().next().addClass "current_month" 
-    $(this).parent().parent().next().find('ul').addClass "current_month"
     $('.month-of-year').hide()
     $('.current_month').show();
 
   $('.next').click ->
     which_month = $(this).parent().parent().prev().attr('id')
-    $('.test1').html "current_month:"+which_month
+    $('.test1').html "current_month: "+which_month
 
     $('.month-of-year').removeClass "current_month"                             
     $(this).parent().parent().prev().addClass "current_month" 

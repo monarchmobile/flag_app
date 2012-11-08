@@ -1,13 +1,8 @@
-<script>
-	jQuery(document).ready(function() {
-	   
-	})
-</script>
 <!-- Add a photo dropdown -->
-<li class="drop-image outside_add hot_form">
+<li class="drop-image outside_add hot_form image_outside">
 	<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
 </li>
-<li class="drop-journal outside_add hot_form">
+<li class="drop-journal outside_add hot_form journal_outside">
 	<a class="" href="#" >Journal Entry<strong class="caret"></strong></a>
 </li>
 <div class="image_form hide form_style">
@@ -22,8 +17,8 @@
 <ul>
 <% @days.uniq.sort.each do |d| %>
 	<div class="day_container" id="<%= d %>">
-		<div class="left_turn nav_symbols">Left</div>
-		<h2><%= d %></h2>
+		
+		<div class="scrapbook"><%= d %></div>
 		<% if @user.has_not_reached_daily_image_limit?(d) %>
 			<!-- Add a photo dropdown -->
 			<li class="drop-image hot_form" >
@@ -56,6 +51,7 @@
 				</li>
 			<% end %>
 		</div>
+		<br class="clear" />
 		<div class="journal_container">
 			<% @entries = @user.journals.where(:entry_date => d) %>
 			<% for entry in @entries do %>
@@ -69,6 +65,7 @@
 				
 			<% end %>
 		</div>
+		<br class="clear" />
 	</div>
 <% end %>
 </ul>
@@ -78,8 +75,10 @@
 <% @date = date %>
 <% beg_month = date.beginning_of_month %>
 <% @beg_month = beg_month %>
-<div class="test1" ></div>
-<div class="test2" ></div>
+<div class="test_container">
+	<div class="test1" ></div>
+	<div class="test2" ></div>
+</div>
 
 <% @prev_months = [] %>
 <% (1..12).each do |m| %>
@@ -88,8 +87,10 @@
 
 <div class="month-of-year current_month" id="<%= beg_month.strftime("%b") %>">
     <h2 id="month">
-        <a class="prev">prev</a>
-        <a class="next">next</a>    
+        <a class="prev prev-next" data-date="<%= date.prev_month %>"><</a>
+        <% unless @prev_months[0] %>
+        	<a class="next prev-next" data-date="<%= date.next_month %>">></a>  
+        <% end %> 
     </h2>
     
     
@@ -108,14 +109,16 @@
 <% @prev_months.each do |m| %>
 <div class="month-of-year" id="<%= m.strftime("%b") %>">
 	<h2 id="month">
-	  	<a class="prev">prev</a>
-	  	<a class="next">next</a>    
-	</h2>
+        <a class="prev prev-next" data-date="<%= date.prev_month %>"><</a>
+        
+        	<a class="next prev-next" data-date="<%= date.next_month %>">></a>  
+           
+    </h2>
 	
 	<ul class="dom_container">
 		<% (m..(m.next_month-1)).each do |d| %>
 		 	<% if @user.images.find_by_date_taken(d) || @user.journals.find_by_entry_date(d) %>
-		 		<a href="#"><li class="days_of_month" style="background:#C8DAF1;" data-date="<%= d.strftime("%d") %>"><%=  d.strftime("%d")  %></li></a>
+		 		<a href="#"><li class="days_of_month" style="background:#C8DAF1;" data-date="<%= d.strftime("%m-%d-%Y") %>"><%=  d.strftime("%d")  %></li></a>
 			<% else %>
 				<a href="#"><li class="days_of_month" data-date="<%= d.strftime("%d") %>"><%=  d.strftime("%d")  %></li></a>
 			<% end %>	
