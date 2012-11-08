@@ -40,12 +40,12 @@ jQuery ->
 
   day_container.hide();
   days_of_month.on "click", ->
-    $('.days_of_month').css("color" , "inherit")
+    $('.days_of_month').css("font-size" , "12px")
     $('.outside_add').hide();
     day_container.hide();
     dom_btn = $(this).data("date")
     $("#" + dom_btn).show()
-    $(this).css("color" , "#3b5998")
+    $(this).css("font-size" , "20px")
 
     $('.test1').html "current_day: "+dom_btn
 
