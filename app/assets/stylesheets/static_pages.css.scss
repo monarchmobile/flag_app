@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+// core classes to be used everywhere //
 .hide {
 	
 	display:none;
@@ -11,6 +13,13 @@
 	clear:both;
 }
 
+.thousand_wide_container {
+	width: 1000px;
+	margin:auto;	
+}
+
+
+// testing //
 .test_container	{
 	float: left;
 position: absolute;
@@ -23,6 +32,8 @@ moz-border-radius: 5px;
 text-align: center;
 padding: 5px;
 }
+
+// Start in application layouts, hold all yield //
 .master_container {
 	margin:auto;
 	width:1000px;
@@ -39,7 +50,7 @@ padding: 5px;
 	}
 }
 
-
+// Forms //
 .drop-image {
 	position: absolute;
 	float: left;
@@ -64,17 +75,6 @@ padding: 5px;
 	margin-left: 770px;
 	margin-top:-15px;
 }
-
-
-.header_container {
-	width: 100%;
-	height: 60px;	
-}
-
-.thousand_wide_container {
-	width: 1000px;
-	margin:auto;	
-}	
 
 .auth-form {
 	margin-top: 35px;
@@ -125,16 +125,22 @@ li.hot_form {
 }
 
 
+// Header //
+.header_container {
+	width: 100%;
+	height: 60px;	
+}
+
 .gradient_gray {
-		background: #eaeaea; /* Old browsers */
-		background: -moz-linear-gradient(top,  #eaeaea 0%, #d8d8d8 40%, #c9c9c9 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eaeaea), color-stop(40%,#d8d8d8), color-stop(100%,#c9c9c9)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* IE10+ */
-		background: linear-gradient(to bottom,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#c9c9c9',GradientType=0 ); /* IE6-9 */
-	}
+	background: #eaeaea; /* Old browsers */
+	background: -moz-linear-gradient(top,  #eaeaea 0%, #d8d8d8 40%, #c9c9c9 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eaeaea), color-stop(40%,#d8d8d8), color-stop(100%,#c9c9c9)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#c9c9c9',GradientType=0 ); /* IE6-9 */
+}
 
 .nav_items {
 	float:left;
@@ -192,13 +198,16 @@ li.hot_form {
 	}
 }
 
+// Home //
+
 #home_images {
 	margin-left:20px;
 }
 
-.month-of-year {
-	
-}
+
+
+
+// ScrapBook //
 
 .current_month {
 	display:block;
@@ -207,8 +216,6 @@ li.hot_form {
 .month-of-year {
 	height:400px;
 }
-
-
 
 .scrapbook {
 		
@@ -299,13 +306,13 @@ li.hot_form {
 	
 	.journal_container {
 		width: 527px;
-min-height: 773px;
-height: auto;
-margin-top: 28px;
-padding: 10px;
-float: left;
-margin-left: 459px;
-position: absolute;
+		min-height: 773px;
+		height: auto;
+		margin-top: 28px;
+		padding: 10px;
+		float: left;
+		margin-left: 459px;
+		position: absolute;
 		background:url('/assets/pad_of_paper.png') no-repeat;
 		
 		p {
@@ -314,8 +321,10 @@ position: absolute;
 		}
 	}
 	
-}	// day_container
+}	//  end day_container
 
+
+// month scrolling back and forth
 .prev-next{
 	font-size:50px;
 	position:absolute;
