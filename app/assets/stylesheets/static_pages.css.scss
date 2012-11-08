@@ -14,14 +14,14 @@
 .test_container	{
 	float: left;
 position: absolute;
-margin-top: -45px;
-margin-left: -55px;
-background:#C3E4F3;
-border-radius:5px;
-webkit-border-radius:5px;
-moz-border-radius:5px;
-text-align:center;
-padding:5px;
+margin-top: 7px;
+margin-left: 400px;
+background: #C3E4F3;
+border-radius: 5px;
+webkit-border-radius: 5px;
+moz-border-radius: 5px;
+text-align: center;
+padding: 5px;
 }
 .master_container {
 	margin:auto;
@@ -218,7 +218,7 @@ li.hot_form {
 
 	.photos_container {
 		
-		width:600px;
+		width:500px;
 		min-height:400px;
 		height:auto;				
 		margin-top:50px;	
@@ -283,12 +283,13 @@ li.hot_form {
 	}  // images_container
 	
 	.journal_container {
-		width:250px;
-		min-height:400px;
-		height:auto;				
-		margin-top:50px;	
-		padding:10px;
-		float:left;
+		width: 505px;
+		min-height: 773px;
+		height: auto;
+		margin-top: 28px;
+		padding: 10px;
+		float: left;
+		background:url('/assets/pad_of_paper.png') no-repeat;
 		
 		p {
 			padding:10px;

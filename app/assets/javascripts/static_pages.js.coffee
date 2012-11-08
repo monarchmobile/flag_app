@@ -47,7 +47,7 @@ jQuery ->
     $("#" + dom_btn).show()
     $(this).css("color" , "#3b5998")
 
-    $('.test2').html "current_day: "+dom_btn
+    $('.test1').html "current_day: "+dom_btn
 
   $('.month-of-year').hide()
   $('.current_month').show()
