@@ -84,16 +84,24 @@ padding: 5px;
 
 .image_form {
 	margin-top: 0px;
-	margin-left: 500px;
-	width:230px;
+margin-left: 500px;
+width: 335px;
+padding: 0px 0px 0px 35px;
+position: absolute;
+float: left;
+z-index: 100;
+
 }
 
 .journal_form {
 	margin-top: 0px;
-	margin-left: 790px;
-	width:230px;
-	position:absolute;
-	padding: 15px 13px 5px 25px;
+margin-left: 666px;
+position: absolute;
+padding: 15px 0px 5px 25px;
+z-index: 100;
+width: 335px;
+float: left;
+	
 }
 
 .form_style {
@@ -169,6 +177,7 @@ li.hot_form {
 	float: left;
 	width:100px;
 	text-align: center;
+	list-style: none;
 
 	a {
 		&:hover {
@@ -283,12 +292,14 @@ li.hot_form {
 	}  // images_container
 	
 	.journal_container {
-		width: 505px;
-		min-height: 773px;
-		height: auto;
-		margin-top: 28px;
-		padding: 10px;
-		float: left;
+		width: 527px;
+min-height: 773px;
+height: auto;
+margin-top: 28px;
+padding: 10px;
+float: left;
+margin-left: 459px;
+position: absolute;
 		background:url('/assets/pad_of_paper.png') no-repeat;
 		
 		p {
