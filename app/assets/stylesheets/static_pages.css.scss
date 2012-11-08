@@ -148,8 +148,12 @@ li.hot_form {
 .nav_content {
 	text-align: center;
 
-	li {
+	ul li {
 		list-style: none;
+
+		a {
+		text-decoration: none;
+		}
 	}
 }
 
@@ -178,8 +182,10 @@ li.hot_form {
 	width:100px;
 	text-align: center;
 	list-style: none;
+	
 
 	a {
+		text-decoration:none;
 		&:hover {
 			background:transparent;
 		}
@@ -356,6 +362,8 @@ ul.dom_container {
 		margin-left:10px;
 		text-align: center;	
 		background:#fff;
+
+		
 	}
 
 	a:hover li.days_of_month {

@@ -15,6 +15,7 @@
 <div class="test_container">
 	<div class="test1" ></div>
 	<div class="test2" ></div>
+	<div class="test3"></div>
 </div>
 
 <!-- End photo dropdown -->
@@ -99,9 +100,9 @@
     <ul class="dom_container">
     <% (beg_month..date).each do |d| %>
         <% if @user.images.find_by_date_taken(d) || @user.journals.find_by_entry_date(d) %>
-            <a href="#"><li class="days_of_month" style="background:#C8DAF1;" data-date="<%= d.strftime("%m-%d-%Y") %>"><%=  d.strftime("%d")  %></li></a>
+            <a href="#"><li class="days_of_month" style="background:#C8DAF1;" data-date="<%= d.strftime("%m-%d-%Y") %>" data-exists="yes"><%=  d.strftime("%d")  %></li></a>
         <% else %>
-            <a href="#"><li class="days_of_month" data-date="<%= d.strftime("%m-%d-%Y") %>"><%=  d.strftime("%d")  %></li></a>
+            <a href="#"><li class="days_of_month" data-date="<%= d.strftime("%m-%d-%Y") %>" data-exists="no"><%=  d.strftime("%d")  %></li></a>
         <% end %>   
     <% end %>
     </ul>
@@ -120,9 +121,9 @@
 	<ul class="dom_container">
 		<% (m..(m.next_month-1)).each do |d| %>
 		 	<% if @user.images.find_by_date_taken(d) || @user.journals.find_by_entry_date(d) %>
-		 		<a href="#"><li class="days_of_month" style="background:#C8DAF1;" data-date="<%= d.strftime("%m-%d-%Y") %>"><%=  d.strftime("%d")  %></li></a>
+		 		<a href="#"><li class="days_of_month" style="background:#C8DAF1;" data-date="<%= d.strftime("%m-%d-%Y") %>" data-exists="yes"><%=  d.strftime("%d")  %></li></a>
 			<% else %>
-				<a href="#"><li class="days_of_month" data-date="<%= d.strftime("%d") %>"><%=  d.strftime("%d")  %></li></a>
+				<a href="#"><li class="days_of_month" data-date="<%= d.strftime("%d") %>" data-exists="no"><%=  d.strftime("%d")  %></li></a>
 			<% end %>	
 		<% end %>
 	</ul>

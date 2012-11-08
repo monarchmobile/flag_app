@@ -40,8 +40,16 @@ jQuery ->
 
   day_container.hide();
   days_of_month.on "click", ->
+    $(".test3").html ""
     $('.days_of_month').css("font-size" , "12px")
-    $('.outside_add').hide();
+    exists = $(this).data("exists")
+    if exists is "no"
+      $(".drop-image").show
+     
+      $(".test3").html exists
+    
+    
+    
     day_container.hide();
     dom_btn = $(this).data("date")
     $("#" + dom_btn).show()
