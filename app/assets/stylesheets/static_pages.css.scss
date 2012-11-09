@@ -23,7 +23,7 @@
 .test_container	{
 	float: left;
 position: absolute;
-margin-top: 7px;
+margin-top: 75px;
 margin-left: 400px;
 background: #C3E4F3;
 border-radius: 5px;
@@ -204,9 +204,6 @@ li.hot_form {
 	margin-left:20px;
 }
 
-
-
-
 // ScrapBook //
 
 .current_month {
@@ -235,6 +232,7 @@ li.hot_form {
 	padding: 10px;
 	position:absolute;
 	margin-top:50px;
+}
 	
 	
 
@@ -282,7 +280,7 @@ li.hot_form {
 				
 			
 				.actions {
-					display:none;
+					
 					a.image_X img{
 						margin: 10px 71px;
 						width: 25px;		
@@ -321,7 +319,7 @@ li.hot_form {
 		}
 	}
 	
-}	//  end day_container
+	//  end day_container
 
 
 // month scrolling back and forth
@@ -382,5 +380,64 @@ ul.dom_container {
 	
 	a li.include {
 		background:blue;
+	}
+
+	a li.weeks_of_month {
+		box-shadow:0px 0px 5px;
+		-moz-box-shadow: 0px 0px 5px;
+		-webkit-box-shadow: 0px 0px 5px;
+		padding:5px;
+		width:100px;
+		float:left;
+		list-style: none;
+		margin-left:50px;
+		text-align: center;	
+		background:#fff;
+
+		
+	}
+
+	a:hover li.weeks_of_month {
+		color:#fff;
+		background:gray;	
+	}
+
+
+}
+
+// submission navigation from days to year //
+
+.submission_nav {
+	position: absolute;
+	float: left;
+	z-index: 100;
+	width: 324px;
+	height: 50px;
+	background: gray;
+	top: 117px;
+	margin-left: 335px;
+	border-radius: 5px;
+	webkit-border-radius: 5px;
+	moz-border-radius: 5px;
+
+	ul a {
+
+		text-decoration: none;
+
+			li {
+			list-style: none;
+			padding:0px 3px;
+			margin-left:0px;
+			color:#3b5998;
+			font-size:15px;
+			float:left;
+			min-width:60px;
+			width:auto;
+
+			}
+
+			&:hover li {
+				color:#fff;
+			}
 	}
 }

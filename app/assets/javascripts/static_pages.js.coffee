@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
 
-
-	$(".images_container li").hover (->
+	$(".photos_container li").click (->
+    alert('works')
 	  $(this).addClass "current"
 	  $(".current .actions").show()
 	), ->
@@ -46,7 +46,7 @@ jQuery ->
   ### Days of the month ###
   day_container = $(".day_container")
   days_of_month = $(".days_of_month")
-  day_container.hide();
+  day_container.hide()
   days_of_month.on "click", ->
     
     $(".test3").html ""
@@ -59,7 +59,7 @@ jQuery ->
       $(".outside_add").hide()
       $(".test3").html exists if exists is "yes"
 
-    day_container.hide();
+    day_container.hide()
     dom_btn = $(this).data("date")
     $("#" + dom_btn).show()
     $(this).css("font-size" , "20px")
@@ -68,6 +68,18 @@ jQuery ->
 
   $('.month-of-year').hide()
   $('.current_month').show()
+
+  ### Weeks of Month ###
+  week_container = $('.week_container')
+  weeks_of_month = $('.weeks_of_month')
+  week_container.hide()
+  weeks_of_month.on "click", ->
+    week_container.hide()
+    start_week = $(this).data("start-week")
+    end_week = $(this).data("end-week")
+    $('#'+start_week+'-'+end_week).show()
+    $('test3').html start_week+'-'+end_week
+
   
   ### Months - Prev and Next buttons ###
   $('.prev').click ->
@@ -86,6 +98,18 @@ jQuery ->
     $(this).parent().parent().prev().addClass "current_month" 
     $('.month-of-year').hide()
     $('.current_month').show();
+
+  ### navigation around daily to yearly submissions ###
+  $('.submissions').hide()
+  $('.day_sub').click ->
+    $('.submissions').hide()
+    $('.day_submissions').show()
+  $('.week_sub').click ->
+    $('.submissions').hide()
+    $('.week_submissions').show()
+  $('.month_sub').click ->
+    $('.submissions').hide()
+    $('.month_submissions').show()
 
 
 

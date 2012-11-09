@@ -1,11 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :converted_date
+
+  helper_method :converted_date, :numeric
   
   def converted_date(date)
   	date.split(' ')[0]
   end
+
+  class String
+    def numeric?
+      Float(self) != nil rescue false
+    end
+  end
+   
   
   
 private 
