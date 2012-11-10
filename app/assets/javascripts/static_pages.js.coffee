@@ -90,9 +90,6 @@ jQuery ->
     $('#'+month).show()
     $('.test3').html month
 
-
-
-  
   ### Months - Prev and Next buttons ###
   $('.prev').click ->
     which_month = $(this).parent().parent().next().attr('id')

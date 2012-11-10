@@ -1,0 +1,77 @@
+<%= render ('shared/scrap_header') %>
+
+<!-- Year array for holding user.images where year: true -->
+<% year = [] %>
+<% user_images = @user.images.find(:all, conditions: {year: true}) %>
+<% for image in user_images do %>
+	<% year << image.date_taken %>
+<% end %>
+<% @year = year %>
+
+<% @year.each do |d| %>
+	<% nice_date = d.strftime('%d').to_i %>
+	<% w = nice_date/7 %>
+
+	<!-- get m value -->
+	<% date1 = Date.today %>
+	<% date2 = Date.today.beginning_of_month %>
+	<% breaker = date1.strftime("%d").to_i %> <!-- today's number day of month -->
+	 
+		<!-- days of current month -->
+	<% count = (date1.beginning_of_month..(date1.next_month.beginning_of_month-1)).count %>
+	<% answer = distance_of_time_in_words(date1, d) %>
+	<% number = answer.split(' ')[0].to_i %>
+	<% word = answer.split(' ')[1] %>
+	    <!-- test if we are in present month-set m to 0 -->
+	<% if number < breaker %>
+		
+		<% m = 0 %>
+	<% else %>
+		<!-- get into next month and get a clean num for how many months away -->
+		<% date3 = Date.today.next_month-number+1 %>
+		<% answer2 = distance_of_time_in_words(date3, d) %>
+		<% number2 = answer2.split(' ') %>
+		<% for num in number2 do %>
+			<% if is_numeric?(num) %>
+				<% m = num.to_i %>
+			<% end %>
+		<% end %>	
+	<% end %>
+	<% m %> 
+
+	<div class="year_container" id="year_container">
+		
+	<!-- <div class="scrapbook"></div> -->
+	<!-- Add a photo dropdown -->	
+	<li class="drop-image hot_form" >
+		<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
+	</li>
+	<!-- End photo dropdown -->
+
+	<!-- Add a journal-entry dropdown -->
+	<li class="drop-journal hot_form">
+		<a class="" href="#" >Journal Entry<strong class="caret"></strong></a>
+	</li>
+	<!-- End journal-entry dropdown -->
+
+
+	<!-- photos_container -->
+	<div class="photos_container">
+		<% @images = @user.images.find(:all, :conditions => {:date_taken => start_week(m)[0]..end_week(m)[0], year: true}) %>
+		<% for image in @images do %>
+			<li>
+			<div class="image_container">
+				<%= image_tag image.image_url, width:175, height:175 %>
+				<%= content_tag :h3, image.title %>
+				<%= content_tag :p, image.content, class: "image_content" %>
+				<div class="actions">					
+				<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "image_X" %>
+				<%= link_to "Edit", [:edit, @user, image] %>
+				</div>
+			</div>
+			</li>
+		<% end %>
+	</div>	
+</div>
+<% end %>
+

@@ -1,8 +1,6 @@
 class StaticPagesController < ApplicationController
   before_filter :current_user, :days_array, :weeks_array
 
-
-
   def home
  
   	@user = @current_user
@@ -28,6 +26,10 @@ class StaticPagesController < ApplicationController
   end
 
   def monthly
+    user_setup
+  end
+
+  def yearly
     user_setup
   end
 

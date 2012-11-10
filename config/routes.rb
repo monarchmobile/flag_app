@@ -10,6 +10,7 @@ FlagApp::Application.routes.draw do
   match 'daily_scrapbook', to: "static_pages#daily"
   match 'weekly_scrapbook', to: "static_pages#weekly"
   match 'monthly_scrapbook', to: "static_pages#monthly"
+  match 'yearly_scrapbook', to: "static_pages#yearly"
   
   resources :users do 
   	resources :images
