@@ -100,13 +100,13 @@ jQuery ->
     $('.current_month').show();
 
   ### navigation around daily to yearly submissions ###
-  $('.submissions').hide()
-  $('.day_sub').click ->
-    $('.submissions').hide()
-    $('.day_submissions').show()
-  $('.week_sub').click ->
-    $('.submissions').hide()
-    $('.week_submissions').show()
+  
+  #$('.day_sub').click ->
+    #$('.submissions').hide()
+    #$('.day_submissions').show()
+  #$('.week_sub').click ->
+    #$('.submissions').hide()
+    #$('.week_submissions').show()
   $('.month_sub').click ->
     $('.submissions').hide()
     $('.month_submissions').show()

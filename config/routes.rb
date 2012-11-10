@@ -1,10 +1,5 @@
 FlagApp::Application.routes.draw do
 
-  resources :journals
-
-  get "static_pages/profile"
-
-  get "static_pages/about"
 
   match 'signup', to: "users#new"
   match 'login', to: "sessions#new"
@@ -12,6 +7,8 @@ FlagApp::Application.routes.draw do
   match 'scrapbook', to: "static_pages#scrapbook"
   match 'profile', to: "static_pages#profile"
   match 'about', to: "static_pages#about"
+  match 'daily_scrapbook', to: "static_pages#daily"
+  match 'weekly_scrapbook', to: "static_pages#weekly"
   
   resources :users do 
   	resources :images

@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_filter :current_user
+  before_filter :current_user, :days_array
 
   def home
  
@@ -11,26 +11,25 @@ class StaticPagesController < ApplicationController
 
   def scrapbook
   	@user = @current_user
-  	@image = Image.new
+  	@image = @user.images.new
   	@journal = Journal.new
   	
-    # finding all days that have either images or journal entried #
-  	 days = [] 
-     user_images = @user.images.find(:all, :order => 'date_taken') 
-     for image in user_images do 
-       days << image.date_taken
-     end 
-
-     user_entries = @user.journals.find(:all, :order => 'entry_date') 
-     for entry in user_entries do   
-       days << entry.entry_date
-     end 
-     @days = days
+    
 
      # finding all weeks that have either images or journal entried #
-     
+  end
 
+  def daily
+    @user = current_user
+    @image = @user.images.new
+    @journal = @user.journals.new
 
+  end
+
+  def weekly
+    @user = current_user
+    @image = @user.images.new
+    @journal = @user.journals.new
   end
 
   def profile
@@ -40,6 +39,9 @@ class StaticPagesController < ApplicationController
   def about
   	@user = User.find(params[:user_id]) if params[:user_id]
   end
+
+  # finding all days that have either images or journal entried #
+  
 
   
 end

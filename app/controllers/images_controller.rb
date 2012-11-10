@@ -2,7 +2,9 @@ class ImagesController < ApplicationController
 
   # INDEX
   def index
-    @images = Image.all
+    #@images = Image.all
+    @user = current_user
+    @images = @user.images.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,8 +14,8 @@ class ImagesController < ApplicationController
 
   # SHOW
   def show
-  	@current_user = @user 
-    @image = Image.find(params[:id])
+  	@user = current_user
+    @image = @user.images.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -23,11 +25,12 @@ class ImagesController < ApplicationController
 
   # NEW
   def new
+    @user = current_user
     @image = Image.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @image }
+      format.js
     end
   end
 

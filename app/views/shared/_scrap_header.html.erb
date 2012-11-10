@@ -1,0 +1,31 @@
+<!-- Add a photo dropdown -->
+<li class="drop-image outside_add hot_form image_outside">
+	<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
+</li>
+<li class="drop-journal outside_add hot_form journal_outside">
+	<a class="" href="#" >Journal Entry<strong class="caret"></strong></a>
+</li>
+<div class="image_form hide form_style">
+	<%= render 'images/form' %>
+</div>
+<div class="journal_form hide form_style">
+	<%= render 'journals/form' %>
+</div>
+
+<!-- this is a testing area to make sure variable are rendering correctly -->
+<div class="test_container">
+	<div class="test1" ></div>
+	<div class="test2" ></div>
+	<div class="test3"></div>
+</div>
+
+<div class="submission_nav">
+	<ul>
+		<%= link_to content_tag(:li, "day"), daily_scrapbook_path, class: "day_sub" %>
+		<%= link_to content_tag(:li, "week"), weekly_scrapbook_path, class: "week_sub"%>
+		<%= link_to content_tag(:li, "month"), "#", class: "month_sub" %>
+		<%= link_to content_tag(:li, "year"), "#", class: "year_sub" %>
+	</ul>
+</div>
+ 
+<!-- End photo dropdown -->

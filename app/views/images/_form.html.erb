@@ -1,4 +1,5 @@
-<%= form_for [@user, @image], html: {:multipart => true} do |f| %>
+
+  <%= form_for [@user, @image], html: {:multipart => true} do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
@@ -20,10 +21,7 @@
   	
     <%= f.file_field :image %>
   </div>
-  <div class="field">
-  	<%= f.label :remote_image_url, "or image url" %><br />
-  	<%= f.text_field :remote_image_url %>
-  </div>
+  
   <div class="field">
     <%= f.label :content %><br />
     <%= f.text_area :content %>
@@ -32,18 +30,29 @@
     <%= f.label :date_taken %><br />
     <%= f.text_field :date_taken %>
   </div>
-  <div class="field">
-    <%= f.label :week, "add to Week ScrapBook?" %><br />
-    <%= f.check_box :week %>
-  </div>
-  <div class="field">
-    <%= f.label :month, "add to Month ScrapBook?" %><br />
-    <%= f.check_box :month %>
-  </div>
-  <div class="field">
-    <%= f.label :year, "add to Year ScrapBook?" %><br />
-    <%= f.check_box :year %>
-  </div>
+  Would you like to submit this further?
+  <ul>
+    <li>
+      <div class="field">
+        <%= f.label :week %>
+        <%= f.check_box :week %>
+      </div>
+    </li>
+    <li>
+      <div class="field">
+        <%= f.label :month %>
+        <%= f.check_box :month %>
+      </div>
+    </li>
+    <li>
+      <div class="field">
+        <%= f.label :year %>
+        <%= f.check_box :year %>
+      </div>
+    </li>
+  </ul>
+  <br />
+  
   <div class="actions">
     <%= f.submit %>
   </div>

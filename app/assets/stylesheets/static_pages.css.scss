@@ -83,19 +83,24 @@ padding: 5px;
 }
 
 .image_form {
-	margin-top: 0px;
-margin-left: 500px;
+	margin-top: 75px;
+margin-left: 600px;
 width: 335px;
 padding: 0px 0px 0px 35px;
 position: absolute;
 float: left;
 z-index: 100;
 
+	ul li {
+		list-style: none;
+		
+	}
+
 }
 
 .journal_form {
-	margin-top: 0px;
-margin-left: 666px;
+	margin-top: 75px;
+margin-left: 600px;
 position: absolute;
 padding: 15px 0px 5px 25px;
 z-index: 100;

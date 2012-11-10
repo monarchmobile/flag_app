@@ -2,19 +2,66 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 
-  helper_method :converted_date, :numeric
+  helper_method :converted_date, :numeric, :days_array, :weeks_array, :start_week, :end_week, :start_month
   
   def converted_date(date)
   	date.split(' ')[0]
   end
-
-  class String
-    def numeric?
-      Float(self) != nil rescue false
-    end
-  end
    
+  def days_array
+     days = []
+     @user = current_user
+     user_images = @user.images.find(:all, :order => 'date_taken') 
+     for image in user_images do 
+       days << image.date_taken
+     end 
+
+     user_entries = @user.journals.find(:all, :order => 'entry_date') 
+     for entry in user_entries do   
+       days << entry.entry_date
+     end 
+     @days = days
+  end
+
+  def weeks_array
+     weeks= []
+     @user = current_user
+     user_images = @user.images.find(:all, :conditions => {week: true}) 
+     for image in user_images do 
+       weeks << image.date_taken
+     end 
+     @weeks = weeks
+  end
   
+  ## <!-- set up parameters for weeks array --> ##
+  def start_week(m) 
+     date = Date.today 
+     beg_month = date.beginning_of_month 
+     @start_dates = [] 
+     actual_month = beg_month << m 
+     (1..5).each do |w| 
+       @start_dates << actual_month+((w*7)-7)  
+     end 
+     @start_dates 
+  end 
+
+  def end_week(m) 
+     date = Date.today 
+     beg_month = date.beginning_of_month 
+     @end_dates = [] 
+     actual_month = beg_month << m 
+     (1..5).each do |w| 
+       @end_dates << actual_month+((w*7)-1)  
+     end 
+     @end_dates 
+  end 
+
+  ## set up parameters for months array ##
+  def start_month(m) 
+     date = Date.today 
+     @beg_month = date.beginning_of_month 
+     @beg_month << m  
+  end 
   
 private 
 	def current_user
