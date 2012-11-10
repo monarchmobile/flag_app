@@ -1,0 +1,29 @@
+<%= render ('shared/scrap_header') %>
+
+<ul>
+<% months = [] %>
+<% user_images = @user.monthly_image_submissions %>
+<% for image in user_images do %>
+<% 	 months << image.date_taken %>
+<% end %>
+
+<% @months = months %>
+
+
+<% @months.each do |d| %>
+<%= render ('shared/month'), d: d %>
+<% end %>
+
+</ul>
+
+<ul class="dom_container">
+	
+	<% (0..11).sort.reverse.each do |month| %>
+		<% if @user.images.find(:all, conditions: {date_taken: start_week(month)[0]..end_week(month)[0], month: true}).any? %>
+			<a href="#"><li class="months_of_year clickable_dates content_exists" data-month="<%= start_month(month)%>" data-exists="yes"><%= start_month(month).strftime("%b-%y") %></li></a>
+		<% else %>
+			<a href="#"><li class="months_of_year clickable_dates" data-month="<%= start_month(month)%>" data-exists="no"><%= start_month(month).strftime("%b-%y") %></li></a>
+		<% end %>
+	<% end %>
+
+</ul>

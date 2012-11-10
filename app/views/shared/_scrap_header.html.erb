@@ -1,4 +1,7 @@
-<!-- Add a photo dropdown -->
+
+<% if current_user %>
+	<h1>Scrapbook</h1>
+<% end %><!-- Add a photo dropdown -->
 <li class="drop-image outside_add hot_form image_outside">
 	<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
 </li>
@@ -23,7 +26,7 @@
 	<ul>
 		<%= link_to content_tag(:li, "day"), daily_scrapbook_path, class: "day_sub" %>
 		<%= link_to content_tag(:li, "week"), weekly_scrapbook_path, class: "week_sub"%>
-		<%= link_to content_tag(:li, "month"), "#", class: "month_sub" %>
+		<%= link_to content_tag(:li, "month"), monthly_scrapbook_path, class: "month_sub" %>
 		<%= link_to content_tag(:li, "year"), "#", class: "year_sub" %>
 	</ul>
 </div>

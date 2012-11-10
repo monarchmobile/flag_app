@@ -19,7 +19,7 @@ jQuery ->
   	), (->
   		$(".auth-form").hide()
   	)
-
+ 
   ### Image - Form drops down ###
   $(".drop-image").toggle (->
     $(".image_form").show()
@@ -80,6 +80,18 @@ jQuery ->
     $('#'+start_week+'-'+end_week).show()
     $('test3').html start_week+'-'+end_week
 
+  ### Months of the Year ###
+  month_container = $('.month_container')
+  months_of_year = $(".months_of_year")
+  month_container.hide()
+  months_of_year.on "click", ->
+    month_container.hide()
+    month = $(this).data("month")
+    $('#'+month).show()
+    $('.test3').html month
+
+
+
   
   ### Months - Prev and Next buttons ###
   $('.prev').click ->
@@ -101,15 +113,7 @@ jQuery ->
 
   ### navigation around daily to yearly submissions ###
   
-  #$('.day_sub').click ->
-    #$('.submissions').hide()
-    #$('.day_submissions').show()
-  #$('.week_sub').click ->
-    #$('.submissions').hide()
-    #$('.week_submissions').show()
-  $('.month_sub').click ->
-    $('.submissions').hide()
-    $('.month_submissions').show()
+  
 
 
 

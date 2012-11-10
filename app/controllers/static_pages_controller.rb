@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
-  before_filter :current_user, :days_array
+  before_filter :current_user, :days_array, :weeks_array
+
+
 
   def home
  
@@ -14,22 +16,19 @@ class StaticPagesController < ApplicationController
   	@image = @user.images.new
   	@journal = Journal.new
   	
-    
-
-     # finding all weeks that have either images or journal entried #
   end
 
   def daily
-    @user = current_user
-    @image = @user.images.new
-    @journal = @user.journals.new
+    user_setup
 
   end
 
   def weekly
-    @user = current_user
-    @image = @user.images.new
-    @journal = @user.journals.new
+    user_setup
+  end
+
+  def monthly
+    user_setup
   end
 
   def profile

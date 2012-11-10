@@ -2,6 +2,7 @@
 
 	<!-- <div class="scrapbook"><%= d %></div> -->
 	<!-- Add a photo dropdown -->
+
 	<% if @user.has_not_reached_daily_image_limit?(d) %>
 		
 		<li class="drop-image hot_form" >
@@ -30,14 +31,13 @@
 				<%= content_tag :h3, image.title %>
 				<%= content_tag :p, image.content, class: "image_content" %>
 				<div class="actions">					
-				<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "image_X" %>
-				<%= link_to "Edit", [:edit, @user, image] %>
+					<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "image_X" %>
+					<%= link_to "Edit", [:edit, @user, image] %>						
 				</div>
 			</div>
 			</li>
 		<% end %>
 	</div>
-	
 
 	<!-- journal_container -->
 	<div class="journal_container">

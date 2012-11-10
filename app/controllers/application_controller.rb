@@ -7,7 +7,15 @@ class ApplicationController < ActionController::Base
   def converted_date(date)
   	date.split(' ')[0]
   end
+
+  ## Varaiables used for staticpagesController (daily, weekly, monthly, yearly)
+  def user_setup
+    @user = current_user
+    @image = @user.images.new
+    @journal = @user.journals.new
+  end
    
+  ## finds all the user.images where day column is true ##
   def days_array
      days = []
      @user = current_user
@@ -23,16 +31,17 @@ class ApplicationController < ActionController::Base
      @days = days
   end
 
+  ## finds all the user.images where week column is true ##
   def weeks_array
-     weeks= []
-     @user = current_user
-     user_images = @user.images.find(:all, :conditions => {week: true}) 
+     weeks= [] 
+     @user = current_user 
+     user_images = @user.images.find(:all, :conditions => { week: true}) 
      for image in user_images do 
-       weeks << image.date_taken
+       weeks << image.date_taken 
      end 
      @weeks = weeks
   end
-  
+
   ## <!-- set up parameters for weeks array --> ##
   def start_week(m) 
      date = Date.today 

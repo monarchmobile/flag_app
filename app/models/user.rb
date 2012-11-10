@@ -13,6 +13,14 @@ class User < ActiveRecord::Base
       images.where(:date_taken => d).count < 5
   end
 
+  def monthly_image_submissions
+    images.find(:all, :conditions => {month: true})
+  end
+
+  def monthly_image_submissions_within_range(m,w)
+    images.find(:all, conditions: {date_taken: start_week(month)[0]..end_week(month)[0], month: true})
+  end
+
   date = Date.today
   @date = date
   beg_month = date.beginning_of_month

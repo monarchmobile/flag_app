@@ -30,27 +30,19 @@
     <%= f.label :date_taken %><br />
     <%= f.text_field :date_taken %>
   </div>
-  Would you like to submit this further?
-  <ul>
-    <li>
-      <div class="field">
-        <%= f.label :week %>
-        <%= f.check_box :week %>
-      </div>
-    </li>
-    <li>
-      <div class="field">
-        <%= f.label :month %>
-        <%= f.check_box :month %>
-      </div>
-    </li>
-    <li>
-      <div class="field">
-        <%= f.label :year %>
-        <%= f.check_box :year %>
-      </div>
-    </li>
-  </ul>
+  <div class="field">
+    <%= f.label :week %><br />
+    <%= f.check_box :week %>
+  </div>
+  <div class="field">
+    <%= f.label :month %><br />
+    <%= f.check_box :month %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.check_box :year %>
+  </div>
+  
   <br />
   
   <div class="actions">
