@@ -36,7 +36,7 @@ class ImagesController < ApplicationController
 
   # EDIT
   def edit
-  	@user = User.find(params[:user_id])	
+  	@user = current_user
     @image = @user.images.find(params[:id])
     
     #@user = User.find(params[:image][:user_id])
@@ -46,7 +46,7 @@ class ImagesController < ApplicationController
 
   # CREATE
   def create
-  	@user = User.find(params[:image][:user_id])
+  	@user = current_user
     @image = @user.images.build(params[:image])
 
     respond_to do |format|
@@ -63,13 +63,16 @@ class ImagesController < ApplicationController
   # UPDATE
   def update
   
-    @user = User.find(params[:image][:user_id])
-    @image = Image.find(params[:id])
+    #@user = User.find(params[:image][:user_id])
+
+
+    @user = current_user
+    @image = @user.images.find(params[:id])
 
     respond_to do |format|
       if @image.update_attributes(params[:image])
         format.html { redirect_to scrapbook_path, notice: 'Image was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @image.errors, status: :unprocessable_entity }

@@ -33,18 +33,7 @@
 	
 	<div class="week_container" id="<%= start_week(m)[w] %>-<%= end_week(m)[w] %>">
 		
-		<!-- <div class="scrapbook"></div> -->
-		<!-- Add a photo dropdown -->	
-		<li class="drop-image hot_form" >
-			<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
-		</li>
-		<!-- End photo dropdown -->
-
-		<!-- Add a journal-entry dropdown -->
-		<li class="drop-journal hot_form">
-			<a class="" href="#" >Journal Entry<strong class="caret"></strong></a>
-		</li>
-		<!-- End journal-entry dropdown -->
+		
 
 
 		<!-- photos_container -->
@@ -52,13 +41,25 @@
 			<% @images = @user.images.find(:all, :conditions => {:date_taken => start_week(m)[w]..end_week(m)[w], week: true}) %>
 			<% for image in @images do %>
 				<li>
-				<div class="image_container">
+				<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
 					<%= image_tag image.image_url, width:175, height:175 %>
 					<%= content_tag :h3, image.title %>
 					<%= content_tag :p, image.content, class: "image_content" %>
-					<div class="actions">					
-					<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "image_X" %>
-					<%= link_to "Edit", [:edit, @user, image] %>
+					<div class="actions">				
+						<% if image.month == false %>
+							<%= form_for [@user, image], remote: true do |f| %>
+							  <%= f.check_box :month %>
+							  <%= f.submit "Add to month" %>
+							<% end %>
+						<% elsif image.month == true %>
+							<%= link_to content_tag(:div, "Part of monthly Gallery", class: "gallery_msg"), monthly_scrapbook_path %><br />
+						<% end %>	
+						<%= form_for [@user, image], remote: true do |f| %>
+							<%= f.check_box :week %>
+							<%= f.submit "Remove from week" %>
+						<% end %>
+						<%= link_to "Edit title or caption", [:edit, @user, image] %><br />
+						<%= link_to "delete permantly", [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "image_X" %>	
 					</div>
 				</div>
 				</li>

@@ -109,6 +109,10 @@ jQuery ->
     $('.current_month').show();
 
   ### navigation around daily to yearly submissions ###
+
+  $('.edit_image input[type=checkbox]').click ->
+    $(this).parent('form').submit()
+    $(this).parent('form').hide().append('<div class="gallery_msg">Successfully done!!</div>')
   
   
 
