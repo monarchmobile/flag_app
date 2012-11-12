@@ -8,7 +8,7 @@
 		
 		<!-- photos_container -->
 		<div class="photos_container">
-			<% @images = @user.images.find(:all, :conditions => {year: true}) %>
+			<% @images = @user.images.find_all_by_year(true) %>
 			<% for image in @images do %>
 				<li>
 				<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
@@ -16,13 +16,14 @@
 					<%= content_tag :h3, image.title %>
 					<%= content_tag :p, image.content, class: "image_content" %>
 					<div class="actions">
-
+						<div class="gallery_msg">
 						<%= form_for [@user, image], remote: true do |f| %>
 							<%= f.check_box :year %>
-							<%= f.submit "Remove from year" %>
-						<% end %>				
-						<%= link_to "Edit title or caption", [:edit, @user, image] %><br />
-						<%= link_to "delete permantly", [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "image_X" %>	
+							Remove from year
+						<% end %>
+						</div>				
+						<%= render('shared/edit_delete_image_container', :image => image) %>
+
 					</div>
 				</div>
 				</li>

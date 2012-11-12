@@ -1,19 +1,6 @@
 <%= render ('shared/scrap_header') %>
 
-<% def is_numeric?(s) %>
-	 <% !!Float(s) rescue false %>
-<% end %>
-
-<!-- Day Container holding images and journal entries -->
-<ul>
-
-<% @weeks.each do |d| %>
-	<%= render ('shared/week'), d: d %>
-<% end %>
-
-</ul>
-
-<br />
+<%= render ('shared/week') %>
 	
 
 <!-- Current month with weeks on bottom, show when page is loaded -->
@@ -24,7 +11,12 @@
 
     <ul class="dom_container">
     <% (0..4).each do |d| %>
-    	<% if @user.images.find(:all, :conditions => {:date_taken => start_week(0)[d]..end_week(0)[d], week: true}).any? %>
+    	<% if @user.images.where({:date_taken => start_week(0)[d]..end_week(0)[d], week: true}).any? %>
+            
+            <%= form_tag weekly_scrapbook_path({ start_week: start_week(0)[d], end_week: end_week(0)[d]}) do %>
+                <%= hidden_field_tag :start_week %>
+                <%= hidden_field_tag :end_week %>
+            <% end %>
     	 	<a href="#"><li class="weeks_of_month clickable_dates content_exists" data-start-week="<%= start_week(0)[d] %>" data-end-week="<%= end_week(0)[d] %>" data-exists="yes" >Week <%= d+1 %></li></a>
     	<% else %>
          	<a href="#"><li class="weeks_of_month clickable_dates" data-start-week="<%= start_week(0)[d] %>" data-end-week="<%= end_week(0)[d] %>" data-exists="no" >Week <%= d+1 %></li></a>
@@ -34,7 +26,9 @@
 </div>
 
 <!-- scrolling through month array --> 
+
 <% (1..12).each do |m| %>
+
 <div class="month-of-year" id="<%= start_week(m)[0] %>">
 	<h2 id="month">
         <a class="prev prev-next" title="<%= start_month(m+1) %>"><</a>
@@ -42,9 +36,15 @@
     </h2>
 	
 	<ul class="dom_container">
+
 	<% (0..4).each do |w| %>
-    	<% if @user.images.find(:all, :conditions => {:date_taken => start_week(m)[w]..end_week(m)[w], week: true}).any? %>
-    	 	<a href="#"><li class="weeks_of_month clickable_dates content_exists" data-exists="yes" >Week <%= w+1 %></li></a>
+
+    	<% if @user.images.where({:date_taken => start_week(m)[w]..end_week(m)[w], week: true}).any? %>
+            <%= form_tag weekly_scrapbook_path({ start_week: start_week(m)[w], end_week: end_week(m)[w]}) do %>
+                <%= hidden_field_tag :start_week %>
+                <%= hidden_field_tag :end_week %>
+            <% end %>
+    	 	<a href="#"><li class="weeks_of_month clickable_dates content_exists" data-start-week="<%= start_week(m)[w] %>" data-end-week="<%= end_week(m)[w] %>" data-exists="yes" >Week <%= w+1 %></li></a>
     	<% else %>
          	<a href="#"><li class="weeks_of_month clickable_dates"  data-exists="no" >Week <%= w+1 %></li></a>
         <% end %>

@@ -48,6 +48,7 @@ jQuery ->
   days_of_month = $(".days_of_month")
   day_container.hide()
   days_of_month.on "click", ->
+    $(this).parent().prev('form').submit()
     
     $(".test3").html ""
     $('.days_of_month').css("font-size" , "12px")
@@ -59,9 +60,9 @@ jQuery ->
       $(".outside_add").hide()
       $(".test3").html exists if exists is "yes"
 
-    day_container.hide()
-    dom_btn = $(this).data("date")
-    $("#" + dom_btn).show()
+    #day_container.hide()
+    #dom_btn = $(this).data("date")
+    #$("#" + dom_btn).show()
     $(this).css("font-size" , "20px")
 
     $('.test1').html "current_day: "+dom_btn 
@@ -70,15 +71,17 @@ jQuery ->
   $('.current_month').show()
 
   ### Weeks of Month ###
-  week_container = $('.week_container')
+  
   weeks_of_month = $('.weeks_of_month')
-  week_container.hide()
   weeks_of_month.on "click", ->
-    week_container.hide()
-    start_week = $(this).data("start-week")
-    end_week = $(this).data("end-week")
-    $('#'+start_week+'-'+end_week).show()
-    $('test3').html start_week+'-'+end_week
+    $(this).parent().prev('form').submit()
+
+
+  ### scrapbook sub menu ###
+  
+ 
+  
+    
 
   ### Months of the Year ###
   month_container = $('.month_container')
@@ -86,7 +89,8 @@ jQuery ->
   month_container.hide()
   months_of_year.on "click", ->
     month_container.hide()
-    month = $(this).data("month")
+    $(this).parent().prev('form').submit()
+    #month = $(this).data("month")
     $('#'+month).show()
     $('.test3').html month
 

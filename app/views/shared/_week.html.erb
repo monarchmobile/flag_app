@@ -1,68 +1,34 @@
-<!-- get w value -->
-	<% nice_date = d.strftime('%d').to_i %>
-	<% w = nice_date/7 %>
- 
-	<!-- get m value -->
-	<% date1 = Date.today %>
-	<% date2 = Date.today.beginning_of_month %>
-	<% breaker = date1.strftime("%d").to_i %> <!-- today's number day of month -->
-	
-		<!-- days of current month -->
-	<% count = (date1.beginning_of_month..(date1.next_month.beginning_of_month-1)).count %>
-	<% answer = distance_of_time_in_words(date1, d) %>
-	<% number = answer.split(' ')[0].to_i %>
-	<% word = answer.split(' ')[1] %>
-	    <!-- test if we are in present month-set m to 0 -->
-	<% if number < breaker %>
-		
-		<% m = 0 %>
-	<% else %>
-		<!-- get into next month and get a clean num for how many months away -->
-		<% date3 = Date.today.next_month-number+1 %>
-		<% answer2 = distance_of_time_in_words(date3, d) %>
-		<% number2 = answer2.split(' ') %>
-		<% for num in number2 do %>
-			<% if is_numeric?(num) %>
-				<% m = num.to_i %>
-			<% end %>
-		<% end %>
-		
-	<% end %>
-	<% m %>
-	<br />
-	
-	<div class="week_container" id="<%= start_week(m)[w] %>-<%= end_week(m)[w] %>">
-		
-		
-
-
-		<!-- photos_container -->
-		<div class="photos_container">
-			<% @images = @user.images.find(:all, :conditions => {:date_taken => start_week(m)[w]..end_week(m)[w], week: true}) %>
-			<% for image in @images do %>
-				<li>
-				<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
-					<%= image_tag image.image_url, width:175, height:175 %>
-					<%= content_tag :h3, image.title %>
-					<%= content_tag :p, image.content, class: "image_content" %>
-					<div class="actions">				
-						<% if image.month == false %>
-							<%= form_for [@user, image], remote: true do |f| %>
-							  <%= f.check_box :month %>
-							  <%= f.submit "Add to month" %>
-							<% end %>
-						<% elsif image.month == true %>
-							<%= link_to content_tag(:div, "Part of monthly Gallery", class: "gallery_msg"), monthly_scrapbook_path %><br />
-						<% end %>	
-						<%= form_for [@user, image], remote: true do |f| %>
-							<%= f.check_box :week %>
-							<%= f.submit "Remove from week" %>
-						<% end %>
-						<%= link_to "Edit title or caption", [:edit, @user, image] %><br />
-						<%= link_to "delete permantly", [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "image_X" %>	
-					</div>
-				</div>
-				</li>
-			<% end %>
-		</div>	
-	</div>
+<div class="photos_container">
+<% @user_images.each do |image| %>
+    <% date_taken = image.date_taken %>
+    <% beg_date = date_taken.beginning_of_month %>
+    <% start_date = beg_date.strftime("%Y-%m-%d") %>
+    <% end_date = beg_date.next_month-1 %>
+    <% end_date = end_date.strftime("%Y-%m-%d") %>
+    
+    <li>
+    	<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
+            <%= image_tag image.image_url, width:175, height:175 %>
+            <%= content_tag :h3, image.title %>
+            <%= content_tag :p, image.content, class: "image_content" %>
+            <div class="actions">
+                <div class="gallery_msg">               
+                <% if image.month == false %>
+                    <%= form_for [@user, image], remote: true do |f| %>
+                      <%= f.check_box :month %>
+                      Add to month
+                    <% end %>
+                <% elsif image.month == true %>
+                    <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(start_month: start_date, end_month: end_date) %>
+                <% end %>   
+                <%= form_for [@user, image], remote: true do |f| %>
+                    <%= f.check_box :week %>
+                    Remove from week
+                <% end %>
+                </div>
+                <%= render('shared/edit_delete_image_container', :image => image) %>    
+            </div>
+        </div>
+    </li>
+<% end %>
+</div> 

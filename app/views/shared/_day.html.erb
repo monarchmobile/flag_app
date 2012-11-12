@@ -1,57 +1,52 @@
-<div class="day_container" id="<%= d %>">
+<div class="photos_container">
+<% @user_images.each do |image| %>
+<!-- determine day -->
+<% d = image.date_taken.strftime("%d").to_i %>
+<% d = d-1 %>
+<% d = d/7 %>
+<% d1 = (d*7)+1 %>
+<% d2 = d1+6 %>
+<% y = image.date_taken.strftime("%Y") %>
+<% m = image.date_taken.strftime("%m") %>
+<% day1 = d1.to_s %>
+<% day2 = d2.to_s %>
+<% year = y.to_s %>
+<% month = m.to_s %>
+<% start_date = [y, m, day1].join('-') %>
+<% end_date = [y, m, day2].join('-') %>
 
-	<!-- <div class="scrapbook"><%= d %></div> -->
-	<!-- Add a photo dropdown -->
- 
-	<% if @user.has_not_reached_daily_image_limit?(d) %>
-		
-		<li class="drop-image hot_form" >
-			<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
-		</li>
-		
-	<% else %>
-		<p>You have reached your daily upload limit.  In order to add new photos, you must delete one of the existing 5 below</p>
-	<% end %>
-	<!-- End photo dropdown -->
 
-	<!-- Add a journal-entry dropdown -->
-	<li class="drop-journal hot_form">
-		<a class="" href="#" >Journal Entry<strong class="caret"></strong></a>
-		
-	</li> 
-	<!-- End journal-entry dropdown -->
 
-	<!-- photos_container -->
-	<div class="photos_container">
-		<% @images = @user.images.where(:date_taken => d) %>
-		<% for image in @images do %>
-			<li>
-			<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
-				<%= image_tag image.image_url, width:175, height:175 %>
-				<%= content_tag :h3, image.title %>
-				<%= content_tag :p, image.content, class: "image_content" %>
-				<div class="actions">					
-					<% if image.week == false %>
-						<%= form_for [@user, image], remote: true do |f| %>
-						  <%= f.check_box :week %>
-						  <%= f.submit "Add to your week" %>
-						<% end %>
-					<% elsif image.week == true %>
-						<%= link_to content_tag(:div, "Part of weekly Gallery", class: "gallery_msg"), weekly_scrapbook_path %><br />
-					<% end %>	
-					<%= link_to "Edit title or caption", [:edit, @user, image] %><br />
-					<%= link_to "delete permantly", [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "image_X" %>						
-				</div>
+	
+	<li>
+		<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
+			<%= image_tag image.image_url, width:175, height:175 %>
+			<%= content_tag :h3, image.title %>
+			<%= content_tag :p, image.content, class: "image_content" %>
+			<div class="actions">	
+				<div class="gallery_msg">				
+				<% if image.week == false %>
+				
+					<%= form_for [@user, image], remote: true do |f| %>
+					  <%= f.check_box :week %>
+					  Add to your week
+					<% end %>
+				
+				<% elsif image.week == true %>
+					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(start_week: start_date, end_week: end_date) %>
+				<% end %>
+				</div>	
+				<%= render('shared/edit_delete_image_container', :image => image) %>			
 			</div>
-			</li>
-		<% end %>
-	</div>
+		</div>
+	</li>
+<% end %>
+</div>
 
 	<!-- journal_container -->
-	<div class="journal_container">
-		<% @entries = @user.journals.where(:entry_date => d) %>
-		<% for entry in @entries do %>
-			
+<div class="journal_container">
+		
+	<% @user_journals.each do |entry| %>	
 			<div class="journal_entry">
 				<%= content_tag :p, entry.content %>
 								
@@ -59,7 +54,6 @@
 				<%= link_to "Edit", [:edit, @user, entry] %>
 			</div>
 			
-		<% end %>
-	</div>
-
+	<% end %>	
 </div>
+

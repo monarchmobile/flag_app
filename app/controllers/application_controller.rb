@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   def weeks_array
      weeks= [] 
      @user = current_user 
-     user_images = @user.images.find(:all, :conditions => { week: true}) 
+     user_images = @user.images.find_all_by_week(true) 
      for image in user_images do 
        weeks << image.date_taken 
      end 
