@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_filter :current_user, :days_array, :weeks_array
+  before_filter :current_user, :days_array, :weeks_array, :except => [:home]
 
   def home
  
