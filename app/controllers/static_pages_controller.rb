@@ -13,6 +13,7 @@ class StaticPagesController < ApplicationController
   	@user = @current_user
   	@image = @user.images.new
   	@journal = Journal.new
+    
   	
   end
 

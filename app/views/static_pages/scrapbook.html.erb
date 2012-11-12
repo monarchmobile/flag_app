@@ -2,5 +2,14 @@
 <h1>Scrapbook</h1>
 <% if current_user %>
 	<%= render ('shared/scrap_header') %>
-	
+
+<% end %>
+
+<%= form_tag weekly_scrapbook_path, :method => 'get', class: "query_form" do %>
+  <p>
+    Month<%= text_field_tag :month %><br />
+    Week <%= text_field_tag :week %><br />
+    title <%= text_field_tag :title %><br />
+    <%= submit_tag "search", :name => nil %>
+  </p>
 <% end %>
