@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 
-  helper_method :converted_date, :numeric, :days_array, :weeks_array, :start_week, :end_week, :start_month, :play_nice_date
+  helper_method :converted_date, :numeric, :days_array, :weeks_array, :start_week, :end_week, :start_month
   
   def converted_date(date)
   	date.split(' ')[0]
@@ -73,36 +73,6 @@ class ApplicationController < ActionController::Base
   end 
 
   ## date comes in timestamp.  This converts to usable date. Used in _week, _month, _year ##
-  def play_nice_date(d)
-    nice_date = d.strftime('%d').to_i 
-     w = nice_date/7 
-
-    ##<!-- get m value --> ##
-     date1 = Date.today 
-     date2 = Date.today.beginning_of_month 
-     breaker = date1.strftime("%d").to_i  ##<!-- today's number day of month --> ##
-
-    ##<!-- days of current month -->##
-     count = (date1.beginning_of_month..(date1.next_month.beginning_of_month-1)).count 
-     answer = distance_of_time_in_words(date1, d) 
-     number = answer.split(' ')[0].to_i 
-     word = answer.split(' ')[1] 
-        ##<!-- test if we are in present month-set m to 0 -->##
-    if number < breaker 
-       m = 0 
-    else 
-       ##<!-- get into next month and get a clean num for how many months away -->##
-       date3 = Date.today.next_month-number+1 
-       answer2 = distance_of_time_in_words(date3, d) 
-       number2 = answer2.split(' ') 
-       for num in number2 do 
-         if is_numeric?(num) 
-           m = num.to_i 
-         end 
-       end 
-    end 
-    m
-  end
 
 private 
 	def current_user

@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-jQuery ->
+
 
 	$(".photos_container li").click (->
     alert('works')
@@ -57,8 +57,6 @@ jQuery ->
     $('.days_of_month').css("font-size" , "12px")
     $(this).css("font-size" , "20px")
 
-    
-
   $('.month-of-year').hide()
   $('.current_month').show()
 
@@ -98,6 +96,19 @@ jQuery ->
     $('.current_month').show();
 
   ### navigation around daily to yearly submissions ###
+
+  $('.add_to_your_week').change ->
+    image  = $(this).data("image")
+    user  = $(this).data("user")
+    url = "/users/"+user+"/image/"+image
+    data = {}
+    data[week] = true
+    $.ajax
+      method: "put"
+      url:    url
+      data:   data
+      
+
 
  
   

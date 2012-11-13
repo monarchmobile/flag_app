@@ -41,6 +41,8 @@ class StaticPagesController < ApplicationController
 
   def weekly
     user_setup
+    @first_week = Date.today.beginning_of_month.beginning_of_week
+    @beg_of_month = @first_week.next_week.beginning_of_month
     if params[:start_week] && params[:end_week]
       beg_of_week = (params[:start_week])
       end_of_week = (params[:end_week])

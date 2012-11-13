@@ -13,14 +13,12 @@
 			<div class="actions">	
 				<div class="gallery_msg">				
 				<% if image.week == false %>
-				
-					<%= form_for [@user, image], remote: true do |f| %>
-					  <%= f.check_box :week %>
-					  Add to your week
-					<% end %>
-
-					<%= link_to content_tag(:div, "Add to Week"), [:edit, @user, image] %>
-				
+					<%= form_for [@user, @image], remote: true do |f| %>
+  <%= f.check_box :week %>
+  Add to your week
+<% end %>
+					<%= link_to content_tag(:div, "Want to add to your Week"), 
+						"#", class: "add_to_your_week", :name => "image[week]", :"data-image" => image, :"data-user" => @user %>
 				<% elsif image.week == true %>
 					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(start_week: beg_week, end_week: end_week) %>
 				<% end %>

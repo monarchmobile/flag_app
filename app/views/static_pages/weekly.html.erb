@@ -4,23 +4,20 @@
 <%= render ('shared/week') %>
 </div>
 
-<% first_week = Date.today.beginning_of_month.beginning_of_week %>
-<% beg_of_month = first_week.next_week.beginning_of_month %>
-
 <div class="test3"></div>
 
 <!-- Current month with weeks on bottom, show when page is loaded -->
 
 <div class="month-of-year current_month" id="<%= Date.today.beginning_of_month %>">
     <h2 id="month">
-        <a class="prev prev-next" data-prev="<%= beg_of_month.prev_month %>" title="<%= beg_of_month.prev_month %>"><</a>        
+        <a class="prev prev-next" data-prev="<%= @beg_of_month.prev_month %>" title="<%= @beg_of_month.prev_month %>"><</a>        
     </h2>
 
     <ul class="dom_container">
     <% (1..5).each do |d| %>
-    
-        <% beg_week = first_week +d.weeks - 7 %>
-        <% end_week = first_week +d.weeks - 1 %>
+
+        <% beg_week = @first_week +d.weeks - 7 %>
+        <% end_week = @first_week +d.weeks - 1 %>
         <% if @user.images.where({:date_taken => (beg_week..end_week), week: true}).any? %>
             
             <%= form_tag weekly_scrapbook_path({ start_week: beg_week, end_week: end_week}), remote: true do %>
@@ -38,11 +35,11 @@
 
 
 <% (1..12).each do |m| %>
-<div class="month-of-year" id="<%= beg_of_month << m %>">
-    <%= new_month = beg_of_month << m %>
+<div class="month-of-year" id="<%= @beg_of_month << m %>">
+    <%= new_month = @beg_of_month << m %>
     <h2 id="month">
-        <a class="prev prev-next" data-prev="<%= beg_of_month << m+1 %>" title="<%= beg_of_month << m+1 %>"><</a> 
-        <a class="next prev-next" data-prev="<%= beg_of_month << -m-1 %>" title="<%= beg_of_month << -m+1 %>">></a>        
+        <a class="prev prev-next" data-prev="<%= @beg_of_month << m+1 %>" title="<%= @beg_of_month << m+1 %>"><</a> 
+        <a class="next prev-next" data-prev="<%= @beg_of_month << -m-1 %>" title="<%= @beg_of_month << -m+1 %>">></a>        
     </h2>
 
     <ul class="dom_container">
@@ -56,7 +53,7 @@
                 <%= hidden_field_tag :start_week %>
                 <%= hidden_field_tag :end_week %>
             <% end %>
-    	 	<a href="#"><li class="weeks_of_month clickable_dates content_exists" data-month="<%= beg_of_month << m %>" data-exists="yes" >Week <%= d %></li></a>
+    	 	<a href="#"><li class="weeks_of_month clickable_dates content_exists" data-month="<%= @beg_of_month << m %>" data-exists="yes" >Week <%= d %></li></a>
     	<% else %>
          	<a href="#"><li class="weeks_of_month clickable_dates" data-start-week="<%= start_week(0)[d] %>" data-end-week="<%= end_week(m)[d] %>" data-exists="no" >Week <%= d %></li></a>
         <% end %>
