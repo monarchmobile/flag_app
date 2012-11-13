@@ -13,9 +13,11 @@ class StaticPagesController < ApplicationController
   	@user = @current_user
   	@image = @user.images.new
   	@journal = Journal.new
-    
+
   	
   end
+
+  
 
   def daily
     user_setup
@@ -30,16 +32,33 @@ class StaticPagesController < ApplicationController
       @user_journals = @user.journals.find_all_by_entry_date(Date.today)
     end
 
+    respond_to do |format| 
+      format.html
+      format.js
+    end
+
   end
 
   def weekly
     user_setup
     if params[:start_week] && params[:end_week]
-      start_week = (params[:start_week])
-      end_week = (params[:end_week])
-      @user_images = @user.images.where({:date_taken => start_week..end_week, week: true})
+      beg_of_week = (params[:start_week])
+      end_of_week = (params[:end_week])
+      beg_month = (params[:beg_month])
+      @user_images = @user.images.where({:date_taken => beg_of_week..end_of_week, week: true})  
+      
     else
       @user_images = @user.images.where({:date_taken => start_week(0)[1]..end_week(0)[1], week: true})
+      
+      @start_month = Date.today.beginning_of_month
+      @previous_month = Date.today.beginning_of_month.prev_month
+      @next_month = Date.today.beginning_of_month.next_month
+    end
+
+
+    respond_to do |format| 
+      format.html
+      format.js
     end
 
   end
@@ -52,6 +71,11 @@ class StaticPagesController < ApplicationController
       @user_images = @user.images.where({:date_taken => start_month..end_month, month: true})
     else
       @user_images = @user.images.where({:date_taken => start_month(0)..(start_month(0).next_month-1), month: true})
+    end
+
+    respond_to do |format| 
+      format.html
+      format.js
     end
   end
 

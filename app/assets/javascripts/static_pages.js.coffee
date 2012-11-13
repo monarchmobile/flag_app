@@ -12,6 +12,10 @@ jQuery ->
 	  $(this).removeClass "current"
   ### Abve - Single image container, actions show onhover ###
 
+  $('.edit_image input[type=checkbox]').click ->
+    $(this).parent('form').submit()
+    $(this).parent('form').hide().append('<div class="gallery_msg">Successfully done!!</div>')
+
   ############## --- FORMS --- ################
   ### Sign in - Form drops down ###
 	$(".drop-auth").toggle (->
@@ -49,23 +53,11 @@ jQuery ->
   day_container.hide()
   days_of_month.on "click", ->
     $(this).parent().prev('form').submit()
-    
     $(".test3").html ""
     $('.days_of_month').css("font-size" , "12px")
-    exists = $(this).data("exists")
-    if exists is "no"
-      $(".outside_add").show()
-      $(".test3").html exists
-    else 
-      $(".outside_add").hide()
-      $(".test3").html exists if exists is "yes"
-
-    #day_container.hide()
-    #dom_btn = $(this).data("date")
-    #$("#" + dom_btn).show()
     $(this).css("font-size" , "20px")
 
-    $('.test1').html "current_day: "+dom_btn 
+    
 
   $('.month-of-year').hide()
   $('.current_month').show()
@@ -75,13 +67,6 @@ jQuery ->
   weeks_of_month = $('.weeks_of_month')
   weeks_of_month.on "click", ->
     $(this).parent().prev('form').submit()
-
-
-  ### scrapbook sub menu ###
-  
- 
-  
-    
 
   ### Months of the Year ###
   month_container = $('.month_container')
@@ -114,9 +99,7 @@ jQuery ->
 
   ### navigation around daily to yearly submissions ###
 
-  $('.edit_image input[type=checkbox]').click ->
-    $(this).parent('form').submit()
-    $(this).parent('form').hide().append('<div class="gallery_msg">Successfully done!!</div>')
+ 
   
   
 

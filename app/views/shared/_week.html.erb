@@ -7,7 +7,7 @@
     <% end_date = end_date.strftime("%Y-%m-%d") %>
     
     <li>
-    	<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
+    	<div class="image_container" id="image<%= @user.id %>-<%= image.id %>" data-date="<%= image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>">
             <%= image_tag image.image_url, width:175, height:175 %>
             <%= content_tag :h3, image.title %>
             <%= content_tag :p, image.content, class: "image_content" %>

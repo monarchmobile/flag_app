@@ -1,6 +1,13 @@
 <%= render ('shared/scrap_header') %>
 
+<%= form_for [@user, @image], remote: true do |f| %>
+  <%= f.check_box :week %>
+  Add to your week
+<% end %>
+
+<div id="day_images">
 <%= render('shared/day') %>
+</div>
 
 	
 
@@ -29,7 +36,7 @@
 	    <ul class="dom_container">
 	    <% (beg_month..date).each do |d| %>
 	        <% if @user.images.find_by_date_taken(d) || @user.journals.find_by_entry_date(d) %>
-	            <%= form_tag daily_scrapbook_path(date: d) do %>
+	            <%= form_tag daily_scrapbook_path(date: d), remote: true  do %>
 	            	<%= hidden_field_tag :date %>
 	            <% end %>
 	            <a href="#"><li class="days_of_month clickable_dates content_exists" style="background:#C8DAF1;" data-date="<%= d.strftime('%m-%d-%Y') %>" data-exists="yes"><%=  d.strftime("%d")  %></li></a>
@@ -51,7 +58,7 @@
 			<ul class="dom_container">
 				<% (m..(m.next_month-1)).each do |d| %>
 				 	<% if @user.images.find_by_date_taken(d) || @user.journals.find_by_entry_date(d) %>
-				 		<%= form_tag daily_scrapbook_path(date: d) do %>
+				 		<%= form_tag daily_scrapbook_path(date: d), remote: true do %>
 			            	<%= hidden_field_tag :date %>
 			            <% end %>
 				 		<a href="#"><li class="days_of_month clickable_dates content_exists" style="background:#C8DAF1;" data-date="<%= d.strftime('%m-%d-%Y') %>" data-exists="yes"><%=  d.strftime("%d")  %></li></a>

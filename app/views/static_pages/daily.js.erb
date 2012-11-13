@@ -1,0 +1,4 @@
+$("#day_images").html("<%= j render('shared/day') %>");
+
+$('#image<%=@user.id%>-<%=@image.id%> .actions .gallery_msg').html(
+	'Gallery Updated. Refresh for changes')

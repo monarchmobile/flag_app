@@ -1,6 +1,8 @@
 <%= render ('shared/scrap_header') %>
 
+<div id="month_images">
 <%= render ('shared/month') %>
+</div>
 
 </ul> 
 
@@ -10,7 +12,7 @@
 		
 
 		<% if @user.images.where({date_taken: start_month(month)..(start_month(month).next_month-1), month: true}).any? %>
-			<%= form_tag monthly_scrapbook_path({ start_month: start_month(month), end_month: start_month(month).next_month-1}) do %>
+			<%= form_tag monthly_scrapbook_path({ start_month: start_month(month), end_month: start_month(month).next_month-1}), remote: true do %>
                 <%= hidden_field_tag :start_month %>
                 <%= hidden_field_tag :end_month %>
             <% end %>
