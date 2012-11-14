@@ -16,20 +16,23 @@ class StaticPagesController < ApplicationController
 
   	
   end
-
   
-
   def daily
     user_setup
-    if params[:date]
-      date = (params[:date])
+    if params[:beg_range]
+      @beg_range = params[:beg_range]
+      @end_range = params[:end_range]
+      
     
-      @user_images = @user.images.find_all_by_date_taken(date)
-      @user_journals = @user.journals.find_all_by_entry_date(date)
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
+      @user_journals = @user.journals.where(entry_date: @beg_range..@end_range)
 
     else
-      @user_images = @user.images.find_all_by_date_taken(Date.today)
-      @user_journals = @user.journals.find_all_by_entry_date(Date.today)
+      @beg_range = Date.today
+      @end_range = Date.today
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
+      @user_journals = @user.journals.where(entry_date: @beg_range..@end_range)
+      @answer = ""
     end
 
     respond_to do |format| 

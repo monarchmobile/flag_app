@@ -13,17 +13,16 @@
 			<div class="actions">	
 				<div class="gallery_msg">				
 				<% if image.week == false %>
-					<%= form_for [@user, @image], remote: true do |f| %>
-  <%= f.check_box :week %>
-  Add to your week
-<% end %>
-					<%= link_to content_tag(:div, "Want to add to your Week"), 
-						"#", class: "add_to_your_week", :name => "image[week]", :"data-image" => image, :"data-user" => @user %>
+					<%= form_for [@user, image], remote: true do |f| %>
+					  <%= f.check_box :week %>
+					  Add to your week
+					<% end %>
+					
 				<% elsif image.week == true %>
 					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(start_week: beg_week, end_week: end_week) %>
 				<% end %>
 				</div>	
-				<%= render('shared/edit_delete_image_container', :image => image) %>			
+				<%= render('shared/edit_delete_image_container', :image => image) %>	
 			</div>
 		</div>
 	</li>
@@ -43,4 +42,45 @@
 			
 	<% end %>	
 </div>
+Beg_range:<%= @beg_range.to_date-1 %><br />
+End_range:<%= @end_range %><br />
+Q Date: <div class="test3"><%= @content %></div>
+<div class="nav_arrows">
+	<div class="prev prev-next">
+	    <%= link_to content_tag(:div,"prev", class: "prev_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date-1, end_range: @beg_range.to_date-1), remote: true %>
+	</div>
+	<div class="next prev-next">
+	    <%= link_to content_tag(:div,"next", class: "next_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date+1, end_range: @beg_range.to_date+1), remote: true %>
+	</div>
+</div>
+
+<div class="pointer_container"><div class="center_pointer"></div></div>
+
+<ul class="dom_container">
+	
+	<% (@beg_range.to_date-3..@beg_range.to_date+3).each do |day| %>
+		<% if @beg_range.to_date == day %>
+			<% if @user.images.where(date_taken: day..day).any? %>
+				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+			<% else %>
+				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+
+			<% end %>
+		<% elsif Date.today < day %>
+			<% if @user.images.where(date_taken: day..day).any? %>
+				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+			<% else %>
+				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+
+			<% end %>
+		<% else %>
+			<% if @user.images.where(date_taken: day..day).any? %>
+				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+			<% else %>
+				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+
+			<% end %>
+		<% end %>
+	<% end %>
+</ul>
 

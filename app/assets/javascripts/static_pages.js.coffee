@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
+jQuery ->
 
 	$(".photos_container li").click (->
     alert('works')
@@ -78,13 +78,8 @@
     $('.test3').html month
 
   ### Months - Prev and Next buttons ###
-  $('.prev').click ->
-    which_month = $(this).parent().parent().next().attr('id')
-    $('.test1').html "current_month: "+which_month 
-    $('.month-of-year').removeClass "current_month" 
-    $(this).parent().parent().next().addClass "current_month" 
-    $('.month-of-year').hide()
-    $('.current_month').show();
+  
+    
 
   $('.next').click ->
     which_month = $(this).parent().parent().prev().attr('id')

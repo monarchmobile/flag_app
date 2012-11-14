@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 
-  helper_method :converted_date, :numeric, :days_array, :weeks_array, :start_week, :end_week, :start_month
+  helper_method :converted_date, :numeric, :days_array, :weeks_array, :start_week, :end_week, :start_month, :content_exists
   
   def converted_date(date)
   	date.split(' ')[0]
@@ -71,6 +71,14 @@ class ApplicationController < ActionController::Base
      @beg_month = date.beginning_of_month 
      @beg_month << m  
   end 
+
+  def content_exists?(beg_range, end_range)
+    if @user.images.where(date_taken: beg_range..end_range).any?
+        @content = "content_exists"
+    else
+        @content = ""
+    end
+  end
 
   ## date comes in timestamp.  This converts to usable date. Used in _week, _month, _year ##
 

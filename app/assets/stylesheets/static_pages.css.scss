@@ -223,31 +223,35 @@ li.hot_form {
 
 		float:left;
 
-		// month scrolling back and forth
-		.prev-next{
-			font-size:50px;
-			position:absolute;
-			cursor:pointer;
-			padding: 5px;
-			height: 45px;
-			float:left;
-			margin-top:23px;
+		
+	}
+}
 
-			&:hover {
-				background:transparent;
-				color:#3b5998;
-				text-decoration: none;
-			}
-		}
+// month scrolling back and forth
+.prev-next{
+	font-size:20px;
+	position:absolute;
+	cursor:pointer;
+	padding: 5px;
+	height: 45px;
+	float:left;
+	margin-top:23px;
 
-		.prev {
-			margin-left:-50px;
-		}
-
-		.next {
-			margin-left:1000px;
+	a {
+		&:hover {
+		background:inherit;
+		color:#3b5998;
+		text-decoration: none;
 		}
 	}
+}
+
+.prev {
+	margin-left:-50px;
+}
+
+.next {
+	margin-left:1000px;
 }
 
 .scrapbook {
@@ -390,12 +394,12 @@ ul.dom_container {
 	padding: 10px 0px;
 
 	a li.days_of_month {
-		width:45px;
-		margin-left:10px;
+		width: 21px;
+		margin-left: 10px;
 	}
 
 	a li.weeks_of_month {
-		width:100px;
+		width:40px;
 		margin-left:50px;
 	}
 
@@ -405,14 +409,18 @@ ul.dom_container {
 	}
 
 	a li.clickable_dates {
-		box-shadow:0px 0px 5px;
-		-moz-box-shadow: 0px 0px 5px;
-		-webkit-box-shadow: 0px 0px 5px;
+		
+		border-radius:50px;
+		webkit-border-radius: 50px;
+		moz-border-radius:50px;
 		padding:5px;
 		float:left;
 		list-style: none;
 		text-align: center;	
 		background:#fff;
+		border:1px solid gray;
+		margin-top:-3px;
+		cursor:pointer;
 	}
 
 	a:hover li.clickable_dates {
@@ -421,7 +429,35 @@ ul.dom_container {
 	}
 
 	a li.content_exists {
-		background:#C8DAF1;
+		color:red;
+	}
+
+	a li.pointer {
+		border:1px solid blue;
+	}
+
+	a li.future_date {
+		background:gray;
+		opacity: .5;
+	}
+}
+
+.pointer_container {
+	width: 320px;
+height: 35px;
+float: left;
+position: fixed;
+
+bottom: 75px;
+border-top: 5px solid red;
+border-bottom: 5px solid red;
+
+	.center_pointer {
+		margin: auto;
+		width: 66px;
+		
+		height: 30px;
+
 	}
 }
 
