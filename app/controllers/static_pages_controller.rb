@@ -22,7 +22,6 @@ class StaticPagesController < ApplicationController
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range]
-      
     
       @user_images = @user.images.where(date_taken: @beg_range..@end_range)
       @user_journals = @user.journals.where(entry_date: @beg_range..@end_range)

@@ -60,20 +60,19 @@ Q Date: <div class="test3"><%= @content %></div>
 	<div class="centered">
 	
 	<% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %>
+		<!--  Pointer : add pointer class -->
 		<% if @beg_range.to_date == day %>
+			
 			<% if @user.images.where(date_taken: day..day).any? %>
 				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
 			<% else %>
 				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
 
 			<% end %>
+		<!--  Future days : add future_date class  -->	
 		<% elsif Date.today < day %>
-			<% if @user.images.where(date_taken: day..day).any? %>
 				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
-			<% else %>
-				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
-
-			<% end %>
+		<!--  Future days : no extra classes  -->	
 		<% else %>
 			<% if @user.images.where(date_taken: day..day).any? %>
 				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
@@ -85,5 +84,23 @@ Q Date: <div class="test3"><%= @content %></div>
 	<% end %>
 	</div>
 </ul>
+<ul class="moy_container">
+	<div class="centered">
+	<% @join_date = @user.created_at %>
+	<% ((0..11)).each do |num| %>
+		<% @beg_month = (@join_date.to_date >> num).beginning_of_month %>
+		<% @end_month = (@join_date.to_date >> num).end_of_month %>
+		<% if @beg_range.between?(@beg_month, @end_month) %>
+			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months pointer"), 
+			daily_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
+		<% else %>
+			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), 
+			daily_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
+		<% end %>
+	<% end %>
+	</div>
+</ul>
+
+
 
  

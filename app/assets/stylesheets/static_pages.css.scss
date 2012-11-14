@@ -378,22 +378,68 @@ li.hot_form {
 	//  end day_container
 
 // bottom dates menu bar (daily, weekly, monthly) //
-ul.dom_container {
+ul.moy_container {
 	min-width: 100px;
-	margin-left: 7px;
-	width: 980px;
+	margin-left: 15px;
+	width: 975px;
 	clear: both;
 	position: fixed;
-	height: 34px;
-	bottom: 53px;
+	height: 16px;
+	bottom: 15px;
 	padding: 10px 0px;
-	border-top:5px;
+	border-top: 5px;
+	background: black;
+
+	a li.months_of_year {		
+			width: 60px;
+margin-left: 16px;		
+		}
+
+	a li.clickable_months {
+		padding: 2px;
+		float: left;
+		list-style: none;
+		text-align: center;
+		margin-top: -3px;
+		cursor: pointer;
+		height: 18px;
+		color: white;
+		font-size:15px;
+	}
+
+	a li.pointer {
+		background: red;
+		opacity: .8;
+		color: white;
+		border-radius: 0px;
+		height: 39px;
+		width: 45px;
+		margin-top: -19px;
+		padding: 19px 2px 0px;
+		font-size: 18px;
+		color: white;
+		border: 0px;
+		font-weight: bold;
+	}
+
+}
+ul.dom_container {
+	min-width: 100px;
+		margin-left: 15px;
+		width: 975px;
+		clear: both;
+		position: fixed;
+		height: 16px;
+		bottom: 69px;
+		padding: 10px 0px;
+		border-top: 5px;
+		background: black;
 
 	.centered {
 
-		width: 961px;
-margin: auto;
-height: 40px;
+		width: 970px;
+		margin: auto;
+		height: 40px;
 
 		a li.days_of_month {
 			width: 20px;
@@ -412,17 +458,17 @@ height: 40px;
 
 		a li.clickable_dates {
 			border-radius: 50px;
-	webkit-border-radius: 50px;
-	moz-border-radius: 50px;
-	padding: 2px;
-	float: left;
-	list-style: none;
-	text-align: center;
-	background: white;
-	border: 1px solid gray;
-	margin-top: -3px;
-	cursor: pointer;
-	height: 18px;
+			webkit-border-radius: 50px;
+			moz-border-radius: 50px;
+			padding: 2px;
+			float: left;
+			list-style: none;
+			text-align: center;
+			background: white;
+			border: 1px solid gray;
+			margin-top: -3px;
+			cursor: pointer;
+			height: 18px;
 		
 		}
 
@@ -432,24 +478,40 @@ height: 40px;
 		}
 
 		a li.content_exists {
-			color:red;
+			background:#3b5998;
+			color:white;
 		}
 
 		a li.pointer {
-			background:red;
+			background: red;
 			opacity: .8;
-			color:#fff;
+			color: white;
+			border-radius: 0px;
+			height: 37px;
+			width: 30px;
+			margin-top: -19px;
+			padding: 19px 2px 0px;
+			font-size: 18px;
+			color: white;
+			border: 0px;
+			font-weight: bold;
 		}
 
 		a li.future_date {
-			background:gray;
+			
 			opacity: .5;
+		}
+
+		.today_box {
+			border:5px solid red;
+			height: 40px;
+			width: 40px;
 		}
 	}
 }
 
 .pointer_container {
-	width: 970px;
+	width: 975px;
 margin-left: 15px;
 height: 35px;
 position: fixed;
