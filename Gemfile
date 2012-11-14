@@ -18,7 +18,7 @@ group :assets do
   #gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-ui-rails'  
+    
   #gem 'therubyracer', '~> 0.11.0beta5'
   #, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
@@ -28,7 +28,7 @@ gem 'rake' , '>= 0.9.2'
 #group :libv8 do
 #  gem 'libv8', "~> 3.11.8"
 #end
-
+gem 'jquery-ui-rails'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
