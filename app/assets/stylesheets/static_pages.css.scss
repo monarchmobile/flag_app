@@ -275,8 +275,6 @@ li.hot_form {
 
 }
 	
-	
-
 	.photos_container {
 		
 		width:500px;
@@ -379,9 +377,6 @@ li.hot_form {
 	
 	//  end day_container
 
-
-
-
 // bottom dates menu bar (daily, weekly, monthly) //
 ul.dom_container {
 	min-width: 100px;
@@ -392,63 +387,73 @@ ul.dom_container {
 	height: 34px;
 	bottom: 53px;
 	padding: 10px 0px;
+	border-top:5px;
 
-	a li.days_of_month {
-		width: 21px;
-		margin-left: 10px;
-	}
+	.centered {
 
-	a li.weeks_of_month {
-		width:40px;
-		margin-left:50px;
-	}
+		width: 961px;
+margin: auto;
+height: 40px;
 
-	a li.months_of_year {		
-		width:60px;
-		margin-left:10px;		
-	}
+		a li.days_of_month {
+			width: 20px;
+	margin-left: 5px;
+		}
 
-	a li.clickable_dates {
+		a li.weeks_of_month {
+			width:40px;
+			margin-left:50px;
+		}
+
+		a li.months_of_year {		
+			width:60px;
+			margin-left:10px;		
+		}
+
+		a li.clickable_dates {
+			border-radius: 50px;
+	webkit-border-radius: 50px;
+	moz-border-radius: 50px;
+	padding: 2px;
+	float: left;
+	list-style: none;
+	text-align: center;
+	background: white;
+	border: 1px solid gray;
+	margin-top: -3px;
+	cursor: pointer;
+	height: 18px;
 		
-		border-radius:50px;
-		webkit-border-radius: 50px;
-		moz-border-radius:50px;
-		padding:5px;
-		float:left;
-		list-style: none;
-		text-align: center;	
-		background:#fff;
-		border:1px solid gray;
-		margin-top:-3px;
-		cursor:pointer;
-	}
+		}
 
-	a:hover li.clickable_dates {
-		color:#fff;
-		background:gray;	
-	}
+		a:hover li.clickable_dates {
+			color:#fff;
+			background:gray;	
+		}
 
-	a li.content_exists {
-		color:red;
-	}
+		a li.content_exists {
+			color:red;
+		}
 
-	a li.pointer {
-		border:1px solid blue;
-	}
+		a li.pointer {
+			background:red;
+			opacity: .8;
+			color:#fff;
+		}
 
-	a li.future_date {
-		background:gray;
-		opacity: .5;
+		a li.future_date {
+			background:gray;
+			opacity: .5;
+		}
 	}
 }
 
 .pointer_container {
-	width: 320px;
+	width: 970px;
+margin-left: 15px;
 height: 35px;
-float: left;
 position: fixed;
-
-bottom: 75px;
+bottom: 77px;
 border-top: 5px solid red;
 border-bottom: 5px solid red;
 
