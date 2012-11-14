@@ -23,7 +23,7 @@ group :assets do
   #, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 end
-
+gem 'rake' , '>= 0.9.2'
   
 #group :libv8 do
 #  gem 'libv8', "~> 3.11.8"
