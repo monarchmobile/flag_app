@@ -5,4 +5,4 @@
 jQuery ->
 	$('#image_date_taken').datepicker
 		dateFormat: 'yy-mm-dd'
-	$('.edit_form')
+	

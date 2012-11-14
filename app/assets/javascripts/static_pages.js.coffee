@@ -79,30 +79,7 @@ jQuery ->
 
   ### Months - Prev and Next buttons ###
   
-    
 
-  $('.next').click ->
-    which_month = $(this).parent().parent().prev().attr('id')
-    $('.test1').html "current_month: "+which_month
-
-    $('.month-of-year').removeClass "current_month"                             
-    $(this).parent().parent().prev().addClass "current_month" 
-    $('.month-of-year').hide()
-    $('.current_month').show();
-
-  ### navigation around daily to yearly submissions ###
-
-  $('.add_to_your_week').change ->
-    image  = $(this).data("image")
-    user  = $(this).data("user")
-    url = "/users/"+user+"/image/"+image
-    data = {}
-    data[week] = true
-    $.ajax
-      method: "put"
-      url:    url
-      data:   data
-      
 
 
  
