@@ -42,9 +42,9 @@
 			
 	<% end %>	
 </div>
-Beg_range:<%= @beg_range.to_date-1 %><br />
+Beg_range:<%= @beg_range %><br />
 End_range:<%= @end_range %><br />
-Q Date: <div class="test3"><%= @content %></div>
+Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
 <div class="nav_arrows">
 	<div class="prev prev-next">
 	    <%= link_to content_tag(:div,"prev", class: "prev_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date-1, end_range: @beg_range.to_date-1), remote: true %>
@@ -53,9 +53,22 @@ Q Date: <div class="test3"><%= @content %></div>
 	    <%= link_to content_tag(:div,"next", class: "next_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date+1, end_range: @beg_range.to_date+1), remote: true %>
 	</div>
 </div>
-
-<div class="pointer_container"><div class="center_pointer"></div></div>
-
+<ul class="wom_container">
+<% (0..4).each do |num| %>  
+    <% @beginning_of_dyn_range = @beg_month.to_date+num.weeks %>
+    <% @end_of_dyn_range = @beg_month.to_date+(num+1).weeks-1 %>
+        <!--  Pointer days : add pointer class  --> 
+    <% if @beg_range.to_date.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
+        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range)  %>
+    <!--  Future days : add future_date class  -->	
+	<% elsif Date.today < @end_of_dyn_range %>
+		<%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range) %>
+    <% else %>
+    	<!--  Regular Pointer days : add regular pointer class  --> 
+        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range) %>
+    <% end %>
+<% end %>
+</ul>
 <ul class="dom_container">
 	<div class="centered">
 	
@@ -92,10 +105,10 @@ Q Date: <div class="test3"><%= @content %></div>
 		<% @end_month = (@join_date.to_date >> num).end_of_month %>
 		<% if @beg_range.to_date.between?(@beg_month, @end_month) %>
 			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), 
-			monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
+			monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month) %>
 		<% else %>
 			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), 
-			monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
+			monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month) %>
 		<% end %>
 	<% end %>
 	</div>

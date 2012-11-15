@@ -4,22 +4,3 @@
 <%= render ('shared/month') %>
 </div>
 
-</ul> 
-
-<ul class="dom_container">
-	
-	<% (0..11).sort.reverse.each do |month| %>
-		
-
-		<% if @user.images.where({date_taken: start_month(month)..(start_month(month).next_month-1), month: true}).any? %>
-			<%= form_tag monthly_scrapbook_path({ start_month: start_month(month), end_month: start_month(month).next_month-1}), remote: true do %>
-                <%= hidden_field_tag :start_month %>
-                <%= hidden_field_tag :end_month %>
-            <% end %>
-			<a href="#"><li class="months_of_year clickable_dates content_exists" data-month="<%= start_month(month)%>" data-exists="yes"><%= start_month(month).strftime("%b-%y") %></li></a>
-		<% else %>
-			<a href="#"><li class="months_of_year clickable_dates" data-month="<%= start_month(month)%>" data-exists="no"><%= start_month(month).strftime("%b-%y") %></li></a>
-		<% end %>
-	<% end %>
-
-</ul>

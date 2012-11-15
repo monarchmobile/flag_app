@@ -18,6 +18,10 @@
 	margin:auto;	
 }
 
+.half_opacity {
+	opacity: .5;
+}
+
 
 // testing //
 .test_container	{
@@ -378,6 +382,64 @@ li.hot_form {
 	//  end day_container
 
 // bottom dates menu bar (daily, weekly, monthly) //
+
+ul.wom_container {
+	min-width: 100px;
+	margin-left: 15px;
+	width: 975px;
+	clear: both;
+	position: fixed;
+	height: 16px;
+	bottom: 70px;
+	padding: 10px 0px;
+	border-top: 5px;
+
+
+	a li.weeks_of_month {		
+		width: 165px;
+		margin-left: 10px;		
+	}
+
+	a li.clickable_weeks {
+		padding: 2px;
+		float: left;
+		list-style: none;
+		text-align: center;
+		margin-top: -3px;
+		cursor: pointer;
+		height: 21px;
+		color: #3b5998;
+		font-size:15px;
+		background: black;
+		padding: 4px 2px 0px;
+		font-weight: bold;
+		color: white;
+	}
+
+	a:hover li.clickable_weeks {
+	color:#fff;
+	background:gray;	
+}
+
+	
+	a li.week_pointer {
+		background: red;
+		font-size: 18px;
+		
+	}
+
+	a li.regular_pointer {
+		background:gray;
+		
+		
+		
+	}
+	
+
+}
+
+
+
 ul.moy_container {
 	min-width: 100px;
 	margin-left: 15px;
@@ -390,9 +452,11 @@ ul.moy_container {
 	border-top: 5px;
 	background: black;
 
+
+
 	a li.months_of_year {		
 			width: 60px;
-margin-left: 16px;		
+			margin-left: 16px;		
 		}
 
 	a li.clickable_months {
@@ -406,6 +470,11 @@ margin-left: 16px;
 		color: white;
 		font-size:15px;
 	}
+
+	a:hover li.clickable_months {
+	color:#fff;
+	background:gray;	
+}
 
 	a li.month_pointer {
 		background: red;
@@ -430,9 +499,10 @@ ul.dom_container {
 		clear: both;
 		position: fixed;
 		height: 16px;
-		bottom: 69px;
+		bottom: 96px;
 		padding: 10px 0px;
-		border-top: 5px;
+		border-top: 3px solid red;
+		border-bottom: 3px solid red;
 		background: black;
 
 	.centered {
@@ -509,7 +579,10 @@ ul.dom_container {
 		}
 	}
 }
-
+a li.future_date {
+			
+			opacity: .5;
+		}
 .pointer_container {
 	width: 975px;
 margin-left: 15px;

@@ -1,34 +1,106 @@
 <div class="photos_container">
 <% @user_images.each do |image| %>
-    <% date_taken = image.date_taken %>
-    <% beg_date = date_taken.beginning_of_month %>
-    <% start_date = beg_date.strftime("%Y-%m-%d") %>
-    <% end_date = beg_date.next_month-1 %>
-    <% end_date = end_date.strftime("%Y-%m-%d") %>
+<!-- determine day -->
+<% beg_week = image.date_taken.beginning_of_week.strftime("%Y-%m-%d")%>
+<% end_week = image.date_taken.end_of_week.strftime("%Y-%m-%d") %>
+<% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
     
     <li>
-    	<div class="image_container" id="image<%= @user.id %>-<%= image.id %>" data-date="<%= image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>">
+        <div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
             <%= image_tag image.image_url, width:175, height:175 %>
             <%= content_tag :h3, image.title %>
             <%= content_tag :p, image.content, class: "image_content" %>
-            <div class="actions">
+            <div class="actions">   
                 <div class="gallery_msg">               
-                <% if image.month == false %>
+                <% if image.week == false %>
                     <%= form_for [@user, image], remote: true do |f| %>
-                      <%= f.check_box :month %>
-                      Add to month
+                      <%= f.check_box :week %>
+                      Add to your week
                     <% end %>
-                <% elsif image.month == true %>
-                    <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(start_month: start_date, end_month: end_date) %>
-                <% end %>   
-                <%= form_for [@user, image], remote: true do |f| %>
-                    <%= f.check_box :week %>
-                    Remove from week
+                    
+                <% elsif image.week == true %>
+                    <%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(start_week: beg_week, end_week: end_week) %>
                 <% end %>
-                </div>
+                </div>  
                 <%= render('shared/edit_delete_image_container', :image => image) %>    
             </div>
         </div>
     </li>
 <% end %>
-</div> 
+</div>
+
+    <!-- journal_container -->
+
+Beg_range:<%= @beg_range %><br />
+End_range:<%= @end_range %><br />
+Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
+<div class="nav_arrows">
+    <div class="prev prev-next">
+        <%= link_to content_tag(:div,"prev", class: "prev_btn"), weekly_scrapbook_path(beg_range: @beg_range.to_date-1.week, end_range: @beg_range.to_date-1.day), remote: true %>
+    </div>
+    <div class="next prev-next">
+        <%= link_to content_tag(:div,"next", class: "next_btn"), weekly_scrapbook_path(beg_range: @beg_range.to_date+1.week, end_range: @beg_range.to_date+2.weeks-1.day), remote: true %>
+    </div>
+</div>
+
+
+<ul class="wom_container">
+<% (0..4).each do |num| %>  
+    <% @beginning_of_dyn_range = @beg_month.to_date+num.weeks %>
+    <% @end_of_dyn_range = @beg_month.to_date+(num+1).weeks-1 %>
+        <!--  Future days : add future_date class  --> 
+    <% if @beg_range.to_date.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
+        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer")  %>
+    <!--  Future days : add future_date class  -->  
+    <% elsif Date.today < @end_of_dyn_range %>
+        <%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range) %>
+    <% else %>
+        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range), remote: true %>
+    <% end %>
+<% end %>
+</ul>
+<ul class="dom_container">
+    <div class="centered">
+    <% @beg_week = @beg_range.to_date.beginning_of_week %>
+    <% @end_week = @beg_range.to_date.beginning_of_week.end_of_week %>
+
+    
+    <% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %> 
+        <% if @beg_range.to_date == day %>
+            
+            <% if @user.images.where(date_taken: day..day).any? %>
+                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists pointer"), daily_scrapbook_path(beg_range: day, end_range: day) %>
+            <% else %>
+                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), daily_scrapbook_path(beg_range: day, end_range: day) %>
+
+            <% end %> 
+        <!--  Future days : add future_date class  -->  
+        <% elsif Date.today < day %>
+                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day) %>
+        <!--  Future days : no extra classes  -->   
+        <% else %>
+            <% if @user.images.where(date_taken: day..day).any? %>
+                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), daily_scrapbook_path(beg_range: day, end_range: day) %>
+            <% else %>
+                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates"), daily_scrapbook_path(beg_range: day, end_range: day) %>
+            <% end %>
+        <% end %>
+    <% end %>
+    </div>
+</ul>
+<ul class="moy_container">
+    <div class="centered">
+    <% @join_date = @user.created_at %>
+    <% (0..11).each do |num| %>
+        <% @beg_month = (@join_date.to_date >> num).beginning_of_month %>
+        <% @end_month = (@join_date.to_date >> num).end_of_month %>
+        <% if @beg_range.to_date.between?(@beg_month, @end_month) %>
+            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), 
+            monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month) %>
+        <% else %>
+            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), 
+            monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month) %>
+        <% end %>
+    <% end %>
+    </div>
+</ul>

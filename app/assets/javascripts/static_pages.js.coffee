@@ -47,37 +47,8 @@ jQuery ->
   		e.stopPropagation()
   ############## --- End FORMS --- ###############
 
-  ### Days of the month ###
-  day_container = $(".day_container")
-  days_of_month = $(".days_of_month")
-  day_container.hide()
-  days_of_month.on "click", ->
-    $(this).parent().prev('form').submit()
-    $(".test3").html ""
-    $('.days_of_month').css("font-size" , "12px")
-    $(this).css("font-size" , "20px")
-
-  $('.month-of-year').hide()
-  $('.current_month').show()
-
-  ### Weeks of Month ###
   
-  weeks_of_month = $('.weeks_of_month')
-  weeks_of_month.on "click", ->
-    $(this).parent().prev('form').submit()
-
-  ### Months of the Year ###
-  month_container = $('.month_container')
-  months_of_year = $(".months_of_year")
-  month_container.hide()
-  months_of_year.on "click", ->
-    month_container.hide()
-    $(this).parent().prev('form').submit()
-    #month = $(this).data("month")
-    $('#'+month).show()
-    $('.test3').html month
-
-  ### Months - Prev and Next buttons ###
+  
   
 
 
