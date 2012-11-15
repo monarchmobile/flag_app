@@ -374,16 +374,16 @@ li.hot_form {
 	}  // images_container
 	
 	.journal_container {
-		width: 527px;
-		min-height: 773px;
-		height: auto;
+		width: 352px;
+		height: 400px;
 		margin-top: 28px;
 		padding: 10px;
 		float: left;
 		margin-left: 459px;
 		position: absolute;
-		background:url('/assets/pad_of_paper.png') no-repeat;
-		
+		background:url('/assets/journal.png') no-repeat;
+		border:1px solid blue;
+
 		p {
 			padding:10px;
 			color:gray;
@@ -447,7 +447,7 @@ opacity: .8;
 color: white;
 height: 23px;
 width: 28px;
-margin-top: -12px;
+margin-top: -6px;
 padding: 5px 2px 0px;
 font-size: 18px;
 font-weight: bold;
