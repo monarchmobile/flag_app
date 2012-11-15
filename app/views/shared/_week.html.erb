@@ -17,14 +17,14 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
             <%= content_tag :p, image.content, class: "image_content" %>
             <div class="actions">   
                 <div class="gallery_msg">               
-                <% if image.week == false %>
+                <% if image.month == false %>
                     <%= form_for [@user, image], remote: true do |f| %>
-                      <%= f.check_box :week %>
-                      Add to your week
+                      <%= f.check_box :month %>
+                      Add to your month
                     <% end %>
                     
-                <% elsif image.week == true %>
-                    <%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(start_week: beg_week, end_week: end_week) %>
+                <% elsif image.month == true %>
+                    <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(beg_range: beg_week.to_date.beginning_of_month, end_range: end_week.to_date.beginning_of_month.next_month-1) %>
                 <% end %>
                 </div>  
                 <%= render('shared/edit_delete_image_container', :image => image) %>    

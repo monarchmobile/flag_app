@@ -4,7 +4,7 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
 
 <%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_week, end_range: @beg_range.to_date.next_week-1) %>
 
-
+<% image_num = 0 %>
 <div class="photos_container">
 <% @user_images.each do |image| %>
 <!-- determine day -->
@@ -13,7 +13,7 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
 <% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
 	
 	<li>
-		<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
+		<div class="image_container" id="image_<%= image_num += 1 %>">
 			<%= image_tag image.image_url, width:175, height:175 %>
 			<%= content_tag :h3, image.title %>
 			<%= content_tag :p, image.content, class: "image_content" %>
