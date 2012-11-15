@@ -18,6 +18,72 @@
 	margin:auto;	
 }
 
+// header //
+.header_container {
+
+
+	width: 100%;
+	height: 50px;	
+	background: #D53838;	
+
+
+	.thousand_wide_container {
+		background:155, 0, 14;
+		height:50px;
+		width:1000px;
+		// background:gray;
+
+		ul.nav_bar {
+			margin: 10px 0px 0px 75px;
+			padding: 10px 0px;
+			width: 675px;
+			float: left;
+		
+
+			a li {
+				width: 100px;
+				margin-left: 10px;
+				float: left;
+				list-style: none;
+				color:black;
+				text-align: center;
+				font-size: 17px;
+			}
+
+			a:hover li {
+				color:#fff;
+			}
+			a:nth-child(3) li {
+				width:300px;
+			}
+			
+		}
+	}
+}
+
+ul.nav_authentication {
+  width: 250px;
+	float: left;
+	padding: 8px 0px;
+
+   	a li {
+	  width: 150px;
+	  float:left;
+	  list-style: none;
+	  color:black;
+	}
+
+	a:hover li {
+		color:#fff;
+	}
+
+	a li:first-child {
+		width:60px;
+	}
+}
+
+ 
+
 // testing //
 .test_container	{
 	float: left;
@@ -47,6 +113,52 @@ padding: 5px;
 		text-align: center;
 		margin-top:10px;
 	}
+}
+
+.direction {
+	position: absolute;
+	float: left;
+	z-index: 100;
+	text-align: center;
+	width: 100px;
+	height: 21px;
+	background: inherit;
+	font-size: 22px;
+	color: white;
+	padding: 8px 0px;
+	background: gray;
+	border-radius: 15px;
+	text-decoration:none;
+
+	&:hover {
+		color:white;
+		background:#D53838;
+	}
+}
+
+.nav_up {
+	position: absolute;
+	float: left;
+	z-index: 100;
+	margin-left: 302px;
+	text-align: center;
+	width: 300px;
+	height: 21px;
+	background: #D53838;
+	font-size: 22px;
+	color: black;
+	top: 0px;
+	padding: 8px 0px;
+
+	&:hover {
+		color:white;
+	}
+}
+
+.nav_down {	
+	margin-left: 405px;
+	top: 100px;
+	
 }
 
 // Forms //
@@ -130,11 +242,9 @@ li.hot_form {
 }
 
 
+
 // Header //
-.header_container {
-	width: 100%;
-	height: 50px;	
-}
+
 
 .gradient_gray {
 	background: #eaeaea; /* Old browsers */
@@ -149,30 +259,14 @@ li.hot_form {
 
 
 // month scrolling back and forth
-.prev-next{
-	font-size:20px;
-	position:absolute;
-	cursor:pointer;
-	padding: 5px;
-	height: 45px;
-	float:left;
-	margin-top:23px;
 
-	a {
-		&:hover {
-		background:inherit;
-		color:#3b5998;
-		text-decoration: none;
-		}
-	}
-}
 
 .prev {
-	margin-left:-50px;
+	margin-left:0px;
 }
 
 .next {
-	margin-left:1000px;
+	margin-left:902px;
 }
 
 .scrapbook {
@@ -331,11 +425,11 @@ ul.dom_container {
 			list-style: none;
 			text-align: center;
 			background: white;
-			border: 1px solid gray;
+			border: 1px solid black;
 			margin-top: -3px;
 			cursor: pointer;
 			height: 18px;
-		
+			color:black;
 		}
 
 		a:hover li.clickable_dates {

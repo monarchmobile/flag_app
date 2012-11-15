@@ -1,7 +1,5 @@
 
-<% if current_user %>
-	<h1>Scrapbook</h1>
-<% end %><!-- Add a photo dropdown -->
+<!-- Add a photo dropdown -->
 <li class="drop-image outside_add hot_form image_outside">
 	<a class="" href="#" >Add a photo<strong class="caret"></strong></a>
 </li>
@@ -16,19 +14,8 @@
 </div>
 
 <!-- this is a testing area to make sure variable are rendering correctly -->
-<div class="test_container">
-	<div class="test1" ></div>
-	<div class="test2" ></div>
-	<div class="test3"></div>
-</div>
 
-<div class="submission_nav">
-	<ul>
-		<%= link_to content_tag(:li, "day", class: "scrapbook_path"), daily_scrapbook_path %>
-		<%= link_to content_tag(:li, "week", class: "scrapbook_path"), weekly_scrapbook_path%>
-		<%= link_to content_tag(:li, "month", class: "scrapbook_path"), monthly_scrapbook_path%>
-		<%= link_to content_tag(:li, "year", class: "scrapbook_path"), yearly_scrapbook_path%>
-	</ul>
-</div>
+
+
  
 <!-- End photo dropdown -->

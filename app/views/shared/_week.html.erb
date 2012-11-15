@@ -1,3 +1,8 @@
+Beg_range:<%= @beg_range %><br />
+End_range:<%= @end_range %><br />
+Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
+<%= link_to content_tag(:div, "Go To Month", class: "nav_up"), monthly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_month, end_range: @beg_range.to_date.beginning_of_month.next_month-1) %>
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @beg_range.to_date, end_range: @beg_range.to_date) %>
 <div class="photos_container">
 <% @user_images.each do |image| %>
 <!-- determine day -->
@@ -31,14 +36,12 @@
 
     <!-- journal_container -->
 
-Beg_range:<%= @beg_range %><br />
-End_range:<%= @end_range %><br />
-Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
+
 <div class="nav_arrows">
-    <div class="prev prev-next">
+    <div class="prev prev-next direction">
         <%= link_to content_tag(:div,"prev", class: "prev_btn"), weekly_scrapbook_path(beg_range: @beg_range.to_date-1.week, end_range: @beg_range.to_date-1.day), remote: true %>
     </div>
-    <div class="next prev-next">
+    <div class="next prev-next direction">
         <%= link_to content_tag(:div,"next", class: "next_btn"), weekly_scrapbook_path(beg_range: @beg_range.to_date+1.week, end_range: @beg_range.to_date+2.weeks-1.day), remote: true %>
     </div>
 </div>

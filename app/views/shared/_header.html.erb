@@ -1,21 +1,6 @@
-<style>
-.header_container .thousand_wide_container ul.nav_bar li {
-  width: 120px;
-  margin-left:10px;
-}
 
-.nav_authentication {
-  width:300px;
-}
-.nav_authentication ul li {
-  width: 120px;
-  margin-left:10px;
-  float:left;
-}
-  
-</style>
 
- <div class="header_container gradient_gray">
+ <div class="header_container">
    	<div class="thousand_wide_container ">
         <!-- Your site name for the upper left corner of the site -->
    
@@ -23,36 +8,26 @@
         
         <!-- Other nav bar content -->
           	<ul class="nav_bar">
-      	        <li><%= link_to "Home", root_url %></li>
-      	        <li><%= link_to "Scrapbook", scrapbook_path %></li>
-      	        <li><%= link_to "Profile", profile_path %></li>
-      	        <li><%= link_to "About", about_path %></li>
-                <li>
-                    <div class="nav_authentication"> 
-              <!-- The drop down menu -->
-                      <ul>
-                      <% if current_user %>
-                        
-                          <li><%= link_to "Sign Out", logout_path, method: "delete" %></li>
-                          <li class="divider-vertical"></li>
-                          <li><a href="#"><%= current_user.email %></a></li>
-
-                      <% else %>
-                          
-
-                          <li class="drop-auth">
-                              <a class="" href="#" >Sign In <strong class="caret"></strong></a>
-                              <%= render('shared/sign_in_form') %>
-                          </li>
-                          <li class="divider-vertical"></li>
-                          <li><%= link_to "Sign Up", new_user_path %></li>
-                      <% end %>
-                      </ul>
-              
-                    </div>
-                </li>
+              <%= link_to content_tag(:li, "Home"), root_url %>
+              <%= link_to content_tag(:li, "Profile"), profile_path %>
+              <%= link_to content_tag(:li, "Scrapbook"), scrapbook_path %>
+              <%= link_to content_tag(:li, "About"), about_path %>
+                    
+                  <!-- The drop down menu -->
+                    
+             
             </ul>
-         
+            <ul class="nav_authentication">
+                <% if current_user %>
+                    <%= link_to content_tag(:li, "Sign Out"), logout_path, method: "delete" %>
+                    <%= link_to content_tag(:li,  current_user.email), profile_path %>
+                <% else %>
+                    
+                    <a href="#" ><li class="drop-auth">Sign In <strong class="caret"></strong>
+                        <%= render('shared/sign_in_form') %></li></a>
+                    <%= link_to content_tag(:li, "Sign Up"), new_user_path %>
+                <% end %>
+            </ul>
       </div>
   </div>
     

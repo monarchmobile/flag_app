@@ -61,7 +61,6 @@ class StaticPagesController < ApplicationController
 
   def monthly
     user_setup
-   user_setup
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range] 
@@ -80,6 +79,20 @@ class StaticPagesController < ApplicationController
 
   def yearly
     user_setup
+    if params[:beg_range]
+      @beg_range = params[:beg_range]
+      @end_range = params[:end_range] 
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
+    else
+      @beg_range = Date.today.beginning_of_week
+      @end_range = Date.today.end_of_week
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
+     
+    end
+    respond_to do |format| 
+      format.html
+      format.js
+    end
   end
 
   def profile
