@@ -18,11 +18,6 @@
 	margin:auto;	
 }
 
-.half_opacity {
-	opacity: .5;
-}
-
-
 // testing //
 .test_container	{
 	float: left;
@@ -138,7 +133,7 @@ li.hot_form {
 // Header //
 .header_container {
 	width: 100%;
-	height: 60px;	
+	height: 50px;	
 }
 
 .gradient_gray {
@@ -152,84 +147,6 @@ li.hot_form {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#c9c9c9',GradientType=0 ); /* IE6-9 */
 }
 
-.nav_items {
-	float:left;
-	margin-top:15px;
-}
-
-.pull_left {
-	width:200px;
-}
-
-.nav_content {
-	text-align: center;
-
-	ul li {
-		list-style: none;
-
-		a {
-		text-decoration: none;
-		}
-	}
-}
-
-.brand {
-	width:150px;
-	margin:auto;
-}
-
-.pull_center {
-	margin: auto;
-	width: 500px;
-	padding: 15px 0px;
-}
-
-.nav {
-	margin:auto;
-	width:auto;
-}
-.pull_right {
-	
-	width:200px;
-}
-
-.thousand_wide_container ul li {
-	float: left;
-	width:100px;
-	text-align: center;
-	list-style: none;
-	
-
-	a {
-		text-decoration:none;
-		&:hover {
-			background:transparent;
-		}
-	}
-}
-
-// Home //
-
-#home_images {
-	margin-left:20px;
-}
-
-// ScrapBook //
-
-.current_month {
-	display:block;
-}
-
-.month-of-year {
-	height:400px;
-
-	h2#month {
-
-		float:left;
-
-		
-	}
-}
 
 // month scrolling back and forth
 .prev-next{
@@ -382,128 +299,17 @@ li.hot_form {
 	//  end day_container
 
 // bottom dates menu bar (daily, weekly, monthly) //
-
-ul.wom_container {
-	min-width: 100px;
-	margin-left: 15px;
-	width: 975px;
-	clear: both;
-	position: fixed;
-	height: 16px;
-	bottom: 70px;
-	padding: 10px 0px;
-	border-top: 5px;
-
-
-	a li.weeks_of_month {		
-		width: 165px;
-		margin-left: 10px;		
-	}
-
-	a li.clickable_weeks {
-		padding: 2px;
-		float: left;
-		list-style: none;
-		text-align: center;
-		margin-top: -3px;
-		cursor: pointer;
-		height: 21px;
-		color: #3b5998;
-		font-size:15px;
-		background: black;
-		padding: 4px 2px 0px;
-		font-weight: bold;
-		color: white;
-	}
-
-	a:hover li.clickable_weeks {
-	color:#fff;
-	background:gray;	
-}
-
-	
-	a li.week_pointer {
-		background: red;
-		font-size: 18px;
-		
-	}
-
-	a li.regular_pointer {
-		background:gray;
-		
-		
-		
-	}
-	
-
-}
-
-
-
-ul.moy_container {
-	min-width: 100px;
-	margin-left: 15px;
-	width: 975px;
-	clear: both;
-	position: fixed;
-	height: 16px;
-	bottom: 15px;
-	padding: 10px 0px;
-	border-top: 5px;
-	background: black;
-
-
-
-	a li.months_of_year {		
-			width: 60px;
-			margin-left: 16px;		
-		}
-
-	a li.clickable_months {
-		padding: 2px;
-		float: left;
-		list-style: none;
-		text-align: center;
-		margin-top: -3px;
-		cursor: pointer;
-		height: 18px;
-		color: white;
-		font-size:15px;
-	}
-
-	a:hover li.clickable_months {
-	color:#fff;
-	background:gray;	
-}
-
-	a li.month_pointer {
-		background: red;
-		opacity: .8;
-		color: white;
-		border-radius: 0px;
-		height: 39px;
-		width: 45px;
-		margin-top: -19px;
-		padding: 19px 2px 0px;
-		font-size: 18px;
-		color: white;
-		border: 0px;
-		font-weight: bold;
-	}
-
-}
+// days //
 ul.dom_container {
-	min-width: 100px;
-		margin-left: 15px;
-		width: 975px;
-		clear: both;
-		position: fixed;
-		height: 16px;
-		bottom: 96px;
-		padding: 10px 0px;
-		border-top: 3px solid red;
-		border-bottom: 3px solid red;
-		background: black;
+	margin-left: 15px;
+	width: 975px;
+	position: fixed;
+	height: 16px;
+	bottom: 67px;
+	padding: 10px 0px;
+	border-top: 3px solid red;
+	border-bottom: 3px solid red;
+	background: black;
 
 	.centered {
 
@@ -513,17 +319,7 @@ ul.dom_container {
 
 		a li.days_of_month {
 			width: 20px;
-	margin-left: 5px;
-		}
-
-		a li.weeks_of_month {
-			width:40px;
-			margin-left:50px;
-		}
-
-		a li.months_of_year {		
-			width:60px;
-			margin-left:10px;		
+			margin-left: 5px;
 		}
 
 		a li.clickable_dates {
@@ -549,91 +345,106 @@ ul.dom_container {
 
 		a li.content_exists {
 			background:#3b5998;
-			color:white;
 		}
 
 		a li.pointer {
 			background: red;
-			opacity: .8;
-			color: white;
-			border-radius: 0px;
-			height: 37px;
-			width: 30px;
-			margin-top: -19px;
-			padding: 19px 2px 0px;
-			font-size: 18px;
-			color: white;
-			border: 0px;
-			font-weight: bold;
-		}
-
-		a li.future_date {
-			
-			opacity: .5;
-		}
-
-		.today_box {
-			border:5px solid red;
-			height: 40px;
-			width: 40px;
+opacity: .8;
+color: white;
+height: 23px;
+width: 28px;
+margin-top: -12px;
+padding: 5px 2px 0px;
+font-size: 18px;
+font-weight: bold;
 		}
 	}
 }
-a li.future_date {
-			
-			opacity: .5;
-		}
-.pointer_container {
-	width: 975px;
-margin-left: 15px;
-height: 35px;
+// weeks //
+ul.wom_container {
+	width: 991px;
 position: fixed;
-bottom: 77px;
-border-top: 5px solid red;
-border-bottom: 5px solid red;
+height: 16px;
+bottom: 38px;
+padding: 10px 0px;
+margin-left: 4px;
 
-	.center_pointer {
-		margin: auto;
-		width: 66px;
-		
-		height: 30px;
 
+	a li.weeks_of_month {		
+		width: 186px;
+margin-left: 11px;	
+	}
+
+	a li.clickable_weeks {
+	
+		float: left;
+		list-style: none;
+		text-align: center;
+		margin-top: -3px;
+		cursor: pointer;
+		height: 21px;
+		font-size:15px;
+		background: black;
+		padding: 4px 0px 0px;
+		font-weight: bold;
+		color: white;
+	}
+
+	a:hover li.clickable_weeks {
+		color:#fff;
+		background:gray;	
+	}
+	
+	a li.week_pointer {
+		background: red;
+		font-size: 18px;
 	}
 }
 
-// submission navigation from days to year //
+// months //
+ul.moy_container {
+	margin-left: 15px;
+	width: 975px;
+	position: fixed;
+	height: 22px;
+	bottom: 15px;
+	padding: 5px 0px 0px;
+	background: black;
 
-.submission_nav {
-	position: absolute;
-	float: left;
-	z-index: 100;
-	width: 324px;
-	height: 50px;
-	background: gray;
-	top: 117px;
-	margin-left: 335px;
-	border-radius: 5px;
-	webkit-border-radius: 5px;
-	moz-border-radius: 5px;
+	a li.months_of_year {		
+			width: 60px;
+			margin-left: 16px;		
+		}
 
-	ul a {
-
-		text-decoration: none;
-
-			li {
-			list-style: none;
-			padding:0px 3px;
-			margin-left:0px;
-			color:#3b5998;
-			font-size:15px;
-			float:left;
-			min-width:60px;
-			width:auto;
-
-			}
-
-			&:hover li {
-				color:#fff;
-			}
+	a li.clickable_months {
+		padding: 2px;
+		float: left;
+		list-style: none;
+		text-align: center;
+		margin-top: -3px;
+		cursor: pointer;
+		height: 18px;
+		color: white;
+		font-size:15px;
 	}
+
+	a:hover li.clickable_months {
+		color:#fff;
+		background:gray;	
+	}
+
+	a li.month_pointer {
+		background: red;
+		opacity: .8;
+		height: 23px;
+		width: 45px;
+		margin-top: -4px;
+		padding: 3px 2px 0px;
+		font-size: 18px;
+		font-weight: bold;
+	}
+}
+
+a li.future_date {	
+	opacity: .5;
 }

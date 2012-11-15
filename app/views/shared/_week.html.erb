@@ -43,6 +43,7 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
     </div>
 </div>
 
+<%= render('menus/by_day', :beg_range => @beg_range ) %>
 
 <ul class="wom_container">
 <% (0..4).each do |num| %>  
@@ -59,48 +60,5 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
     <% end %>
 <% end %>
 </ul>
-<ul class="dom_container">
-    <div class="centered">
-    <% @beg_week = @beg_range.to_date.beginning_of_week %>
-    <% @end_week = @beg_range.to_date.beginning_of_week.end_of_week %>
 
-    
-    <% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %> 
-        <% if @beg_range.to_date == day %>
-            
-            <% if @user.images.where(date_taken: day..day).any? %>
-                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists pointer"), daily_scrapbook_path(beg_range: day, end_range: day) %>
-            <% else %>
-                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), daily_scrapbook_path(beg_range: day, end_range: day) %>
-
-            <% end %> 
-        <!--  Future days : add future_date class  -->  
-        <% elsif Date.today < day %>
-                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day) %>
-        <!--  Future days : no extra classes  -->   
-        <% else %>
-            <% if @user.images.where(date_taken: day..day).any? %>
-                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), daily_scrapbook_path(beg_range: day, end_range: day) %>
-            <% else %>
-                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates"), daily_scrapbook_path(beg_range: day, end_range: day) %>
-            <% end %>
-        <% end %>
-    <% end %>
-    </div>
-</ul>
-<ul class="moy_container">
-    <div class="centered">
-    <% @join_date = @user.created_at %>
-    <% (0..11).each do |num| %>
-        <% @beg_month = (@join_date.to_date >> num).beginning_of_month %>
-        <% @end_month = (@join_date.to_date >> num).end_of_month %>
-        <% if @beg_range.to_date.between?(@beg_month, @end_month) %>
-            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), 
-            monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month) %>
-        <% else %>
-            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), 
-            monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month) %>
-        <% end %>
-    <% end %>
-    </div>
-</ul>
+<%= render('menus/by_month', :beg_range => @beg_range ) %>
