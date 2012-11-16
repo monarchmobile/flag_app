@@ -4,10 +4,7 @@
 <!-- month Calculations -->
 <!-- get range to go back to week -->
 <% @resource_m = request.path.split('/')[1] %>
-<% resource = request.path.split('/')[1] %>
-<% @resources = resource %>
-<% @resource = resource.singularize %>
-<% @resource_sym = resource.singularize.to_sym %>
+
 <% if @resource_m == "monthly_scrapbook" %>
 	<% if @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC").any? %>
 		<% @month_images = @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC") %>
@@ -18,9 +15,17 @@
 	<% end %>
 <% end %>
 
+<!-- Determine Day -->
+<% if @resource_m == "weekly_scrapbook" %>
+	<% if @user.images.where(date_taken: @beg_range..@end_range, week: true).order("date_taken ASC").any? %>
+		<% @week_images = @user.images.where(date_taken: @beg_range..@end_range, week: true).order("date_taken ASC") %>
+		<% @first_week_image_date = @week_images[0].date_taken %>
+	<% end %>
+<% end %>
+
 <!-- day Calculations -->
 	<!-- finding which week day belongs to -->
-<% num = @beg_range.strftime("%d").to_i/7 %>
+<% num = (@beg_range.strftime("%d").to_i-1)/7 %>
 <% @beg_range_week = @beg_range.beginning_of_month+num.weeks %>
 <% @end_range_week = @beg_range.beginning_of_month+num.weeks+6.days %>
 

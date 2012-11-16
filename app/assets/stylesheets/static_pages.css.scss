@@ -155,6 +155,10 @@ padding: 5px;
 	}
 }
 
+.for_year_to_day {
+	top: 0px;
+}
+
 .nav_down {	
 	margin-left: 405px;
 	top: 100px;
@@ -315,9 +319,14 @@ li.hot_form {
 
 			#image_1 {
 				margin-left: 25px;
-margin-top: 0px;
-width: 300px;
-height: 180px;
+				margin-top: 0px;
+				width: 300px;
+				height: 180px;
+
+				img {
+					width:300px;
+					height:180px;
+				}
 			}
 
 			#image_2 {
@@ -325,6 +334,11 @@ height: 180px;
 				margin-top:250px;
 				width:300px;
 				height:180px;
+
+				img {
+					width:300px;
+					height:180px;
+				}
 			}
 
 			#image_3 {
@@ -332,6 +346,11 @@ height: 180px;
 				margin-top:0px;
 				width:300px;
 				height:430px;
+
+				img {
+					width:300px;
+					height:430px;
+				}
 			}
 
 			#image_4 {
@@ -339,6 +358,11 @@ height: 180px;
 				margin-top:0px;
 				width:125px;
 				height:100px;
+
+				img {
+					width:125px;
+					height:100px;
+				}
 			}
 
 			#image_5 {
@@ -346,6 +370,11 @@ height: 180px;
 				margin-top:0px;
 				width:125px;
 				height:100px;
+
+				img {
+					width:125px;
+					height:100px;
+				}
 			}
 			
 			.image_container {

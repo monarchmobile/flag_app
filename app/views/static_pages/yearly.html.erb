@@ -1,26 +1,25 @@
-<%= render ('shared/scrap_header') %>
+
 <% @images = @user.images.find_all_by_year(true) %>
 <% @day_range = @images[0].date_taken %> 
 <!-- Year array for holding user.images where year: true -->
-Beg_range:<%= @beg_range %><br />
-End_range:<%= @end_range %><br />
-Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
-<%= link_to content_tag(:div, "Go To Day", class: "nav_up"), daily_scrapbook_path(beg_range: @day_range, end_range: @day_range) %>
+
+<% @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
+<%= link_to content_tag(:div, "Go To Day", class: "nav_up for_year_to_day"), daily_scrapbook_path(beg_range: @day_range, end_range: @day_range) %>
 <%= link_to content_tag(:div, "Back", class: "nav_down direction"), monthly_scrapbook_path(beg_range: @day_range.to_date.beginning_of_month, end_range: @day_range.to_date.beginning_of_month.next_month-1) %>
-<div class="photos_container">
+<div id= "year_images" class="photos_container">
 <div class="year_container" id="year_container">	
 	<!-- <div class="scrapbook"></div> -->
 	
 	<!-- photos_container -->
-	<div class="photos_container">
+		<% image_num = 0 %>
+
 		<% @images = @user.images.find_all_by_year(true) %>
 		<% for image in @images do %>
 			<li>
-			<div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
+			<div class="image_container image_position" id="image_<%= image_num += 1 %>">
 				<%= image_tag image.image_url, width:175, height:175 %>
-				<%= content_tag :h3, image.title %>
-				<%= content_tag :p, image.content, class: "image_content" %>
-				<div class="actions">
+				
+				<div class="actions hide">
 					<div class="gallery_msg">
 					<%= form_for [@user, image], remote: true do |f| %>
 						<%= f.check_box :year %>
@@ -33,7 +32,7 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
 			</div>
 			</li>
 		<% end %>
-	</div>	
+		
 </div> 
 
 

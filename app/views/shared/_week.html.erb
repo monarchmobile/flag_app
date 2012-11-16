@@ -3,20 +3,22 @@
 <%= render('shared/time_calc', beg_range: @beg_range) %>
 
 <%= link_to content_tag(:div, "Go To Month", class: "nav_up"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @beg_range.to_date, end_range: @beg_range.to_date) %>
-<div class="photos_container">
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @first_week_image_date, end_range: @first_week_image_date) %>
+
+<% image_num = 0 %>
 <% @user_images.each do |image| %>
 <!-- determine day -->
-<% beg_week = image.date_taken.beginning_of_week.strftime("%Y-%m-%d")%>
-<% end_week = image.date_taken.end_of_week.strftime("%Y-%m-%d") %>
-<% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
+    <!-- calculates which which image belongs to -->
+    <% num = image.date_taken.strftime("%d").to_i/7 %>
+    <% beg_week = image.date_taken.beginning_of_month+num.weeks %>
+    <% end_week = beg_week+6.days %>
+    <!-- end calculation-->
     
     <li>
-        <div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
-            <%= image_tag image.image_url, width:175, height:175 %>
-            <%= content_tag :h3, image.title %>
-            <%= content_tag :p, image.content, class: "image_content" %>
-            <div class="actions">   
+        <div class="image_container image_position" id="image_<%= image_num += 1 %>">
+            <%= image_tag image.image_url %>
+            
+            <div class="actions hide">   
                 <div class="gallery_msg">               
                 <% if image.month == false %>
                     <%= form_for [@user, image], remote: true do |f| %>
@@ -33,7 +35,7 @@
         </div>
     </li>
 <% end %>
-</div>
+
 
     <!-- journal_container -->
 

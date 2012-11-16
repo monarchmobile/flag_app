@@ -5,14 +5,16 @@
 <% image_num = 0 %>
 
 <% @user_images.each do |image| %>
-<!-- determine day -->
-<% beg_week = image.date_taken.beginning_of_week.strftime("%Y-%m-%d")%>
-<% end_week = image.date_taken.end_of_week.strftime("%Y-%m-%d") %>
-<% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
+<!-- render out each image -->
+	<!-- calculates which which image belongs to -->
+	<% num = image.date_taken.strftime("%d").to_i/7 %>
+	<% beg_week = image.date_taken.beginning_of_month+num.weeks %>
+	<% end_week = beg_week+6.days %>
+	<!-- end calculate-->
 	
 	<li>
 		<div class="image_container image_position" id="image_<%= image_num += 1 %>">
-			<%= image_tag image.image_url, width:175, height:175 %>
+			<%= image_tag image.image_url %>
 			
 			<div class="actions hide">	
 				<div class="gallery_msg">				

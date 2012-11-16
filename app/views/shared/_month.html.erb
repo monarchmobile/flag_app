@@ -2,8 +2,9 @@
 
 
 <%= link_to content_tag(:div, "Go To Year", class: "nav_up"), yearly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_year, end_range: @beg_range.to_date.end_of_year) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @beg_month_image_range, end_range: @beg_month_image_range + 6.days) %>
-<div class="photos_container">
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @beg_month_image_range, end_range: @beg_month_image_range.end_of_month) %>
+
+<% image_num = 0 %>
 <% @user_images.each do |image| %>
 <!-- determine day -->
 <% beg_year = image.date_taken.beginning_of_year %>
@@ -11,11 +12,10 @@
 <% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
     
     <li>
-        <div class="image_container" id="image<%= @user.id %>-<%= image.id %>">
-            <%= image_tag image.image_url, width:175, height:175 %>
-            <%= content_tag :h3, image.title %>
-            <%= content_tag :p, image.content, class: "image_content" %>
-            <div class="actions">   
+        <div class="image_container image_position" id="image_<%= image_num += 1 %>">
+            <%= image_tag image.image_url %>
+            
+            <div class="actions hide">   
                 <div class="gallery_msg">               
                 <% if image.year == false %>
                     <%= form_for [@user, image], remote: true do |f| %>
@@ -32,7 +32,7 @@
         </div>
     </li>
 <% end %>
-</div>
+
 
     <!-- journal_container -->
 
