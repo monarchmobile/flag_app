@@ -456,7 +456,7 @@ font-weight: bold;
 }
 // weeks //
 ul.wom_container {
-	width: 991px;
+	width: 1100px;
 position: fixed;
 height: 16px;
 bottom: 38px;
@@ -465,8 +465,14 @@ margin-left: 4px;
 
 
 	a li.weeks_of_month {		
-		width: 186px;
-margin-left: 11px;	
+		width: 193px;
+		margin-left: 28px;	
+	}
+
+	a:nth-child(5) li{
+		width: 146px;
+margin-left: 15px;
+
 	}
 
 	a li.clickable_weeks {
@@ -491,7 +497,7 @@ margin-left: 11px;
 	
 	a li.week_pointer {
 		background: red;
-		font-size: 18px;
+		font-size: 15px;
 	}
 }
 

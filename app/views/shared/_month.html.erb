@@ -1,13 +1,13 @@
-Beg_range:<%= @beg_range %><br />
-End_range:<%= @end_range %><br />
-Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
+<%= render('shared/time_calc', beg_range: @beg_range) %>
+
+
 <%= link_to content_tag(:div, "Go To Year", class: "nav_up"), yearly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_year, end_range: @beg_range.to_date.end_of_year) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_week, end_range: @beg_range.to_date.beginning_of_week.next_week-1) %>
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @beg_month_image_range, end_range: @beg_month_image_range + 6.days) %>
 <div class="photos_container">
 <% @user_images.each do |image| %>
 <!-- determine day -->
-<% beg_week = image.date_taken.beginning_of_week.strftime("%Y-%m-%d")%>
-<% end_week = image.date_taken.end_of_week.strftime("%Y-%m-%d") %>
+<% beg_year = image.date_taken.beginning_of_year %>
+<% end_year = image.date_taken.end_of_year %>
 <% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
     
     <li>
@@ -17,14 +17,14 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
             <%= content_tag :p, image.content, class: "image_content" %>
             <div class="actions">   
                 <div class="gallery_msg">               
-                <% if image.week == false %>
+                <% if image.year == false %>
                     <%= form_for [@user, image], remote: true do |f| %>
-                      <%= f.check_box :week %>
-                      Add to your week
+                      <%= f.check_box :year %>
+                      Add to your year
                     <% end %>
                     
-                <% elsif image.week == true %>
-                    <%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(start_week: beg_week, end_week: end_week) %>
+                <% elsif image.year == true %>
+                    <%= link_to content_tag(:div, "Part of yearly Gallery"), yearly_scrapbook_path(beg_range: beg_year, end_range: end_year) %>
                 <% end %>
                 </div>  
                 <%= render('shared/edit_delete_image_container', :image => image) %>    

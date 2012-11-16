@@ -1,8 +1,6 @@
-Beg_range:<%= @beg_range %><br />
-End_range:<%= @end_range %><br />
-Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
+<%= render('shared/time_calc', beg_range: @beg_range) %>
 
-<%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_week, end_range: @beg_range.to_date.next_week-1) %>
+<%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week) %>
 
 <% image_num = 0 %>
 <div class="photos_container">
@@ -26,7 +24,7 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
 					<% end %>
 					
 				<% elsif image.week == true %>
-					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(start_week: beg_week, end_week: end_week) %>
+					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(beg_range: beg_week, end_week: end_week) %>
 				<% end %>
 				</div>	
 				<%= render('shared/edit_delete_image_container', :image => image) %>	
@@ -88,6 +86,6 @@ Beg_month:<%= @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_we
 	</div>
 </ul>
 
-<%= render('menus/by_week', :beg_month => @beg_month ) %>
+<%= render('menus/by_week', :beg_month => @first_of_month ) %>
 
-<%= render('menus/by_month', :beg_range => @beg_range ) %>
+<%= render('menus/by_month', :beg_range => @first_of_month ) %>

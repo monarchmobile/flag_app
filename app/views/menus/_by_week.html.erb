@@ -1,7 +1,11 @@
 <ul class="wom_container">
 <% (0..4).each do |num| %>  
-    <% @beginning_of_dyn_range = @beg_month.to_date+num.weeks %>
-    <% @end_of_dyn_range = @beg_month.to_date+(num+1).weeks-1 %>
+    <% @beginning_of_dyn_range = @first_of_month.to_date+num.weeks %>
+    <% if num == 4 %>
+        <% @end_of_dyn_range = @first_of_month.to_date.next_month-1 %>
+    <% else %>
+        <% @end_of_dyn_range = @first_of_month.to_date+(num+1).weeks-1 %>
+    <% end %>
     <!--  Week_pointer: add pointer class  -->
     <% if @beg_range.to_date.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
         <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range)  %>
