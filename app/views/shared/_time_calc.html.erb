@@ -1,25 +1,38 @@
 <% @beg_range = @beg_range.to_date %>
 <% @end_range = @end_range.to_date %>
 
+
+
 <!-- month Calculations -->
 <!-- get range to go back to week -->
 <% @resource_m = request.path.split('/')[1] %>
 
-<% if @resource_m == "monthly_scrapbook" %>
-	<% if @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC").any? %>
-		<% @month_images = @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC") %>
-		<% m_img_num = @month_images[0].date_taken.strftime("%d").to_i/7 %>
-		<% @beg_month_image_range = @month_images[0].date_taken.beginning_of_month+m_img_num.weeks %>
+
+
+<!-- Week: if breadcrumb, then goes back to breadcrumb -->
+<% if @resource_m == "weekly_scrapbook" %>
+	<% if @bread_crumb %>
+		<% @originating_day_beg = @bread_crumb %>
 	<% else %>
-		<% @beg_month_image_range = @beg_range.beginning_of_month %>
+		<% @originating_day_beg = @beg_range %>
 	<% end %>
 <% end %>
-
-<!-- Determine Day -->
-<% if @resource_m == "weekly_scrapbook" %>
-	<% if @user.images.where(date_taken: @beg_range..@end_range, week: true).order("date_taken ASC").any? %>
-		<% @week_images = @user.images.where(date_taken: @beg_range..@end_range, week: true).order("date_taken ASC") %>
-		<% @first_week_image_date = @week_images[0].date_taken %>
+<% if @resource_m == "monthly_scrapbook" %>
+	<% if @bread_crumb %>
+		<% @originating_week_beg = @bread_crumb %>
+		<% @originating_week_end = @bread_crumb.to_date+6.days %>
+	<% else %>
+		<% @originating_week_beg = @beg_range %>
+		<% @originating_week_end = @beg_range.to_date+6.days %>
+	<% end %>
+<% end %>
+<% if @resource_m == "yearly_scrapbook" %>
+	<% if @bread_crumb %>
+		<% @originating_month_beg = @bread_crumb %>
+		<% @originating_month_end = @bread_crumb.to_date.end_of_month %>
+	<% else %>
+		<% @originating_month_beg = @beg_range %>
+		<% @originating_month_end = @begin_range.to_date.end_of_month %>
 	<% end %>
 <% end %>
 

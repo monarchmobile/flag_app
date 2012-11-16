@@ -1,8 +1,8 @@
 <%= render('shared/time_calc', beg_range: @beg_range) %>
+<% @bread_crumb = @beg_range %>
 
-
-<%= link_to content_tag(:div, "Go To Year", class: "nav_up"), yearly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_year, end_range: @beg_range.to_date.end_of_year) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @beg_month_image_range, end_range: @beg_month_image_range.end_of_month) %>
+<%= link_to content_tag(:div, "Go To Year", class: "nav_up"), yearly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_year, end_range: @beg_range.to_date.end_of_year, bread_crumb: @bread_crumb) %>
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @originating_week_beg, end_range: @originating_week_end) %>
 
 <% image_num = 0 %>
 <% @user_images.each do |image| %>
@@ -34,8 +34,8 @@
 <% end %>
 
 
-    <!-- journal_container -->
-
+<!-- journal_container -->
+<%= render('shared/journal_container') %> 
 
 <div class="nav_arrows">
     <div class="prev prev-next direction">
@@ -45,27 +45,26 @@
         <%= link_to content_tag(:div,"next", class: "next_btn"), monthly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_month.next_month, end_range: @beg_range.to_date.beginning_of_month+2.months-1.day), remote: true %>
     </div>
 </div>
-
-<%= render('menus/by_week', :beg_month => @beg_month ) %>
-
-<%= render('menus/by_day', :beg_range => @beg_range ) %>
-
-<ul class="moy_container">
-    <div class="centered">
-    <% @join_date = @user.created_at %>
-    <% (0..11).each do |num| %>
-        <% @beg_month = (@join_date.to_date >> num).beginning_of_month %>
-        <% @end_month = (@join_date.to_date >> num).end_of_month %>
-        <% if @beg_range.to_date.between?(@beg_month, @end_month) %>
-            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), 
-            monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
-        <!--  Future days : add future_date class  --> 
-        <% elsif Date.today < @beg_month %>
-            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months future_date"), monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
-        <% else %>
-            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), 
-            monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
+<div id="time_navigation">
+    <%= render('menus/by_day', :beg_range => @beg_range ) %>
+    <%= render('menus/by_week', :beg_month => @beg_month ) %>
+    <ul class="moy_container">
+        
+        <% @join_date = @user.created_at %>
+        <% (0..11).each do |num| %>
+            <% @beg_month = (@join_date.to_date >> num).beginning_of_month %>
+            <% @end_month = (@join_date.to_date >> num).end_of_month %>
+            <% if @beg_range.to_date.between?(@beg_month, @end_month) %>
+                <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), 
+                monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
+            <!--  Future days : add future_date class  --> 
+            <% elsif Date.today < @beg_month %>
+                <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months future_date"), monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
+            <% else %>
+                <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), 
+                monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month), remote: true %>
+            <% end %>
         <% end %>
-    <% end %>
-    </div>
-</ul>
+    
+    </ul>
+</div>

@@ -1,6 +1,8 @@
 <%= render('shared/time_calc', beg_range: @beg_range) %>
 
-<%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week) %>
+	<% @bread_crumb = @beg_range %>
+
+<%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
 
 <% image_num = 0 %>
 
@@ -48,7 +50,7 @@
 </div>
 <div id="time_navigation">
 	<ul class="dom_container">
-		<div class="centered">
+		
 		
 		<% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %>
 			<!--  Pointer : add pointer class -->
@@ -73,7 +75,7 @@
 				<% end %>
 			<% end %>
 		<% end %>
-		</div>
+		
 	</ul>
 
 	<%= render('menus/by_week', :beg_month => @first_of_month ) %>

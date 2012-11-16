@@ -1,6 +1,10 @@
 <div class="journal_container">
 	<% if @resource_m == "weekly_scrapbook" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%d')}-#{@end_range.strftime('%d')}, #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
+	<% elsif @resource_m == "monthly_scrapbook" %>
+		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
+	<% elsif @resource_m == "yearly_scrapbook" %>
+		<%= content_tag :h2, "#{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
 	<% else %>
 		<%= content_tag :h2, @beg_range.strftime("%B %d, %Y"), class: "journal_date_range" %>
 	<% end %>

@@ -471,26 +471,19 @@ li.hot_form {
 // days //
 #time_navigation {
 	position:fixed;
-	bottom:10px;
+	bottom:35px;
 	width:1000px;
-	height:60px;
+	height:77px;
 }
 ul.dom_container {
-	margin-left: 15px;
-	width: 975px;
-	
-	height: 16px;
-	
-	padding: 10px 0px;
-	border-top: 3px solid red;
-	border-bottom: 3px solid red;
-	background: black;
+	margin-left: 0px;
+border-top: 3px solid red;
+border-bottom: 3px solid red;
+background: black;
+height: 18px;
+padding: 5px 0px 0px 1px;
 
-	.centered {
-
-		width: 970px;
-		margin: auto;
-		height: 40px;
+	
 
 		a li.days_of_month {
 			width: 20px;
@@ -499,18 +492,19 @@ ul.dom_container {
 
 		a li.clickable_dates {
 			border-radius: 50px;
-			webkit-border-radius: 50px;
-			moz-border-radius: 50px;
-			padding: 2px;
-			float: left;
-			list-style: none;
-			text-align: center;
-			background: white;
-			border: 1px solid black;
-			margin-top: -3px;
-			cursor: pointer;
-			height: 18px;
-			color:black;
+webkit-border-radius: 50px;
+moz-border-radius: 50px;
+padding: 0px 2px 4px 2px;
+float: left;
+list-style: none;
+text-align: center;
+background: white;
+border: 1px solid black;
+margin-top: -3px;
+cursor: pointer;
+height: 13px;
+color: black;
+font-size: 11px;
 		}
 
 		a:hover li.clickable_dates {
@@ -528,31 +522,30 @@ opacity: .8;
 color: white;
 height: 23px;
 width: 28px;
-margin-top: -6px;
+margin-top: -8px;
 padding: 5px 2px 0px;
 font-size: 18px;
 font-weight: bold;
 		}
-	}
+	
 }
 // weeks //
 ul.wom_container {
-	width: 1100px;
+	
+height: 9px;
+margin-left:-40px;
+margin-top:-10px;
 
-height: 16px;
-
-padding: 10px 0px;
-margin-left: 4px;
 
 
 	a li.weeks_of_month {		
-		width: 193px;
-		margin-left: 28px;	
+		width: 220px;
+		margin-left: 0px;	
 	}
 
 	a:nth-child(5) li{
-		width: 146px;
-margin-left: 15px;
+		width: 120px;
+
 
 	}
 
@@ -564,7 +557,7 @@ margin-left: 15px;
 		margin-top: -3px;
 		cursor: pointer;
 		height: 21px;
-		font-size:15px;
+		font-size:12px;
 		background: black;
 		padding: 4px 0px 0px;
 		font-weight: bold;
@@ -578,18 +571,15 @@ margin-left: 15px;
 	
 	a li.week_pointer {
 		background: red;
-		font-size: 15px;
+		
 	}
 }
 
 // months //
 ul.moy_container {
-	margin-left: 15px;
-	width: 975px;
+	
 	
 	height: 22px;
-
-	padding: 5px 0px 0px;
 	background: black;
 
 	a li.months_of_year {		
@@ -616,10 +606,10 @@ ul.moy_container {
 
 	a li.month_pointer {
 		background: red;
-		opacity: .8;
-		height: 23px;
+		
+		height: 19px;
 		width: 45px;
-		margin-top: -4px;
+		margin-top:0px;
 		padding: 3px 2px 0px;
 		font-size: 18px;
 		font-weight: bold;

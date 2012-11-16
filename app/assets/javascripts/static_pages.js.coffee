@@ -47,6 +47,16 @@ jQuery ->
   		e.stopPropagation()
   ############## --- End FORMS --- ###############
 
+  $(".image_container").click ->
+
+    $(this).animate
+      width: "500px",
+      height: "300px"
+    , "slow"
+    
+
+
+
   
   
   

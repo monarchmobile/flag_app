@@ -1,9 +1,10 @@
 <!-- images_array for this week -->
 
 <%= render('shared/time_calc', beg_range: @beg_range) %>
+<% @bread_crumb = @beg_range %>
 
-<%= link_to content_tag(:div, "Go To Month", class: "nav_up"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @first_week_image_date, end_range: @first_week_image_date) %>
+<%= link_to content_tag(:div, "Go To Month", class: "nav_up"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @originating_day_beg, end_range: @originating_day_beg, bread_crumb: @bread_crumb) %>
 
 <% image_num = 0 %>
 <% @user_images.each do |image| %>
@@ -48,7 +49,7 @@
         <%= link_to content_tag(:div,"next", class: "next_btn"), weekly_scrapbook_path(beg_range: @beg_of_next_week, end_range: @end_of_next_week), remote: true %>
     </div>
 </div>
-
+<div id="time_navigation">
 <%= render('menus/by_day', :beg_range => @beg_range ) %>
 
 <ul class="wom_container">
@@ -72,3 +73,4 @@
 </ul>
 
 <%= render('menus/by_month', :beg_range => @beg_range ) %>
+</div>

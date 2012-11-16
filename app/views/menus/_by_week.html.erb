@@ -7,7 +7,7 @@
         <% @end_of_dyn_range = @first_of_month.to_date+(num+1).weeks-1 %>
     <% end %>
     <!--  Week_pointer: add pointer class  -->
-    <% if @beg_range.to_date.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
+    <% if @bread_crumb.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
         <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range)  %>
     <!--  Future days : add future_date class  -->	
 	<% elsif Date.today < @end_of_dyn_range %>
