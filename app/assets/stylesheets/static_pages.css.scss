@@ -147,7 +147,7 @@ padding: 5px;
 	background: #D53838;
 	font-size: 22px;
 	color: black;
-	top: 0px;
+	top: -87px;
 	padding: 8px 0px;
 
 	&:hover {
@@ -302,19 +302,54 @@ li.hot_form {
 		position:absolute;
 		
 		li {
-			float:left;
+			
 			list-style:none;
-			margin-left:10px;
+			
+
+			.image_position {
+				position:absolute;
+				float:left;
+				background:gray;
+
+			}
+
+			#image_1 {
+				margin-left: 25px;
+margin-top: 0px;
+width: 300px;
+height: 180px;
+			}
+
+			#image_2 {
+				margin-left:25px;
+				margin-top:250px;
+				width:300px;
+				height:180px;
+			}
+
+			#image_3 {
+				margin-left:350px;
+				margin-top:0px;
+				width:300px;
+				height:430px;
+			}
+
+			#image_4 {
+				margin-left:675px;
+				margin-top:0px;
+				width:125px;
+				height:100px;
+			}
+
+			#image_5 {
+				margin-left:825px;
+				margin-top:0px;
+				width:125px;
+				height:100px;
+			}
 			
 			.image_container {
-				width:175px;
-				min-height:325px;
-				box-shadow:1px 1px 5px;
-				-moz-box-shadow: 1px 1px 5px;
-				-webkit-box-shadow: 1px 1px 5px;
-				padding:10px;
-				height:auto;
-			
+							
 				img{
 					width:175px;
 					height:175px;
@@ -376,13 +411,13 @@ li.hot_form {
 	.journal_container {
 		width: 352px;
 		height: 400px;
-		margin-top: 28px;
+		margin-top: 125px;
 		padding: 10px;
 		float: left;
-		margin-left: 459px;
+		margin-left: 650px;
 		position: absolute;
 		background:url('/assets/journal.png') no-repeat;
-		border:1px solid blue;
+		
 
 		p {
 			padding:10px;

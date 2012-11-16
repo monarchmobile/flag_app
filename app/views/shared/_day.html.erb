@@ -3,7 +3,7 @@
 <%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week) %>
 
 <% image_num = 0 %>
-<div class="photos_container">
+
 <% @user_images.each do |image| %>
 <!-- determine day -->
 <% beg_week = image.date_taken.beginning_of_week.strftime("%Y-%m-%d")%>
@@ -11,11 +11,10 @@
 <% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
 	
 	<li>
-		<div class="image_container" id="image_<%= image_num += 1 %>">
+		<div class="image_container image_position" id="image_<%= image_num += 1 %>">
 			<%= image_tag image.image_url, width:175, height:175 %>
-			<%= content_tag :h3, image.title %>
-			<%= content_tag :p, image.content, class: "image_content" %>
-			<div class="actions">	
+			
+			<div class="actions hide">	
 				<div class="gallery_msg">				
 				<% if image.week == false %>
 					<%= form_for [@user, image], remote: true do |f| %>
@@ -32,7 +31,7 @@
 		</div>
 	</li>
 <% end %>
-</div>
+
  
 	<!-- journal_container -->
 <div class="journal_container">

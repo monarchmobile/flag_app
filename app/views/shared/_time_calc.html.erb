@@ -9,9 +9,13 @@
 <% @resource = resource.singularize %>
 <% @resource_sym = resource.singularize.to_sym %>
 <% if @resource_m == "monthly_scrapbook" %>
-	<% @month_images = @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC") %>
-	<% m_img_num = @month_images[0].date_taken.strftime("%d").to_i/7 %>
-	<% @beg_month_image_range = @month_images[0].date_taken.beginning_of_month+m_img_num.weeks %>
+	<% if @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC").any? %>
+		<% @month_images = @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC") %>
+		<% m_img_num = @month_images[0].date_taken.strftime("%d").to_i/7 %>
+		<% @beg_month_image_range = @month_images[0].date_taken.beginning_of_month+m_img_num.weeks %>
+	<% else %>
+		<% @beg_month_image_range = @beg_range.beginning_of_month %>
+	<% end %>
 <% end %>
 
 <!-- day Calculations -->
