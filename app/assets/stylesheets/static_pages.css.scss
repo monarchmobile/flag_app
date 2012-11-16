@@ -447,8 +447,19 @@ li.hot_form {
 		position: absolute;
 		background:url('/assets/journal.png') no-repeat;
 		
+		h2.journal_date_range {
+			margin-left: 18px;
+			margin-top: 39px;
+			color: #D53838;
+			font-size: 20px;
+			text-decoration: underline;
+			text-align: center;
+			width: 300px;
+		}
 
 		p {
+			margin:auto;
+			width:275px;
 			padding:10px;
 			color:gray;
 		}
