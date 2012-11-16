@@ -469,12 +469,18 @@ li.hot_form {
 
 // bottom dates menu bar (daily, weekly, monthly) //
 // days //
+#time_navigation {
+	position:fixed;
+	bottom:10px;
+	width:1000px;
+	height:60px;
+}
 ul.dom_container {
 	margin-left: 15px;
 	width: 975px;
-	position: fixed;
+	
 	height: 16px;
-	bottom: 67px;
+	
 	padding: 10px 0px;
 	border-top: 3px solid red;
 	border-bottom: 3px solid red;
@@ -532,9 +538,9 @@ font-weight: bold;
 // weeks //
 ul.wom_container {
 	width: 1100px;
-position: fixed;
+
 height: 16px;
-bottom: 38px;
+
 padding: 10px 0px;
 margin-left: 4px;
 
@@ -580,9 +586,9 @@ margin-left: 15px;
 ul.moy_container {
 	margin-left: 15px;
 	width: 975px;
-	position: fixed;
+	
 	height: 22px;
-	bottom: 15px;
+
 	padding: 5px 0px 0px;
 	background: black;
 

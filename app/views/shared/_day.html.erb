@@ -46,36 +46,37 @@
 	    <%= link_to content_tag(:div,"next", class: "next_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date+1, end_range: @beg_range.to_date+1), remote: true %>
 	</div>
 </div>
+<div id="time_navigation">
+	<ul class="dom_container">
+		<div class="centered">
+		
+		<% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %>
+			<!--  Pointer : add pointer class -->
+			<% if @beg_range.to_date == day %>
+				
+				<% if @user.images.where(date_taken: day..day).any? %>
+					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+				<% else %>
+					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
 
-<ul class="dom_container">
-	<div class="centered">
-	
-	<% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %>
-		<!--  Pointer : add pointer class -->
-		<% if @beg_range.to_date == day %>
-			
-			<% if @user.images.where(date_taken: day..day).any? %>
-				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+				<% end %>
+			<!--  Future days : add future_date class  -->	
+			<% elsif Date.today < day %>
+					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+			<!--  Future days : no extra classes  -->	
 			<% else %>
-				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+				<% if @user.images.where(date_taken: day..day).any? %>
+					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
+				<% else %>
+					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
 
-			<% end %>
-		<!--  Future days : add future_date class  -->	
-		<% elsif Date.today < day %>
-				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
-		<!--  Future days : no extra classes  -->	
-		<% else %>
-			<% if @user.images.where(date_taken: day..day).any? %>
-				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
-			<% else %>
-				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
-
+				<% end %>
 			<% end %>
 		<% end %>
-	<% end %>
-	</div>
-</ul>
+		</div>
+	</ul>
 
-<%= render('menus/by_week', :beg_month => @first_of_month ) %>
+	<%= render('menus/by_week', :beg_month => @first_of_month ) %>
 
-<%= render('menus/by_month', :beg_range => @first_of_month ) %>
+	<%= render('menus/by_month', :beg_range => @first_of_month ) %>
+</div>
