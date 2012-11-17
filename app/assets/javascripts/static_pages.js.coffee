@@ -31,10 +31,12 @@ jQuery ->
     $(".image_form").hide()
 
   ### Journal - Form drops down ###
-  $(".drop-journal").toggle (->
-    $(".journal_form").show()
-  ), ->
-    $(".journal_form").hide()
+  $(".drop-journal").click ->
+  if $(this).next().next().is(":visible")
+    $(this).next().next().hide()
+  else
+    $(this).next().next().show()
+  
   
   ### Fix bug - When clicking on any area of form, form was dis ###
   $(" .auth-form input, 
@@ -47,13 +49,19 @@ jQuery ->
   		e.stopPropagation()
   ############## --- End FORMS --- ###############
 
-  $(".image_container").click ->
+  $.fn.center = ->
+    @css
+      position: "fixed"
+      left: "50%"
+      top: "50%"
+    @css
+      "margin-left": -@width() / 2 + "px"
+      "margin-top": -@height() / 2 + "px"
+    this
 
-    $(this).animate
-      width: "500px",
-      height: "300px"
-    , "slow"
-    
+
+
+
 
 
 

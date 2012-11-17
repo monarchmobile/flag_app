@@ -31,30 +31,30 @@
 		background:155, 0, 14;
 		height:50px;
 		width:1000px;
-		// background:gray;
+	 	//background:gray;
 
 		ul.nav_bar {
-			margin: 10px 0px 0px 75px;
+			margin: 12px 0px 0px 130px;
 			padding: 10px 0px;
-			width: 675px;
+			width: 630px;
 			float: left;
-		
+			//background:gray;
 
 			a li {
-				width: 100px;
-				margin-left: 10px;
-				float: left;
-				list-style: none;
-				color:black;
-				text-align: center;
-				font-size: 17px;
+				width: 116px;
+margin-left: 7px;
+float: left;
+list-style: none;
+color: black;
+text-align: center;
+font-size: 17px;
 			}
 
 			a:hover li {
 				color:#fff;
 			}
 			a:nth-child(3) li {
-				width:300px;
+				width:250px;
 			}
 			
 		}
@@ -62,7 +62,7 @@
 }
 
 ul.nav_authentication {
-  width: 250px;
+  width: 240px;
 	float: left;
 	padding: 8px 0px;
 
@@ -101,9 +101,8 @@ padding: 5px;
 // Start in application layouts, hold all yield //
 .master_container {
 	margin:auto;
-	width:1000px;
-	min-height: 500px;
-	height: auto;
+	width:1000px; 
+	min-height:668px;
 	padding-bottom: 20px;
 
 	h1 {
@@ -124,15 +123,22 @@ padding: 5px;
 	height: 21px;
 	background: inherit;
 	font-size: 22px;
-	color: white;
+	
 	padding: 8px 0px;
 	background: gray;
 	border-radius: 15px;
 	text-decoration:none;
 
-	&:hover {
+	a {
+
 		color:white;
-		background:#D53838;
+		text-decoration: none;
+
+		&:hover {
+			color:white;
+			background:#D53838;
+			text-decoration: underline;
+		}
 	}
 }
 
@@ -140,7 +146,7 @@ padding: 5px;
 	position: absolute;
 	float: left;
 	z-index: 100;
-	margin-left: 302px;
+	margin-left: 350px;
 	text-align: center;
 	width: 300px;
 	height: 21px;
@@ -149,7 +155,7 @@ padding: 5px;
 	color: black;
 	top: -87px;
 	padding: 8px 0px;
-
+	
 	&:hover {
 		color:white;
 	}
@@ -160,8 +166,8 @@ padding: 5px;
 }
 
 .nav_down {	
-	margin-left: 405px;
-	top: 100px;
+	margin-left: 450px;
+	top: -40px;
 	
 }
 
@@ -206,7 +212,8 @@ padding: 0px 0px 0px 35px;
 position: absolute;
 float: left;
 z-index: 100;
-
+background:#EBD6D6;
+border:1px solid black;
 	ul li {
 		list-style: none;
 		
@@ -214,14 +221,44 @@ z-index: 100;
 
 }
 
-.journal_form {
-	margin-top: 75px;
-margin-left: 600px;
-position: absolute;
-padding: 15px 0px 5px 25px;
-z-index: 100;
-width: 335px;
+#journal_form {
+	width: 352px;
+height: 400px;
+margin-top: 125px;
+padding: 10px;
 float: left;
+margin-left: 640px;
+position: absolute;
+	
+	border:0px;
+	z-index:100;
+
+	form .field input, form .field textarea {
+		background:inherit;
+		border:1px outset inherit;
+	}
+
+	form .field textarea {
+		width: 231px;
+height: 195px;
+	}
+
+	h2.journal_date_range {
+			margin-left: 18px;
+			margin-top: 39px;
+			color: #D53838;
+			font-size: 20px;
+			text-decoration: underline;
+			text-align: center;
+			width: 300px;
+		}
+
+		p {
+			margin:auto;
+			width:275px;
+			padding:10px;
+			color:gray;
+		}
 
 }
 
@@ -229,8 +266,8 @@ float: left;
 	border-radius: 5px;
 	webkit-border-radius: 5px;
 	moz-border-radius: 5px;
-	border:1px solid black;
-	background:#EBD6D6;
+	
+	
 }
 
 li.hot_form {
@@ -266,11 +303,13 @@ li.hot_form {
 
 
 .prev {
-	margin-left:0px;
+	left: 0px;
+	top: -40px;
 }
 
 .next {
-	margin-left:902px;
+	top:-40px;
+	margin-left:895px;
 }
 
 .scrapbook {
@@ -293,7 +332,73 @@ li.hot_form {
 	margin-top:50px;
 
 }
+
+img {
+    border: none;
+}
+.thumbnail img {
+    cursor: pointer;
+}
+#large {
+    display: none;
+    position: absolute;
+    background: #FFFFFF;
+    padding: 5px;
+    z-index: 10;
+    min-height: 200px;
+    min-width: 200px;
+    color: #336699;
+}
+#background{
+    display: none;
+    position: absolute;
+    height: 725px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #000000;
+    z-index: 1;
+}
 	
+.larger_images {
+	margin-top: -20px;
+	background: white;
+	position: absolute;
+	z-index: 200;
+	margin-left: 0px;
+	width: 300px;
+	box-shadow: 0px 1px 3px;
+
+	.gallery_msg a {
+		text-decoration: none;
+	}
+
+	.gallery_msg a:hover {
+		color:#3b5998;
+		text-decoration: underline;
+	}
+
+}
+
+.smaller_images {
+	margin-top: -20px;
+	background: white;
+	position: absolute;
+	z-index: 200;
+	margin-left: 0px;
+	width: 125px;
+	box-shadow: 0px 1px 3px;
+
+	.gallery_msg a {
+		text-decoration: none;
+	}
+
+	.gallery_msg a:hover {
+		color:#3b5998;
+		text-decoration: underline;
+	}
+
+}
 	.photos_container {
 		
 		width:500px;
@@ -327,6 +432,12 @@ li.hot_form {
 					width:300px;
 					height:180px;
 				}
+
+				
+			}
+
+			.larger {
+
 			}
 
 			#image_2 {
@@ -363,6 +474,8 @@ li.hot_form {
 					width:125px;
 					height:100px;
 				}
+
+				
 			}
 
 			#image_5 {
@@ -395,41 +508,8 @@ li.hot_form {
 					margin:auto;
 					padding:10px;
 				}
+
 			
-				
-			
-				.actions {
-					
-					a.image_X img{
-						margin: 10px 71px;
-						width: 25px;		
-						height: 25px;		
-						
-					}
-
-					.gallery_msg {
-
-						color: #3B5998;
-						background: #E2DCDC;
-						border-radius: 5px;
-						text-align: center;
-						min-height: 33px;
-						height: auto;
-						padding: 5px;
-
-						a div {
-							height:20px;
-
-						}
-					}
-
-				}
-			
-							
-				.actions a.scrap_image_X:hover{
-					background: transparent;
-					
-				}
 							
 			}	// image_container
 			
@@ -440,7 +520,7 @@ li.hot_form {
 	.journal_container {
 		width: 352px;
 		height: 400px;
-		margin-top: 125px;
+		margin-top: 60px;
 		padding: 10px;
 		float: left;
 		margin-left: 650px;
@@ -448,7 +528,7 @@ li.hot_form {
 		background:url('/assets/journal.png') no-repeat;
 		
 		h2.journal_date_range {
-			margin-left: 18px;
+			margin-left: -20px;
 			margin-top: 39px;
 			color: #D53838;
 			font-size: 20px;

@@ -1,11 +1,12 @@
 <%= render('shared/time_calc', beg_range: @beg_range) %>
-
-	<% @bread_crumb = @beg_range %>
+<%= render ('shared/scrap_header') %>
+<% @bread_crumb = @beg_range %>
+<%= render('javascript/image') %>
 
 <%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
 
 <% image_num = 0 %>
-
+<div class="test3"></div>
 <% @user_images.each do |image| %>
 <!-- render out each image -->
 	<!-- calculates which which image belongs to -->
@@ -15,10 +16,10 @@
 	<!-- end calculate-->
 	
 	<li>
-		<div class="image_container image_position" id="image_<%= image_num += 1 %>">
-			<%= image_tag image.image_url %>
+		<div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
+			<%= link_to image_tag(image.image_url, title: image.title, alt: image.title), image.image_url, title: image.title %>
 			
-			<div class="actions hide">	
+			<div class="actions">	
 				<div class="gallery_msg">				
 				<% if image.week == false %>
 					<%= form_for [@user, image], remote: true do |f| %>
@@ -34,11 +35,20 @@
 			</div>
 		</div>
 	</li>
+	 <p id="large"></p>
 <% end %>
 
- 
+
+<div id="journal_form">
+ 	
+</div> <br /> 	
+Link_to Add an entry: <%= link_to "Add an entry", [:new, @user, :journal], remote: true %><br /> 
+
+	
 	<!-- journal_container -->
-<%= render('shared/journal_container') %> 
+<div id="journal_container">
+<%= render('shared/journal_container') %>
+</div>
 
 <div class="nav_arrows">
 	<div class="prev prev-next direction">

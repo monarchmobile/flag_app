@@ -6,7 +6,7 @@
 	<% elsif @resource_m == "yearly_scrapbook" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
 	<% else %>
-		<%= content_tag :h2, @beg_range.strftime("%B %d, %Y"), class: "journal_date_range" %>
+		<%= content_tag :h2, @beg_range, class: "journal_date_range" %>
 	<% end %>
 	<% @user_journals.each do |entry| %>	
 			<div class="journal_entry">

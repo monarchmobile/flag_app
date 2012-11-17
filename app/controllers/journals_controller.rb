@@ -1,7 +1,8 @@
 class JournalsController < ApplicationController
   # INDEX
   def index
-    @journals = Journal.all
+    @user = current_user
+    @journals = @user.journals.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,7 +12,8 @@ class JournalsController < ApplicationController
 
   # SHOW
   def show
-    @journal = Journal.find(params[:id])
+    @user = current_user
+    @journal = @user.journals.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,11 +23,13 @@ class JournalsController < ApplicationController
 
   # NEW
   def new
-    @journal = Journal.new
+    @user = current_user
+    @journal = @user.journals.new 
+    @page_source = params[:page_source]
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @journal }
+      format.js
     end
   end
 
@@ -38,13 +42,13 @@ class JournalsController < ApplicationController
 
   # CREATE
   def create
-  	@user = User.find(params[:journal][:user_id])
+  	@user = current_user
     @journal = @user.journals.build(params[:journal])
 
     respond_to do |format|
       if @journal.save
         format.html { redirect_to scrapbook_path, notice: 'Journal was successfully created.' }
-        format.json { render json: @journal, status: :created, location: @journal }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @journal.errors, status: :unprocessable_entity }

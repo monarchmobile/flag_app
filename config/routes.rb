@@ -14,8 +14,7 @@ FlagApp::Application.routes.draw do
   
   
   resources :users do 
-  	resources :images
-  	resources :journals
+  	resources :images, :journals
   end 
   resources :sessions
   

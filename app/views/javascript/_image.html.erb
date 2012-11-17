@@ -1,0 +1,45 @@
+<script>
+$(document).ready(function() {
+    
+    $(".thumbnail img").click(function(e){
+        $('.actions').hide()
+        $("#background").css({"opacity" : "0.7"})
+                        .fadeIn("slow");
+
+        $("#large").html("<img src='"+$(this).parent().attr("href")+"' alt='"+$(this).attr("alt")+"' /><br/>"+$(this).attr("title")+"")
+                   .center()
+                   .fadeIn("slow");
+
+        return false;
+    });
+     $('.actions').hide()
+    $(".thumbnail").hover(
+        function() {
+           
+            image_id = $(this).attr("id")
+            
+            if (image_id == "image_1" || image_id =="image_2" || image_id =="image_3") {
+                $(this).children('.actions').addClass("larger_images").show()
+            } else if (image_id == "image_4" || image_id =="image_5") {
+                $(this).children('.actions').addClass("smaller_images").show()
+            }
+
+
+        }, function() {
+            $('.test3').html("")
+            $(this).children('.actions').hide();
+        }
+    )
+
+    $("#background").click(function(){
+        $("#background").fadeOut("slow");
+        $("#large").fadeOut("slow");
+    });
+
+    $("#large").click(function(){
+        $("#background").fadeOut("slow");
+        $("#large").fadeOut("slow");
+    });
+
+});
+</script>

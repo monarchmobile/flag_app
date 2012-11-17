@@ -18,7 +18,9 @@ class StaticPagesController < ApplicationController
   end
   
   def daily
-    user_setup
+    @user = @current_user
+
+    
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range]
