@@ -25,7 +25,6 @@ class JournalsController < ApplicationController
   def new
     @user = current_user
     @journal = @user.journals.new 
-    @page_source = params[:page_source]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,6 +37,10 @@ class JournalsController < ApplicationController
     
     @user = User.find(params[:user_id])	
     @journal = @user.journals.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   # CREATE
@@ -58,12 +61,13 @@ class JournalsController < ApplicationController
 
   # UPDATE
   def update
-    @journal = Journal.find(params[:id])
+    @user = current_user
+    @journal = @user.journals.find(params[:id])
 
     respond_to do |format|
       if @journal.update_attributes(params[:journal])
         format.html { redirect_to @journal, notice: 'Journal was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @journal.errors, status: :unprocessable_entity }
@@ -73,12 +77,13 @@ class JournalsController < ApplicationController
 
   # DELETE
   def destroy
-    @journal = Journal.find(params[:id])
+    @user = current_user
+    @journal = @user.journals.find(params[:id])
     @journal.destroy
 
     respond_to do |format|
       format.html { redirect_to journals_url }
-      format.json { head :no_content }
+      format.js
     end
   end
 end

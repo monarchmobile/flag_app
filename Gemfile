@@ -31,6 +31,8 @@ gem 'rake' , '>= 0.9.2'
 
 gem 'jquery-rails'
 
+gem 'best_in_place'
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'thin'

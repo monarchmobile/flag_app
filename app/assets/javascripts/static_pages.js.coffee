@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-
+  $("#journal_form").addClass("hide")
 	$(".photos_container li").click (->
     alert('works')
 	  $(this).addClass "current"
@@ -36,7 +36,7 @@ jQuery ->
     $(this).next().next().hide()
   else
     $(this).next().next().show()
-  
+
   
   ### Fix bug - When clicking on any area of form, form was dis ###
   $(" .auth-form input, 

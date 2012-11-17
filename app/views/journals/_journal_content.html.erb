@@ -1,0 +1,7 @@
+<div class="journal_entry" id="edit_journal_<%= @user.id %>-<%= @journal.id %>">
+
+	<%= content_tag :p, @journal.content %>
+					
+	<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, @journalj ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X", remote: true %>
+	<%= link_to "Edit", [:edit, @user, @journal], remote: true %>
+</div>

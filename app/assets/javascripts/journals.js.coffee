@@ -5,4 +5,6 @@ jQuery ->
 	$('#journal_entry_date').datepicker
 		dateFormat: 'yy-mm-dd'
 
+	$('.best_in_place').best_in_place()
+
 

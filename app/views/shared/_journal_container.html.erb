@@ -8,14 +8,21 @@
 	<% else %>
 		<%= content_tag :h2, @beg_range, class: "journal_date_range" %>
 	<% end %>
-	<% @user_journals.each do |entry| %>	
-			<div class="journal_entry">
+		
+	<div id="journal_content">
+	<% if @journal.any? %>
+		<% @journal.each do |j| %>
+		<div class="journal_entry" id="edit_journal_<%= @user.id %>-<%= j.id %>">
 
-				<%= content_tag :p, entry.content %>
+				<%= content_tag :p, j.content %>
 								
-				<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, entry ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X" %>
-				<%= link_to "Edit", [:edit, @user, entry] %>
+				<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, j ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X", remote: true %>
+				<%= link_to "Edit", [:edit, @user, j], remote: true %>
 			</div>
-			
-	<% end %>	
+		<% end %>
+	<% end %>
+	</div>
+		
+		
 </div>
+

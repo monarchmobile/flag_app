@@ -18,7 +18,6 @@
 	<li>
 		<div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
 			<%= link_to image_tag(image.image_url, title: image.title, alt: image.title), image.image_url, title: image.title %>
-			
 			<div class="actions">	
 				<div class="gallery_msg">				
 				<% if image.week == false %>
@@ -41,8 +40,11 @@
 
 <div id="journal_form">
  	
-</div> <br /> 	
-Link_to Add an entry: <%= link_to "Add an entry", [:new, @user, :journal], remote: true %><br /> 
+</div>
+<% unless @journal.any? %> 	
+<%= link_to content_tag(:div, "Add an entry", class: "journal_btn"), [:new, @user, :journal],  remote: true %><br /> 
+<% end %>
+
 
 	
 	<!-- journal_container -->
@@ -65,19 +67,13 @@ Link_to Add an entry: <%= link_to "Add an entry", [:new, @user, :journal], remot
 		<% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %>
 			<!--  Pointer : add pointer class -->
 			<% if @beg_range.to_date == day %>
-				
-				<% if @user.images.where(date_taken: day..day).any? %>
-					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
-				<% else %>
-					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
-
-				<% end %>
+				<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
 			<!--  Future days : add future_date class  -->	
 			<% elsif Date.today < day %>
 					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
 			<!--  Future days : no extra classes  -->	
 			<% else %>
-				<% if @user.images.where(date_taken: day..day).any? %>
+				<% if @user.images.where(date_taken: day..day).any? || @user.journals.where(entry_date: day..day).any?%>
 					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>
 				<% else %>
 					<%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates"), daily_scrapbook_path(beg_range: day, end_range: day), remote: true %>

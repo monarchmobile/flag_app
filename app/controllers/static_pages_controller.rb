@@ -26,13 +26,13 @@ class StaticPagesController < ApplicationController
       @end_range = params[:end_range]
     
       @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @user_journals = @user.journals.where(entry_date: @beg_range..@end_range)
+      @journal = @user.journals.find(:all, conditions: {entry_date: @beg_range..@end_range})
 
     else
       @beg_range = Date.today
       @end_range = Date.today
       @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @user_journals = @user.journals.where(entry_date: @beg_range..@end_range)
+      @journal = @user.journals.find_all_by_entry_date(@beg_range..@end_range)
     end
 
     respond_to do |format| 
