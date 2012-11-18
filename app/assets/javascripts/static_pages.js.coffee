@@ -58,8 +58,18 @@ jQuery ->
       "margin-left": -@width() / 2 + "px"
       "margin-top": -@height() / 2 + "px"
     this
+  
+  $('#my_link').bind('ajax:before', ->
+        $(this).data('params', { beg_range: 'hello' })
+    )
 
-
+  $("#my_link").live "click", (event) ->
+    event.preventDefault() # prevent the click from linking anywhere
+    $.ajax
+      data: $(this).attr("id") # send whatever here...
+      type: "post"
+      success: (data) ->
+        $("#picture").html data
 
 
 

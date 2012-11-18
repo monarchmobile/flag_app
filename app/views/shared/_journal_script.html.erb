@@ -1,0 +1,11 @@
+<!-- click on journal_btn and journal form shows in journal container -->
+<div id="journal_form"></div>
+<% unless @journal.any? %> 	
+<%= link_to content_tag(:div, "Add an entry", class: "journal_btn"), 
+	[:new, @user, :journal], id: "my_link", remote: true %><br /> 
+<% end %>
+
+<!-- journal_container -->
+<div id="journal_container">
+	<%= render('shared/journal_container') %>
+</div>

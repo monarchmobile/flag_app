@@ -1,28 +1,25 @@
 <div class="journal_container">
-	<% if @resource_m == "weekly_scrapbook" %>
+	
+	<% if @page == "weekly_scrapbook" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%d')}-#{@end_range.strftime('%d')}, #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-	<% elsif @resource_m == "monthly_scrapbook" %>
+		<% @page_sym = @page.split("_")[0][0..-3].to_sym %>
+	<% elsif @page == "monthly_scrapbook" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-	<% elsif @resource_m == "yearly_scrapbook" %>
+		<% @page_sym = @page.split("_")[0][0..-3].to_sym %>
+	<% elsif @page == "yearly_scrapbook" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
+		<% @page_sym = @page.split("_")[0][0..-3].to_sym %>
 	<% else %>
-		<%= content_tag :h2, @beg_range, class: "journal_date_range" %>
+		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%d')}, #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
+		<% @page_sym = "day".to_sym %>
 	<% end %>
-		
-	<div id="journal_content">
-	<% if @journal.any? %>
-		<% @journal.each do |j| %>
-		<div class="journal_entry" id="edit_journal_<%= @user.id %>-<%= j.id %>">
+	
 
-				<%= content_tag :p, j.content %>
-								
-				<%= link_to image_tag("delete.png", width: 15, height: 15), [@user, j ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X", remote: true %>
-				<%= link_to "Edit", [:edit, @user, j], remote: true %>
-			</div>
-		<% end %>
-	<% end %>
+	<% @entry = @user.journals.where(entry_date: @beg_range, @page_sym => true).select([:content, :id, :entry_date]).first %>
+	<div class="journal_content">
+		<%= best_in_place [@user, @entry], :content, :type => :textarea  if @entry %>
 	</div>
-		
-		
+	
 </div>
 
+ 

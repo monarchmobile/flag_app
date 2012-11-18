@@ -1,9 +1,11 @@
 
 <%= render('shared/time_calc', beg_range: @beg_range) %>
+<%= render('javascript/image') %>
+<% @bread_crumb = @beg_range %>
 <% @images = @user.images.find_all_by_year(true) %>
 <% @day_range = @images[0].date_taken %> 
 <!-- Year array for holding user.images where year: true -->
-
+ 
 <% @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
 <%= link_to content_tag(:div, "Go To Day", class: "nav_up for_year_to_day"), daily_scrapbook_path(beg_range: @day_range, end_range: @day_range) %>
 <%= link_to content_tag(:div, "Back", class: "nav_down direction"), monthly_scrapbook_path(beg_range: @originating_month_beg, end_range:@originating_month_beg ) %>
@@ -34,9 +36,19 @@
 			</li>
 		<% end %>
 		
-</div> 
-<!-- journal_container -->
-<%= render('shared/journal_container') %> 
+</div>
+
+<!-- Prev Next Buttons -->
+<div class="nav_arrows">
+	<div class="prev prev-next direction">
+	    <%= link_to content_tag(:div,"prev", class: "prev_btn"), yearly_scrapbook_path(beg_range: @beg_range.prev_year.beginning_of_year, end_range: @beg_range-1), remote: true %>
+	</div>
+	<div class="next prev-next direction">
+	    <%= link_to content_tag(:div,"next", class: "next_btn"), yearly_scrapbook_path(beg_range: @beg_range.next_year.beginning_of_year, end_range: @end_range.next_year), remote: true %>
+	</div>
+</div>
+
+<%= render('shared/journal_script') %>
 
 <div id="time_navigation">
 <%= render('menus/by_day', :beg_range => @beg_range ) %>

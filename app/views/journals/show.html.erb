@@ -2,7 +2,7 @@
 
 
   <b>User:</b>
-  <%= @journal.user_id %>
+  <%= best_in_place [@user, @journal], :content %>
 </p>
 
 <p>
@@ -12,4 +12,4 @@
 
 
 <%= link_to 'Edit', [:edit, @user, @journal] %> |
-<%= link_to 'Back', journals_path %>
+<%= link_to 'Back', [@user, :journal] %>

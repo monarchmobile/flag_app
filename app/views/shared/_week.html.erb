@@ -1,10 +1,9 @@
-<!-- images_array for this week -->
-
 <%= render('shared/time_calc', beg_range: @beg_range) %>
+<%= render('javascript/image') %>
 <% @bread_crumb = @beg_range %>
 
 <%= link_to content_tag(:div, "Go To Month", class: "nav_up"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @originating_day_beg, end_range: @originating_day_beg, bread_crumb: @bread_crumb) %>
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @bread_crumb_beg, end_range: @bread_crumb_end) %>
 
 <% image_num = 0 %>
 <% @user_images.each do |image| %>
@@ -16,7 +15,7 @@
     <!-- end calculation-->
     
     <li>
-        <div class="image_container image_position" id="image_<%= image_num += 1 %>">
+        <div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
             <%= image_tag image.image_url %>
             
             <div class="actions hide">   
@@ -30,6 +29,10 @@
                 <% elsif image.month == true %>
                     <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(beg_range: beg_week.to_date.beginning_of_month, end_range: end_week.to_date.beginning_of_month.next_month-1) %>
                 <% end %>
+                <%= form_for [@user, image], remote: true do |f| %>
+                    <%= f.check_box :week %>
+                    Remove from week
+                <% end %>
                 </div>  
                 <%= render('shared/edit_delete_image_container', :image => image) %>    
             </div>
@@ -37,9 +40,8 @@
     </li>
 <% end %>
 
+<%= render('shared/journal_script') %>
 
-<!-- journal_container -->
-<%= render('shared/journal_container') %> 
 
 <div class="nav_arrows">
     <div class="prev prev-next direction">
@@ -62,7 +64,7 @@
     <% end %>
         <!--  Future days : add future_date class  --> 
     <% if @beg_range.to_date.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
-        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer")  %>
+        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range)  %>
     <!--  Future days : add future_date class  -->  
     <% elsif Date.today < @beginning_of_dyn_range %>
         <%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range) %>

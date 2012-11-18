@@ -8,7 +8,7 @@
 	
 	display:none;
 }
-
+ 
 .clear {
 	clear:both;
 }
@@ -16,6 +16,20 @@
 .thousand_wide_container {
 	width: 1000px;
 	margin:auto;	
+}
+
+// testing //
+.test_container	{
+	float: left;
+position: absolute;
+margin-top: 75px;
+margin-left: 400px;
+background: #C3E4F3;
+border-radius: 5px;
+webkit-border-radius: 5px;
+moz-border-radius: 5px;
+text-align: center;
+padding: 5px;
 }
 
 // header //
@@ -42,12 +56,12 @@
 
 			a li {
 				width: 116px;
-margin-left: 7px;
-float: left;
-list-style: none;
-color: black;
-text-align: center;
-font-size: 17px;
+			margin-left: 7px;
+			float: left;
+			list-style: none;
+			color: black;
+			text-align: center;
+			font-size: 17px;
 			}
 
 			a:hover li {
@@ -61,6 +75,7 @@ font-size: 17px;
 	}
 }
 
+// authentication
 ul.nav_authentication {
   width: 240px;
 	float: left;
@@ -84,19 +99,7 @@ ul.nav_authentication {
 
  
 
-// testing //
-.test_container	{
-	float: left;
-position: absolute;
-margin-top: 75px;
-margin-left: 400px;
-background: #C3E4F3;
-border-radius: 5px;
-webkit-border-radius: 5px;
-moz-border-radius: 5px;
-text-align: center;
-padding: 5px;
-}
+
 
 // Start in application layouts, hold all yield //
 .master_container {
@@ -114,6 +117,33 @@ padding: 5px;
 	}
 }
 
+
+// navigation buttons: Go To, Back, Prev, Next  //
+
+// Go to { time frame } [Week, Month, Year]
+.nav_up {
+	position: absolute;
+	float: left;
+	z-index: 100;
+	margin-left: 350px;
+	text-align: center;
+	width: 300px;
+	height: 21px;
+	background: #D53838;
+	font-size: 22px;
+	color: black;
+	top: -87px;
+	padding: 8px 0px;
+	
+	&:hover {
+		color:white;
+	}
+}
+
+.for_year_to_day {
+	top: 0px;
+}
+// direction is on all buttons except (Go To Time) frame
 .direction {
 	position: absolute;
 	float: left;
@@ -142,28 +172,16 @@ padding: 5px;
 	}
 }
 
-.nav_up {
-	position: absolute;
-	float: left;
-	z-index: 100;
-	margin-left: 350px;
-	text-align: center;
-	width: 300px;
-	height: 21px;
-	background: #D53838;
-	font-size: 22px;
-	color: black;
-	top: -87px;
-	padding: 8px 0px;
-	
-	&:hover {
-		color:white;
-	}
+.prev {
+	left: 0px;
+	top: -40px;
 }
 
-.for_year_to_day {
-	top: 0px;
+.next {
+	top:-40px;
+	margin-left:895px;
 }
+
 
 .nav_down {	
 	margin-left: 450px;
@@ -188,7 +206,7 @@ a:hover .journal_btn {
 	color:#3b5998;
 }
 
-
+// sign in
 .auth-form {
 	margin-top: 35px;
 	margin-left: -128px;
@@ -197,14 +215,15 @@ a:hover .journal_btn {
 
 .image_form {
 	margin-top: 75px;
-margin-left: 600px;
-width: 335px;
-padding: 0px 0px 0px 35px;
-position: absolute;
-float: left;
-z-index: 100;
-background:#EBD6D6;
-border:1px solid black;
+	margin-left: 600px;
+	width: 335px;
+	padding: 0px 0px 0px 35px;
+	position: absolute;
+	float: left;
+	z-index: 100;
+	background:#EBD6D6;
+	border:1px solid black;
+
 	ul li {
 		list-style: none;
 		
@@ -212,117 +231,59 @@ border:1px solid black;
 
 }
 
+// in place editing for journal form
+
+#journal_container .journal_container {
+	width: 352px;
+	height: 400px;
+	top: 100px;
+	padding: 10px;
+	float: left;
+	margin-left: 650px;
+	position: absolute;
+	background:url('/assets/journal.png') no-repeat;
+
+	.journal_content {
+		width:250px;
+	}
+	
+}
+
+h2.journal_date_range {
+	margin-left: -20px;
+	margin-top: 39px;
+	color: #D53838;
+	font-size: 20px;
+	text-decoration: underline;
+	text-align: center;
+	width: 300px;
+}
+
+// journal new entry form  //
 #journal_form {
 	width: 352px;
-height: 400px;
-margin-top: 125px;
-padding: 10px;
-float: left;
-margin-left: 640px;
-position: absolute;
-	
+	height: 400px;
+	margin-top: 125px;
+	padding: 10px;
+	float: left;
+	margin-left: 640px;
+	position: absolute;
 	border:0px;
 	z-index:100;
 
 	form .field input, form .field textarea {
 		background:inherit;
-		border:1px outset inherit;
+		box-shadow:0px 0px 5px;
 	}
 
 	form .field textarea {
 		width: 231px;
-height: 195px;
-	}
-
-	h2.journal_date_range {
-			margin-left: 18px;
-			margin-top: 39px;
-			color: #D53838;
-			font-size: 20px;
-			text-decoration: underline;
-			text-align: center;
-			width: 300px;
-		}
-
-		p {
-			margin:auto;
-			width:275px;
-			padding:10px;
-			color:gray;
-		}
-
-}
-
-.form_style {
-	border-radius: 5px;
-	webkit-border-radius: 5px;
-	moz-border-radius: 5px;
-	
-	
-}
-
-li.hot_form {
-	list-style:none;
-
-	a {
-		color:#3b5998;
-
-		&:hover {
-			background:transparent;
-		}
+		height: 195px;
 	}
 }
 
 
-
-// Header //
-
-
-.gradient_gray {
-	background: #eaeaea; /* Old browsers */
-	background: -moz-linear-gradient(top,  #eaeaea 0%, #d8d8d8 40%, #c9c9c9 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eaeaea), color-stop(40%,#d8d8d8), color-stop(100%,#c9c9c9)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #eaeaea 0%,#d8d8d8 40%,#c9c9c9 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#c9c9c9',GradientType=0 ); /* IE6-9 */
-}
-
-
-// month scrolling back and forth
-
-
-.prev {
-	left: 0px;
-	top: -40px;
-}
-
-.next {
-	top:-40px;
-	margin-left:895px;
-}
-
-.scrapbook {
-		
-	font-size:25px;
-	color:#3b5998;
-	width:200px;
-	text-align: center;
-	position:absolute;
-	margin-left:365px;
-	top:-45px;
-}
-
-.day_container {
-	min-height:540px; 
-	height:auto;
-	width:auto; 
-	padding: 10px;
-	position:absolute;
-	margin-top:50px;
-
-}
+// hover over image, gray background, image pops out
 
 img {
     border: none;
@@ -350,7 +311,7 @@ img {
     background: #000000;
     z-index: 1;
 }
-	
+// hover over image, action box pops up
 .larger_images {
 	margin-top: -20px;
 	background: white;
@@ -359,16 +320,15 @@ img {
 	margin-left: 0px;
 	width: 300px;
 	box-shadow: 0px 1px 3px;
+}
 
-	.gallery_msg a {
-		text-decoration: none;
-	}
+.gallery_msg a {
+	text-decoration: none;
+}
 
-	.gallery_msg a:hover {
-		color:#3b5998;
-		text-decoration: underline;
-	}
-
+.gallery_msg a:hover {
+	color:#3b5998;
+	text-decoration: underline;
 }
 
 .smaller_images {
@@ -379,165 +339,107 @@ img {
 	margin-left: 0px;
 	width: 125px;
 	box-shadow: 0px 1px 3px;
-
-	.gallery_msg a {
-		text-decoration: none;
-	}
-
-	.gallery_msg a:hover {
-		color:#3b5998;
-		text-decoration: underline;
-	}
-
 }
-	.photos_container {
-		
-		width:500px;
-		min-height:400px;
-		height:auto;				
-		margin-top:50px;	
-		padding:10px;
-		float:left;
-		padding-bottom:100px;
-		position:absolute;
-		
-		li {
-			
-			list-style:none;
-			
 
-			.image_position {
-				position:absolute;
-				float:left;
-				background:gray;
+.photos_container {
+	width:500px;
+	min-height:400px;
+	height:auto;				
+	margin-top:50px;	
+	padding:10px;
+	float:left;
+	padding-bottom:100px;
+	position:absolute;
+	
+	li {	
+		list-style:none;
+	
+		.image_position {
+			position:absolute;
+			float:left;
+			background:gray;
+		}
 
-			}
+		#image_1 {
+			margin-left: 25px;
+			margin-top: 0px;
+			width: 300px;
+			height: 180px;
 
-			#image_1 {
-				margin-left: 25px;
-				margin-top: 0px;
-				width: 300px;
-				height: 180px;
-
-				img {
-					width:300px;
-					height:180px;
-				}
-
-				
-			}
-
-			.larger {
-
-			}
-
-			#image_2 {
-				margin-left:25px;
-				margin-top:250px;
+			img {
 				width:300px;
 				height:180px;
-
-				img {
-					width:300px;
-					height:180px;
-				}
 			}
+		}
 
-			#image_3 {
-				margin-left:350px;
-				margin-top:0px;
+		#image_2 {
+			margin-left:25px;
+			margin-top:250px;
+			width:300px;
+			height:180px;
+
+			img {
+				width:300px;
+				height:180px;
+			}
+		}
+
+		#image_3 {
+			margin-left:350px;
+			margin-top:0px;
+			width:300px;
+			height:430px;
+
+			img {
 				width:300px;
 				height:430px;
-
-				img {
-					width:300px;
-					height:430px;
-				}
 			}
-
-			#image_4 {
-				margin-left:675px;
-				margin-top:0px;
-				width:125px;
-				height:100px;
-
-				img {
-					width:125px;
-					height:100px;
-				}
-
-				
-			}
-
-			#image_5 {
-				margin-left:825px;
-				margin-top:0px;
-				width:125px;
-				height:100px;
-
-				img {
-					width:125px;
-					height:100px;
-				}
-			}
-			
-			.image_container {
-							
-				img{
-					width:175px;
-					height:175px;
-				}
-				h3{
-					font-size:16px;
-					color:gray;
-					width:150px;
-					text-align: center;
-					margin:auto;
-				}
-			
-				 p.image_content {
-					margin:auto;
-					padding:10px;
-				}
-
-			
-							
-			}	// image_container
-			
-		}	// li
-		
-	}  // images_container
-	
-	.journal_container {
-		width: 352px;
-		height: 400px;
-		top: 100px;
-		padding: 10px;
-		float: left;
-		margin-left: 650px;
-		position: absolute;
-		background:url('/assets/journal.png') no-repeat;
-		
-		h2.journal_date_range {
-			margin-left: -20px;
-			margin-top: 39px;
-			color: #D53838;
-			font-size: 20px;
-			text-decoration: underline;
-			text-align: center;
-			width: 300px;
 		}
 
-		p {
-			margin:auto;
-			width:275px;
-			padding:10px;
-			color:gray;
-		}
-	}
-	
-	//  end day_container
+		#image_4 {
+			margin-left:675px;
+			margin-top:0px;
+			width:125px;
+			height:100px;
 
+			img {
+				width:125px;
+				height:100px;
+			}
+
+			
+		}
+
+		#image_5 {
+			margin-left:825px;
+			margin-top:0px;
+			width:125px;
+			height:100px;
+
+			img {
+				width:125px;
+				height:100px;
+			}
+		}
+		
+		.image_container {
+						
+			h3{
+				font-size:16px;
+				color:gray;
+				width:150px;
+				text-align: center;
+				margin:auto;
+			}
+		
+			 p.image_content {
+				margin:auto;
+				padding:10px;
+			}				
+		}	// image_container
+	}	// li
+}  // images_container
+	
 // bottom dates menu bar (daily, weekly, monthly) //
 // days //
 #time_navigation {
@@ -548,66 +450,61 @@ img {
 }
 ul.dom_container {
 	margin-left: 0px;
-border-top: 3px solid red;
-border-bottom: 3px solid red;
-background: black;
-height: 18px;
-padding: 5px 0px 0px 1px;
+	border-top: 3px solid red;
+	border-bottom: 3px solid red;
+	background: black;
+	height: 18px;
+	padding: 5px 0px 0px 1px;
 
-	
+	a li.days_of_month {
+		width: 20px;
+		margin-left: 5px;
+	}
 
-		a li.days_of_month {
-			width: 20px;
-			margin-left: 5px;
-		}
+	a li.clickable_dates {
+		border-radius: 50px;
+		webkit-border-radius: 50px;
+		moz-border-radius: 50px;
+		padding: 0px 2px 4px 2px;
+		float: left;
+		list-style: none;
+		text-align: center;
+		background: white;
+		border: 1px solid black;
+		margin-top: -3px;
+		cursor: pointer;
+		height: 13px;
+		color: black;
+		font-size: 11px;
+	}
 
-		a li.clickable_dates {
-			border-radius: 50px;
-webkit-border-radius: 50px;
-moz-border-radius: 50px;
-padding: 0px 2px 4px 2px;
-float: left;
-list-style: none;
-text-align: center;
-background: white;
-border: 1px solid black;
-margin-top: -3px;
-cursor: pointer;
-height: 13px;
-color: black;
-font-size: 11px;
-		}
+	a:hover li.clickable_dates {
+		color:#fff;
+		background:gray;	
+	}
 
-		a:hover li.clickable_dates {
-			color:#fff;
-			background:gray;	
-		}
+	a li.content_exists {
+		background:#3b5998;
+	}
 
-		a li.content_exists {
-			background:#3b5998;
-		}
-
-		a li.pointer {
-			background: red;
-opacity: .8;
-color: white;
-height: 23px;
-width: 28px;
-margin-top: -8px;
-padding: 5px 2px 0px;
-font-size: 18px;
-font-weight: bold;
-		}
+	a li.pointer {
+		background: red;
+	opacity: .8;
+	color: white;
+	height: 23px;
+	width: 28px;
+	margin-top: -8px;
+	padding: 5px 2px 0px;
+	font-size: 18px;
+	font-weight: bold;
+	}
 	
 }
 // weeks //
 ul.wom_container {
-	
-height: 9px;
-margin-left:-40px;
-margin-top:-10px;
-
-
+	height: 9px;
+	margin-left:-40px;
+	margin-top:-10px;
 
 	a li.weeks_of_month {		
 		width: 220px;
@@ -616,12 +513,9 @@ margin-top:-10px;
 
 	a:nth-child(5) li{
 		width: 120px;
-
-
 	}
 
 	a li.clickable_weeks {
-	
 		float: left;
 		list-style: none;
 		text-align: center;
@@ -642,21 +536,18 @@ margin-top:-10px;
 	
 	a li.week_pointer {
 		background: red;
-		
 	}
 }
 
 // months //
 ul.moy_container {
-	
-	
 	height: 22px;
 	background: black;
 
 	a li.months_of_year {		
-			width: 60px;
-			margin-left: 16px;		
-		}
+		width: 60px;
+		margin-left: 16px;		
+	}
 
 	a li.clickable_months {
 		padding: 2px;
@@ -677,7 +568,6 @@ ul.moy_container {
 
 	a li.month_pointer {
 		background: red;
-		
 		height: 19px;
 		width: 45px;
 		margin-top:0px;

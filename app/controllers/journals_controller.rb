@@ -1,5 +1,6 @@
 class JournalsController < ApplicationController
   # INDEX
+  respond_to :html, :json, :js
   def index
     @user = current_user
     @journals = @user.journals.all
@@ -25,6 +26,7 @@ class JournalsController < ApplicationController
   def new
     @user = current_user
     @journal = @user.journals.new 
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -64,15 +66,7 @@ class JournalsController < ApplicationController
     @user = current_user
     @journal = @user.journals.find(params[:id])
 
-    respond_to do |format|
-      if @journal.update_attributes(params[:journal])
-        format.html { redirect_to @journal, notice: 'Journal was successfully updated.' }
-        format.js
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @journal.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with @journal
   end
 
   # DELETE

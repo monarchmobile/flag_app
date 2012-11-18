@@ -1,12 +1,10 @@
 <%= render('shared/time_calc', beg_range: @beg_range) %>
-<%= render ('shared/scrap_header') %>
-<% @bread_crumb = @beg_range %>
 <%= render('javascript/image') %>
-
+<% @bread_crumb = @beg_range %>
+<!-- Go To Week link button with a bread crumb -->
 <%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
 
 <% image_num = 0 %>
-<div class="test3"></div>
 <% @user_images.each do |image| %>
 <!-- render out each image -->
 	<!-- calculates which which image belongs to -->
@@ -14,7 +12,6 @@
 	<% beg_week = image.date_taken.beginning_of_month+num.weeks %>
 	<% end_week = beg_week+6.days %>
 	<!-- end calculate-->
-	
 	<li>
 		<div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
 			<%= link_to image_tag(image.image_url, title: image.title, alt: image.title), image.image_url, title: image.title %>
@@ -29,6 +26,7 @@
 				<% elsif image.week == true %>
 					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(beg_range: beg_week, end_week: end_week) %>
 				<% end %>
+
 				</div>	
 				<%= render('shared/edit_delete_image_container', :image => image) %>	
 			</div>
@@ -37,20 +35,9 @@
 	 <p id="large"></p>
 <% end %>
 
+<%= render('shared/journal_script') %>
 
-<div id="journal_form">
- 	
-</div>
-<% unless @journal.any? %> 	
-<%= link_to content_tag(:div, "Add an entry", class: "journal_btn"), [:new, @user, :journal],  remote: true %><br /> 
-<% end %>
-
-
-	
-	<!-- journal_container -->
-<div id="journal_container">
-<%= render('shared/journal_container') %>
-</div>
+<!-- Previous Next Buttons -->
 
 <div class="nav_arrows">
 	<div class="prev prev-next direction">
@@ -60,6 +47,8 @@
 	    <%= link_to content_tag(:div,"next", class: "next_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date+1, end_range: @beg_range.to_date+1), remote: true %>
 	</div>
 </div>
+
+<!-- Bottom navigation menu -->
 <div id="time_navigation">
 	<ul class="dom_container">
 		
@@ -83,7 +72,6 @@
 		<% end %>
 		
 	</ul>
-
 	<%= render('menus/by_week', :beg_month => @first_of_month ) %>
 
 	<%= render('menus/by_month', :beg_range => @first_of_month ) %>

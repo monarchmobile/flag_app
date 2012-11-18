@@ -13,7 +13,13 @@
   <tr>
     <td><%= journal.user_id %></td>
     <td><%= journal.content %></td>
-    <td><%= link_to 'Show', user_journals_path(journal.id) %></td>
+    <td><%= journal.day %></td>
+    <td><%= journal.week %></td>
+    <td><%= journal.month %></td>
+    <td><%= journal.year %></td>
+    <td><%= journal.entry_date %></td>
+    <td><%= link_to 'Show', [@user, journal] %></td>
+    <td><%= link_to image_tag("delete.png", width: 15, height: 15), [@user, journal ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X", remote: true %></td>
     
     
     

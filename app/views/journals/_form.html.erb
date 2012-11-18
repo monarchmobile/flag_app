@@ -1,3 +1,5 @@
+
+
 <%= form_for [@user, @journal], remote: true do |f| %>
   <% @resource_m = request.path.split('/')[1] %>
   <% if @journal.errors.any? %>
@@ -12,20 +14,22 @@
     </div>
   <% end %>
 
- <%= @page_source %>
+  
   <%= f.hidden_field :user_id, value: @user.id %>
-  <% if @resource_m == "weekly_scrapbook" %>
-    <%= @range = content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%d')}-#{@end_range.strftime('%d')}, #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-  <% elsif @resource_m == "monthly_scrapbook" %>
-    <%= @range = content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-  <% elsif @resource_m == "yearly_scrapbook" %>
-    <%= @range = content_tag :h2, "#{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-  <% else %>
-    <%= @range = content_tag :h2, @beg_range, class: "journal_date_range" %>
-  <% end %>
+  <br />
   <div class="field">
     <%= f.label :entry_date %><br />
-    <%= f.text_field :entry_date, value: @beg_range  %>
+    <%= f.text_field :entry_date  %>
+  </div>
+  <div class="field">
+      <%= f.label :day %>
+      <%= f.check_box :day %>
+      <%= f.label :week %>
+      <%= f.check_box :week %>
+      <%= f.label :month %>
+      <%= f.check_box :month %>
+      <%= f.label :year %>
+      <%= f.check_box :year %>
   </div>
   <div class="field">
     <%= f.label :content,:rows => 2,

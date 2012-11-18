@@ -1,5 +1,6 @@
 <%= render('shared/time_calc', beg_range: @beg_range) %>
 <% @bread_crumb = @beg_range %>
+<%= render('javascript/image') %>
 
 <%= link_to content_tag(:div, "Go To Year", class: "nav_up"), yearly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_year, end_range: @beg_range.to_date.end_of_year, bread_crumb: @bread_crumb) %>
 <%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @originating_week_beg, end_range: @originating_week_end) %>
@@ -12,7 +13,7 @@
 <% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
     
     <li>
-        <div class="image_container image_position" id="image_<%= image_num += 1 %>">
+        <div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
             <%= image_tag image.image_url %>
             
             <div class="actions hide">   
@@ -32,7 +33,10 @@
         </div>
     </li>
 <% end %>
-
+<div id="journal_form"></div>
+<% unless @journal.any? %>  
+<%= link_to content_tag(:div, "Add an entry", class: "journal_btn"), [:new, @user, :journal], beg_range: @beg_range, remote: true %><br /> 
+<% end %>
 
 <!-- journal_container -->
 <%= render('shared/journal_container') %> 

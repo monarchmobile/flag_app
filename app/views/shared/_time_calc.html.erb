@@ -1,21 +1,17 @@
 <% @beg_range = @beg_range.to_date %>
 <% @end_range = @end_range.to_date %>
-<% @resource_m = request.path.split('/')[1] %>
 
+<% @page = request.path.split('/')[1] %>
 
 <!-- month Calculations -->
 <!-- get range to go back to week -->
 
-
-
-
 <!-- Week: if breadcrumb, then goes back to breadcrumb -->
 <% if @resource_m == "weekly_scrapbook" %>
-	<% if @bread_crumb %>
-		<% @originating_day_beg = @bread_crumb %>
-	<% else %>
-		<% @originating_day_beg = @beg_range %>
-	<% end %>
+	
+		<% @bread_crumb_beg = @bread_crumb %>
+		<% @bread_crumb_end = @bread_crumb %>
+		
 <% end %>
 <% if @resource_m == "monthly_scrapbook" %>
 	<% if @bread_crumb %>
@@ -32,7 +28,7 @@
 		<% @originating_month_end = @bread_crumb.to_date.end_of_month %>
 	<% else %>
 		<% @originating_month_beg = @beg_range %>
-		<% @originating_month_end = @begin_range.to_date.end_of_month %>
+		<% @originating_month_end = @beg_range.to_date.end_of_month %>
 	<% end %>
 <% end %>
 
