@@ -58,10 +58,10 @@ jQuery ->
       "margin-left": -@width() / 2 + "px"
       "margin-top": -@height() / 2 + "px"
     this
+
   
-  $('#my_link').bind('ajax:before', ->
-        $(this).data('params', { beg_range: 'hello' })
-    )
+
+  
 
 
 
