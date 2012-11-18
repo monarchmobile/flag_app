@@ -4,15 +4,11 @@ class StaticPagesController < ApplicationController
   def home
  
   	@user = @current_user
-  	@image = Image.new
-  	
-  	
+	
   end
 
   def scrapbook
   	@user = @current_user
-  	
-
   	
   end
   
@@ -42,7 +38,7 @@ class StaticPagesController < ApplicationController
   end
 
   def weekly
-    user_setup
+    @user = @current_user
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range]
@@ -66,7 +62,7 @@ class StaticPagesController < ApplicationController
   end
 
   def monthly
-    user_setup
+    @user = @current_user
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range] 
@@ -89,7 +85,7 @@ class StaticPagesController < ApplicationController
   end
 
   def yearly
-    user_setup
+    @user = @current_user
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range] 
@@ -112,11 +108,11 @@ class StaticPagesController < ApplicationController
   end
 
   def profile
-  	@user = User.find(params[:user_id]) if params[:user_id]
+  	@user = @current_user
   end
 
   def about
-  	@user = User.find(params[:user_id]) if params[:user_id]
+  	@user = @current_user
   end
 
   # finding all days that have either images or journal entried #
