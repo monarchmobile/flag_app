@@ -19,8 +19,8 @@
 		<% @images = @user.images.find_all_by_year(true) %>
 		<% for image in @images do %>
 			<li>
-			<div class="image_container image_position" id="image_<%= image_num += 1 %>">
-				<%= image_tag image.image_url, width:175, height:175 %>
+			<div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
+				<%= link_to image_tag(image.image_url, title: image.title, alt: image.title), image.image_url, title: image.title %>
 				
 				<div class="actions hide">
 					<div class="gallery_msg">
