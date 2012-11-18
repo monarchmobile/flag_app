@@ -3,7 +3,7 @@
 <% @bread_crumb = @beg_range %>
 
 <%= link_to content_tag(:div, "Go To Month", class: "nav_up"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @bread_crumb_beg, end_range: @bread_crumb_end) %>
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @bread_crumb_beg, end_range: @bread_crumb_beg) %>
 
 <% image_num = 0 %>
 <% @user_images.each do |image| %>

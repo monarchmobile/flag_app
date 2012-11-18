@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_filter :current_user, :days_array, :weeks_array, :except => [:home]
+  before_filter :current_user, :except => [:home]
 
   def home
  
@@ -11,8 +11,7 @@ class StaticPagesController < ApplicationController
 
   def scrapbook
   	@user = @current_user
-  	@image = @user.images.new
-  	@journal = Journal.new
+  	
 
   	
   end
