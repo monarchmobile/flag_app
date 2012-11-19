@@ -9,8 +9,8 @@
 <!-- render out each image -->
 	<!-- calculates which which image belongs to -->
 	<% num = image.date_taken.strftime("%d").to_i/7 %>
-	<% beg_week = image.date_taken.beginning_of_month+num.weeks %>
-	<% end_week = beg_week+6.days %>
+	<% @beg_week = image.date_taken.beginning_of_month+num.weeks %>
+	<% @end_week = @beg_week+6.days %>
 	<!-- end calculate-->
 	<li>
 		<div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
@@ -24,7 +24,7 @@
 					<% end %>
 					
 				<% elsif image.week == true %>
-					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(beg_range: beg_week, end_week: end_week) %>
+					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week) %>
 				<% end %>
 
 				</div>	
@@ -38,7 +38,6 @@
 <%= render('shared/journal_script') %>
 
 <!-- Previous Next Buttons -->
-
 <div class="nav_arrows">
 	<div class="prev prev-next direction">
 	    <%= link_to content_tag(:div,"prev", class: "prev_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date-1, end_range: @beg_range.to_date-1), remote: true %>
@@ -47,6 +46,14 @@
 	    <%= link_to content_tag(:div,"next", class: "next_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date+1, end_range: @beg_range.to_date+1), remote: true %>
 	</div>
 </div>
+<ul class="thumbnail_images">
+
+	<% if @month_images %>
+		<% @month_images.each do |image| %>
+		<li><%= image_tag(image.image_url, width: "50px", height: "50px") %></li>
+		<% end %>
+	<% end %>
+</ul>
 
 <!-- Bottom navigation menu -->
 <div id="time_navigation">

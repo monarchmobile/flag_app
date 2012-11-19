@@ -7,11 +7,11 @@
 <!-- Year array for holding user.images where year: true -->
  
 <% @beg_month = @beg_range.to_date.beginning_of_month.beginning_of_week %>
-<%= link_to content_tag(:div, "Go To Day", class: "nav_up for_year_to_day"), daily_scrapbook_path(beg_range: @day_range, end_range: @day_range) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), monthly_scrapbook_path(beg_range: @originating_month_beg, end_range:@originating_month_beg ) %>
+
 <div id= "year_images" class="photos_container">
 		
-	<!-- <div class="scrapbook"></div> -->
+	<%= link_to content_tag(:div, "Go To Day", class: "nav_up "), daily_scrapbook_path(beg_range: @day_range, end_range: @day_range) %>
+	<%= link_to content_tag(:div, "Back", class: "nav_down direction"), monthly_scrapbook_path(beg_range: @originating_month_beg, end_range: @originating_month_beg) %>
 	
 	<!-- photos_container -->
 	<% image_num = 0 %>

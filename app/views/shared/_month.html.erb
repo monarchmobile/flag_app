@@ -22,10 +22,14 @@
                     <%= form_for [@user, image], remote: true do |f| %>
                       <%= f.check_box :year %>
                       Add to your year
-                    <% end %>
+                    <% end %> 
                     
                 <% elsif image.year == true %>
                     <%= link_to content_tag(:div, "Part of yearly Gallery"), yearly_scrapbook_path(beg_range: beg_year, end_range: end_year) %>
+                <% end %>
+                <%= form_for [@user, image], remote: true do |f| %>
+                    <%= f.check_box :month %>
+                    Remove from month
                 <% end %>
                 </div>  
                 <%= render('shared/edit_delete_image_container', :image => image) %>    

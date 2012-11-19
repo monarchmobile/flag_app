@@ -5,4 +5,9 @@
 jQuery ->
 	$('#image_date_taken').datepicker
 		dateFormat: 'yy-mm-dd'
+
+	$(".edit_image input[type=checkbox]").click ->
+  		$(this).parent("form").submit()
+  		
+
 	

@@ -13,25 +13,26 @@
     <% beg_week = image.date_taken.beginning_of_month+num.weeks %>
     <% end_week = beg_week+6.days %>
     <!-- end calculation-->
-    
+     
     <li>
         <div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
             <%= link_to image_tag(image.image_url, title: image.title, alt: image.title), image.image_url, title: image.title %>
             <div class="actions hide">   
                 <div class="gallery_msg">               
-                <% if image.month == false %>
-                    <%= form_for [@user, image], remote: true do |f| %>
-                      <%= f.check_box :month %>
-                      Add to your month
+                    <% if image.month == false %>
+                        <%= form_for [@user, image], remote: true do |f| %>
+                          <%= f.check_box :month %>
+                          Add to your month
+                        <% end %>
+                        
+                    <% elsif image.month == true %>
+                        <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month) %>
                     <% end %>
-                    
-                <% elsif image.month == true %>
-                    <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(beg_range: beg_week.to_date.beginning_of_month, end_range: end_week.to_date.beginning_of_month.next_month-1) %>
-                <% end %>
-                <%= form_for [@user, image], remote: true do |f| %>
-                    <%= f.check_box :week %>
-                    Remove from week
-                <% end %>
+                    <%= form_for [@user, image], remote: true do |f| %>
+                        <%= f.check_box :week %>
+                         Remove from week
+                    <% end %>
+
                 </div>  
                 <%= render('shared/edit_delete_image_container', :image => image) %>    
             </div>

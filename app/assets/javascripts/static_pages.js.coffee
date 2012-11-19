@@ -17,12 +17,7 @@ jQuery ->
     $(this).parent('form').hide().append('<div class="gallery_msg">Successfully done!!</div>')
 
   ############## --- FORMS --- ################
-  ### Sign in - Form drops down ###
-	$(".drop-auth").click (->
-  		$(".auth-form").show()
-  	), (->
-  		$(".auth-form").hide()
-  	) 
+ 
   ### $(".drop-auth").click(function() {$(".auth-form").show()}) ###
   ### Image - Form drops down ###
   $(".drop-image").toggle (->

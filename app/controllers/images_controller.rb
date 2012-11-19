@@ -68,15 +68,12 @@ class ImagesController < ApplicationController
 
     @user = current_user
     @image = @user.images.find(params[:id])
+    @image.update_attributes!params[:image]
 
     respond_to do |format|
-      if @image.update_attributes(params[:image])
+      
         format.html { redirect_to scrapbook_path, notice: 'Image was successfully updated.' }
         format.js
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
     end
   end
 

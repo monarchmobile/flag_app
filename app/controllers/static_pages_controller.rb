@@ -21,13 +21,14 @@ class StaticPagesController < ApplicationController
         @end_range = params[:end_range]
       
         @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-        @journal = @user.journals.where(entry_date: @beg_range..@end_range)
+        @month_images = @user.images.where(date_taken: @beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month)
+        @journal = @user.journals.where(entry_date: @beg_range..@end_range, day: true)
 
       else
         @beg_range = Date.today
         @end_range = Date.today
         @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-        @journal = @user.journals.find_all_by_entry_date(@beg_range..@end_range)
+        @journal = @user.journals.where(entry_date: @beg_range..@end_range, day: true)
       end
 
       respond_to do |format| 
@@ -43,16 +44,16 @@ class StaticPagesController < ApplicationController
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range]
-      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @journal = @user.journals.where(entry_date: @beg_range..@end_range)
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range, week: true)
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, week: true)
       if params[:bread_crumb]
         @bread_crumb = params[:bread_crumb]
       end
     else
       @beg_range = Date.today.beginning_of_week
       @end_range = Date.today.end_of_week
-      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @journal = @user.journals.where(entry_date: @beg_range..@end_range)
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range, week: true)
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, week: true)
     end
 
     respond_to do |format| 
@@ -67,16 +68,16 @@ class StaticPagesController < ApplicationController
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range] 
-      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @journal = @user.journals.where(entry_date: @beg_range..@end_range)
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range, month: true)
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, month: true)
       if params[:bread_crumb]
         @bread_crumb = params[:bread_crumb]
       end
     else
       @beg_range = Date.today.beginning_of_week
       @end_range = Date.today.end_of_week
-      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @journal = @user.journals.where(entry_date: @beg_range..@end_range)
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range, month: true)
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, month: true)
      
     end
     respond_to do |format| 
@@ -90,16 +91,16 @@ class StaticPagesController < ApplicationController
     if params[:beg_range]
       @beg_range = params[:beg_range]
       @end_range = params[:end_range] 
-      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @journal = @user.journals.where(entry_date: @beg_range..@end_range)
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range, year: true)
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, year: true )
       if params[:bread_crumb]
         @bread_crumb = params[:bread_crumb]
       end
     else
       @beg_range = Date.today.beginning_of_week
       @end_range = Date.today.end_of_week
-      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @journal = @user.journals.where(entry_date: @beg_range..@end_range)
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range, year:true)
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, year: true)
      
     end
     respond_to do |format| 
