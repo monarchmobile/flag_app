@@ -8,3 +8,21 @@ jQuery ->
 
 	$(".edit_image input[type=checkbox]").click ->
   		$(this).parent("form").submit()
+
+  	new AvatarCropper()
+
+
+
+class AvatarCropper
+	constructor: ->
+ 		$("#cropbox").Jcrop
+		 	aspectRatio: 1
+		 	setSelect: [0, 0, 600, 600]
+		 	onSelect: @update
+		 	onChange: @update
+
+	update: (coords) =>
+		$('#image_crop_x').val(coords.x)
+		$('#image_crop_y').val(coords.y)
+		$('#image_crop_w').val(coords.w)
+		$('#image_crop_h').val(coords.h)

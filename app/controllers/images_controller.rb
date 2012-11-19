@@ -39,7 +39,9 @@ class ImagesController < ApplicationController
   	@user = current_user
     @image = @user.images.find(params[:id])
     
-
+    respond_to do |format|
+      format.html { render ("images/crop") }
+    end
     #@user = User.find(params[:image][:user_id])
     #@image = @user.images.build(params[:image])
 
@@ -65,24 +67,15 @@ class ImagesController < ApplicationController
 
     @user = current_user
     @image = @user.images.find(params[:id])
-    @image.update_attributes!params[:image]
-
     respond_to do |format|
-      format.js
-    end
-
-    @user = current_user
-    @image = @user.images.find(params[:id])
-    if @image.update_attributes(params[:image])
-      if params[:image][:image].present?
-        render :crop
-      else
-        js
+      if @image.update_attributes(params[:image])
+        if params[:image][:crop_x].present?
+          format.html { render ("images/crop") }
+        else
+          format.js
+        end
       end
-    else
-      render :new
     end
-  
   end
 
   # DESTROY
