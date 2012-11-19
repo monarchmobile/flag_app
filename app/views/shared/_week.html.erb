@@ -28,14 +28,15 @@
                         <% else %>
                             <%= link_to content_tag(:div, "Your month is full"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
                         <% end %>
+                        <%= form_for [@user, image], remote: true do |f| %>
+                        <%= f.check_box :week %>
+                         Remove from week
+                    <% end %>
                         
                     <% elsif image.month == true %>
                         <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
                     <% end %>
-                    <%= form_for [@user, image], remote: true do |f| %>
-                        <%= f.check_box :week %>
-                         Remove from week
-                    <% end %>
+                    
 
                 </div>  
                 <%= render('shared/edit_delete_image_container', :image => image) %>    

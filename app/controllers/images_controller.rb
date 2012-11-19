@@ -70,6 +70,18 @@ class ImagesController < ApplicationController
     respond_to do |format|
       format.js
     end
+
+    @user = current_user
+    @image = @user.images.find(params[:id])
+    if @image.update_attributes(params[:image])
+      if params[:image][:image].present?
+        render :crop
+      else
+        js
+      end
+    else
+      render :new
+    end
   
   end
 
