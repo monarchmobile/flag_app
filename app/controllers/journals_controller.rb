@@ -1,6 +1,6 @@
 class JournalsController < ApplicationController
   # INDEX
-  respond_to :html, :json, :js
+  respond_to :html, :json
   def index
     @user = current_user
     @journals = @user.journals.all
@@ -37,12 +37,9 @@ class JournalsController < ApplicationController
   # EDIT
   def edit
     
-    @user = User.find(params[:user_id])	
+    @user = current_user
     @journal = @user.journals.find(params[:id])
 
-    respond_to do |format|
-      format.js
-    end
   end
 
   # CREATE
@@ -65,6 +62,7 @@ class JournalsController < ApplicationController
   def update
     @user = current_user
     @journal = @user.journals.find(params[:id])
+    @journal.update_attributes(params[:journal])
 
     respond_with @journal
   end
