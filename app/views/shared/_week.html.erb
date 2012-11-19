@@ -56,27 +56,37 @@
     </div>
 </div>
 <div id="time_navigation">
-<%= render('menus/by_day', :beg_range => @beg_range ) %>
+    <ul class="thumbnail_images">
+        <% if @month_images %>
+            <% @month_images.each do |image| %>
+                <% num = image.date_taken.strftime("%d").to_i/7 %>
+                <% beg_week = image.date_taken.beginning_of_month+num.weeks %>
+                <% end_week = beg_week+6.days %>
+                <li><%= link_to image_tag(image.image_url, width: "50px", height: "50px"), weekly_scrapbook_path(beg_range: beg_week, end_range: end_week, bread_crumb: @bread_crumb) %></li>
+            <% end %>
+        <% end %>
+    </ul>
+    <%= render('menus/by_day', :beg_range => @beg_range ) %>
 
-<ul class="wom_container">
-<% (0..4).each do |num| %>  
-    <% @beginning_of_dyn_range = @first_of_month.to_date+num.weeks %>
-    <% if num == 4 %>
-        <% @end_of_dyn_range = @first_of_month.to_date.next_month-1 %>
-    <% else %>
-        <% @end_of_dyn_range = @first_of_month.to_date+(num+1).weeks-1 %>
+    <ul class="wom_container">
+    <% (0..4).each do |num| %>  
+        <% @beginning_of_dyn_range = @first_of_month.to_date+num.weeks %>
+        <% if num == 4 %>
+            <% @end_of_dyn_range = @first_of_month.to_date.next_month-1 %>
+        <% else %>
+            <% @end_of_dyn_range = @first_of_month.to_date+(num+1).weeks-1 %>
+        <% end %>
+            <!--  Future days : add future_date class  --> 
+        <% if @beg_range.to_date.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
+            <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range)  %>
+        <!--  Future days : add future_date class  -->  
+        <% elsif Date.today < @beginning_of_dyn_range %>
+            <%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range) %>
+        <% else %>
+            <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range), remote: true %>
+        <% end %>
     <% end %>
-        <!--  Future days : add future_date class  --> 
-    <% if @beg_range.to_date.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
-        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range)  %>
-    <!--  Future days : add future_date class  -->  
-    <% elsif Date.today < @beginning_of_dyn_range %>
-        <%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range) %>
-    <% else %>
-        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range), remote: true %>
-    <% end %>
-<% end %>
-</ul>
+    </ul>
 
-<%= render('menus/by_month', :beg_range => @beg_range ) %>
+    <%= render('menus/by_month', :beg_range => @beg_range ) %>
 </div>

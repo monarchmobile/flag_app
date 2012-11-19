@@ -39,7 +39,7 @@ class ImagesController < ApplicationController
   	@user = current_user
     @image = @user.images.find(params[:id])
     
-   
+
     #@user = User.find(params[:image][:user_id])
     #@image = @user.images.build(params[:image])
 
@@ -62,9 +62,6 @@ class ImagesController < ApplicationController
 
   # UPDATE
   def update
-  
-    #@user = User.find(params[:image][:user_id])
-
 
     @user = current_user
     @image = @user.images.find(params[:id])

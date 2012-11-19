@@ -54,6 +54,16 @@
     </div>
 </div>
 <div id="time_navigation">
+    <ul class="thumbnail_images">
+        <% if @month_images %>
+            <% @month_images.each do |image| %>
+                <% num = image.date_taken.strftime("%d").to_i/7 %>
+                <% beg_week = image.date_taken.beginning_of_month+num.weeks %>
+                <% end_week = beg_week+6.days %>
+                <li><%= link_to image_tag(image.image_url, width: "50px", height: "50px"), monthly_scrapbook_path(beg_range: beg_week, end_range: end_week, bread_crumb: @bread_crumb) %></li>
+            <% end %>
+        <% end %>
+    </ul>
     <%= render('menus/by_day', :beg_range => @beg_range ) %>
     <%= render('menus/by_week', :beg_month => @beg_month ) %>
     <ul class="moy_container">
