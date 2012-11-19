@@ -46,17 +46,17 @@
 	    <%= link_to content_tag(:div,"next", class: "next_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date+1, end_range: @beg_range.to_date+1), remote: true %>
 	</div>
 </div>
-<ul class="thumbnail_images">
 
-	<% if @month_images %>
-		<% @month_images.each do |image| %>
-		<li><%= image_tag(image.image_url, width: "50px", height: "50px") %></li>
-		<% end %>
-	<% end %>
-</ul>
 
 <!-- Bottom navigation menu -->
 <div id="time_navigation">
+	<ul class="thumbnail_images">
+		<% if @month_images %>
+			<% @month_images.each do |image| %>
+			<li><%= image_tag(image.image_url, width: "50px", height: "50px") %></li>
+			<% end %>
+		<% end %>
+	</ul>
 	<ul class="dom_container">
 		
 		

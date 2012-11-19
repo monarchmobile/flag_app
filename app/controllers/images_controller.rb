@@ -39,6 +39,7 @@ class ImagesController < ApplicationController
   	@user = current_user
     @image = @user.images.find(params[:id])
     
+   
     #@user = User.find(params[:image][:user_id])
     #@image = @user.images.build(params[:image])
 
@@ -51,8 +52,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to scrapbook_path, notice: 'Image was successfully created.' }
-        format.json { render json: @image, status: :created, location: @image }
+        format.html { render ("images/crop") }
       else
         format.html { render action: "new" }
         format.json { render json: @image.errors, status: :unprocessable_entity }
@@ -71,10 +71,9 @@ class ImagesController < ApplicationController
     @image.update_attributes!params[:image]
 
     respond_to do |format|
-      
-        format.html { redirect_to scrapbook_path, notice: 'Image was successfully updated.' }
-        format.js
+      format.js
     end
+  
   end
 
   # DESTROY

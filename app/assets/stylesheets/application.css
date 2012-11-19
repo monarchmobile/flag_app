@@ -6,6 +6,7 @@
  *
  *= require_self
  *= require jquery.ui.datepicker
+ *= require jquery.Jcrop
  *= require_tree .
 */
 
