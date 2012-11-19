@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
         @end_range = params[:end_range]
       
         @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-        @month_images = @user.images.where(date_taken: @beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month)
+        @month_images = @user.images.where(date_taken: @beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).order("date_taken ASC")
         @journal = @user.journals.where(entry_date: @beg_range..@end_range, day: true)
 
       else

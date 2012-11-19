@@ -361,17 +361,6 @@ img {
 	text-align: center;
 }
 
-ul.thumbnail_images {
-	width: 960px;
-	margin: 13px 0px;
-	
-	background: black;
-	height: 50px;
-	li {
-		float:left;
-		margin-left:20px;
-	}
-} 
 .photos_container {
 	width:500px;
 	min-height:400px;
@@ -475,10 +464,22 @@ ul.thumbnail_images {
 // days //
 #time_navigation {
 	position:fixed;
-	bottom:35px;
+	bottom:36px;
 	width:1000px;
 	height:77px;
 }
+
+ul.thumbnail_images {
+	width: 960px;
+	margin: -13px 0px;
+	
+	background: black;
+	height: 50px;
+	li {
+		float:left;
+		margin-left:20px;
+	}
+} 
 ul.dom_container {
 	margin-left: 0px;
 	border-top: 3px solid red;

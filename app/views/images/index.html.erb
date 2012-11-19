@@ -27,6 +27,7 @@
     <td><%= image.year %></td>
     <td><%= link_to "Show", [@user, image] %></td>
     <td><%= link_to "Edit", [:edit, @user, image] %></td>
+    <td><%= link_to image_tag("delete.png", width: 15, height: 15), [@user, image ], :confirm => 'Are you sure?', :method => :delete, class: "scrap_image_X", remote: true %></td>
     <td></td>
   </tr>
 <% end %>

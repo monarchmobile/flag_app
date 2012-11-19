@@ -11,7 +11,7 @@
 <% beg_year = image.date_taken.beginning_of_year %>
 <% end_year = image.date_taken.end_of_year %>
 <% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
-    
+     
     <li>
         <div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
             <%= link_to image_tag(image.image_url, title: image.title, alt: image.title), image.image_url, title: image.title %>
@@ -19,10 +19,14 @@
             <div class="actions hide">   
                 <div class="gallery_msg">               
                 <% if image.year == false %>
-                    <%= form_for [@user, image], remote: true do |f| %>
-                      <%= f.check_box :year %>
-                      Add to your year
-                    <% end %> 
+                    <% if (@user.images.where(date_taken: beg_year..end_year, year: true).count < 5) %>
+                        <%= form_for [@user, image], remote: true do |f| %>
+                          <%= f.check_box :year %>
+                          Add to your year
+                        <% end %> 
+                    <% else %>
+                        <%= link_to content_tag(:div, "Your year is full"), yearly_scrapbook_path(beg_range: beg_year, end_range: end_year, bread_crumb: @bread_crumb) %>
+                    <% end %>
                     
                 <% elsif image.year == true %>
                     <%= link_to content_tag(:div, "Part of yearly Gallery"), yearly_scrapbook_path(beg_range: beg_year, end_range: end_year) %>

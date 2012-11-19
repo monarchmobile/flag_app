@@ -8,11 +8,3 @@ jQuery ->
 
 	$(".edit_image input[type=checkbox]").click ->
   		$(this).parent("form").submit()
-
-  	
- 			
-
-
-  		
-
-	
