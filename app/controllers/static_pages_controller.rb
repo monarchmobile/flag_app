@@ -15,24 +15,25 @@ class StaticPagesController < ApplicationController
   def daily
     @user = @current_user
 
-    
-    if params[:beg_range]
-      @beg_range = params[:beg_range]
-      @end_range = params[:end_range]
-    
-      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @journal = @user.journals.where(entry_date: @beg_range..@end_range)
+    if current_user
+      if params[:beg_range]
+        @beg_range = params[:beg_range]
+        @end_range = params[:end_range]
+      
+        @user_images = @user.images.where(date_taken: @beg_range..@end_range)
+        @journal = @user.journals.where(entry_date: @beg_range..@end_range)
 
-    else
-      @beg_range = Date.today
-      @end_range = Date.today
-      @user_images = @user.images.where(date_taken: @beg_range..@end_range)
-      @journal = @user.journals.find_all_by_entry_date(@beg_range..@end_range)
-    end
+      else
+        @beg_range = Date.today
+        @end_range = Date.today
+        @user_images = @user.images.where(date_taken: @beg_range..@end_range)
+        @journal = @user.journals.find_all_by_entry_date(@beg_range..@end_range)
+      end
 
-    respond_to do |format| 
-      format.html
-      format.js
+      respond_to do |format| 
+        format.html
+        format.js
+      end
     end
 
   end

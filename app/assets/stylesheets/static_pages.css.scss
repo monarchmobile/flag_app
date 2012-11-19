@@ -210,7 +210,17 @@ a:hover .journal_btn {
 .auth-form {
 	margin-top: 35px;
 	margin-left: -128px;
-	width:230px;
+	width: 150px;
+	background: #F5ACAC;
+	border-radius: 5px;
+	webkit-border-radius: 5px;
+	moz-border-radius: 5px;
+	-moz-box-shadow: 0px 0px 5px #ccc;
+	-webkit-box-shadow: 0px 0px 5px #CCC;
+	box-shadow: 0px 0px 5px #CCC;
+	height: 120px;
+	position: absolute;
+	padding: 15px 5px 15px 25px;
 }
 
 .image_form {
@@ -274,7 +284,9 @@ h2.journal_date_range {
 
 	form .field input, form .field textarea {
 		background:inherit;
-		box-shadow:0px 0px 5px;
+		-moz-box-shadow:    0px 0px 5px #ccc;
+		-webkit-box-shadow: 0px 0px 5px #ccc;
+		box-shadow:         0px 0px 5px #ccc;
 	}
 
 	form .field textarea {
@@ -320,7 +332,9 @@ img {
 	z-index: 200;
 	margin-left: 0px;
 	width: 300px;
-	box-shadow: 0px 1px 3px;
+	-moz-box-shadow:    0px 0px 3px #ccc;
+	-webkit-box-shadow: 0px 0px 3px #ccc;
+	box-shadow:         0px 0px 3px #ccc;
 }
 
 .gallery_msg a {
@@ -339,8 +353,9 @@ img {
 	z-index: 200;
 	margin-left: 0px;
 	width: 125px;
-	box-shadow: 0px 1px 3px;
-}
+	-moz-box-shadow:    0px 0px 3px #ccc;
+	-webkit-box-shadow: 0px 0px 3px #ccc;
+	box-shadow:         0px 0px 3px #ccc;}
 
 .photos_container {
 	width:500px;

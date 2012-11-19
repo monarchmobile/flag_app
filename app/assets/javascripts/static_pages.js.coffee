@@ -18,24 +18,17 @@ jQuery ->
 
   ############## --- FORMS --- ################
   ### Sign in - Form drops down ###
-	$(".drop-auth").toggle (->
+	$(".drop-auth").click (->
   		$(".auth-form").show()
   	), (->
   		$(".auth-form").hide()
-  	)
- 
+  	) 
+  ### $(".drop-auth").click(function() {$(".auth-form").show()}) ###
   ### Image - Form drops down ###
   $(".drop-image").toggle (->
     $(".image_form").show()
   ), ->
     $(".image_form").hide()
-
-  ### Journal - Form drops down ###
-  $(".drop-journal").click ->
-  if $(this).next().next().is(":visible")
-    $(this).next().next().hide()
-  else
-    $(this).next().next().show()
 
   
   ### Fix bug - When clicking on any area of form, form was dis ###
