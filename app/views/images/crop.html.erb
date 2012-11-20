@@ -12,7 +12,8 @@
 	}
 
 	#cropbox {
-		
+		width:400px;
+		height:400px;
 	}
 	.style {
 		overflow: hidden;
@@ -38,7 +39,7 @@
 	}
 </style><h1>Crop Image</h1>
 
-<%= image_tag @image.image_url(:large), id: "cropbox" %>
+<%= image_tag @image.image_url(), id: "cropbox" %>
 
 <h4>Preview</h4>
 <div id="sample_images">

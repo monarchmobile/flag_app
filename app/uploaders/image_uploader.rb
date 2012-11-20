@@ -34,17 +34,17 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   version :large do
-    resize_to_fit(800, 10000)
+    resize_to_limit(800, 10000)
   end
 
   version :landscape do
     process :crop
-    resize_to_limit(300, 180)
+    resize_to_fit(300, 10000)
   end
 
   version :portrait do
     process :crop
-    resize_to_limit(300, 450)
+    resize_to_fit(300, 450)
   end
 
   version :mini do
@@ -59,7 +59,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   
   def crop
     if model.crop_x.present?
-      resize_to_limit(600, 600)
+      resize_to_fit(800, 10000)
       manipulate! do |img|
         x = model.crop_x.to_i
         y = model.crop_y.to_i
