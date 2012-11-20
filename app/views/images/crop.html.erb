@@ -1,12 +1,60 @@
-<h1>Crop Image</h1>
+<style>
+	.sample_images {
+		width:400px;
+		height:200px;
+		margin-top:100px;
+
+	}
+	.coords_container {
+		width:400px;
+		height:200px;
+		margin-top:100px;
+	}
+
+	#cropbox {
+		width:400px;
+		height:400px;
+	}
+	.style {
+		overflow: hidden;
+		float:left;
+		margin-left:50px;
+		border:1px solid blue;
+	}
+
+	.landscape {
+		width:300px;
+		height: 180px;
+	}
+
+	.portrait {
+		width:300px;
+		height: 450px;
+
+	}
+
+	.mini {
+		width:125px;
+		height: 100px;
+	}
+</style><h1>Crop Image</h1>
 
 <%= image_tag @image.image_url(:large), id: "cropbox" %>
 
 <h4>Preview</h4>
-<div style="width:100px; height:100px; overflow:hidden">
-  <%= image_tag @image.image.url(:large), :id => "preview" %>
+<div id="sample_images">
+	<div class="style landscape">
+	  <%= image_tag @image.image_url(), :class => "preview" %>
+	</div>
+	<div class="style portrait">
+	  <%= image_tag @image.image_url(), :class => "preview" %>
+	</div>
+	<div class="style mini">
+	  <%= image_tag @image.image_url(), :class => "preview" %>
+	</div>
 </div>
 
+<div class="coords_container">
 <%= form_for [@user, @image] do |f| %>
   <% %w[x y w h].each do |attribute| %>
     <%= f.text_field "crop_#{attribute}" %>
@@ -15,4 +63,5 @@
     <%= f.submit "Crop" %>
   </div>
 <% end %>
+</div>
 

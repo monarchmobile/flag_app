@@ -16,7 +16,7 @@
       
     <li>
         <div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
-            <%= link_to image_tag(image.image_url, title: image.title, alt: image.title), image.image_url, title: image.title %>
+            <%= link_to image_tag(image.image_url(correct_image(image_num)), title: image.title, alt: image.title), image.image_url, title: image.title %>
             <div class="actions hide">   
                 <div class="gallery_msg">               
                     <% if image.month == false %>

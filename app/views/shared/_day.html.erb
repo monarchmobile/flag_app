@@ -12,9 +12,14 @@
 	<% @beg_week = image.date_taken.beginning_of_month+num.weeks %>
 	<% @end_week = @beg_week+6.days %>
 	<!-- end calculate-->
+	
+
 	<li>
 		<div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
-			<%= link_to image_tag(image.image_url, title: image.title, alt: image.title), image.image_url, title: image.title %>
+			<%= (link_to image_tag(image.image_url(:landscape), title: image.title, alt: image.title), image.image_url, title: image.title) if image_num  == 1 || image_num == 2 %>
+			<%= link_to image_tag(image.image_url(:portrait), title: image.title, alt: image.title), image.image_url, title: image.title  if image_num   == 3 %>
+			<%= link_to image_tag(image.image_url(:mini), title: image.title, alt: image.title), image.image_url, title: image.title  if image_num  == 4 || image_num == 5 %>
+			
 			<div class="actions">	
 				<div class="gallery_msg">				
 				<% if image.week == false %>
@@ -57,7 +62,7 @@
 	<ul class="thumbnail_images">
 		<% if @month_images %>
 			<% @month_images.each do |image| %>
-			<li><%= link_to image_tag(image.image_url, width: "50px", height: "50px"), daily_scrapbook_path(beg_range: image.date_taken.strftime("%Y-%m-%d"), end_range: image.date_taken.strftime("%Y-%m-%d")) %></li>
+			<li><%= link_to image_tag(image.image_url(:mini), width: "50px", height: "50px"), daily_scrapbook_path(beg_range: image.date_taken.strftime("%Y-%m-%d"), end_range: image.date_taken.strftime("%Y-%m-%d")) %></li>
 			<% end %>
 		<% end %>
 	</ul>

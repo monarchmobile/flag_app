@@ -29,7 +29,7 @@ class AvatarCropper
 	    @updatePreview(coords)
 
   updatePreview: (coords) =>
-          $('#preview').css
+          $('.preview').css
                   width: Math.round(100/coords.w * $('#cropbox').width()) + 'px'
                   height: Math.round(100/coords.h * $('#cropbox').height()) + 'px'
                   marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px'
