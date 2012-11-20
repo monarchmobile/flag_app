@@ -40,7 +40,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :landscape do
     process :crop
-    resize_to_fit(300, 10000)
+
   end
 
   version :portrait do
@@ -60,7 +60,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   
   def crop
     if model.crop_x.present?
-      resize_to_fit(800, 10000)
       manipulate! do |img|
         x = model.crop_x.to_i
         y = model.crop_y.to_i
