@@ -34,7 +34,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   version :large do
-    resize_to_limit(600,600)
+    resize_to_fit(800, 10000)
   end
 
   version :landscape do
