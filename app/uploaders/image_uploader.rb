@@ -40,7 +40,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :landscape do
     process :crop
+  end
 
+  version :scrap do
+    process :crop
+    resize_to_fit(300, 300)
   end
 
   version :portrait do

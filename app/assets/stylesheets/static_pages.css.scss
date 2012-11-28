@@ -326,12 +326,11 @@ img {
 }
 // hover over image, action box pops up
 .larger_images {
-	margin-top: -20px;
+	
 	background: white;
-	position: absolute;
 	z-index: 200;
 	margin-left: 0px;
-	width: 300px;
+	width: inherit;
 	-moz-box-shadow:    0px 0px 3px #ccc;
 	-webkit-box-shadow: 0px 0px 3px #ccc;
 	box-shadow:         0px 0px 3px #ccc;
@@ -348,12 +347,12 @@ img {
 }
 
 .smaller_images {
-	margin-top: -20px;
+	
 	background: white;
-	position: absolute;
+	
 	z-index: 200;
 	margin-left: 0px;
-	width: 125px;
+	width: inherit;
 	-moz-box-shadow:    0px 0px 3px #ccc;
 	-webkit-box-shadow: 0px 0px 3px #ccc;
 	box-shadow:         0px 0px 3px #ccc;
@@ -375,70 +374,70 @@ img {
 		list-style:none;
 	
 		.image_position {
-			position:absolute;
+			// position:absolute;
 			float:left;
 			background:gray;
 		}
 
 		#image_1 {
-			margin-left: 25px;
-			margin-top: 0px;
-			width: 300px;
-			height: 180px;
+			// margin-left: 25px;
+			// margin-top: 0px;
+			// width: 300px;
+			// height: 180px;
 
 			img {
-				width:300px;
-				height:180px;
+				// width:300px;
+				// height:180px;
 			}
 		}
 
 		#image_2 {
-			margin-left:25px;
-			margin-top:250px;
-			width:300px;
-			height:180px;
+			// margin-left:25px;
+			// margin-top:250px;
+			// width:300px;
+			// height:180px;
 
 			img {
-				width:300px;
-				height:180px;
+				// width:300px;
+				// height:180px;
 			}
 		}
 
 		#image_3 {
-			margin-left:350px;
-			margin-top:0px;
-			width:300px;
-			height:430px;
+			// margin-left:350px;
+			// margin-top:0px;
+			// width:300px;
+			// height:430px;
 
 			img {
-				width:300px;
-				height:430px;
+				// width:300px;
+				// height:430px;
 			}
 		}
 
 		#image_4 {
-			margin-left:675px;
-			margin-top:0px;
-			width:125px;
-			height:100px;
+			// margin-left:675px;
+			// margin-top:0px;
+			// width:125px;
+			// height:100px;
 
 			img {
-				width:125px;
-				height:100px;
+				// width:125px;
+				// height:100px;
 			}
 
 			
 		}
 
 		#image_5 {
-			margin-left:825px;
-			margin-top:0px;
-			width:125px;
-			height:100px;
+			// margin-left:825px;
+			// margin-top:0px;
+			// width:125px;
+			// height:100px;
 
 			img {
-				width:125px;
-				height:100px;
+				// width:125px;
+				// height:100px;
 			}
 		}
 		

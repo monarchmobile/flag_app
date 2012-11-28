@@ -9,15 +9,19 @@ jQuery ->
 	$(".edit_image input[type=checkbox]").click ->
   		$(this).parent("form").submit()
 
+  	
+  	$(".draggable").draggable()
+  	
+  	
+
   	new AvatarCropper()
 
 
 
 class AvatarCropper
 	constructor: ->
- 		$("#cropbox").Jcrop
-		 	
-		 	
+ 		$(".cropbox").Jcrop
+ 			
 		 	onSelect: @update
 		 	onChange: @update
 
@@ -28,8 +32,8 @@ class AvatarCropper
 	    $('#image_crop_h').val(coords.h)
 	    @updatePreview(coords)
 
-  updatePreview: (coords) =>
-          $('.preview').css
+  	updatePreview: (coords) =>
+          $('#preview').css
                   width: Math.round(100/coords.w * $('#cropbox').width()) + 'px'
                   height: Math.round(100/coords.h * $('#cropbox').height()) + 'px'
                   marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px'

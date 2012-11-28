@@ -47,6 +47,9 @@ jQuery ->
       "margin-top": -@height() / 2 + "px"
     this
 
+
+  $(".image_container").draggable()
+
   
 
   
