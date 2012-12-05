@@ -14,27 +14,14 @@
     </div>
   <% end %>
 
-  
+
   <%= f.hidden_field :user_id, value: @user.id %>
-  <br />
+  <%= f.hidden_field :entry_date, value: @entry_date %>
+  <%= f.hidden_field @range.to_sym, value: @boolean %>
+
   <div class="field">
-    <%= f.label :entry_date %><br />
-    <%= f.text_field :entry_date  %>
-  </div>
-  <div class="field">
-      <%= f.label :day %>
-      <%= f.check_box :day %>
-      <%= f.label :week %>
-      <%= f.check_box :week %>
-      <%= f.label :month %>
-      <%= f.check_box :month %>
-      <%= f.label :year %>
-      <%= f.check_box :year %>
-  </div>
-  <div class="field">
-    <%= f.label :content,:rows => 2,
-                :cols => 10, :rows => 10 %><br />
-    <%= f.text_area :content %>
+    <%= f.label :content, "Journal Entry" %><br />
+    <%= f.text_area :content, :cols => 10, :rows => 10 %>
   </div>
   <div class="actions">
     <%= f.submit "Add Entry" %>

@@ -103,4 +103,17 @@ module ApplicationHelper
 		 @beg_range_week = @beg_range.beginning_of_month+num.weeks 
 		 @end_range_week = @beg_range.beginning_of_month+num.weeks+6.days 
 	end
+
+	def get_range
+		page = request.path.split("_")[0][1..-1]
+		if page == "daily"
+			@range = "day"
+		elsif page == "weekly"
+			@range = "week"
+		elsif page == "montly"
+			@range = "month"
+		elsif page == "yearly"
+			@range = "year"
+		end
+	end
 end

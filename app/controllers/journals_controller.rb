@@ -26,10 +26,22 @@ class JournalsController < ApplicationController
   def new
     @user = current_user
     @journal = @user.journals.new 
+    @entry_date = params[:journal][:entry_date]
+    if params[:journal][:day] 
+            @range = "day"
+            @boolean = params[:journal][:day]
+    elsif params[:journal][:week] 
+            @range = "week"
+            @boolean = params[:journal][:week]
+    elsif params[:journal][:month]
+            @range = "month"
+            @boolean = params[:journal][:month]
+    elsif params[:journal][:year]
+            @range = "year"
+            @boolean = params[:journal][:year]
+    end
     
-
     respond_to do |format|
-      format.html # new.html.erb
       format.js
     end
   end

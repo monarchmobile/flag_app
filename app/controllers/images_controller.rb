@@ -26,10 +26,15 @@ class ImagesController < ApplicationController
   # NEW
   def new
     @user = current_user
-    @image = Image.new
+    @image = @user.images.new
+    if params[:image][:date_taken]
+      @date_taken = params[:image][:date_taken]
+    else 
+      @date_taken = "nothing"
+    end
 
     respond_to do |format|
-      format.html # new.html.erb
+      
       format.js
     end
   end

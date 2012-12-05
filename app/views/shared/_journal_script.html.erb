@@ -1,8 +1,13 @@
 <!-- click on journal_btn and journal form shows in journal container -->
+ 
+<div id="photo_form"></div>
+<%= content_tag :div, "Add a photo", class: "photo_btn", :"data-date" => @beg_range %>
+
 <div id="journal_form"></div>
 <% unless @journal.any? %> 	
-<%= link_to content_tag(:div, "Add an entry", class: "journal_btn"), [:new, @user, :journal], remote: true %><br /> 
+<%= content_tag :div, "Add an entry", class: "journal_btn", :"data-date" => @beg_range, :"data-range" => get_range() %><br /> 
 <% end %>
+<br /><br />
 
 <!-- journal_container -->
 <div id="journal_container">

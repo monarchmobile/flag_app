@@ -38,23 +38,14 @@ class ImageUploader < CarrierWave::Uploader::Base
     resize_to_fit(800, 10000)
   end
 
-  version :landscape do
-    process :crop
-  end
-
   version :scrap do
     process :crop
     resize_to_fit(300, 300)
   end
 
-  version :portrait do
+  version :profile do
     process :crop
-    resize_to_fit(300, 450)
-  end
-
-  version :mini do
-    process :crop
-    resize_to_limit(125, 100)
+    resize_to_limit(200, 10000)
   end
 
   version :thumb do

@@ -5,8 +5,9 @@ if (<%= @boolean %> == 0) {
 	// /weekly_scrapbook
 	current_scrapbook = window.location.pathname;
     current = current_scrapbook.split("_")[0].slice(1, -2)
-
+    
  	$('#edit_image_<%=@image.id%>').parent(".gallery_msg").html('Image added to your <%= @range %>' );
  	
+
 	
 }

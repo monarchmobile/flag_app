@@ -19,6 +19,8 @@ $(document).ready(function() {
     $("#background").dblclick(function(){
         $("#background").fadeOut("slow");
         $("#large").fadeOut("slow");
+        $("#photo_form").fadeOut("slow")
+        
     });
 
     $("#large").dblclick(function(){
@@ -64,7 +66,48 @@ $(document).ready(function() {
     })
 
 
+    $(".photo_btn").toggle(function() {
+        $("#background").css({"opacity" : "0.7"})
+                        .fadeIn("slow");
+        date = $(this).attr("data-date")
+        user_id = <%= current_user.id %>
+        URL = "/users/"+user_id+"/images/new"
+        $.ajax({
+            url: URL,
+            type: 'get',
+            data: { image: {date_taken: date}}
+        });
+        return false;
+    }, function() {
+        $(this).prev("#photo_form").hide()
+    })
 
+    $(".journal_btn").toggle(function() {
+        user_id = <%= current_user.id %>
+        date = $(this).attr("data-date")
+        range = $(this).attr("data-range")
+        data = {}
+        data['entry_date'] = date
+        data[range] = true
+        
+        
+        URL = "users/"+user_id+"/journals/new"
+        $.ajax({
+            url: URL,
+            type: 'get',
+            data: {journal: data}
+        });
+        return false;
+    }, function() {
+        $(this).prev("#journal_form").hide()
+    })
+
+        // var range = $(this).attr("data-range");
+        // var data = {};
+        // data[range+'_p'] = coordinates.join(",")
+
+        // DATA = {image: data }
+        // return DATA
 
 
     

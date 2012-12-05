@@ -1,5 +1,6 @@
-$("#journal_form").show().html("<%= j render('journals/form') %>");
+$("#journal_form").html("<%= j render('journals/form') %>").show()
+
 $("#journal_form form .field #journal_entry_date").datepicker({
 	dateFormat: 'yy-mm-dd'
 })
-	
+	 

@@ -1,5 +1,4 @@
-
-  <%= form_for [@user, @image], html: {:multipart => true} do |f| %>
+<%= form_for [@user, @image], html: {:multipart => true} do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
@@ -12,7 +11,9 @@
     </div>
   <% end %>  
   <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.hidden_field :date_taken, value: @date_taken %>
   <h2>Image Upload</h2>
+
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -24,27 +25,8 @@
   
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :cols => 40, :rows => 5 %>
   </div>
-  <div class="field">
-    <%= f.label :date_taken %><br />
-    <%= f.text_field :date_taken %>
-  </div>
-  <div class="field">
-    <%= f.label :week %><br />
-    <%= f.check_box :week %>
-  </div>
-  <div class="field">
-    <%= f.label :month %><br />
-    <%= f.check_box :month %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.check_box :year %>
-  </div>
-  
-  <br />
-  
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -86,7 +86,7 @@ $(document).ready(function() {
     $(".flag_feed ul li:nth-child(3n+3)").addClass('third')
     setTimeout(function() {
         var image = []
-        for(var i = 1; i <= 10; i++) { 
+        for(var i = 1; i <= 11; i++) { 
             x = i+3;
             image[i] = $(".img_feed_container[data-counter = '"+i+"']").height()
             if ( i > 0 && i < 4) {
@@ -131,7 +131,7 @@ $(document).ready(function() {
     <ul>
     <% @random_images.each do |image| %>
         <li class="img_feed_container" data-counter = "<%= n+=1 %>" >
-            <%= image_tag image.image_url(:mini), width: "200px" %>
+            <%= image_tag image.image_url(:profile), width: "200px" %>
             <div class="img_content_container hide">
                 <%= content_tag :div, image.title %>
 
