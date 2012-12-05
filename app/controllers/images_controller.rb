@@ -71,8 +71,20 @@ class ImagesController < ApplicationController
       if @image.update_attributes(params[:image])
         if params[:image][:crop_x].present?
           format.html { render ("images/crop") }
-        else
-          format.js
+        elsif params[:image][:week] || params[:image][:month] || params[:image][:year]
+          if params[:image][:week] 
+            @range = "week"
+            @boolean = params[:image][:week]
+            format.js  
+          elsif params[:image][:month]
+            @range = "month"
+            @boolean = params[:image][:month]
+            format.js 
+          elsif params[:image][:year]
+            @range = "year"
+            @boolean = params[:image][:year]
+            format.js 
+          end
         end
       end
     end
@@ -89,4 +101,24 @@ class ImagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def resize
+    @user = current_user
+    @image = @user.images.find(params[:id])
+    respond_to do |format|
+      if @image.update_attributes(params[:image])
+        format.js
+      end
+    end
+  end 
+
+  def drag
+    @user = current_user
+    @image = @user.images.find(params[:id])
+    respond_to do |format|
+      if @image.update_attributes(params[:image])
+        format.js
+      end
+    end
+  end 
 end

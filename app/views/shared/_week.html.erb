@@ -1,9 +1,11 @@
-<%= render('shared/time_calc', beg_range: @beg_range) %>
+<% bread_crumb_beg(@bread_crumb) %>
+<% week_calculations() %>
+<% range_calculations() %>
 <%= render('javascript/image') %>
-<% @bread_crumb = @beg_range %>
+<% @bread_crumb = @beg_range %> 
 
 <%= link_to content_tag(:div, "Go To Month", class: "nav_up"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @bread_crumb_beg, end_range: @bread_crumb_beg) %>
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), daily_scrapbook_path(beg_range: @bread_crumb_beg, end_range: bread_crumb_end(@bread_crumb_beg)) %>
 
 <% image_num = 0 %>
 <% @user_images.each do |image| %>
@@ -13,36 +15,42 @@
     <% beg_week = image.date_taken.beginning_of_month+num.weeks %>
     <% end_week = beg_week+6.days %>
     <!-- end calculation-->
-      
-    <li>
-        <div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
-            <%= link_to image_tag(image.image_url(correct_image(image_num)), title: image.title, alt: image.title), image.image_url, title: image.title %>
-            <div class="actions hide">   
-                <div class="gallery_msg">               
-                    <% if image.month == false %>
-                        <% if (@user.images.where(date_taken: @first_of_month..@last_of_month, month: true).count < 5) %>
-                            <%= form_for [@user, image], remote: true do |f| %>
-                              <%= f.check_box :month %>
-                              Add to your month
-                            <% end %>
-                        <% else %>
-                            <%= link_to content_tag(:div, "Your month is full"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
-                        <% end %>
-                        <%= form_for [@user, image], remote: true do |f| %>
-                        <%= f.check_box :week %>
-                         Remove from week
-                    <% end %>
-                        
-                    <% elsif image.month == true %>
-                        <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
-                    <% end %>
-                    
+    <% get_dimensions(image.id, "week") %> 
+    <% get_positions(image.id, "week") %>
 
-                </div>  
-                <%= render('shared/edit_delete_image_container', :image => image) %>    
-            </div>
-        </div>
-    </li>
+    
+    
+    
+    <div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;">
+        <ul class="control_panel">
+            <li class="dragger" data-id="<%= image.id %>" data-range="week"><%= image_tag "drag.png", width: "20px", height: "20px" %></li>
+            <li class="edit_msg"><%= link_to "Edit", [:edit, @user, image] %></li>
+            <li class="drag_msg">Drag your photo anywhere</li><br />
+            <div class="gallery_msg">                
+                <% if image.month == false %>
+                    <% if (@user.images.where(date_taken: @first_of_month..@last_of_month, month: true).count < 5) %>
+                        <%= form_for [@user, image], remote: true do |f| %>
+                          <%= f.check_box :month %>
+                          Add to your month
+                        <% end %>
+                    <% else %>
+                        <%= link_to content_tag(:div, "Your month is full"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
+                    <% end %>
+                    <%= form_for [@user, image], remote: true do |f| %>
+                    <%= f.check_box :week %>
+                     Remove from week
+                <% end %>
+                    
+                <% elsif image.month == true %>
+                    <%= link_to content_tag(:div, "Part of monthly Gallery"), monthly_scrapbook_path(beg_range: @first_of_month, end_range: @last_of_month, bread_crumb: @bread_crumb) %>
+                <% end %>
+            </div>  
+            <%= render('shared/edit_delete_image_container', :image => image) %>    
+        </ul>
+        <%= image_tag(image.image_url(:scrap), class: "scrap_image resizable", :"data-id" => image.id, :"data-content" => image.content, :"data-src" => image.image_url, :"data-range" => "week", style: "width:#{@width}px; height:#{@height}px;") %>
+        <!-- Test<div class="test1" style="width:200px; height:100px; border:1px solid black;"></div> -->
+    </div>
+    
 <% end %>
 
 <%= render('shared/journal_script') %>
@@ -63,7 +71,10 @@
                 <% num = image.date_taken.strftime("%d").to_i/7 %>
                 <% beg_week = image.date_taken.beginning_of_month+num.weeks %>
                 <% end_week = beg_week+6.days %>
-                <li><%= link_to image_tag(image.image_url, width: "50px", height: "50px"), weekly_scrapbook_path(beg_range: beg_week, end_range: end_week, bread_crumb: @bread_crumb) %></li>
+            <div class="thumbnail_container">
+                <li class="thumb_drag" data-id="<%= image.id %>" data-src="<%= image.image_url(:scrap) %>" data-range="week" data-image="<%= image %>"><%= link_to image_tag(image.image_url, width: "50px", height: "50px"),
+                        weekly_scrapbook_path(beg_range: beg_week, end_range: end_week, bread_crumb: @bread_crumb) %></li>
+            </div>
             <% end %>
         <% end %>
     </ul>

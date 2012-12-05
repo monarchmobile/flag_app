@@ -9,14 +9,7 @@ jQuery ->
 	$(".edit_image input[type=checkbox]").click ->
   		$(this).parent("form").submit()
 
-  	
-  	$(".draggable").draggable()
-  	
-  	
-
   	new AvatarCropper()
-
-
 
 class AvatarCropper
 	constructor: ->

@@ -8,13 +8,13 @@
     <% end %>
     <!--  Week_pointer: add pointer class  -->
     <% if @bread_crumb.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
-        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range)  %>
+        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range, bread_crumb: @bread_crumb)  %>
     <!--  Future days : add future_date class  -->	
 	<% elsif Date.today < @end_of_dyn_range %>
-		<%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range) %>
+		<%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range, bread_crumb: @bread_crumb) %>
     <% else %>
     <!--  No extra classes --> 
-        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range) %>
+        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range, bread_crumb: @bread_crumb) %>
     <% end %>
 <% end %>
 </ul> 

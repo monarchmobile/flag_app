@@ -132,7 +132,7 @@ ul.nav_authentication {
 	background: #D53838;
 	font-size: 22px;
 	color: black;
-	top: -87px;
+	top:0px;
 	padding: 8px 0px;
 	
 	&:hover {
@@ -174,18 +174,19 @@ ul.nav_authentication {
 
 .prev {
 	left: 0px;
-	top: -40px;
+	top: 50px;
 }
 
 .next {
-	top:-40px;
-	margin-left:895px;
+	top:50px;
+	margin-left:900px;
 }
 
 
 .nav_down {	
-	margin-left: 450px;
-	top: -40px;
+	margin-left: 460px;
+top: 90px;
+
 	
 }
 
@@ -337,12 +338,20 @@ img {
 	text-align: center;
 }
 
-.gallery_msg a {
-	text-decoration: none;
+.gallery_msg {
+	color: white;
+width: auto;
+clear: both;
+margin-left: -20px;
+margin-top: 5px;
+	a {
+		text-decoration: none;
+		
+	}
 }
-
+ 
 .gallery_msg a:hover {
-	color:#3b5998;
+	
 	text-decoration: underline;
 }
 
@@ -361,106 +370,80 @@ img {
 }
 
 .photos_container {
-	width:500px;
-	min-height:400px;
-	height:auto;				
-	margin-top:50px;	
-	padding:10px;
-	float:left;
-	padding-bottom:100px;
-	position:absolute;
+	display:inline-block;
 	
-	li {	
-		list-style:none;
-	
-		.image_position {
-			// position:absolute;
-			float:left;
-			background:gray;
-		}
+width: 700px;
+height: 500px;
 
-		#image_1 {
-			// margin-left: 25px;
-			// margin-top: 0px;
-			// width: 300px;
-			// height: 180px;
-
-			img {
-				// width:300px;
-				// height:180px;
-			}
-		}
-
-		#image_2 {
-			// margin-left:25px;
-			// margin-top:250px;
-			// width:300px;
-			// height:180px;
-
-			img {
-				// width:300px;
-				// height:180px;
-			}
-		}
-
-		#image_3 {
-			// margin-left:350px;
-			// margin-top:0px;
-			// width:300px;
-			// height:430px;
-
-			img {
-				// width:300px;
-				// height:430px;
-			}
-		}
-
-		#image_4 {
-			// margin-left:675px;
-			// margin-top:0px;
-			// width:125px;
-			// height:100px;
-
-			img {
-				// width:125px;
-				// height:100px;
-			}
-
-			
-		}
-
-		#image_5 {
-			// margin-left:825px;
-			// margin-top:0px;
-			// width:125px;
-			// height:100px;
-
-			img {
-				// width:125px;
-				// height:100px;
-			}
-		}
-		
-		.image_container {
-						
-			h3{
-				font-size:16px;
-				color:gray;
-				width:150px;
-				text-align: center;
-				margin:auto;
-			}
-		
-			 p.image_content {
-				margin:auto;
-				padding:10px;
-			}				
-		}	// image_container
-	}	// li
+	// li
 }  // images_container
 	
 // bottom dates menu bar (daily, weekly, monthly) //
 // days //
+
+.image_container {
+	display:inline-block
+}
+
+.resizable {
+	padding:2px;
+	border:2px solid gray;
+} 
+
+ul.control_panel {
+width: auto;
+min-width: 50px;
+height: 50px;
+background: #3C3C3C;
+position: absolute;
+z-index: 100;
+padding-right:10px;
+display:none;
+margin-top:0px;
+
+	li {
+		
+		float: left;
+		margin-left: 5px;
+		text-align: center;
+		width: auto;
+		text-decoration: none;
+		list-style: none;
+
+		a {
+			color: white;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+
+
+.dragger{
+    width:20px; 
+    height:20px;
+
+    img {
+		
+	margin-left: -25px;
+    		
+    }
+    
+}
+
+.dimens {
+	color:#fff;
+}
+
+.drag_msg {
+	color:#fff;
+	display:none;
+}
+
 #time_navigation {
 	position:fixed;
 	bottom:36px;

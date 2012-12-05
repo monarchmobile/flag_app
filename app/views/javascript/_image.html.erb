@@ -1,45 +1,170 @@
 <script>
 $(document).ready(function() {
     
-    $(".thumbnail img").click(function(e){
+    // Image Pop Up
+    $(".thumbnail img").dblclick(function(e){
         $('.actions').hide()
         $("#background").css({"opacity" : "0.7"})
                         .fadeIn("slow");
 
-        $("#large").html("<img src='"+$(this).parent().attr("href")+"' alt='"+$(this).attr("alt")+"' /><br/>"+$(this).attr("title")+"")
+        $("#large").html("<img src='"+$(this).attr("data-src")+"' alt='"+$(this).attr("alt")+"' /><br/>"+$(this).attr("data-content")+"")
                    .center()
                    .fadeIn("slow");
 
         return false;
     });
-     $('.actions').hide()
-    $(".thumbnail").hover(
-        function() {
-           
-            image_id = $(this).attr("id")
+    $('.actions').hide()
+    
+
+    $("#background").dblclick(function(){
+        $("#background").fadeOut("slow");
+        $("#large").fadeOut("slow");
+    });
+
+    $("#large").dblclick(function(){
+        $("#background").fadeOut("slow");
+        $("#large").fadeOut("slow");
+    });
+
+    $(".thumb_drag").draggable({
+        containment: ".master_container",
+        revert: "valid"
+
+    })
+
+    $(".photos_container").droppable({
+        accept: ".thumb_drag",
+        drop: function(event, ui) {
+            var user_id = <%= current_user.id %>
+            var img_id = ui.draggable.attr("data-id")
+            var image = ui.draggable.attr("data-image")
+            // $( "<li></li>" ).text( ui.draggable.attr("data-range") ).appendTo( this );
+            // $( "<div style='margin-left:50px; position:absolute; z-index:500;'></div>" ).html(" <img src='"+ui.draggable.attr('data-src')+"' /> ").appendTo( this );
+            // $( "<div class="test1"></div>" ).html(" hi ").appendTo( this );
             
-            if (image_id == "image_1" || image_id =="image_2" || image_id =="image_3") {
-                $(this).children('.actions').addClass("larger_images").show()
-            } else if (image_id == "image_4" || image_id =="image_5") {
-                $(this).children('.actions').addClass("smaller_images").show()
-            }
-
-
-        }, function() {
-            $('.test3').html("")
-            $(this).children('.actions').hide();
+        
+            
+            var range = ui.draggable.attr("data-range")
+            var coordinates = [50, 400]
+            var data = {}
+            data[range] = true;
+            data[range+'_p'] = coordinates.join(",")
+            DATA = { image: data };
+            var URL = "users/"+user_id+"/images/"+img_id+"/update"
+            $.ajax({
+                url: URL,
+                type: "put",
+                data: DATA,
+                success: function() {
+                    var image = $( "<div class='image_container thumbnail' style='width: <%= @con_width %>; position:absolute; z-index:500;'><ul class='control_panel'><li class='dragger' data-range='day'></li><li class='edit_msg'><a src='users/"+user_id+"/images/"+img_id+"/edit'></a></li></ul><img src='"+ui.draggable.attr('data-src')+"' /> </div>").fadeIn(3000);
+                    $(".photos_container").append(image);
+                }
+            })
         }
-    )
+    })
 
-    $("#background").click(function(){
-        $("#background").fadeOut("slow");
-        $("#large").fadeOut("slow");
+
+
+
+
+    
+   // Drag
+    $(".dragger").toggle(function() {
+        var user_id = <%= current_user.id %>
+        var img_id = $(this).attr("data-id")
+        var this_image = $(this)
+        var img_position = this_image.position()
+        var left = img_position.left
+        var top = img_position.top
+        $(".drag_msg").show()
+        $(".edit_msg").hide()
+        $(".p_left").html(left);
+        $(".p_top").html(top);
+        this_image.parent().css("background", "#D53838")
+        this_image.parent().parent().draggable({
+            disabled: false,
+            containment: $(".master_container"),
+            stop: function() {
+                var URL = "users/"+user_id+"/images/"+img_id+"/drag"
+                $.ajax({
+                    url: URL,
+                    type: 'put',
+                    data: this_image.get_range()
+                })
+            } // end stop function
+        }) // end draggable
+    }, function() {
+        $(".drag_msg").hide()
+        $(".edit_msg").show()
+        $(this).parent().parent().draggable("option", "disabled", true)
+        $(this).parent().parent().css("opacity", "1")
+        $(this).parent().css("background", "#3c3c3c")
+    })
+
+    // grab the new position coordinate after drag and update db
+    jQuery.fn.get_range = function() {
+        var new_position = $(this).parent().parent().position()
+        var new_left = new_position.left
+        var new_top = new_position.top
+        var coordinates = [new_left, new_top]
+        var range = $(this).attr("data-range");
+        var data = {};
+        data[range+'_p'] = coordinates.join(",")
+
+        DATA = {image: data }
+        return DATA
+    }
+
+     jQuery.fn.get_new_dimensions = function() {
+        var endW = $(event.target).outerWidth();
+        var endH = $(event.target).outerHeight();
+        var WH = [endW, endH];
+        var range = $(this).attr("data-range");
+        var data = {};
+        
+        data[range+'_dim'] = WH.join(",");
+
+        DATA = { image: data };
+        return DATA;
+    }
+
+    
+
+    // RESIZE 
+    $(".resizable").click(function() {
+        // get original dimensions of image coming in
+        user_id = <%= current_user.id %>
+        img_id = $(this).attr("data-id") 
+        var this_image = $(this);
+        var image_width = this_image.outerWidth();  
+        var image_height = this_image.outerHeight();
+        
+        //Define image ratio
+        var ratio = image_height/image_width;
+
+        // allows user to resize while keeping original aspectRatio
+        this_image.resizable({
+            aspectRatio: 1/ratio,
+            ghost: true,
+            stop: function(event, ui) {
+              
+              var URL = "users/"+user_id+"/images/"+img_id+"/resize"
+              $.ajax({
+               url: URL,
+               type: 'put',
+               data: this_image.get_new_dimensions()
+              });
+           }
+        })
     });
 
-    $("#large").click(function(){
-        $("#background").fadeOut("slow");
-        $("#large").fadeOut("slow");
-    });
+   
 
+    $(".image_container").hover(function() {
+        $(this).children(":first").show()
+    }, function(){
+        $(this).children(":first").hide()
+    })
+    
 });
 </script>

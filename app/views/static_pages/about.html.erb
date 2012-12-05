@@ -1,0 +1,35 @@
+<div class="drop">
+    <div class="drag"></div>
+    <div class="drag"></div>
+    <div class="drag"></div>
+    <div class="drag"></div>
+    <div class="drag"></div>
+</div>
+<style>
+
+.drop { display:inline-block; width:300px; height:200px; border:1px solid silver; background-color:whitesmoke; padding:10px; }
+
+.drag { display:inline-block; width:30px; height:30px; border:1px solid silver; background-color:white; }
+</style>
+
+<script>
+
+$('.drop').droppable({
+    tolerance: 'fit'
+});
+
+$('.drag').draggable({
+    revert: 'invalid',
+    stop: function(){
+        $(this).draggable('option','revert','invalid');
+    }
+});
+
+$('.drag').droppable({
+    greedy: true,
+    tolerance: 'touch',
+    drop: function(event,ui){
+        ui.draggable.draggable('option','revert',true);
+    }
+});
+</script>

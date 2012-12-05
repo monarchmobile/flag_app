@@ -13,6 +13,18 @@ class ApplicationController < ActionController::Base
     :portrait if num   == 3
     :mini if num  == 4 || num == 5
   end
+
+  def category_name
+
+    "RubyOnRails"
+
+  end
+
+  helper_method :category_name
+
+  
+
+ 
    
 private 
 	def current_user

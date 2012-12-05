@@ -1,9 +1,11 @@
-<%= render('shared/time_calc', beg_range: @beg_range) %>
+<% bread_crumb_beg(@bread_crumb) %>
+<% week_calculations() %> 
+<% range_calculations() %>
 <%= render('javascript/image') %>
 <% @bread_crumb = @beg_range %>
 
 <%= link_to content_tag(:div, "Go To Year", class: "nav_up"), yearly_scrapbook_path(beg_range: @beg_range.to_date.beginning_of_year, end_range: @beg_range.to_date.end_of_year, bread_crumb: @bread_crumb) %>
-<%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @originating_week_beg, end_range: @originating_week_end) %>
+<%= link_to content_tag(:div, "Back", class: "nav_down direction"), weekly_scrapbook_path(beg_range: @bread_crumb_beg, end_range: bread_crumb_end(@bread_crumb_beg)) %>
 
 <% image_num = 0 %>
 <% @user_images.each do |image| %>
@@ -11,33 +13,39 @@
 <% beg_year = image.date_taken.beginning_of_year %>
 <% end_year = image.date_taken.end_of_year %>
 <% beg_month = image.date_taken.beginning_of_month.strftime("%Y-%m-%d") %>
+
+<% get_dimensions(image.id, "month") %> 
+<% get_positions(image.id, "month") %>
      
     <li>
-        <div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
-            <%= link_to image_tag(image.image_url(correct_image(image_num)), title: image.title, alt: image.title), image.image_url, title: image.title %>
-            
-            <div class="actions hide">   
-                <div class="gallery_msg">               
-                <% if image.year == false %>
-                    <% if (@user.images.where(date_taken: beg_year..end_year, year: true).count < 5) %>
-                        <%= form_for [@user, image], remote: true do |f| %>
-                          <%= f.check_box :year %>
-                          Add to your year
-                        <% end %> 
-                    <% else %>
-                        <%= link_to content_tag(:div, "Your year is full"), yearly_scrapbook_path(beg_range: beg_year, end_range: end_year, bread_crumb: @bread_crumb) %>
+        <div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;">
+            <ul class="control_panel">
+                <li class="dragger" data-id="<%= image.id %>" data-range="month"><%= image_tag "drag.png", width: "20px", height: "20px" %></li>
+                <li class="edit_msg"><%= link_to "Edit", [:edit, @user, image] %></li>
+                <li class="drag_msg">Drag your photo anywhere</li><br />
+                <div class="gallery_msg">             
+                    <% if image.year == false %>
+                        <% if (@user.images.where(date_taken: beg_year..end_year, year: true).count < 5) %>
+                            <%= form_for [@user, image], remote: true do |f| %>
+                              <%= f.check_box :year %>
+                              Add to your year
+                            <% end %> 
+                        <% else %>
+                            <%= link_to content_tag(:div, "Your year is full"), yearly_scrapbook_path(beg_range: beg_year, end_range: end_year, bread_crumb: @bread_crumb) %>
+                        <% end %>
+                        
+                    <% elsif image.year == true %>
+                        <%= link_to content_tag(:div, "Part of yearly Gallery"), yearly_scrapbook_path(beg_range: beg_year, end_range: end_year) %>
                     <% end %>
-                    
-                <% elsif image.year == true %>
-                    <%= link_to content_tag(:div, "Part of yearly Gallery"), yearly_scrapbook_path(beg_range: beg_year, end_range: end_year) %>
-                <% end %>
-                <%= form_for [@user, image], remote: true do |f| %>
-                    <%= f.check_box :month %>
-                    Remove from month
-                <% end %>
+                    <%= form_for [@user, image], remote: true do |f| %>
+                        <%= f.check_box :month %>
+                        Remove from month
+                    <% end %>
                 </div>  
-                <%= render('shared/edit_delete_image_container', :image => image) %>    
-            </div>
+                <%= render('shared/edit_delete_image_container', :image => image) %>
+                       
+            </ul>
+            <%= image_tag(image.image_url(:scrap), class: "scrap_image resizable", :"data-id" => image.id, :"data-content" => image.content, :"data-src" => image.image_url, :"data-range" => "month", style: "width:#{@width}px; height:#{@height}px;") %>
         </div>
     </li>
 <% end %>

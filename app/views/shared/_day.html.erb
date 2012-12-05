@@ -1,5 +1,9 @@
-<%= render('shared/time_calc', beg_range: @beg_range) %>
+
+<% week_calculations() %>
+<% range_calculations() %>
 <%= render('javascript/image') %>
+ 
+
 <% @bread_crumb = @beg_range %>
 <!-- Go To Week link button with a bread crumb -->
 <%= link_to content_tag(:div, "Go To Week", class: "nav_up"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
@@ -11,32 +15,40 @@
 	<% num = image.date_taken.strftime("%d").to_i/7 %>
 	<% @beg_week = image.date_taken.beginning_of_month+num.weeks %>
 	<% @end_week = @beg_week+6.days %>
+	
+	
+	<% get_dimensions(image.id, "day") %>
+	<% get_positions(image.id, "day") %>
 	<!-- end calculate-->
-	<li>
-		<div class="image_container image_position thumbnail" id="image_<%= image_num += 1 %>">
-			<%= link_to image_tag(image.image_url(:landscape), title: image.title, alt: image.title ), image.image_url, title: image.title %>
-			
-			<div class="actions">	
-				<div class="gallery_msg">				
-				<% if image.week == false %>
-					<% if (@user.images.where(date_taken: @beg_week..@end_week, week: true).count < 5) %>
-						<%= form_for [@user, image], remote: true do |f| %>
-						  <%= f.check_box :week %>
-						  Add to your week
-						<% end %>
-					<% else %>
-						<%= link_to content_tag(:div, "Your week is full"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
+	
+	<div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;">
+		<ul class="control_panel">
+			<li class="dragger" data-id="<%= image.id %>" data-range="day"><%= image_tag "drag.png", width: "20px", height: "20px" %></li>
+			<li class="edit_msg"><%= link_to "Edit", [:edit, @user, image] %></li>
+			<li class="drag_msg">Drag your photo anywhere</li><br />
+			<div class="gallery_msg">				
+			<% if image.week == false %>
+				<% if (@user.images.where(date_taken: @beg_week..@end_week, week: true).count < 5) %>
+					<%= form_for [@user, image], remote: true do |f| %>
+					  <%= f.check_box :week %>
+					  Add to your week
 					<% end %>
-					
-				<% elsif image.week == true %>
-					<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
+				<% else %>
+					<%= link_to content_tag(:div, "Your week is full"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
 				<% end %>
+				
+			<% elsif image.week == true %>
+				<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
+			<% end %>
 
-				</div>	
-				<%= render('shared/edit_delete_image_container', :image => image) %>	
 			</div>
-		</div>
-	</li>
+		</ul>
+	   	
+	   	<%= image_tag(image.image_url(:scrap), class: "scrap_image resizable", :"data-id" => image.id, :"data-content" => image.content, :"data-src" => image.image_url, :"data-range" => "day", style: "width:#{@width}px; height:#{@height}px;") %>
+	   	
+	</div>
+	
+	
 	 <p id="large"></p>
 <% end %>
 
@@ -58,7 +70,9 @@
 	<ul class="thumbnail_images">
 		<% if @month_images %>
 			<% @month_images.each do |image| %>
-			<li><%= link_to image_tag(image.image_url(:mini), width: "50px", height: "50px"), daily_scrapbook_path(beg_range: image.date_taken.strftime("%Y-%m-%d"), end_range: image.date_taken.strftime("%Y-%m-%d")) %></li>
+			<div class="thumbnail_container">
+				<li class="thumb_drag" data-id="<%= image.id %>" data-src="<%= image.image_url(:scrap) %>" data-range="day" ><%= link_to image_tag(image.image_url(:scrap), width: "50px", height: "50px"), daily_scrapbook_path(beg_range: image.date_taken.strftime("%Y-%m-%d"), end_range: image.date_taken.strftime("%Y-%m-%d")) %></li>
+			</div>
 			<% end %>
 		<% end %>
 	</ul>

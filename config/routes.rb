@@ -11,8 +11,11 @@ FlagApp::Application.routes.draw do
   match 'weekly_scrapbook', to: "static_pages#weekly"
   match 'monthly_scrapbook', to: "static_pages#monthly"
   match 'yearly_scrapbook', to: "static_pages#yearly"
+  match "users/:id/images/:id/resize", to: "images#resize"
+  match "users/:id/images/:id/drag", to: "images#drag"
+  match "users/:id/images/:id/update", to: "images#update"
   
-  
+   
   resources :users do 
   	resources :images
     resources :journals
