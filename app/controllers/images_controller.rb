@@ -30,7 +30,7 @@ class ImagesController < ApplicationController
     if params[:image][:date_taken]
       @date_taken = params[:image][:date_taken]
     else 
-      @date_taken = "nothing"
+      @date_taken = []
     end
 
     respond_to do |format|

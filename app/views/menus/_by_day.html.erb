@@ -2,7 +2,7 @@
     <div class="centered">
     <% @beg_week = @beg_range.to_date.beginning_of_week %>
     <% @end_week = @beg_range.to_date.beginning_of_week.end_of_week %>
-
+ 
     
     <% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %> 
         <% if @bread_crumb == day %>

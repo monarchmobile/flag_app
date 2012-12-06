@@ -150,7 +150,8 @@ ul.nav_authentication {
 	float: left;
 	z-index: 100;
 	text-align: center;
-	width: 25px;
+	min-width: 25px;
+	width:auto;
 	height: 21px;
 	background: inherit;
 	font-size: 22px;
@@ -184,10 +185,10 @@ ul.nav_authentication {
 
 
 .nav_down {	
-	margin-left: 460px;
-top: 90px;
-
-	
+	margin-left: 462px;
+top: 41px;
+color: white;
+padding: 7px 12px;
 }
 
 // Forms //
@@ -195,7 +196,7 @@ top: 90px;
 .cont_btn_style {
 	position:absolute;
 	float:left;
-	top: 90px;
+	top: 40px;
 	width:35px;
 	cursor:pointer;
 	z-index:100;
@@ -410,7 +411,7 @@ text-align: left;
 	}
 
 	form {
-		margin-left:-30px;
+		margin-left:-3px;
 
 		input[type='checkbox']:hover {
 			background:red;
@@ -439,11 +440,9 @@ text-align: left;
 
 .photos_container {
 	display:inline-block;
-	display: inline-block;
 	width: 785px;
 	height: 500px;
 	top: 70px;
-	border: 1px solid black;
 	margin-top: 35px;
 
 	// li
@@ -472,8 +471,9 @@ z-index: 100;
 padding-top: 10px;
 padding-bottom: 10px;
 padding-right: 15px;
+padding-left:10px;
 margin-top: 0px;
-display: none;
+
 border: 2px solid #5F5A5A;
 	
 	.cp {
@@ -492,7 +492,7 @@ border: 2px solid #5F5A5A;
 	li {
 		
 		float: left;
-		margin-left: 5px;
+		margin-left: 10px;
 		text-align: center;
 		width: auto;
 		text-decoration: none;
@@ -507,6 +507,7 @@ border: 2px solid #5F5A5A;
 
 		a:hover {
 			text-decoration: underline;
+			background:inherit;
 		}
 	}
 }
@@ -537,7 +538,7 @@ border: 2px solid #5F5A5A;
 .delete_time_nav {
 	position:fixed;
 	margin-left: 1000px;
-bottom: 87px;
+	bottom: 87px;
 }
 
 .time_nav_btn {
@@ -553,14 +554,15 @@ bottom: 87px;
 	color:white;
 	text-align:center;
 	padding-top:10px;
+	cursor:pointer;
 }
 
-#time_navigation {
+.time_navigation {
 	position:fixed;
 	bottom:-4px;
 	width:1000px;
 	height:77px;
-	z-index:500;
+	z-index:400;
 	display:none;
 }
 

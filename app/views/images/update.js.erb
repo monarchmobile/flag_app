@@ -6,7 +6,7 @@ if (<%= @boolean %> == 0) {
 	current_scrapbook = window.location.pathname;
     current = current_scrapbook.split("_")[0].slice(1, -2)
     
- 	$('#edit_image_<%=@image.id%>').parent(".gallery_msg").html('Image added to your  @range, @range+"ly_scrapbook" %>' );
+ 	$('#edit_image_<%=@image.id%>').parent(".gallery_msg").html('<%= link_to "Image added to your "+@range, @range+"ly_scrapbook" %>' );
  	
 
 	

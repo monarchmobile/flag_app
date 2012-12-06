@@ -1,27 +1,23 @@
 <script>
 $(document).ready(function() {
-    
     // Image Pop Up
     $(".thumbnail img").dblclick(function(e){
         $('.actions').hide()
         $("#background").css({"opacity" : "0.7"})
                         .fadeIn("slow");
-
         $("#large").html("<img src='"+$(this).attr("data-src")+"' alt='"+$(this).attr("alt")+"' /><br/>"+$(this).attr("data-content")+"")
                    .center()
                    .fadeIn("slow");
-
         return false;
     });
+
     $('.actions').hide()
     
-
     $("#background").dblclick(function(){
         $("#background").fadeOut("slow");
         $("#large").fadeOut("slow");
         $("#photo_form").fadeOut("slow")
         $("#edit_container").fadeOut("slow")
-        
     });
 
     $("#large").dblclick(function(){
@@ -32,7 +28,6 @@ $(document).ready(function() {
     $(".thumb_drag").draggable({
         containment: ".master_container",
         revert: "valid"
-
     })
 
     $(".photos_container").droppable({
@@ -41,19 +36,15 @@ $(document).ready(function() {
             var user_id = <%= current_user.id %>
             var img_id = ui.draggable.attr("data-id")
             var image = ui.draggable.attr("data-image")
-            // $( "<li></li>" ).text( ui.draggable.attr("data-range") ).appendTo( this );
-            // $( "<div style='margin-left:50px; position:absolute; z-index:500;'></div>" ).html(" <img src='"+ui.draggable.attr('data-src')+"' /> ").appendTo( this );
-            // $( "<div class="test1"></div>" ).html(" hi ").appendTo( this );
-            
-        
-            
             var range = ui.draggable.attr("data-range")
             var coordinates = [50, 400]
             var data = {}
+            var URL = "users/"+user_id+"/images/"+img_id+"/update"
+
             data[range] = true;
             data[range+'_p'] = coordinates.join(",")
             DATA = { image: data };
-            var URL = "users/"+user_id+"/images/"+img_id+"/update"
+            
             $.ajax({
                 url: URL,
                 type: "put",
@@ -65,7 +56,6 @@ $(document).ready(function() {
             })
         }
     })
-
 
     $(".photo_btn").toggle(function() {
         $("#background").css({"opacity" : "0.7"})
@@ -103,7 +93,6 @@ $(document).ready(function() {
     })
 
     $(".edit_msg").click(function(){
-
         user_id = <%= current_user.id %>
         bread_crumb = $(this).attr("data-crumb")
         img_id = $(this).attr("data-id")
@@ -112,18 +101,8 @@ $(document).ready(function() {
             url: URL,
             type: 'get'
         })
-
     })
 
-        // var range = $(this).attr("data-range");
-        // var data = {};
-        // data[range+'_p'] = coordinates.join(",")
-
-        // DATA = {image: data }
-        // return DATA
-
-
-    
    // Drag
     $(".dragger").toggle(function() {
         var user_id = <%= current_user.id %>
@@ -132,6 +111,7 @@ $(document).ready(function() {
         var img_position = this_image.position()
         var left = img_position.left
         var top = img_position.top
+
         $(".drag_msg").show()
         $(".edit_msg").hide()
         $(".p_left").html(left);
@@ -154,7 +134,7 @@ $(document).ready(function() {
         $(".edit_msg").show()
         $(this).parent().parent().draggable("option", "disabled", true)
         $(this).parent().parent().css("opacity", "1")
-        $(this).parent().css("background", "#3c3c3c")
+        $(this).parent().css("background", "#9E9E9E")
     })
 
     // grab the new position coordinate after drag and update db
@@ -165,8 +145,8 @@ $(document).ready(function() {
         var coordinates = [new_left, new_top]
         var range = $(this).attr("data-range");
         var data = {};
-        data[range+'_p'] = coordinates.join(",")
 
+        data[range+'_p'] = coordinates.join(",")
         DATA = {image: data }
         return DATA
     }
@@ -179,12 +159,9 @@ $(document).ready(function() {
         var data = {};
         
         data[range+'_dim'] = WH.join(",");
-
         DATA = { image: data };
         return DATA;
     }
-
-    
 
     // RESIZE 
     $(".resizable").click(function() {
@@ -194,9 +171,7 @@ $(document).ready(function() {
         var this_image = $(this);
         var image_width = this_image.outerWidth();  
         var image_height = this_image.outerHeight();
-        
-        //Define image ratio
-        var ratio = image_height/image_width;
+        var ratio = image_height/image_width;  //Define image ratio
 
         // allows user to resize while keeping original aspectRatio
         this_image.resizable({
@@ -214,8 +189,6 @@ $(document).ready(function() {
         })
     });
 
-   
-
     $(".image_container").hover(function() {
         $(this).children(":first").show()
     }, function(){
@@ -231,7 +204,14 @@ $(document).ready(function() {
         URL = "/users/"+user_id+"/images/"+img_id+"/edit"+parameters
         window.location.href = URL
     })
-    
-    
+
+    $(".time_nav_btn").click(function() {
+        $(this).next(".time_navigation").show()
+    })
+
+    $(".delete_time_nav").click(function() {
+        $(".time_nav_btn").show()
+    $(this).parent(".time_navigation").fadeOut(700)
+    }) 
 });
 </script>
