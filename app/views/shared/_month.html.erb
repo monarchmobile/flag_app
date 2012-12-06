@@ -24,7 +24,7 @@
                 <li class="edit_msg"><%= link_to "Edit", [:edit, @user, image] %></li>
                 <li class="drag_msg">Drag your photo anywhere</li><br />
                 <div class="gallery_msg">             
-                    <% if image.year == false %>
+                    <% if image.year == false || image.year == nil %>
                         <% if (@user.images.where(date_taken: beg_year..end_year, year: true).count < 5) %>
                             <%= form_for [@user, image], remote: true do |f| %>
                               <%= f.check_box :year %>

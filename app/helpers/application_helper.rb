@@ -116,4 +116,23 @@ module ApplicationHelper
 			@range = "year"
 		end
 	end
+
+	def crop_bread_crumb
+		 parameters = request.url.split("?")[1].split("&") 
+		 bread_crumb_beg = parameters[0].split("=")[1][3..-4]
+		 range = parameters[1].split("=")[1]
+		 if range == "day"
+		 	path ="daily_scrapbook"
+		 	values = "?beg_range="+bread_crumb_beg+"&end_range="+bread_crumb_beg
+		 elsif range =="week"
+		 	path = "weekly_scrapbook"
+		 	values = "?beg_range="+bread_crumb_beg+"&end_range="+bread_crumb_beg
+		 elsif range =="month"
+		 	path = "monthly_scrapbook"
+		 elsif range == "year"
+		 	path = "yearly_scrapbook"
+		 end
+
+		 root_url+path+values 
+	end
 end

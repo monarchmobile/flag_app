@@ -1,80 +1,20 @@
-<script>
-$(document).ready(function() {
-	
-	$(".draggable").load(function() {
-		var this_image = $(this)
-		var img_position = this_image.position()
-		var left = img_position.left
-		var top = img_position.top
-		$(".p_left").html(left);
-		$(".p_top").html(top);
 
-		this_image.draggable({
-			stop: function() {
-				var new_position = this_image.position()
-				var new_left = new_position.left
-				var new_top = new_position.top
-				var new_coordinates = [new_left, new_top]
-				$(".new_left").html(new_left);
-				$(".new_top").html(new_top);
-				$.ajax({
-					url: 'drag',
-					type: 'put',
-					data: {image: {
-						'day_p' : new_coordinates.join(',') }}
-				})
-			}
-		})
 
-	})
-    // $('.resizable').resizenow(); 
-    $(".resizable").load(function() {
-    	// get original dimensions of image coming in
-    	
-    	var this_image = $(this);
-    	var image_width = this_image.outerWidth();  
-        var image_height = this_image.outerHeight();
-        
-        //Define image ratio
-        var ratio = image_height/image_width;
-        $(".ratio").html(ratio);
-        // allows user to resize while keeping original aspectRatio
-        this_image.resizable({
-        	aspectRatio: 1/ratio,
-        	ghost: true,
-        	stop: function(event, ui) {
-		      var endW = $(event.target).outerWidth();
-		      var endH = $(event.target).outerHeight();
-		      var WHdimensions = [endW, endH]
-		      $.ajax({
-		       url: 'resize',
-		       type: 'put',
-		       data: { image: {
-		       			'resized': WHdimensions.join(",") }}
-		      });
-		   }
-        })
-    });
-});
-</script>
-
-<style>
-	
+<style>	
 	.coords_container {
 		width:400px;
 		height:200px;
 		margin-top:100px;
 	}
-
-	
-
 </style>
-<h1>Crop Image</h1>
+<h1>Range: <%= @range %></h1>
+
 
 <%= image_tag @image.image_url(), class: "cropbox" %><br />
 
 
 <%= image_tag @image.image.url(:scrap), :id => "scrap" %>
+
 
 
 <div class="coords_container">
@@ -86,5 +26,7 @@ $(document).ready(function() {
     <%= f.submit "Crop" %>
   </div>
 <% end %>
+
+
 </div>
 

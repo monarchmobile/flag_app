@@ -14,6 +14,8 @@ FlagApp::Application.routes.draw do
   match "users/:id/images/:id/resize", to: "images#resize"
   match "users/:id/images/:id/drag", to: "images#drag"
   match "users/:id/images/:id/update", to: "images#update"
+  match "users/:id/images/:id/edit", to: "images#edit"
+
   
    
   resources :users do 

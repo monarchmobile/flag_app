@@ -26,6 +26,18 @@ jQuery ->
       "margin-top": -@height() / 2 + "px"
     this
 
+  $(".time_nav_btn").click ->
+    $(this).hide()
+    $("#time_navigation").show()
+  $(".delete_time_nav").click ->
+    $(this).parent().prev(".time_nav_btn").show()
+    $(this).parent("#time_navigation").fadeOut(700)
+
+
+
+
+
+
   
 
 

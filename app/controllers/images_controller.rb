@@ -43,9 +43,12 @@ class ImagesController < ApplicationController
   def edit
   	@user = current_user
     @image = @user.images.find(params[:id])
-    
+    @date_taken = @image.date_taken
+    # @image_id = params[:id]
     respond_to do |format|
-      format.html { render ("images/crop") }
+
+      format.html {  render "images/crop" }
+      format.js 
     end
     #@user = User.find(params[:image][:user_id])
     #@image = @user.images.build(params[:image])
@@ -72,11 +75,12 @@ class ImagesController < ApplicationController
 
     @user = current_user
     @image = @user.images.find(params[:id])
+    @changed = params[:changed]
     respond_to do |format|
       if @image.update_attributes(params[:image])
         if params[:image][:crop_x].present?
           format.html { render ("images/crop") }
-        elsif params[:image][:week] || params[:image][:month] || params[:image][:year]
+        elsif params[:image][:week].present? || params[:image][:month].present? || params[:image][:year].present?
           if params[:image][:week] 
             @range = "week"
             @boolean = params[:image][:week]

@@ -29,13 +29,12 @@
     width:690px;
     min-height: 300px;
     height:auto;
-    
     float:left;
 }
 
 .img_content_container {
     text-align: center;
-    width:200px;
+    width:190px;
     background:gray;
     margin:auto;
     color:#fff;
@@ -80,7 +79,8 @@ list-style: none;
 
 
 <script>
-$(document).ready(function() {   
+$(document).ready(function() { 
+    setTimeout(1000)  
     $(".flag_feed ul li:nth-child(3n+1)").addClass('first');
     $(".flag_feed ul li:nth-child(3n+2)").addClass('second');
     $(".flag_feed ul li:nth-child(3n+3)").addClass('third')

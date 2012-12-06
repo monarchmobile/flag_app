@@ -8,20 +8,26 @@
         <li><%= msg %></li>
       <% end %>
       </ul>
-    </div>
+    </div> 
   <% end %>  
   <%= f.hidden_field :user_id, value: @user.id %>
-  <%= f.hidden_field :date_taken, value: @date_taken %>
   <h2>Image Upload</h2>
 
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+  
+<% if @image.new_record? %>
+  <%= f.hidden_field :date_taken, value: @date_taken %>
   <div class="field">
-  	
     <%= f.file_field :image %>
   </div>
+<% else %>
+  <%= f.hidden_field :image, value: @image.image_url %>
+  <%= f.hidden_field :date_taken, value: @image.date_taken %>
+<% end %>
+
   
   <div class="field">
     <%= f.label :content %><br />

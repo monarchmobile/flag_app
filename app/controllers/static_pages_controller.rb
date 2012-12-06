@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
   
   def daily
     @user = @current_user
-    @image = @user.images.new
+    
     if current_user
       if params[:beg_range]
         @beg_range = params[:beg_range]

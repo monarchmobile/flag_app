@@ -20,6 +20,7 @@ $(document).ready(function() {
         $("#background").fadeOut("slow");
         $("#large").fadeOut("slow");
         $("#photo_form").fadeOut("slow")
+        $("#edit_container").fadeOut("slow")
         
     });
 
@@ -80,6 +81,7 @@ $(document).ready(function() {
         return false;
     }, function() {
         $(this).prev("#photo_form").hide()
+        $("#background").fadeOut("slow")
     })
 
     $(".journal_btn").toggle(function() {
@@ -89,8 +91,6 @@ $(document).ready(function() {
         data = {}
         data['entry_date'] = date
         data[range] = true
-        
-        
         URL = "users/"+user_id+"/journals/new"
         $.ajax({
             url: URL,
@@ -100,6 +100,19 @@ $(document).ready(function() {
         return false;
     }, function() {
         $(this).prev("#journal_form").hide()
+    })
+
+    $(".edit_msg").click(function(){
+
+        user_id = <%= current_user.id %>
+        bread_crumb = $(this).attr("data-crumb")
+        img_id = $(this).attr("data-id")
+        URL = "/users/"+user_id+"/images/"+img_id+"/edit?bread_crumb="+bread_crumb
+        $.ajax({
+            url: URL,
+            type: 'get'
+        })
+
     })
 
         // var range = $(this).attr("data-range");
@@ -126,7 +139,7 @@ $(document).ready(function() {
         this_image.parent().css("background", "#D53838")
         this_image.parent().parent().draggable({
             disabled: false,
-            containment: $(".master_container"),
+            containment: $(".photos_container"),
             stop: function() {
                 var URL = "users/"+user_id+"/images/"+img_id+"/drag"
                 $.ajax({
@@ -208,6 +221,17 @@ $(document).ready(function() {
     }, function(){
         $(this).children(":first").hide()
     })
+
+    $(".crop_msg").click(function() {
+        bread_crumb = $(this).attr("data-crumb")
+        user_id = <%= current_user.id %>
+        img_id = $(this).attr("data-id")
+        range = $(this).attr("data-range")
+        parameters = "?bread_crumb="+bread_crumb+"&range="+range
+        URL = "/users/"+user_id+"/images/"+img_id+"/edit"+parameters
+        window.location.href = URL
+    })
+    
     
 });
 </script>

@@ -1,13 +1,12 @@
 <!-- click on journal_btn and journal form shows in journal container -->
  
 <div id="photo_form"></div>
-<%= content_tag :div, "Add a photo", class: "photo_btn", :"data-date" => @beg_range %>
+	<%= image_tag "upload_image.png", class: "photo_btn cont_btn_style", width: "35px", height: "35px", :"data-date" => @beg_range %>
 
 <div id="journal_form"></div>
-<% unless @journal.any? %> 	
-<%= content_tag :div, "Add an entry", class: "journal_btn", :"data-date" => @beg_range, :"data-range" => get_range() %><br /> 
-<% end %>
-<br /><br />
+	<% unless @journal.any? %> 	
+		<%= image_tag "journal_entry.png", class: "journal_btn cont_btn_style", width: "35px", height: "35px", :"data-date" => @beg_range, :"data-range" => get_range() %>
+	<% end %>
 
 <!-- journal_container -->
 <div id="journal_container">

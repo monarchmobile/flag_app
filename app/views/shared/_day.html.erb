@@ -20,14 +20,15 @@
 	<% get_dimensions(image.id, "day") %>
 	<% get_positions(image.id, "day") %>
 	<!-- end calculate-->
-	
+	<div class="hide" id="edit_container"></div>
 	<div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;">
 		<ul class="control_panel">
 			<li class="dragger" data-id="<%= image.id %>" data-range="day"><%= image_tag "drag.png", width: "20px", height: "20px" %></li>
-			<li class="edit_msg"><%= link_to "Edit", [:edit, @user, image] %></li>
+			<li class="crop_msg cp" data-crumb=" <%= @bread_crumb %> " data-id="<%= image.id %>" data-range="day">Crop</li>
+			<%= link_to "Edit", [:edit, @user, image], class: "edit_msg cp", remote: true %>
 			<li class="drag_msg">Drag your photo anywhere</li><br />
-			<div class="gallery_msg">				
-			<% if image.week == false %>
+			<li class="gallery_msg">				
+			<% if image.week == false || image.week == nil %>
 				<% if (@user.images.where(date_taken: @beg_week..@end_week, week: true).count < 5) %>
 					<%= form_for [@user, image], remote: true do |f| %>
 					  <%= f.check_box :week %>
@@ -40,42 +41,34 @@
 			<% elsif image.week == true %>
 				<%= link_to content_tag(:div, "Part of weekly Gallery"), weekly_scrapbook_path(beg_range: @beg_range_week, end_range: @end_range_week, bread_crumb: @bread_crumb) %>
 			<% end %>
-
-			</div>
+			</li>
 		</ul>
-	   	
-	   	<%= image_tag(image.image_url(:scrap), class: "scrap_image resizable", :"data-id" => image.id, :"data-content" => image.content, :"data-src" => image.image_url, :"data-range" => "day", style: "width:#{@width}px; height:#{@height}px;") %>
-	   	
+	   	<%= image_tag(image.image_url(:scrap), class: "scrap_image resizable", :"data-id" => image.id, :"data-content" => image.content, :"data-src" => image.image_url, :"data-range" => "day", style: "width:#{@width}px; height:#{@height}px;") %>   	
 	</div>
-	
-	
 	 <p id="large"></p>
 <% end %>
-
-
-
-
 
 <%= render('shared/journal_script') %>
 
 <!-- Previous Next Buttons -->
 <div class="nav_arrows">
 	<div class="prev prev-next direction">
-	    <%= link_to content_tag(:div,"prev", class: "prev_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date-1, end_range: @beg_range.to_date-1), remote: true %>
+	    <%= link_to content_tag(:div,"<", class: "prev_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date-1, end_range: @beg_range.to_date-1), remote: true %>
 	</div>
 	<div class="next prev-next direction">
-	    <%= link_to content_tag(:div,"next", class: "next_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date+1, end_range: @beg_range.to_date+1), remote: true %>
+	    <%= link_to content_tag(:div,">", class: "next_btn"), daily_scrapbook_path(beg_range: @beg_range.to_date+1, end_range: @beg_range.to_date+1), remote: true %>
 	</div>
 </div>
 
-
+<div class="time_nav_btn"> - - - </div>
 <!-- Bottom navigation menu -->
 <div id="time_navigation">
+	<%= image_tag "delete.png", class: "delete_time_nav", size: "15x15" %>
 	<ul class="thumbnail_images">
 		<% if @month_images %>
 			<% @month_images.each do |image| %>
 			<div class="thumbnail_container">
-				<li class="thumb_drag" data-id="<%= image.id %>" data-src="<%= image.image_url(:scrap) %>" data-range="day" ><%= link_to image_tag(image.image_url(:scrap), width: "50px", height: "50px"), daily_scrapbook_path(beg_range: image.date_taken.strftime("%Y-%m-%d"), end_range: image.date_taken.strftime("%Y-%m-%d")) %></li>
+				<li class="thumb_drag" data-id="<%= image.id %>" data-src="<%= image.image_url(:scrap) %>" data-range="day" ><%= link_to image_tag(image.image_url(:scrap), width: "25px", height: "25px"), daily_scrapbook_path(beg_range: image.date_taken.strftime("%Y-%m-%d"), end_range: image.date_taken.strftime("%Y-%m-%d")) %></li>
 			</div>
 			<% end %>
 		<% end %>
