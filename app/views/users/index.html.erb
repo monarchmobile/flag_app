@@ -1,6 +1,17 @@
 <h1>Users</h1>
 
-<% @users.each do |f| %>
-	<%= f.email %>
-<% end %>
+<div class="user_index">
+	<ul>
+	<% @users.each do |f| %>
+		<li class="user_snapshot">
+			<%= link_to image_tag("blank.jpg", size: "100x100"), user_path(f.id) %>
+			<%= link_to "#{f.first_name} #{f.last_name}", user_path(f.id) %><br />
+			<%= mail_to f.email %><br />
+			<%= f.country %><br />
+			<%= f.school %><br />
+		</li>
+	<% end %>
+	<ul>
+</div>
 
+ 

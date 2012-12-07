@@ -2,4 +2,109 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.message_board {
+    width:900px;
+    margin:10px auto;
+    background:#B6B4B4;
+    min-height: 30px;
+    height:auto;
+    padding:5px;
+    -moz-box-shadow:    1px 1px 5px #ccc;
+    -webkit-box-shadow: 1px 1px 5px #ccc;
+    box-shadow:         1px 1px 5px #ccc;
+}
+
+.profile_container {
+    width:300px;
+    min-height:300px;
+    height:auto;
+    float:left;
+
+    ul li {
+    list-style: none;
+
+	}
+}
+
+
+
+.flag_feed {
+
+    width:690px;
+    min-height: 300px;
+    height:auto;
+    float:left;
+}
+
+.img_content_container {
+    text-align: center;
+    width:190px;
+    background:gray;
+    margin:auto;
+    color:#fff;
+    padding:5px;
+}
+
+.img_feed_container {
+position:absolute;
+float:left;
+width: 188px;
+padding: 15px 20px 13px 9px;
+font-size: 11px;
+background-color: white;
+box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+-webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+margin:5px;
+list-style: none;
+
+}
+
+.first {
+    margin-left:5px;
+}
+
+.second {
+    margin-left: 250px;
+
+}
+
+.third {
+   margin-left:500px;
+}
+
+.image_content {
+    color:#D4DFF1;
+}
+
+.user_index {
+
+	ul li.user_snapshot {
+		position:absolute;
+		width: 150px;
+		height: auto;
+		padding: 15px;
+		font-size: 11px;
+		background-color: white;
+		box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+		-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+		-webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+		margin:5px;
+		list-style: none;
+
+		img {
+			padding:1px;
+			border:1px solid gray;
+			-moz-box-shadow:    0px 0px 5px #ccc;
+			-webkit-box-shadow: 0px 0px 5px #ccc;
+			box-shadow:         0px 0px 5px #ccc;
+
+			&:hover {
+				text-decoration: none;
+				background: inherit;
+				border:1px solid #3b5998;
+			}
+		}
+	}
+}
 

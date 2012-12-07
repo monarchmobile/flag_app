@@ -135,4 +135,12 @@ module ApplicationHelper
 
 		 root_url+path+values 
 	end
+
+	def link_to_profile_if_logged_in_else_community
+		if current_user 
+           link_to content_tag(:li, "Profile"), user_path(current_user.id) 
+        else 
+           link_to content_tag(:li, "Community"), users_path 
+        end 
+	end
 end

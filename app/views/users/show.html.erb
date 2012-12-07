@@ -1,17 +1,47 @@
-<h1><%= @user.email %></h1>
-
-
-<ul class="nav pull-right">
 <% if current_user %>
-  
-  <li class="dropdown">
-    <a class="dropdown-toggle" href="#" data-toggle="dropdown">Add a photo<strong class="caret"></strong></a>
-    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-      	<%= render 'images/form' %>
-	</div>
-  </li>	  	  
+<div class="message_board"></div>
+
+<div class="profile_container">
+    <ul>
+        <%= content_tag :li, (image_tag "rails.png", size: "180x180") %>
+        <li>
+            <%= content_tag :li, "Name: #{current_user.first_name} #{current_user.last_name}"%>
+            <%= content_tag :li, "From : #{current_user.country}" %>
+            <%= content_tag :li, "Attending: #{current_user.school}"  %>
+            <%= mail_to "#{current_user.email}" %>
+            <%= content_tag :li, "Email: #{current_user.cell} " %>
+
+
+        </li>
+        <li><%= link_to "edit profile", edit_user_path %></li>
+        <li><%= link_to "All Flag Students", users_path %></li>
+
+
+    </ul>    
+</div>
+<div class="flag_feed">
+    <% @random_images = Image.all %>
+    <% n = 0 %>
+    <ul>
+    <% @random_images.each do |image| %>
+        <li class="img_feed_container" data-counter = "<%= n+=1 %>" >
+            <%= image_tag image.image_url(:profile), width: "200px" %>
+            <div class="img_content_container hide">
+                <%= content_tag :div, image.title %>
+
+                <%= content_tag :div, image.content, class: "image_content" %>
+                <%= link_to content_tag(:div, "Image taken by #{image.user.last_name} on #{image.date_taken.strftime("%B %d, %Y")}"), user_path(image.user.id) %>
+            </div>
+        </li>
+    <% end %>
+    </ul>   
+</div>
+
 <% end %>
-</ul>
+
+
+
+ 
+
 	        
-<%= render 'users/user_images' %>
 

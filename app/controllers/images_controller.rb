@@ -71,7 +71,7 @@ class ImagesController < ApplicationController
   end
 
   # UPDATE
-  def update
+  def update 
 
     @user = current_user
     @image = @user.images.find(params[:id])
