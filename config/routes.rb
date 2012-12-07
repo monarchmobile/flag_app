@@ -16,12 +16,11 @@ FlagApp::Application.routes.draw do
   match "users/:id/images/:id/update", to: "images#update"
   match "users/:id/images/:id/edit", to: "images#edit"
 
-  
-   
   resources :users do 
   	resources :images
     resources :journals
   end 
+  
   resources :sessions
   
   

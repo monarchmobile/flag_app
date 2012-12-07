@@ -9,8 +9,8 @@ module ApplicationHelper
 	    # get width and height dimensions 
 
 	    if dim_params
-	        @con_width = dim_params.split(",")[0].to_i + 8  
-	        @con_height = dim_params.split(",")[1].to_i + 30 
+	        @con_width = dim_params.split(",")[0].to_i  
+	        @con_height = dim_params.split(",")[1].to_i 
 	        @width = dim_params.split(",")[0].to_i  
 	        @height = dim_params.split(",")[1].to_i   
 	    else

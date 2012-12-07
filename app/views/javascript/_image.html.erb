@@ -104,16 +104,16 @@ $(document).ready(function() {
     })
 
    // Drag
-    $(".dragger").toggle(function() {
+    $(".drag_msg").toggle(function() {
         var user_id = <%= current_user.id %>
         var img_id = $(this).attr("data-id")
         var this_image = $(this)
         var img_position = this_image.position()
         var left = img_position.left
         var top = img_position.top
-
-        $(".drag_msg").show()
-        $(".edit_msg").hide()
+        $(".cp").hide()
+        $(this).show()
+        $(this).parent().children(".message").html("Image is now draggable").show()
         $(".p_left").html(left);
         $(".p_top").html(top);
         this_image.parent().css("background", "#D53838")
@@ -130,8 +130,8 @@ $(document).ready(function() {
             } // end stop function
         }) // end draggable
     }, function() {
-        $(".drag_msg").hide()
-        $(".edit_msg").show()
+        $(".cp").show()
+        $(this).parent().children(".message").html("").hide()
         $(this).parent().parent().draggable("option", "disabled", true)
         $(this).parent().parent().css("opacity", "1")
         $(this).parent().css("background", "#9E9E9E")
@@ -152,8 +152,8 @@ $(document).ready(function() {
     }
 
      jQuery.fn.get_new_dimensions = function() {
-        var endW = $(event.target).outerWidth();
-        var endH = $(event.target).outerHeight();
+        var endW = $(event.target).innerWidth();
+        var endH = $(event.target).innerHeight();
         var WH = [endW, endH];
         var range = $(this).attr("data-range");
         var data = {};
@@ -164,15 +164,17 @@ $(document).ready(function() {
     }
 
     // RESIZE 
-    $(".resizable").click(function() {
+    $(".resize_msg").toggle(function() {
         // get original dimensions of image coming in
         user_id = <%= current_user.id %>
         img_id = $(this).attr("data-id") 
-        var this_image = $(this);
-        var image_width = this_image.outerWidth();  
-        var image_height = this_image.outerHeight();
+        var this_image = $(this).parent().next(".resizable");
+        var image_width = this_image.innerWidth();  
+        var image_height = this_image.innerHeight();
         var ratio = image_height/image_width;  //Define image ratio
-
+        $(".cp").hide()
+        $(this).show()
+        $(this).parent().children(".message").html("Image is now resizable").show()
         // allows user to resize while keeping original aspectRatio
         this_image.resizable({
             aspectRatio: 1/ratio,
@@ -187,6 +189,10 @@ $(document).ready(function() {
               });
            }
         })
+    }, function() {
+        $(".cp").show()
+        $(this).parent().children(".message").html("").hide()        
+        $(this).parent().css("background", "#9E9E9E")
     });
 
     $(".image_container").hover(function() {
@@ -204,14 +210,15 @@ $(document).ready(function() {
         URL = "/users/"+user_id+"/images/"+img_id+"/edit"+parameters
         window.location.href = URL
     })
-
+    
+    $(".time_navigation").show()
     $(".time_nav_btn").click(function() {
-        $(this).next(".time_navigation").show()
+        $(".time_navigation").show()
     })
 
     $(".delete_time_nav").click(function() {
         $(".time_nav_btn").show()
-    $(this).parent(".time_navigation").fadeOut(700)
+        $(".time_navigation").fadeOut(700)
     }) 
 });
 </script>
