@@ -8,6 +8,8 @@ FlagApp::Application.routes.draw do
   match 'profile', to: "users#show"
   match 'about', to: "static_pages#about"
   match 'daily_scrapbook', to: "static_pages#daily"
+  # match 'users/:id/daily_scrapbook', as:"scrapbook", to: "static_pages#daily"
+
   match 'weekly_scrapbook', to: "static_pages#weekly"
   match 'monthly_scrapbook', to: "static_pages#monthly"
   match 'yearly_scrapbook', to: "static_pages#yearly"

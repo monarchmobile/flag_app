@@ -143,4 +143,13 @@ module ApplicationHelper
            link_to content_tag(:li, "Community"), users_path 
         end 
 	end
+
+	def editable_if_current_user(user, field)
+		if current_user?(user) 
+			best_in_place user, field.to_sym
+		else
+
+			"#{user.send(field)}"
+		end
+	end
 end

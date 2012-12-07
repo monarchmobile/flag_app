@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	respond_to :html, :json
+
 	def index 
 		@users = User.all 
 	end
@@ -9,11 +11,9 @@ class UsersController < ApplicationController
 	
 	def show
 		@user = User.find(params[:id])
-
 		respond_to do |format|
 			format.html
 		end
-		
 	end
 
 	def edit
@@ -21,12 +21,8 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		@user = User.find(params[:id])
-		respond_to do |format|
-			if @user.update_attributes(params[:user])
-				format.html { redirect_to user_path(@user) }
-			end
-		end
+		@user = User.find(params[:id])	
+		respond_with @user
 	end
 	
 	def create 

@@ -80,7 +80,7 @@ list-style: none;
 .user_index {
 
 	ul li.user_snapshot {
-		position:absolute;
+		float:left;
 		width: 150px;
 		height: auto;
 		padding: 15px;
@@ -104,6 +104,25 @@ list-style: none;
 				background: inherit;
 				border:1px solid #3b5998;
 			}
+		}
+	}
+}
+
+.profile_container ul li 
+	a {
+
+		margin: 0px;
+		img {
+		padding:1px;
+		border:1px solid gray;
+		-moz-box-shadow:    0px 0px 5px #ccc;
+		-webkit-box-shadow: 0px 0px 5px #ccc;
+		box-shadow:         0px 0px 5px #ccc;
+
+		&:hover {
+			text-decoration: none;
+			background: inherit;
+			border:1px solid #3b5998;
 		}
 	}
 }
