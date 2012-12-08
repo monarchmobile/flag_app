@@ -8,13 +8,12 @@ class StaticPagesController < ApplicationController
 	
   end
 
-  def scrapbook
-  	@user = @current_user
-  	
-  end
+  
   
   def daily
-    @user = @current_user
+    
+      @user = current_user
+  
     
     if current_user
       if params[:beg_range]

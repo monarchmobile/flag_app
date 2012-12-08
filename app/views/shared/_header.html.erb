@@ -6,7 +6,7 @@
           	<ul class="nav_bar">
               <%= link_to content_tag(:li, "Home"), root_url %>
               <%= link_to_profile_if_logged_in_else_community() %>
-              <%= link_to content_tag(:li, "Scrapbook"), daily_scrapbook_path %>
+              <%= link_to content_tag(:li, "Scrapbook"), [@user, :scrapbook] %>
               <%= link_to content_tag(:li, "About"), about_path %>
             </ul>
             <!-- The drop down menu --> 

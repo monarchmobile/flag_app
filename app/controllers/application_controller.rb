@@ -14,18 +14,6 @@ class ApplicationController < ActionController::Base
     :mini if num  == 4 || num == 5
   end
 
-  def category_name
-
-    "RubyOnRails"
-
-  end
-
-  helper_method :category_name
-
-  
-
- 
-   
 private 
 	def current_user
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]

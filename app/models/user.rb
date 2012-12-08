@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   
   has_many :images
   has_many :journals
+  has_many :scrapbooks
 
 
   def has_not_reached_daily_image_limit?(d)
