@@ -1,5 +1,8 @@
 module ApplicationHelper 
 
+	def correct_root	
+		correct_root = "http://localhost:3000"
+	end
 	# gets width height left and top for images in scrapbook
 	def get_dimensions(id, range)
 	    @user = current_user

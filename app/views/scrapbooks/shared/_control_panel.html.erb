@@ -1,4 +1,4 @@
-<li class="drag_msg cp" data-id="<%= image.id %>" data-range= "<%= page %>">Pos</li>
+<li class="drag_msg cp" data-id="<%= image.id %>" data-range= "<%= page %>" data-root= "<%= root_path %>">Pos</li>
 <li class="resize_msg cp" data-id="<%= image.id %>" data-range="<%= page %>">Res</li>
 <li class="crop_msg cp" data-crumb=" <%= @bread_crumb %> " data-id="<%= image.id %>" data-range="<%= page %>">Crop</li>
 <%= link_to "Edit", [:edit, @user, image], class: "edit_msg cp", remote: true %>

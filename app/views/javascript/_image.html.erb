@@ -120,6 +120,7 @@ $(document).ready(function() {
         var img_position = this_image.position()
         var left = img_position.left
         var top = img_position.top
+        var root = $(this).attr("data-root")
         
         $(".cp").hide()
         $(this).show()
@@ -131,7 +132,7 @@ $(document).ready(function() {
             disabled: false,
             containment: $(".photos_container"),
             stop: function() {
-                var URL = "http://localhost:3000/users/"+user_id+"/images/"+img_id+"/drag"
+                var URL = root+"users/"+user_id+"/images/"+img_id+"/drag"
                 $.ajax({
                     url: URL,
                     type: 'put',
@@ -191,7 +192,7 @@ $(document).ready(function() {
         var image_width = this_image.innerWidth();  
         var image_height = this_image.innerHeight();
         var ratio = image_height/image_width;  //Define image ratio
-        this_button.parent().css("background", "#D53838")
+        this_button.parent().
         $(".cp").hide()
         $(this).show()
         $(this).parent().children(".message").html("Image is now resizable").show()
