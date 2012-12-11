@@ -5,7 +5,10 @@ FlagApp::Application.routes.draw do
   match 'logout', to: "sessions#destroy"
   match 'profile', to: "users#show"
   match 'about', to: "static_pages#about"
-  match 'daily_scrapbook', to: "static_pages#daily"
+  match 'users/:id/scrapbook/day', as:'day', to: "scrapbooks#day"
+  match 'users/:id/scrapbook/week', as:'week', to: "scrapbooks#week"
+  match 'users/:id/scrapbook/month', as:'month', to: "scrapbooks#month"
+  match 'users/:id/scrapbook/year', as:'year', to: "scrapbooks#year"
   match 'weekly_scrapbook', to: "static_pages#weekly"
   match 'monthly_scrapbook', to: "static_pages#monthly"
   match 'yearly_scrapbook', to: "static_pages#yearly"
@@ -19,7 +22,7 @@ FlagApp::Application.routes.draw do
     resources :journals
     resources :scrapbooks
   end 
-  
+   
   resources :sessions
   
   

@@ -1,0 +1,13 @@
+<!-- Determines the next time period. ie. if on day page, then will create: "Go to Week" link in menu -->
+
+<%= link_to content_tag(:div, "Go To #{go_to_up_link(@user).split("/")[4]}", class: "nav_up"), go_to_up_link(@user)+up_link_params, remote: true %>
+<%= link_to content_tag(:div, "Back To #{go_to_down_link(@user).split("/")[4]}", class: "nav_down direction"), go_to_down_link(@user)+down_link_params, remote: true %>
+
+<div class="nav_arrows">
+	<div class="prev prev-next direction">
+	    <%= link_to content_tag(:div,"<", class: "prev_btn"), go_to_date_link(@user)+prev_link_params, remote: true %>
+	</div>
+	<div class="next prev-next direction">
+	    <%= link_to content_tag(:div,">", class: "next_btn"), go_to_date_link(@user)+next_link_params, remote: true %>
+	</div>
+</div>

@@ -1,22 +1,15 @@
 <div class="journal_container">
-	
-	
-	<% if @page == "weekly_scrapbook" %>
+	<% if page == "week" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%d')}-#{@end_range.strftime('%d')}, #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-		<% @page_sym = @page.split("_")[0][0..-3].to_sym %>
-	<% elsif @page == "monthly_scrapbook" %>
+	<% elsif page == "month" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-		<% @page_sym = @page.split("_")[0][0..-3].to_sym %>
-	<% elsif @page == "yearly_scrapbook" %>
+	<% elsif page == "year" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-		<% @page_sym = @page.split("_")[0][0..-3].to_sym %>
-	<% elsif @page == "daily_scrapbook" %>
+	<% elsif page == "day" %>
 		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%d')}, #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
-		<% @page_sym = "day".to_sym %>
 	<% end %>
 	
-
-	<% @entry = @user.journals.where(entry_date: @beg_range, @page_sym => true).select([:content, :id, :entry_date]).first %>
+	<% @entry = @user.journals.where(entry_date: @beg_range, page.to_sym => true).select([:content, :id, :entry_date]).first %>
 	<div class="journal_content">
 		<%= best_in_place [@user, @entry], :content, :type => :textarea  if @entry %>
 	</div>

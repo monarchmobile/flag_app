@@ -1,0 +1,18 @@
+<% @images = @user.images.find_all_by_year(true) %> 
+<% for image in @images do %>
+	<li>
+        <div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;">
+            <ul class="control_panel">
+                <%= render("scrapbooks/shared/control_panel", image: image )  %>
+                <li class="gallery_msg">             
+                    
+                    <%= form_for [@user, image], html: {id: "remove_image_#{image.id}" }, remote: true do |f| %>
+						<%= f.check_box :year %>
+						Remove from year
+					<% end %>
+                </li>                         
+            </ul>
+            <%= render("scrapbooks/shared/the_image", image: image ) %>
+        </div>
+    </li>
+<% end %>

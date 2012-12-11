@@ -1,0 +1,28 @@
+<%= @beg_range %> to <%= @end_range %><br />
+bread_crumb:<%= @bread_crumb = @beg_range%>
+<%= render('javascript/image') %>
+
+<!-- Go To Week link button with a bread crumb -->
+
+<% image_num = 0 %>
+<%= render('scrapbooks/shared/'+page+'_images') %>
+
+<%= render('scrapbooks/shared/up_down_prev_next_links') %>
+
+<%= render('shared/journal_script') %>
+<div class="time_navigation">
+	<%= image_tag "delete.png", class: "delete_time_nav", size: "15x15" %>
+	<ul class="thumbnail_images">
+		<% if @month_images %>
+			<% @month_images.each do |image| %>
+			<div class="thumbnail_container">
+				<li class="thumb_drag" data-id="<%= image.id %>" data-src="<%= image.image_url(:scrap) %>" data-range="day" ><%= link_to image_tag(image.image_url(:scrap), width: "25px", height: "25px")  %></li>
+			</div>
+			<% end %>
+		<% end %>
+	</ul>
+	<%= render('menus/by_day') %>
+	<%= render('menus/by_week', :beg_month => @first_of_month ) %>
+	<%= render('menus/by_month', :beg_range => @first_of_month ) %>
+</div>
+

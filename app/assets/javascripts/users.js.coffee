@@ -9,7 +9,6 @@ jQuery ->
 	setTimeout (->
 	  image = []
 	  i = 1
-
 	  while i <= 11
 	    x = i + 3
 	    image[i] = $(".img_feed_container[data-counter = '" + i + "']").height()

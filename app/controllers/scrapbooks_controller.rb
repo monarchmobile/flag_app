@@ -1,82 +1,108 @@
 class ScrapbooksController < ApplicationController
   # Index 
   def index
-    @user = current_user
-    @scrapbooks = @user.scrapbooks.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @scrapbooks }
-    end
-  end
-
-  # Show
-  def show
     @user = User.find(params[:id])
-    @scrapbook = @user.scrapbooks.find([:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @scrapbook }
-    end
+    @scrapbooks = @user.scrapbooks.all
   end
-
-  # New
-  def new
-    @user = current_user
-    @scrapbook = @user.scrapbooks.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @scrapbook }
-    end
-  end
-
-  # Edit
-  def edit
-    @user = current_user
-    @scrapbook = Scrapbook.find(params[:id])
-  end
-
-  # Create
-  def create
-    @user = current_user
-    @scrapbook = Scrapbook.new(params[:scrapbook])
-
-    respond_to do |format|
-      if @scrapbook.save
-        format.html { redirect_to @scrapbook, notice: 'Scrapbook was successfully created.' }
-        format.json { render json: @scrapbook, status: :created, location: @scrapbook }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @scrapbook.errors, status: :unprocessable_entity }
+ 
+  def day  
+    @user = User.find(params[:id])
+  
+    if params[:beg_range]
+      @beg_range = params[:beg_range]
+      @end_range = params[:end_range]
+    
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
+      @month_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, day: true)
+      if params[:bread_crumb]
+        @bread_crumb = params[:bread_crumb]
       end
+    else
+      @beg_range = Date.today
+      @end_range = Date.today
+      @user_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
+      @month_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, day: true)
+    end
+
+    respond_to do |format| 
+      format.html { render 'day'}
+      format.js
     end
   end
 
-  # Update
-  def update
-    @scrapbook = Scrapbook.find(params[:id])
-
-    respond_to do |format|
-      if @scrapbook.update_attributes(params[:scrapbook])
-        format.html { redirect_to @scrapbook, notice: 'Scrapbook was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @scrapbook.errors, status: :unprocessable_entity }
+  def week
+    @user = User.find(params[:id])
+    if params[:beg_range]
+      @beg_range = params[:beg_range]
+      @end_range = params[:end_range]
+      @user_images = @user.images.for_this_range(@beg_range, @end_range, "week")
+      @month_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, week: true)
+      if params[:bread_crumb]
+        @bread_crumb = params[:bread_crumb]
       end
+    else
+      @beg_range = Date.today.beginning_of_week
+      @end_range = Date.today.end_of_week
+      @user_images = @user.images.for_this_range(@beg_range, @end_range, "week")
+      @month_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, week: true)
+    end
+
+    respond_to do |format| 
+      format.html { render 'day'}
+      format.js
     end
   end
 
-  # Delete
-  def destroy
-    @scrapbook = Scrapbook.find(params[:id])
-    @scrapbook.destroy
-
-    respond_to do |format|
-      format.html { redirect_to scrapbooks_url }
-      format.json { head :no_content }
+  def month
+    @user = User.find(params[:id])
+    if params[:beg_range]
+      @beg_range = params[:beg_range]
+      @end_range = params[:end_range] 
+      @user_images = @user.images.for_this_range(@beg_range, @end_range, "month")
+      @month_images = @user.images.where(date_taken: @beg_range..@end_range, week: true).order("date_taken ASC")
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, month: true)
+      if params[:bread_crumb]
+        @bread_crumb = params[:bread_crumb]
+      end
+    else
+      @beg_range = Date.today.beginning_of_week
+      @end_range = Date.today.end_of_week
+      @user_images = @user.images.for_this_range(@beg_range, @end_range, "month")
+      @month_images = @user.images.where(date_taken: @beg_range..@end_range, week: true).order("date_taken ASC")
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, month: true)
+     
+    end
+    respond_to do |format| 
+      format.html { render 'day'}
+      format.js
     end
   end
+
+  def year
+    @user = User.find(params[:id])
+    if params[:beg_range]
+      @beg_range = params[:beg_range]
+      @end_range = params[:end_range] 
+      @user_images = @user.images.for_this_range(@beg_range, @end_range, "year")
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, year: true )
+      if params[:bread_crumb]
+        @bread_crumb = params[:bread_crumb]
+      end
+    else
+      @beg_range = Date.today.beginning_of_week
+      @end_range = Date.today.end_of_week
+      @user_images = @user.images.for_this_range(@beg_range, @end_range, "year")
+      @journal = @user.journals.where(entry_date: @beg_range..@end_range, year: true)
+     
+    end
+    respond_to do |format| 
+      format.html { render 'day'}
+      format.js
+    end
+  end
+
 end

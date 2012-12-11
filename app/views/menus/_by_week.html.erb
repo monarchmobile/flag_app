@@ -1,4 +1,5 @@
 <ul class="wom_container">
+<% @first_of_month = @beg_range.beginning_of_month %>
 <% (0..4).each do |num| %>  
     <% @beginning_of_dyn_range = @first_of_month.to_date+num.weeks %>
     <% if num == 4 %>
@@ -8,13 +9,13 @@
     <% end %>
     <!--  Week_pointer: add pointer class  -->
     <% if @bread_crumb.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
-        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range, bread_crumb: @bread_crumb)  %>
+        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), go_to_week_link(@user)+weeks_of_month_params(num), remote: true  %>
     <!--  Future days : add future_date class  -->	
 	<% elsif Date.today < @end_of_dyn_range %>
-		<%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range, bread_crumb: @bread_crumb) %>
+		<%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), go_to_week_link(@user)+weeks_of_month_params(num), remote: true %>
     <% else %>
     <!--  No extra classes --> 
-        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), weekly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range, bread_crumb: @bread_crumb) %>
+        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), go_to_week_link(@user)+weeks_of_month_params(num), remote: true %>
     <% end %>
 <% end %>
 </ul> 

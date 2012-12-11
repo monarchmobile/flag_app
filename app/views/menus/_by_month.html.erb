@@ -1,18 +1,16 @@
 <ul class="moy_container">
 	<div class="centered">
 	<% @join_date = @user.created_at %>
-	<% (0..11).each do |num| %>
+	<% (0..12).each do |num| %>
 		<% @beg_month = (@join_date.to_date >> num).beginning_of_month %>
 		<% @end_month = (@join_date.to_date >> num).end_of_month %>
 		<% if @beg_range.to_date.between?(@beg_month, @end_month) %>
-			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), 
-			monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month, bread_crumb: @bread_crumb) %>
+			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), go_to_month_link(@user)+months_of_year_params(num), remote: true %>
 		<!--  Future days : add future_date class  --> 
         <% elsif Date.today < @beg_month %>
-            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months future_date"), monthly_scrapbook_path(beg_range: @beginning_of_dyn_range, end_range: @end_of_dyn_range, bread_crumb: @bread_crumb), remote: true %>
+            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months future_date"), go_to_month_link(@user)+months_of_year_params(num), remote: true %>
 		<% else %>
-			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), 
-			monthly_scrapbook_path(beg_range: @beg_month, end_range: @end_month, bread_crumb: @bread_crumb) %>
+			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), go_to_month_link(@user)+months_of_year_params(num), remote: true %>
 		<% end %>
 	<% end %>
 	</div>

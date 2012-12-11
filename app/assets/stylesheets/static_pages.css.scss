@@ -185,7 +185,7 @@ ul.nav_authentication {
 
 
 .nav_down {	
-	margin-left: 462px;
+	margin-left: 422px;
 top: 41px;
 color: white;
 padding: 7px 12px;
@@ -326,7 +326,7 @@ h2.journal_date_range {
 #journal_form {
 	width: 352px;
 	height: 400px;
-	margin-top: 125px;
+	margin-top: 0px;
 	padding: 10px;
 	float: left;
 	margin-left:750px;
@@ -452,12 +452,19 @@ text-align: left;
 // days //
 
 .image_container {
-	display:inline-block
+	display:inline-block;
+// 	padding: 2px;
+// border: 2px solid gray;
+}
+
+.image_frame {
+	padding: 2px;
+border: 2px solid gray;
 }
 
 .resizable {
-	// padding:2px;
-	// border:2px solid gray;
+	padding:2px;
+	border:2px solid gray;
 } 
 
 ul.control_panel {
@@ -551,7 +558,7 @@ border: 2px solid #5F5A5A;
 	width:1000px;
 	height:77px;
 	z-index:400;
-	display:none;
+	
 }
 
 ul.thumbnail_images {

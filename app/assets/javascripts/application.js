@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
-//= require jquery.ui.all
+//= require jquery.ui.droppable
+//= require jquery.ui.draggable
+//= require jquery.ui.resizable
+//= require jquery.ui.position
 //= require jquery.Jcrop
 //= require jquery.purr
 //= require best_in_place

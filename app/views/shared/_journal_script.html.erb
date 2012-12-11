@@ -5,7 +5,7 @@
 
 <div id="journal_form"></div>
 	<% unless @journal.any? %> 	
-		<%= image_tag "journal_entry.png", class: "journal_btn cont_btn_style", width: "35px", height: "35px", :"data-date" => @beg_range, :"data-range" => get_range() %>
+		<%= image_tag "journal_entry.png", class: "journal_btn cont_btn_style", width: "35px", height: "35px", :"data-date" => @beg_range, :"data-range" => get_range(@user) %>
 	<% end %>
 
 <!-- journal_container -->

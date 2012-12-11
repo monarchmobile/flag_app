@@ -7,7 +7,8 @@
 		margin-top:100px;
 	}
 </style>
-<h1>Range: <%= @range %></h1>
+<%   %>
+<h1><%= link_to "Back to Scrapbook", go_to_day_link(current_user)+date_range_params(@image.date_taken) %> </h1>
 
 
 <%= image_tag @image.image_url(), class: "cropbox" %><br />
