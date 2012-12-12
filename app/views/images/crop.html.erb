@@ -22,6 +22,7 @@
 <%= form_for [@user, @image] do |f| %>
   <% %w[x y w h].each do |attribute| %>
     <%= f.text_field "crop_#{attribute}" %>
+    <%= f.hidden_field :day_dim, value: "" %>
   <% end %>
   <div class="actions">
     <%= f.submit "Crop" %>

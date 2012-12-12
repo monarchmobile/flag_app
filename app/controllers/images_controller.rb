@@ -62,7 +62,9 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
-        format.html { render ("images/crop") }
+        # format.html { render ("images/crop") }
+        parameters = "beg_range=#{@image.date_taken}&end_range=#{@image.date_taken}"
+        format.html { redirect_to root_path+"users/"+@user.id.to_s+"/scrapbook/day?"+parameters }
       else
         format.html { render action: "new" }
         format.json { render json: @image.errors, status: :unprocessable_entity }
@@ -78,9 +80,10 @@ class ImagesController < ApplicationController
    
     respond_to do |format|
       if @image.update_attributes(params[:image])
-        if params[:image][:crop_x].present?
-          format.html { render ("images/crop") }
-        elsif params[:image][:week] || params[:image][:month] || params[:image][:year]
+        # if params[:image][:crop_x].present?
+        #   format.html { render ("images/crop") }
+        
+        #   if params[:image][:week] || params[:image][:month] || params[:image][:year]
           if params[:image][:week] 
             @range = "week"
             @boolean = params[:image][:week]
@@ -93,8 +96,13 @@ class ImagesController < ApplicationController
             @range = "year"
             @boolean = params[:image][:year]
             format.js 
+          else
+            @range = "day"
+            @boolean = "2"
+            parameters = "beg_range=#{@image.date_taken}&end_range=#{@image.date_taken}"
+            format.html { redirect_to root_path+"users/"+@user.id.to_s+"/scrapbook/day?"+parameters }
+            format.js
           end
-        end
       else
         format.js { render alert("error")}
       end

@@ -1,13 +1,27 @@
  
 if (<%= @boolean %> == 0) {
-	$('#remove_image_<%=@image.id%>').parent(".gallery_msg")
-										.html("Image Deleted")
-										.parent().parent().fadeOut(3000);
+	this_obj = $('#remove_image_<%=@image.id%>')
+	this_obj.parent().parent(".control_panel").children(".message")
+										.html("Deleting image from this page")
+										.parent().parent(".image_container").fadeOut(6000);
+	this_obj.parent().children().hide()
 } else if (<%= @boolean %> == 1) {
 	// /weekly_scrapbook
-	current_scrapbook = window.location.pathname;
-    current = current_scrapbook.split("/")[4]
- 	$('#add_image_<%=@image.id%>').parent(".gallery_msg")
- 									.html(current+'Image added to your <%= @range %>' )
- 									.fadeOut(6000);
-} 
+	
+    $(".cp").show()
+    this_obj = $('#add_image_<%=@image.id%>')
+ 	this_obj.parent().parent(".control_panel").children(".message")
+ 									.html('Image added to your gallery' )
+ 									.fadeOut(10000);
+ 	this_obj.parent().children().hide()
+
+} else  {
+	
+	$("#edit_container").hide()
+	$("#background").fadeOut("slow")
+	$(".notice").html("Changes Saved!").show().animate({
+		"margin-left": "-100px",
+		"margin-top": "-100px",
+		"opacity": "0"
+	}, 6000)
+}

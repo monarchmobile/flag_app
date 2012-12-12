@@ -1,7 +1,7 @@
 <% @user_images.each do |image| %> 
 <!-- determine day -->
     <!-- calculates which which image belongs to -->
-    <%= page_variables(image) %>
+    <% page_variables(image) %>
     
     <div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;">
         <ul class="control_panel">
