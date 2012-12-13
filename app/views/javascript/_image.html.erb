@@ -1,17 +1,15 @@
 <script>
 $(document).ready(function() { 
-    // Image Pop Up
-    var background_fadeIn = $("#background").css({"opacity" : "0.7"})
-                        
-    var background_fadeOut = $("#background")
+    
     // *** add and delete images from time frames ***
     $(".edit_image input[type=checkbox]").click(function() {
         $(this).parent("form").submit()
     })
 
-    // $(".nav_bar_viz input[type=checkbox]").click(function() {
-    //     $(this).parent("form").submit()
-    // })
+    // *** Nav Menu ***
+    // hides checkbox
+    $("#user_nav_menu").hide()
+    // when btns are clicked, boolean changes
     $(".nav_btns").click(function() {
         checkbox = $(this).parent().prev("form").children("input[type=checkbox]")
         if ( checkbox.attr("checked") ) {
@@ -22,7 +20,7 @@ $(document).ready(function() {
             checkbox.parent("form").submit()
         }
     })
-
+    // hides or show nav menu depending on if boolean is true or false
     if ( $(".nav_btns").parent().prev("form").children("input[type=checkbox]").attr("checked") ) {
         $(".time_navigation").show()
         $(".delete_nav_btn").show()
@@ -32,19 +30,13 @@ $(document).ready(function() {
         $(".gray_nav_btn").show()
         $(".delete_nav_btn").hide()
     }
-
-    $(".delete_time_btn").click(function() {
-        checkbox = $(this).prev("form").children("input[type=checkbox]")
-        if ( checkbox.attr("checked") ) {
-            checkbox.attr("checked", false)
-            $(this).prev("form").submit()
-        } else {
-            checkbox.attr("checked", true)
-            $(this).prev("form").submit()
-        }
-    })
+    // *** END Nav Menu END ***
         
     // *** lightbox ***
+   // background fadeIn styling and fadeOut styling
+    var background_fadeIn = $("#background").css({"opacity" : "0.7"})               
+    var background_fadeOut = $("#background")
+
     $(".thumbnail img").dblclick(function(e){
         $('.actions').hide()
         background_fadeIn.fadeIn("slow")
@@ -137,7 +129,7 @@ $(document).ready(function() {
         data = {}
         data['entry_date'] = date
         data[page] = true
-        URL = "http://localhost:3000/users/"+user_id+"/journals/new"
+        URL = root+"users/"+user_id+"/journals/new"
         // action
         $.ajax({
             url: URL,
@@ -151,6 +143,7 @@ $(document).ready(function() {
     // *** END New Entries END ***
 
     // *** Control Panel *** 
+    // control_panel: edit
     $(".edit_msg").click(function(){
         $(this).get_vars()
         // new vars
@@ -163,6 +156,7 @@ $(document).ready(function() {
         })
     })
 
+    // common vars for control_panel actions
     jQuery.fn.get_vars = function() {
         this_obj = $(this)
         user_id = <%= current_user.id %>
@@ -196,7 +190,7 @@ $(document).ready(function() {
     }) // end draggable
     
 
-    // RESIZE 
+    // control_panel: RESIZE 
     $(".resize_msg").toggle(function() {
         $(this).get_vars() // common vars
         // new vars
@@ -262,12 +256,14 @@ $(document).ready(function() {
         return DATA;
     }
 
+    // control_panel on hover
     $(".image_container").hover(function() {
         $(this).children(":first").show()
     }, function(){
         $(this).children(":first").hide()
     })
 
+    // control_panel: crop
     $(".crop_msg").click(function() {
         $(this).get_vars()
         // new vars

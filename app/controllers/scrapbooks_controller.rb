@@ -4,20 +4,29 @@ class ScrapbooksController < ApplicationController
     @user = User.find(params[:id])
     @scrapbooks = @user.scrapbooks.all
   end
+
+  # set environment vars for every scrapbook page (day, week, month, year)
+  def set_scrapbook_vars #**** should be moved to application_controller
+    @user = User.find(params[:id])
+    @time = request.path.split("/")[4]  
+  end
+
+  # set params if params[:beg_range] exists
+  def params_vars #**** should be moved to application_controller
+    @beg_range = params[:beg_range]
+    @end_range = params[:end_range]
+    @bread_crumb = params[:bread_crumb]
+  end
  
   def day  
-    @user = User.find(params[:id])
-  
+    set_scrapbook_vars
     if params[:beg_range]
-      @beg_range = params[:beg_range]
-      @end_range = params[:end_range]
+      params_vars
     
       @user_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
       @month_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, day: true)
-      if params[:bread_crumb]
-        @bread_crumb = params[:bread_crumb]
-      end
+      
     else
       @beg_range = Date.today
       @end_range = Date.today
@@ -33,16 +42,14 @@ class ScrapbooksController < ApplicationController
   end
 
   def week
-    @user = User.find(params[:id])
+    set_scrapbook_vars
     if params[:beg_range]
-      @beg_range = params[:beg_range]
-      @end_range = params[:end_range]
+      params_vars
+
       @user_images = @user.images.for_this_range(@beg_range, @end_range, "week")
       @month_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, week: true)
-      if params[:bread_crumb]
-        @bread_crumb = params[:bread_crumb]
-      end
+      
     else
       @beg_range = Date.today.beginning_of_week
       @end_range = Date.today.end_of_week
@@ -58,16 +65,14 @@ class ScrapbooksController < ApplicationController
   end
 
   def month
-    @user = User.find(params[:id])
+    set_scrapbook_vars
     if params[:beg_range]
-      @beg_range = params[:beg_range]
-      @end_range = params[:end_range] 
+      params_vars
+
       @user_images = @user.images.for_this_range(@beg_range, @end_range, "month")
       @month_images = @user.images.where(date_taken: @beg_range..@end_range, week: true).order("date_taken ASC")
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, month: true)
-      if params[:bread_crumb]
-        @bread_crumb = params[:bread_crumb]
-      end
+      
     else
       @beg_range = Date.today.beginning_of_week
       @end_range = Date.today.end_of_week
@@ -83,15 +88,14 @@ class ScrapbooksController < ApplicationController
   end
 
   def year
-    @user = User.find(params[:id])
+  
+    set_scrapbook_vars
     if params[:beg_range]
-      @beg_range = params[:beg_range]
-      @end_range = params[:end_range] 
+      params_vars
+
       @user_images = @user.images.for_this_range(@beg_range, @end_range, "year")
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, year: true )
-      if params[:bread_crumb]
-        @bread_crumb = params[:bread_crumb]
-      end
+      
     else
       @beg_range = Date.today.beginning_of_week
       @end_range = Date.today.end_of_week
@@ -104,5 +108,7 @@ class ScrapbooksController < ApplicationController
       format.js
     end
   end
+
+  
 
 end

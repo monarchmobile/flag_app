@@ -3,6 +3,23 @@ module ApplicationHelper
 	def correct_root	
 		correct_root = "http://localhost:3000"
 	end
+
+	def current_params
+		"beg_range=#{@beg_range}%26end_range=#{@end_range}"
+	end
+
+	def current_path(user)
+		"#{root_path}users/#{@user.id}/scrapbook/#{page}?"
+	end
+
+	def return_to_previous_page(user)
+		if @bread_crumb
+			@bread_crumb
+		else
+			go_to_down_link(user)
+		end
+	end
+
 	# gets width height left and top for images in scrapbook
 	def get_dimensions(id, range)
 	    @user = current_user
@@ -91,6 +108,25 @@ module ApplicationHelper
 		go_to_date_link(user).split("/")[4]
 	end
 	# dynamic uplink
+
+	def go_to_text
+		page
+		frames
+		num = 0
+		while num < frames.length 
+			if page == frames[num] 
+				if num == 3
+				 	# @destination = frames[num-3] gets you back to day
+				 	@go_to = ""
+				else
+					@go_to = "Go to "+frames[num+1] 
+				end
+			end 
+			num += 1 
+		end
+		@go_to
+	end
+
 	def go_to_up_link(user)
 		page
 		frames
@@ -98,7 +134,8 @@ module ApplicationHelper
 		while num < frames.length 
 			if page == frames[num] 
 				if num == 3
-				 	@destination = frames[num-3]
+				 	# @destination = frames[num-3] gets you back to day
+				 	@destination = ""
 				else
 					@destination = frames[num+1] 
 				end
@@ -189,29 +226,10 @@ module ApplicationHelper
 			@new_beg_range = @bread_crumb
 		 	@new_end_range = @bread_crumb
 		end
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{@bread_crumb}"
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
 	end
 
 	# down link parameters
-	def down_link_params
-		@bread_crumb = @bread_crumb.to_date
-	 	if page == frames[0]
-	 		@new_beg_range = @bread_crumb.beginning_of_year
-		 	@new_end_range = @bread_crumb.end_of_year	
-		elsif page == frames[1]
-			@new_beg_range = @bread_crumb
-		 	@new_end_range = @bread_crumb	
-		elsif page == frames[2]
-			num = (@bread_crumb.strftime("%d").to_i-1)/7 
-			@new_beg_range = @beg_range.beginning_of_month+num.weeks 
-			@new_end_range = @beg_range.beginning_of_month+num.weeks+6.days 
-			
-		elsif page == frames[3]
-			@new_beg_range = @bread_crumb.beginning_of_month 
-		 	@new_end_range = @bread_crumb.beginning_of_month.end_of_month
-		end
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{@bread_crumb}"
-	end
 
 	# previous link parameters
 	def prev_link_params
