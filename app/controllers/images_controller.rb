@@ -97,11 +97,11 @@ class ImagesController < ApplicationController
             @boolean = params[:image][:year]
             format.js 
           else
-            @range = "day"
-            @boolean = "2"
             parameters = "beg_range=#{@image.date_taken}&end_range=#{@image.date_taken}"
             format.html { redirect_to root_path+"users/"+@user.id.to_s+"/scrapbook/day?"+parameters }
+            @boolean = "2"
             format.js
+            # format.html { redirect_to :back }
           end
       else
         format.js { render alert("error")}

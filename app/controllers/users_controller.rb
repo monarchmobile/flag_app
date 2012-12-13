@@ -9,9 +9,6 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 	
-
-
-
 	def show
 		@user = User.find(params[:id])
 		respond_to do |format|
@@ -25,7 +22,12 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])	
-		respond_with @user
+		if params[:user][:nav_menu]
+			@boolean = params[:user][:nav_menu]
+			@user.update_attributes(params[:user])
+		else
+			respond_with @user
+		end
 	end
 	
 	def create 

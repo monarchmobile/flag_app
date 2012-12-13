@@ -1,5 +1,6 @@
 FlagApp::Application.routes.draw do
 
+  match 'announcements/:id/hide', as: 'hide_announcement', to: 'announcements#hide'
   match 'signup', to: "users#new"
   match 'login', to: "sessions#new"
   match 'logout', to: "sessions#destroy"
@@ -24,6 +25,7 @@ FlagApp::Application.routes.draw do
   end 
    
   resources :sessions
+  resources :announcements
   
   
 

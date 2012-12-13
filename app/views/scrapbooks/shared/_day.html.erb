@@ -14,19 +14,31 @@ bread_crumb:<%= @bread_crumb = @beg_range%>
 <%= render('scrapbooks/shared/up_down_prev_next_links') %>
 
 <%= render('shared/journal_script') %>
-<div class="time_navigation">
-	<%= image_tag "delete.png", class: "delete_time_nav", size: "15x15" %>
-	<ul class="thumbnail_images">
-		<% if @month_images %>
-			<% @month_images.each do |image| %>
-			<div class="thumbnail_container">
-				<li class="thumb_drag" data-id=<%= image.id %> data-src=<%= image.image_url(:scrap) %> data-range= <%= page %> data-beg= <%= @beg_range %> data-end= <%= @end_range %> data-root= <%= root_path %>><%= link_to image_tag(image.image_url(:scrap), width: "25px", height: "25px")  %></li>
-			</div>
-			<% end %>
-		<% end %>
-	</ul>
-	<%= render('menus/by_day') %>
-	<%= render('menus/by_week', :beg_month => @first_of_month ) %>
-	<%= render('menus/by_month', :beg_range => @first_of_month ) %>
+
+
+<%= form_for @user, remote: true, html: {class: "nav_bar_viz"} do |f| %>
+		<%= f.check_box :nav_menu %>
+<% end %>
+
+<div>
+	<div class="nav_btns gray_nav_btn"> - - - </div>
+	<%= image_tag "delete.png", class: "nav_btns delete_nav_btn", width: "15px", height: "15px" %>
 </div>
+
+
+	<div class="time_navigation">		
+		<ul class="thumbnail_images">
+			<% if @month_images %>
+				<% @month_images.each do |image| %>
+				<div class="thumbnail_container">
+					<li class="thumb_drag" data-id=<%= image.id %> data-src=<%= image.image_url(:scrap) %> data-range= <%= page %> data-beg= <%= @beg_range %> data-end= <%= @end_range %> data-root= <%= root_path %>><%= link_to image_tag(image.image_url(:scrap), width: "25px", height: "25px")  %></li>
+				</div>
+				<% end %>
+			<% end %>
+		</ul>
+		<%= render('menus/by_day') %>
+		<%= render('menus/by_week', :beg_month => @first_of_month ) %>
+		<%= render('menus/by_month', :beg_range => @first_of_month ) %>
+	</div>
+
 

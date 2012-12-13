@@ -9,6 +9,12 @@
 <body>
 
 <%= render 'shared/header' %> 
+<% Announcement.current(cookies.signed[:hidden_announcement_ids]).each do |announcement| %>
+	<%= div_for announcement do %>
+		<%= announcement.message %>
+		<%= link_to "hide announcement", hide_announcement_path(announcement) %><br />
+	<% end %>
+<% end %>
 <div class="master_container">
 	<div style="margin:auto;"><%= yield %></div>
 	<div id="large"></div>

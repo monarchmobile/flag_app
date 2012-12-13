@@ -8,6 +8,41 @@ $(document).ready(function() {
     $(".edit_image input[type=checkbox]").click(function() {
         $(this).parent("form").submit()
     })
+
+    // $(".nav_bar_viz input[type=checkbox]").click(function() {
+    //     $(this).parent("form").submit()
+    // })
+    $(".nav_btns").click(function() {
+        checkbox = $(this).parent().prev("form").children("input[type=checkbox]")
+        if ( checkbox.attr("checked") ) {
+            checkbox.attr("checked", false)
+            checkbox.parent("form").submit()
+        } else {
+            checkbox.attr("checked", true)
+            checkbox.parent("form").submit()
+        }
+    })
+
+    if ( $(".nav_btns").parent().prev("form").children("input[type=checkbox]").attr("checked") ) {
+        $(".time_navigation").show()
+        $(".delete_nav_btn").show()
+        $(".gray_nav_btn").hide()
+    } else {
+        $(".time_navigation").hide()
+        $(".gray_nav_btn").show()
+        $(".delete_nav_btn").hide()
+    }
+
+    $(".delete_time_btn").click(function() {
+        checkbox = $(this).prev("form").children("input[type=checkbox]")
+        if ( checkbox.attr("checked") ) {
+            checkbox.attr("checked", false)
+            $(this).prev("form").submit()
+        } else {
+            checkbox.attr("checked", true)
+            $(this).prev("form").submit()
+        }
+    })
         
     // *** lightbox ***
     $(".thumbnail img").dblclick(function(e){
@@ -120,7 +155,7 @@ $(document).ready(function() {
         $(this).get_vars()
         // new vars
         bread_crumb = $(this).attr("data-crumb")
-        URL = root+"users/"+user_id+"/images/"+img_id+"/edit?bread_crumb="+bread_crumb
+        URL = root+"users/"+user_id+"/images/"+img_id+"/edit"
         // action
         $.ajax({
             url: URL,
@@ -244,15 +279,6 @@ $(document).ready(function() {
     })
     // *** END Control Panel END *** 
 
-    // Time navation
-    $(".time_navigation").show()
-    $(".time_nav_btn").click(function() {
-        $(".time_navigation").show()
-    })
-
-    $(".delete_time_nav").click(function() {
-        $(".time_nav_btn").show()
-        $(".time_navigation").addClass("hide")
-    }) 
+     
 });
 </script>

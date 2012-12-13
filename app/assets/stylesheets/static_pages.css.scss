@@ -99,7 +99,23 @@ ul.nav_authentication {
 }
 
  
+.announcement {
+	width:1000px;
+	margin:auto;
+	background: gray;
+	color:#fff;
+	text-align:center;
+	padding:5px;
 
+	a {
+		text-decoration: none;
+		&:hover {
+			background:inherit;
+			text-decoration: underline;
+		}
+
+	}
+}
 
 
 // Start in application layouts, hold all yield //
@@ -552,13 +568,13 @@ border: 2px solid #5F5A5A;
 	color:#fff;
 }
 
-.delete_time_nav {
+.delete_nav_btn {
 	position:fixed;
 	margin-left: 1000px;
 	bottom: 87px;
 }
 
-.time_nav_btn {
+.gray_nav_btn {
 	margin-left:450px;
 	border-top-left-radius:10px;
 	border-top-right-radius:10px;
