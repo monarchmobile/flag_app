@@ -1,13 +1,19 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password_digest, :password_confirmation, :password, :first_name, :last_name, :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :user_type, :nav_menu
-  
   has_secure_password
-  
+  before_create { generate_token(:auth_token) }
   validates_uniqueness_of :email
   
   has_many :images
   has_many :journals
   has_many :scrapbooks
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
 
   def generate_token(column)
     begin
@@ -22,13 +28,5 @@ class User < ActiveRecord::Base
   def monthly_image_submissions
     images.find(:all, :conditions => {month: true})
   end
-
-  def monthly_image_submissions_within_range(m,w)
-    images.find(:all, conditions: {date_taken: start_week(month)[0]..end_week(month)[0], month: true})
-  end
-
-
-
- 
 
 end
