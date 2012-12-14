@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   validates_uniqueness_of :email
   
-  has_many :images
+  has_many :images 
   has_many :journals
   has_many :scrapbooks
 
