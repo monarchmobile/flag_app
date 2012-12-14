@@ -10,14 +10,14 @@
 	    </div>
 	<% end %>
 	<div class="field">
-		<%= f.label_tag :password %>
+		<%= f.label :password %>
 		<%= f.password_field :password %>
 	</div>
 	<div class="field">
-		<%= f.label_tag :password_confirmation %>
+		<%= f.label :password_confirmation %>
 		<%= f.password_field :password_confirmation %>
 	</div>
 	<div class="actions">
-		<%= f.submit_tag "Update Password" %>
+		<%= f.submit "Update Password" %>
 	</div>
 <% end %>
