@@ -19,6 +19,12 @@
 	margin:auto;	
 }
 
+.absolute_withZ {
+	position: absolute;
+	float: left;
+	z-index: 100;
+}
+
 // testing //
 .test_container	{
 	float: left;
@@ -151,9 +157,6 @@ ul.nav_authentication {
 
 // Go to { time frame } [Week, Month, Year]
 .nav_up {
-	position: absolute;
-	float: left;
-	z-index: 100;
 	margin-left: 350px;
 	text-align: center;
 	width: 300px;
@@ -172,14 +175,12 @@ ul.nav_authentication {
 .for_year_to_day {
 	top: 0px;
 }
+
+
 // direction is on all buttons except (Go To Time) frame
 .direction {
-	position: absolute;
-	float: left;
-	z-index: 100;
+	
 	text-align: center;
-	min-width: 25px;
-	width:auto;
 	height: 21px;
 	background: inherit;
 	font-size: 22px;
@@ -187,7 +188,7 @@ ul.nav_authentication {
 	background: gray;
 	border-radius: 15px;
 	text-decoration:none;
-	top: 50%;
+	
 	a {
 
 		color:white;
@@ -203,20 +204,37 @@ ul.nav_authentication {
 
 .prev {
 	left: 20px;
+	top: 50%;
+	width: 25px;
 	
 }
 
 .next {
 	
 	right:20px;
+	top: 50%;
+	width: 25px;
 }
 
 
 .nav_down {	
-	margin-left: 422px;
-top: 41px;
-color: white;
-padding: 7px 12px;
+	margin-left: 415px;
+	color: gray;
+	padding: 7px 12px;
+	position: fixed;
+	bottom: 86px;
+	width: 150px;
+	text-align: center;
+	height: 21px;
+	background: inherit;
+	font-size: 22px;
+	border-radius: 15px;
+	text-decoration:none;
+
+	&:hover {
+		background:#9c9c9c;
+		color:#fff;
+	}
 }
 
 // Forms //
@@ -568,6 +586,19 @@ border: 2px solid #5F5A5A;
 	color:#fff;
 }
 
+.nav_btn_style {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	width: 25px;
+	height: 19px;
+	z-index: 500;
+	background: gray;
+	color: white;
+	text-align: center;
+	padding-top: 2px;
+	cursor: pointer;
+}
+
 .delete_nav_btn {
 	position:fixed;
 	margin-left: 1000px;
@@ -575,19 +606,10 @@ border: 2px solid #5F5A5A;
 }
 
 .gray_nav_btn {
-	margin-left:450px;
-	border-top-left-radius:10px;
-	border-top-right-radius:10px;
 	position:fixed;
-	bottom:-4px;
-	width:100px;
-	height:30px;
-	z-index:500;
-	background: gray;
-	color:white;
-	text-align:center;
-	padding-top:10px;
-	cursor:pointer;
+	margin-left: 1000px;
+	bottom: 0px;
+	
 }
 
 .time_navigation {

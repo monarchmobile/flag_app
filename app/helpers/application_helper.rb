@@ -9,15 +9,35 @@ module ApplicationHelper
 	end
 
 	def current_path(user)
-		"#{root_path}users/#{@user.id}/scrapbook/#{page}?"
+		"#{root_path}users/#{@user.id}/scrapbook/#{page}%3F"
+
 	end
 
 	def return_to_previous_page(user)
-		if @bread_crumb
-			@bread_crumb
-		else
-			go_to_down_link(user)
+		past_page = @bread_crumb.split("/")[-1].split("?")[0]
+		page
+		frames
+		num = 0
+		while num < frames.length
+			url = "#{root_url}users/#{user.id}/scrapbook/#{frames[num-1]}"
+			if (page == frames[num] && past_page == frames[num]) ||  (page == frames[num] && past_page == frames[num+1])# going sideways
+				if frames[num] == "week"
+					new_beg_range = @beg_range
+					new_end_range = @beg_range
+				elsif frames[num] == "month"
+					new_beg_range = @beg_range
+					new_end_range = @beg_range+6.days
+				elsif frames[num] == "year"
+					new_beg_range = @beg_range
+					new_end_range = @beg_range.end_of_month
+				end
+				new_url = "#{url}?beg_range=#{new_beg_range}&end_range=#{new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+			elsif page == frames[num] && past_page == frames[num-1] # going up
+				new_url = "#{@bread_crumb}&bread_crumb=#{current_path(user)}#{current_params}"
+			end
+			num+=1
 		end
+		new_url
 	end
 
 	# gets width height left and top for images in scrapbook
@@ -109,17 +129,26 @@ module ApplicationHelper
 	end
 	# dynamic uplink
 
-	def go_to_text
+	def go_to_text(direction)
 		page
 		frames
 		num = 0
 		while num < frames.length 
-			if page == frames[num] 
-				if num == 3
-				 	# @destination = frames[num-3] gets you back to day
-				 	@go_to = ""
-				else
-					@go_to = "Go to "+frames[num+1] 
+			if page == frames[num]
+				if direction == "up" 
+					if num == 3
+					 	# @destination = frames[num-3] gets you back to day
+					 	@go_to = ""
+					else
+						@go_to = "Go to "+frames[num+1] 
+					end
+				elsif direction == "down"
+					if num == 0
+					 	# @destination = frames[num-3] gets you back to day
+					 	@go_to = ""
+					else
+						@go_to = "Go to "+frames[num-1] 
+					end
 				end
 			end 
 			num += 1 
@@ -230,23 +259,38 @@ module ApplicationHelper
 	end
 
 	# down link parameters
+	def down_link_params
+		declare_beg_range
+		if page == frames[1]
+			num = (@beg_range.strftime("%d").to_i-1)/7 
+			@new_beg_range = @beg_range.beginning_of_month+num.weeks
+			@new_end_range = @beg_range.beginning_of_month+num.weeks
+		elsif page == frames[2]
+			@new_beg_range = @beg_range.beginning_of_month 
+		 	@new_end_range = @beg_range.beginning_of_month+6.days
+		elsif page == frames[3]
+			@new_beg_range = @beg_range.beginning_of_year
+		 	@new_end_range = @beg_range.next_month-1
+		end
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
+	end
 
 	# previous link parameters
 	def prev_link_params
 		determine_page_time_frame
 		@bread_crumb = @beg_range
-		"?beg_range=#{@prev_beg_range}&end_range=#{@prev_end_range}&bread_crumb=#{@bread_crumb}"
+		"?beg_range=#{@prev_beg_range}&end_range=#{@prev_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
 	end
 
 	# next link parameters
 	def next_link_params
 		determine_page_time_frame
 		@bread_crumb = @beg_range
-		"?beg_range=#{@next_beg_range}&end_range=#{@next_end_range}&bread_crumb=#{@bread_crumb}"
+		"?beg_range=#{@next_beg_range}&end_range=#{@next_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
 	end
 
 	def date_range_params(day)
-		"?beg_range=#{day}&end_range=#{day}&bread_crumb=#{@bread_crumb}"
+		"?beg_range=#{day}&end_range=#{day}&bread_crumb=#{current_path(@user)}#{current_params}"
 	end
 
 	def weeks_of_month_params(num) 
@@ -256,14 +300,14 @@ module ApplicationHelper
 	    else 
 	         @new_end_range = @first_of_month.to_date+(num+1).weeks-1 
 	    end  
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{@bread_crumb}"
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
 	end
 
 	def months_of_year_params(num) 
 		@join_date = @user.created_at 
 		@beg_month = (@join_date.to_date >> num).beginning_of_month 
 		@end_month = (@join_date.to_date >> num).end_of_month 
-		"?beg_range=#{@beg_month}&end_range=#{@end_month}&bread_crumb=#{@bread_crumb}"
+		"?beg_range=#{@beg_month}&end_range=#{@end_month}&bread_crumb=#{current_path(@user)}#{current_params}"
 	end
 
 	def determine_page_time_frame
@@ -289,44 +333,40 @@ module ApplicationHelper
 	# to navigate to previous and next weeks on week page
 
 	def week_calculations
-		
-		 @first_of_month = @beg_range.to_date.beginning_of_month 
-		 @last_of_month = @beg_range.to_date.beginning_of_month.next_month-1 
-
+		@first_of_month = @beg_range.to_date.beginning_of_month 
+		@last_of_month = @beg_range.to_date.beginning_of_month.next_month-1 
 		if (@end_range+7).between?(@first_of_month, @last_of_month) 
-			 if @beg_range.between?(@beg_range.prev_month.end_of_month, @beg_range.beginning_of_month+1) 
+			if @beg_range.between?(@beg_range.prev_month.end_of_month, @beg_range.beginning_of_month+1) 
 				# <!--1st Week-->
 				 @prev_beg_range = @beg_range.prev_month.beginning_of_month + 4.weeks 
 				 @prev_end_range = @end_range.prev_month.end_of_month 
 				
 				 @next_beg_range = @beg_range+7.days 
 				 @next_end_range = @end_range+7.days 
-		
-			 else 
+			else 
 				# <!--Middle Weeks-->
 				 @prev_beg_range = @beg_range-7.days 
 				 @prev_end_range = @end_range-7.days 
 				
 				 @next_beg_range = @beg_range+7.days 
 				 @next_end_range = @end_range+7.days 
-			 end 
+			end 
 		elsif 
-			 if @beg_range.next_week.beginning_of_week.between?(@first_of_month, @last_of_month) 
+			if @beg_range.next_week.beginning_of_week.between?(@first_of_month, @last_of_month) 
 				# <!--4th Week-->
 				 @prev_beg_range = @beg_range-7.days 
 				 @prev_end_range = @end_range-7.days 
 				
 				 @next_beg_range = @beg_range+7.days 
-				 @next_end_range = @end_range.end_of_month 	
-				
-			 else 
+				 @next_end_range = @end_range.end_of_month 		
+			else 
 				# <!--5th Week-->
 				 @prev_beg_range = @beg_range-7.days 
 				 @prev_end_range = @end_range-2.days 
 				
 				 @next_beg_range = @beg_range.next_month.beginning_of_month 
 				 @next_end_range = @end_range.next_week.beginning_of_month+6.days 
-			 end 
+			end 
 		end 
 	end
 

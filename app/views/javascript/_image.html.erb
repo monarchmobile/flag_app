@@ -20,15 +20,18 @@ $(document).ready(function() {
             checkbox.parent("form").submit()
         }
     })
-    // hides or show nav menu depending on if boolean is true or false
+    // tests what state boolean is for nav_menu
     if ( $(".nav_btns").parent().prev("form").children("input[type=checkbox]").attr("checked") ) {
         $(".time_navigation").show()
         $(".delete_nav_btn").show()
         $(".gray_nav_btn").hide()
+        $(".nav_down").css("bottom", "87px")
     } else {
         $(".time_navigation").hide()
         $(".gray_nav_btn").show()
         $(".delete_nav_btn").hide()
+        $(".nav_down").css("bottom", "0px")
+
     }
     // *** END Nav Menu END ***
         

@@ -1,7 +1,3 @@
-<%= @beg_range %> to <%= @end_range %><br />
-current_path: <%= current_path(@user) %><br />
-current_params: <%= current_params %><br />
-last_visit:<%= @bread_crumb %><br />
 <div class="notice"></div>
 <%= render('javascript/image') %>
 
@@ -13,7 +9,6 @@ last_visit:<%= @bread_crumb %><br />
 
 
 <%= render('scrapbooks/shared/up_down_prev_next_links') %>
-
 <%= render('shared/journal_script') %>
 
 <!-- Nav_menu toggling through form submission changing nav_menu boolean -->
@@ -22,8 +17,8 @@ last_visit:<%= @bread_crumb %><br />
 <% end %>
 
 <div>
-	<div class="nav_btns gray_nav_btn"> - - - </div>
-	<%= image_tag "delete.png", class: "nav_btns delete_nav_btn", width: "15px", height: "15px" %>
+	<div class="nav_btns delete_nav_btn nav_btn_style"> - - - </div>
+	<div class="nav_btns gray_nav_btn nav_btn_style"> - - - </div>
 </div>
 <!-- end nav_menu toggling -->
 
