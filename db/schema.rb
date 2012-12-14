@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212194020) do
+ActiveRecord::Schema.define(:version => 20121214175908) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20121212194020) do
     t.string   "family"
     t.integer  "user_type"
     t.boolean  "nav_menu"
+    t.string   "auth_token"
   end
 
 end

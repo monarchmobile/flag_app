@@ -9,7 +9,12 @@ class User < ActiveRecord::Base
   has_many :journals
   has_many :scrapbooks
 
-
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+  
   def has_not_reached_daily_image_limit?(d)
       images.where(:date_taken => d).count < 5
   end
