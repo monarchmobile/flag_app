@@ -2,11 +2,16 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password_digest, :password_confirmation, :password, :first_name, :last_name, :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :user_type, :nav_menu
   has_secure_password
   before_create { generate_token(:auth_token) }
+  before_create { set_nav_menu_to_true }
   validates_uniqueness_of :email
   
   has_many :images 
   has_many :journals
   has_many :scrapbooks
+
+  def set_nav_menu_to_true
+    self.nav_menu = true
+  end
 
   def send_password_reset
     generate_token(:password_reset_token)
