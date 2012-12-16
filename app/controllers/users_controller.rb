@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])	
 		@user.update_attributes(params[:user])
+
 		if params[:user][:nav_menu]
 			@boolean = params[:user][:nav_menu]
 		else

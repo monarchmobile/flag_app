@@ -5,7 +5,7 @@ FlagApp::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = false 
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
@@ -51,6 +51,16 @@ FlagApp::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: "gmail.com",
+  authentication: "plain",
+  enable_starttls_auto: true,
+  user_name: "rodmanhe@gmail.com",
+  password: "biddingtog7"
+}
 
   # Enable threaded mode
   # config.threadsafe!
