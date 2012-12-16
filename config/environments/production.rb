@@ -58,8 +58,8 @@ FlagApp::Application.configure do
   domain: "gmail.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: "rodmanhe@gmail.com",
-  password: "biddingtog7"
+  user_name: "username@gmail.com",
+  password: "password"
 }
 
   # Enable threaded mode

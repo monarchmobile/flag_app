@@ -1,4 +1,7 @@
 <div class="notice"></div>
+<% ENV.each do |key, value| %>
+<p><%= key %> => <%= value%></p>
+<% end %>
 <%= render('javascript/image') %>
 
 <!-- Go To Page link button with a bread crumb -->
