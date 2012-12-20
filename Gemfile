@@ -30,7 +30,7 @@ gem 'rake' , '>= 0.9.2'
 #end
 
 gem 'jquery-rails'
-
+gem 'client_side_validations'
 gem 'best_in_place'
 
 # To use ActiveModel has_secure_password

@@ -10,29 +10,64 @@ $(document).ready(function() {
     // hides checkbox
     $("#user_nav_menu").hide()
     // when btns are clicked, boolean changes
-    $(".nav_btns").click(function() {
-        checkbox = $(this).parent().prev("form").children("input[type=checkbox]")
-        if ( checkbox.attr("checked") ) {
-            checkbox.attr("checked", false)
-            checkbox.parent("form").submit()
-        } else {
-            checkbox.attr("checked", true)
-            checkbox.parent("form").submit()
-        }
+    $(".delete_nav_btn").click(function() {
+        user_id = <%= current_user.id %>
+        root = $(this).attr("data-root")
+        URL = root+"users/"+user_id+"/update"
+        data = {}
+        data['nav_menu'] = false
+        DATA = {user: data}
+        $.ajax({
+            data: DATA,
+            type: "put",
+            url: URL,
+            success: function() {
+                $(".time_navigation").fadeOut(2000)
+                $(".gray_nav_btn").css({
+                    "bottom":"87px"
+                }).show().animate({
+                    "bottom":"0px"
+                }, 1200)
+                $(".delete_nav_btn").hide()
+            }
+        }) 
+    })
+
+    $(".gray_nav_btn").click(function() {
+        user_id = <%= current_user.id %>
+        root = $(this).attr("data-root")
+        URL = root+"users/"+user_id+"/update"
+        data = {}
+        data['nav_menu'] = true
+        DATA = {user: data}
+        $.ajax({
+            data: DATA,
+            type: "put",
+            url: URL,
+            success: function() {
+                $(".time_navigation").fadeIn(2000)
+                $(".gray_nav_btn").hide()
+                $(".delete_nav_btn").css({
+                    "bottom":"0px"
+                }).show().animate({
+                    "bottom":"87px"
+                }, 1200)
+            }
+        }) 
     })
     // tests what state boolean is for nav_menu
-    if ( $(".nav_btns").parent().prev("form").children("input[type=checkbox]").attr("checked") ) {
-        $(".time_navigation").show()
-        $(".delete_nav_btn").show()
-        $(".gray_nav_btn").hide()
-        $(".nav_down").css("bottom", "87px")
-    } else {
-        $(".time_navigation").hide()
-        $(".gray_nav_btn").show()
-        $(".delete_nav_btn").hide()
-        $(".nav_down").css("bottom", "0px")
-
-    }
+    
+        if ( <%= current_user.nav_menu %> == true ) {
+            $(".time_navigation").show()
+            $(".delete_nav_btn").show()
+            $(".gray_nav_btn").hide()
+        } else if ( <%= current_user.nav_menu %> == false ){
+            $(".time_navigation").hide()
+            $(".gray_nav_btn").show()
+            $(".delete_nav_btn").hide()
+     
+        } 
+    
     // *** END Nav Menu END ***
         
     // *** lightbox ***
@@ -63,43 +98,53 @@ $(document).ready(function() {
         $("#large").fadeOut("slow");
     });
      // *** END lightbox END *** 
-
+    
+    $(".thumb_drag").click(function() {
+        $(this).parent().parent().prev(".hint_msg").show().html("Drag this to add to gallery")
+    }, function() {
+        $(this).parent().parent().prev(".hint_msg").hide()
+    })
 
     // *** Timeline add image to scrap page ***
-    $(".thumb_drag").draggable({
-        containment: ".master_container",
-        revert: "valid"
-    })
+    if (<%= members_page(@user) %>) {
+        $(".thumb_drag").draggable({
+            containment: ".master_container",
+            revert: "valid"
+        })
+    }
 
-    $(".photos_container").droppable({
-        accept: ".thumb_drag",
-        drop: function(event, ui) {
-            get_vars()
-            // new vars 
-            img_id = ui.draggable.attr("data-id")
-            image = ui.draggable.attr("data-image")
-            root = ui.draggable.attr("data-root")
-            range = ui.draggable.attr("data-range")
-            beg_range = ui.draggable.attr("data-beg")
-            end_range = ui.draggable.attr("data-end")
-            coordinates = [50, 400]
-            data = {}
-            URL = root+"users/"+user_id+"/images/"+img_id+"/update"
-            data[range] = true;
-            data[range+'_p'] = coordinates.join(",")
-            DATA = { image: data };
-            // action
-            $.ajax({
-                url: URL,
-                type: "put",
-                data: DATA,
-                success: function() {
-                    var refresh = range+"?beg_range="+beg_range+"&end_range="+end_range
-                    window.location.href = refresh
-                }
-            })
-        }
-    })
+    if (<%= members_page(@user) %>) {
+        $(".photos_container").droppable({
+            accept: ".thumb_drag",
+            drop: function(event, ui) {
+                // new vars 
+                user_id = <%= @user.id %>
+                img_id = ui.draggable.attr("data-id")
+                crumb = ui.draggable.attr("data-crumb")
+                image = ui.draggable.attr("data-image")
+                root = ui.draggable.attr("data-root")
+                range = ui.draggable.attr("data-range")
+                beg_range = ui.draggable.attr("data-beg")
+                end_range = ui.draggable.attr("data-end")
+                coordinates = [50, 400]
+                data = {}
+                URL = root+"users/"+user_id+"/images/"+img_id+"/update"
+                data[range] = true;
+                data[range+'_p'] = coordinates.join(",")
+                DATA = { image: data };
+                // action
+                $.ajax({
+                    url: URL,
+                    type: "put",
+                    data: DATA,
+                    success: function() {
+                        var refresh = range+"?beg_range="+beg_range+"&end_range="+end_range+"&bread_crumb="+crumb
+                        window.location.href = refresh
+                    }
+                })
+            }
+        })
+    }
 
     // *** END Timeline add image to scrap page END ***
 
@@ -162,78 +207,81 @@ $(document).ready(function() {
     // common vars for control_panel actions
     jQuery.fn.get_vars = function() {
         this_obj = $(this)
-        user_id = <%= current_user.id %>
+        user_id = <%= @user.id %>
         img_id = $(this).attr("data-id")
         page = $(this).attr("data-range")
         root = $(this).attr("data-root")
     }
 
     // Drag
-    $(".image_container").draggable({
-        disabled: false,
-        containment: $(".photos_container"),
-        stop: function() {
-            $(this).get_vars()
-            // new vars
-            var URL = root+"users/"+user_id+"/images/"+img_id+"/drag"
-            // action 
-            $.ajax({
-                url: URL,
-                type: 'put',
-                data: this_obj.get_position(),
-                success: function() {
+    if (<%= members_page(@user) %>) {
+        $(".image_container").draggable({
+            disabled: false,
+            containment: $(".photos_container"),
+            stop: function() {
+                $(this).get_vars()
+                // new vars
+                var URL = root+"users/"+user_id+"/images/"+img_id+"/drag"
+                // action 
+                $.ajax({
+                    url: URL,
+                    type: 'put',
+                    data: this_obj.get_position(),
+                    success: function() {
 
-                    $(".cp").show()
-                    this_obj.css("opacity", "1")
-                    this_obj.children(".control_panel").css("background", "#9E9E9E")
-                    this_obj.children(".control_panel").children(".message").html("New position saved").fadeOut(5000)
-                }
-            })
-        } // end stop function
-    }) // end draggable
-    
-
-    // control_panel: RESIZE 
-    $(".resize_msg").toggle(function() {
-        $(this).get_vars() // common vars
-        // new vars
-        this_image = $(this).parent().next(".resizable");
-        image_width = this_image.innerWidth();  
-        image_height = this_image.innerHeight();
-        ratio = image_height/image_width;  //Define image ratio
-        // set the environment
-        $(".cp").hide()
-        this_obj.parent().parent(".image_container").draggable("option", "disabled", true ).css("opacity", "1");
-        this_obj.show()
-        this_obj.parent().children(".message").html("Image is now resizable").show()
-
-        // action: allows user to resize while keeping original aspectRatio
-        this_image.resizable({
-            aspectRatio: 1/ratio,
-            ghost: true,
-            stop: function(event, ui) { 
-              var URL = root+"users/"+user_id+"/images/"+img_id+"/resize"
-              $.ajax({
-                   url: URL,
-                   type: 'put',
-                   data: this_image.get_new_dimensions(),
-                   success: function() {
                         $(".cp").show()
-                        this_obj.parent().parent().css("opacity", "1")
-                        this_obj.parent().css("background", "#9E9E9E")
-                        this_obj.parent().children(".message").html("new dimensions saved").fadeOut(2000)
-                        this_image.resizable("destroy")  
-                        this_obj.parent().parent(".image_container").draggable("option", "disabled", false );   
-                   }
-              })
-           }
-        })
-    }, function() {
-        $(".cp").show()
-        $(this).parent().css("background", "#9E9E9E")
-        $(this).parent().children(".message").html("").hide()        
-        
-    });
+                        this_obj.css("opacity", "1")
+                        this_obj.children(".control_panel").css("background", "#9E9E9E")
+                        this_obj.children(".control_panel").children(".message").html("New position saved").fadeOut(5000)
+                    }
+                })
+            } // end stop function
+        }) // end draggable
+    }
+    
+    if (<%= members_page(@user) %>) {
+    // control_panel: RESIZE 
+        $(".resize_msg").toggle(function() {
+            $(this).get_vars() // common vars
+            // new vars
+            this_image = $(this).parent().next(".resizable");
+            image_width = this_image.innerWidth();  
+            image_height = this_image.innerHeight();
+            ratio = image_height/image_width;  //Define image ratio
+            // set the environment
+            $(".cp").hide()
+            this_obj.parent().parent(".image_container").draggable("option", "disabled", true ).css("opacity", "1");
+            this_obj.show()
+            this_obj.parent().children(".message").html("Image is now resizable").show()
+
+            // action: allows user to resize while keeping original aspectRatio
+            this_image.resizable({
+                aspectRatio: 1/ratio,
+                ghost: true,
+                stop: function(event, ui) { 
+                  var URL = root+"users/"+user_id+"/images/"+img_id+"/resize"
+                  $.ajax({
+                       url: URL,
+                       type: 'put',
+                       data: this_image.get_new_dimensions(),
+                       success: function() {
+                            $(".cp").show()
+                            this_obj.parent().parent().css("opacity", "1")
+                            this_obj.parent().css("background", "#9E9E9E")
+                            this_obj.parent().children(".message").html("new dimensions saved").fadeOut(2000)
+                            this_image.resizable("destroy")  
+                            this_obj.parent().parent(".image_container").draggable("option", "disabled", false );   
+                       }
+                  })
+               }
+            })
+        }, function() {
+            $(".cp").show()
+            $(this).parent().css("background", "#9E9E9E")
+            $(this).parent().children(".message").html("").hide()        
+            
+        });
+    }
 
     // grab the new image coordinates after drag and update db
     jQuery.fn.get_position = function() {
@@ -260,11 +308,13 @@ $(document).ready(function() {
     }
 
     // control_panel on hover
-    $(".image_container").hover(function() {
-        $(this).children(":first").show()
-    }, function(){
-        $(this).children(":first").hide()
-    })
+    if (<%= members_page(@user) %>) {
+        $(".image_container").hover(function() {
+            $(this).children(":first").show()
+        }, function(){
+            $(this).children(":first").hide()
+        })
+    }
 
     // control_panel: crop
     $(".crop_msg").click(function() {

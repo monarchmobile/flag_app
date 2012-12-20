@@ -1,12 +1,10 @@
-if (<%= @boolean %> == 0) {
-	$(".time_navigation").hide()
+if (<%= @boolean %> == false) {
+	// $(".time_navigation").hide()
 	$(".gray_nav_btn").show()
 	$(".delete_nav_btn").hide()
-	$(".nav_down").css("bottom", "0px")
 }
-else if (<%= @boolean %> == 1) {
-	$(".time_navigation").show()
+else if (<%= @boolean %> == true) {
+	// $(".time_navigation").show()
 	$(".delete_nav_btn").show()
 	$(".gray_nav_btn").hide()
-	$(".nav_down").css("bottom", "86px")
 }

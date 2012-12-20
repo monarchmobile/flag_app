@@ -9,6 +9,7 @@ class ScrapbooksController < ApplicationController
   def set_scrapbook_vars #**** should be moved to application_controller
     @user = User.find(params[:id])
     @time = request.path.split("/")[4]  
+    @nav_menu = @user.nav_menu
   end
 
   # set params if params[:beg_range] exists
@@ -18,7 +19,7 @@ class ScrapbooksController < ApplicationController
     @bread_crumb = params[:bread_crumb]
   end
  
-  def day  
+  def day
     set_scrapbook_vars
     if params[:beg_range]
       params_vars

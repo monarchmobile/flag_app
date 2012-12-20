@@ -11,6 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
+//= require rails.validations
+//= require best_in_place
+//= require best_in_place.purr
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require jquery.ui.droppable
@@ -18,9 +22,9 @@
 //= require jquery.ui.resizable
 //= require jquery.ui.position
 //= require jquery.Jcrop
-//= require jquery.purr
-//= require best_in_place
 //= require_tree .
+
+
 
 
 

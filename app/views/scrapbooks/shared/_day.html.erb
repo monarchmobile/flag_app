@@ -1,7 +1,5 @@
 <div class="notice"></div>
-<% ENV.each do |key, value| %>
-<p><%= key %> => <%= value%></p>
-<% end %>
+
 <%= render('javascript/image') %>
 
 <!-- Go To Page link button with a bread crumb -->
@@ -12,17 +10,12 @@
 
 
 <%= render('scrapbooks/shared/up_down_prev_next_links') %>
-<%= render('shared/journal_script') %>
+<%= render('shared/journal_script')  %>
 
 <!-- Nav_menu toggling through form submission changing nav_menu boolean -->
-<%= form_for @user, remote: true, html: {class: "nav_bar_viz"} do |f| %>
-		<% f.check_box :nav_menu %>
-<% end %>
+<div class="nav_btns delete_nav_btn nav_btn_style" data-root="<%= root_path %>" > - - - </div>
+<div class="nav_btns gray_nav_btn nav_btn_style" data-root="<%= root_path %>" > - - - </div>
 
-<div>
-	<div class="nav_btns delete_nav_btn nav_btn_style"> - - - </div>
-	<div class="nav_btns gray_nav_btn nav_btn_style"> - - - </div>
-</div>
 <!-- end nav_menu toggling -->
 
 <div class="time_navigation">		

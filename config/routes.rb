@@ -17,6 +17,8 @@ FlagApp::Application.routes.draw do
   match "users/:id/images/:id/drag", to: "images#drag"
   match "users/:id/images/:id/update", to: "images#update"
   match "users/:id/images/:id/edit", to: "images#edit"
+  match "users/:id/update", to: "users#update"
+  match "users/create", to: "users#create", as: "create_guest"
 
   resources :users do 
   	resources :images

@@ -1,5 +1,30 @@
 module ApplicationHelper 
 
+	# members_page and member is not a guest
+	def members_page(user)
+		current_user?(user) && !current_user.guest?
+	end
+
+	# registered_member
+	def registered_member
+		current_user && !current_user.guest?
+	end
+
+	# found in users/create: used as a redirect after guest login 
+	def correct_page(page_to_render)
+		"/#{page_to_render}"
+	end
+
+	# page request by user with click
+	def page_requested
+		request.env['REQUEST_PATH'].split("/")[-1]
+	end
+
+	# generates red stars for required fields in any form
+	def required_field
+		content_tag :span, "**", class: "required_field"
+	end
+
 	def correct_root	
 		correct_root = "http://localhost:3000"
 	end
@@ -7,7 +32,7 @@ module ApplicationHelper
 	def current_params
 		"beg_range=#{@beg_range}%26end_range=#{@end_range}"
 	end
-
+ 
 	def current_path(user)
 		"#{root_path}users/#{@user.id}/scrapbook/#{page}%3F"
 
@@ -42,7 +67,7 @@ module ApplicationHelper
 
 	# gets width height left and top for images in scrapbook
 	def get_dimensions(id, range)
-	    @user = current_user
+	  
 	    image = @user.images.find(id)
 	    time_frame = range+'_dim'
 	    dim_params = image.send(time_frame)
@@ -63,7 +88,7 @@ module ApplicationHelper
 
 	# get left and top positions 
 	def get_positions(id, range)
-		@user = current_user
+	
 	    image = @user.images.find(id)
 	    time_frame = range+"_p"
 	    pos_params = image.send(time_frame)
@@ -80,7 +105,7 @@ module ApplicationHelper
 
 	# if user logged in menu bar will show profile, otherwise, Community
 	def link_to_profile_if_logged_in_else_community
-		if current_user 
+		if current_user && !current_user.guest?
            link_to content_tag(:li, "Profile"), user_path(current_user.id) 
         else 
            link_to content_tag(:li, "Community"), users_path 

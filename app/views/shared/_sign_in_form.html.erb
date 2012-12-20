@@ -8,11 +8,11 @@
             <%= label_tag :password %><br />
             <%= password_field_tag :password %>
         </div>
-        <%= link_to "forgotten password", new_password_reset_path %>
         <div class="field">
-            <%= label_tag :remember_me %><br />
+            <%= label_tag :remember_me %>
             <%= check_box_tag :remember_me, 1, params[:remember_me] %>
         </div>
+        <%= link_to "forgot password?", new_password_reset_path %><br /><br />
         <div class="actions"><%= submit_tag "Log In" %></div>
     <% end %>
 </div> 

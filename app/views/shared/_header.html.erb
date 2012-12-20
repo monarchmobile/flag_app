@@ -6,7 +6,7 @@
           	<ul class="nav_bar">
               <%= link_to content_tag(:li, "Home"), root_url %>
               <%= link_to_profile_if_logged_in_else_community() %>
-              <% if current_user %>
+              <% if registered_member %>
                 <%= link_to content_tag(:li, "Scrapbook"), root_path+"users/"+current_user.id.to_s+"/scrapbook/day" %>
               <% end %>
               <%= link_to content_tag(:li, "About"), about_path %>
@@ -14,8 +14,12 @@
             <!-- The drop down menu --> 
             <ul class="nav_authentication">
                 <% if current_user %>
-                    <%= link_to content_tag(:li, "Sign Out"), logout_path, method: "delete" %>
-                    <%= link_to content_tag(:li,  current_user.email), profile_path %>
+                    <%= content_tag :li, current_user.name %>
+                    <% if current_user.guest? %>
+                      <%= link_to "Become a Member", new_user_path %>
+                    <% else %>
+                      <%= link_to content_tag(:li, "Sign Out"), logout_path, method: "delete" %>
+                    <% end %>
                 <% else %>
                     <%= link_to content_tag(:li, "Sign In", class: 'drop-auth'), new_session_path, remote: true %>
                     <div class="auth_form_container"></div>

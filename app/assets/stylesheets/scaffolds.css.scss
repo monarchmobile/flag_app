@@ -43,9 +43,14 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  display:inline-block;
+}
+
+.field_with_errors .message {
+  color:red;
+  background:inherit;
+  padding-left:5px;
+  font-size:12px;
 }
 
 #error_explanation {

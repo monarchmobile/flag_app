@@ -1,9 +1,10 @@
+<div class="hint_msg"></div>
 <ul class="thumbnail_images">
 	<% if @month_images %>
 		<% @month_images.each do |image| %>
 		<div class="thumbnail_container">
-			<li class="thumb_drag" data-id=<%= image.id %> data-src=<%= image.image_url(:scrap) %> data-range= <%= page %> data-beg= <%= @beg_range %> data-end= <%= @end_range %> data-root= <%= root_path %>><%= link_to image_tag(image.image_url(:scrap), width: "25px", height: "25px")  %></li>
+			<li class="thumb_drag" data-id=<%= image.id %> data-src=<%= image.image_url(:scrap) %> data-range= <%= page %> data-beg= <%= @beg_range %> data-end= <%= @end_range %> data-root="<%= root_path %>" data-crumb="<%= current_path(@user)+current_params %>" ><%= image_tag(image.image_url(:scrap), width: "25px", height: "25px")  %></li>
 		</div>
 		<% end %>
 	<% end %>
-</ul>
+</ul> 
