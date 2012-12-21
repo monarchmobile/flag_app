@@ -1,7 +1,7 @@
 module ApplicationHelper 
 	# if user has a profile pic, this is displayed, otherwise an "empty image" is displayed
 	def profile_pic_if_uploaded(user)
-		if user.member_photo.present?
+		if user.member_photo
 			user.member_photo_url
 		else
 			"blank.jpg"
