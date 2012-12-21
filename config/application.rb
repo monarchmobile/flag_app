@@ -11,6 +11,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+
 heroku_config = File.expand_path('../application.yml', __FILE__)
 if File.exists?(heroku_config)
     config = YAML.load(File.read(heroku_config))
@@ -19,6 +20,7 @@ if File.exists?(heroku_config)
       ENV[key] = value unless value.kind_of? Hash
     end
 end
+
 module FlagApp
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

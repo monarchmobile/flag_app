@@ -17,9 +17,11 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :password_digest, unless: :guest?
   validates_confirmation_of :password
 
+  # pretty url
   extend FriendlyId
   friendly_id :last_name
 
+  # profile pic
   mount_uploader :member_photo, ProfilepicUploader
 
   # def to_param
@@ -31,15 +33,16 @@ class User < ActiveRecord::Base
   attr_reader :password
   include ActiveModel::SecurePassword::InstanceMethodsOnActivation
   
-  
   has_many :images 
   has_many :journals
   has_many :scrapbooks
 
+  # set nav_menu boolean to true
   def set_nav_menu_to_true
     self.nav_menu = true
   end
 
+  # send email to user to reset password
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
