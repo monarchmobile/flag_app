@@ -11,9 +11,9 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-env_config = File.expand_path('../application.yml', __FILE__)
-if File.exists?(env_config)
-    config = YAML.load(File.read(env_config))
+heroku_config = File.expand_path('../application.yml', __FILE__)
+if File.exists?(heroku_config)
+    config = YAML.load(File.read(heroku_config))
     config.merge! config.fetch(Rails.env, {})
     config.each do |key, value|
       ENV[key] = value unless value.kind_of? Hash
