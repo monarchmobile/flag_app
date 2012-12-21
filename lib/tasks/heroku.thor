@@ -55,7 +55,7 @@ module Deploy
   end
 
   def heroku_config
-    @heroku_config ||= YAML.load_file(File.expand_path('../../../config/application.yml', __FILE__)).with_indifferent_access
+    @heroku_config ||= YAML.load_file(File.expand_path('../config/application.yml', __FILE__)).with_indifferent_access
   end
 
   heroku_config[:apps].each_key do |app_env|
