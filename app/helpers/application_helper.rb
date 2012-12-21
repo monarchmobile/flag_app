@@ -1,5 +1,13 @@
 module ApplicationHelper 
-
+	# if user has a profile pic, this is displayed, otherwise an "empty image" is displayed
+	def profile_pic_if_uploaded(user)
+		if user.member_photo.present?
+			user.member_photo_url
+		else
+			"blank.jpg"
+		end
+	end
+	
 	# members_page and member is not a guest
 	def members_page(user)
 		current_user?(user) && !current_user.guest?

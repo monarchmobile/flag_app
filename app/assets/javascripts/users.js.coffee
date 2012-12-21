@@ -19,6 +19,8 @@ jQuery ->
 
 	# $(".message_board").append("<li>image"+x+" is "+image[i]+"px</li>")
 	), 500
+
+	# content box on profile page
 	$(".img_feed_container").hover (->
 	  $(this).css "z-index", "100"
 	  $(this).find(".img_content_container").show()

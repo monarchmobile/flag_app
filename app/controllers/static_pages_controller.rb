@@ -3,9 +3,7 @@ class StaticPagesController < ApplicationController
   include ApplicationHelper
 
   def home
-
   	@user = @current_user
-
   end
 
   def profile

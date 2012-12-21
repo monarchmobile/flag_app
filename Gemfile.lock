@@ -50,6 +50,7 @@ GEM
     eventmachine (1.0.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    friendly_id (4.0.9)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -126,6 +127,7 @@ DEPENDENCIES
   carrierwave
   client_side_validations
   coffee-rails (~> 3.2.1)
+  friendly_id
   jquery-rails
   jquery-ui-rails
   pg

@@ -11,6 +11,12 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+config = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
+config.merge! config.fetch(Rails.env, {})
+config.each do |key, value|
+  ENV[key] = value unless value.kind_of? Hash
+end
+
 module FlagApp
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -62,5 +68,7 @@ module FlagApp
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+
+    config.action_mailer.default_url_options = { host: ENV["MAILER_HOST"] }
   end
 end

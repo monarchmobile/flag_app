@@ -58,8 +58,8 @@ FlagApp::Application.configure do
   domain: "gmail.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: "username@gmail.com",
-  password: "password"
+  user_name: ENV["GMAIL_USERNAME"],
+  password: ENV["GMAIL_PASSWORD"]
 }
 
   # Enable threaded mode
@@ -78,6 +78,5 @@ FlagApp::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  config.action_mailer.default_url_options = { :host => "http://election-1201-tuesday.herokuapp.com" }
 
 end

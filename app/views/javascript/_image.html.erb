@@ -6,10 +6,13 @@ $(document).ready(function() {
         $(this).parent("form").submit()
     })
 
+    
+
     // *** Nav Menu ***
     // hides checkbox
     $("#user_nav_menu").hide()
     // when btns are clicked, boolean changes
+    // hide nav_menu 
     $(".delete_nav_btn").click(function() {
         user_id = <%= current_user.id %>
         root = $(this).attr("data-root")
@@ -24,15 +27,20 @@ $(document).ready(function() {
             success: function() {
                 $(".time_navigation").fadeOut(2000)
                 $(".gray_nav_btn").css({
-                    "bottom":"87px"
+                    "bottom":"87px",
+                    "border-bottom-left-radius": "5px",
+                    "border-bottom-right-radius": "5px"
                 }).show().animate({
-                    "bottom":"0px"
+                    "bottom":"0px",
+                    "border-bottom-left-radius": "0px",
+                    "border-bottom-right-radius": "0px"
                 }, 1200)
                 $(".delete_nav_btn").hide()
             }
         }) 
     })
 
+    // show nav_menu
     $(".gray_nav_btn").click(function() {
         user_id = <%= current_user.id %>
         root = $(this).attr("data-root")
@@ -45,31 +53,37 @@ $(document).ready(function() {
             type: "put",
             url: URL,
             success: function() {
-                $(".time_navigation").fadeIn(2000)
+                $(".time_navigation").fadeIn(3000)
                 $(".gray_nav_btn").hide()
                 $(".delete_nav_btn").css({
-                    "bottom":"0px"
+                    "bottom":"0px",
+                    "border-bottom-left-radius": "0px",
+                    "border-bottom-right-radius": "0px"
                 }).show().animate({
-                    "bottom":"87px"
+                    "bottom":"87px",
+                    "border-bottom-left-radius": "5px",
+                    "border-bottom-right-radius": "5px"
                 }, 1200)
             }
         }) 
     })
     // tests what state boolean is for nav_menu
     
-        if ( <%= current_user.nav_menu %> == true ) {
-            $(".time_navigation").show()
-            $(".delete_nav_btn").show()
-            $(".gray_nav_btn").hide()
-        } else if ( <%= current_user.nav_menu %> == false ){
-            $(".time_navigation").hide()
-            $(".gray_nav_btn").show()
-            $(".delete_nav_btn").hide()
-     
-        } 
+    if ( <%= current_user.nav_menu %> == true ) {
+        $(".time_navigation").show()
+        $(".delete_nav_btn").show()
+        $(".gray_nav_btn").hide()
+    } else if ( <%= current_user.nav_menu %> == false ){
+        $(".time_navigation").hide()
+        $(".gray_nav_btn").show()
+        $(".delete_nav_btn").hide()
+ 
+    } 
     
     // *** END Nav Menu END ***
-        
+       
+    // close form button
+    $(".close_form").click(function() {alert("hi")}) 
     // *** lightbox ***
    // background fadeIn styling and fadeOut styling
     var background_fadeIn = $("#background").css({"opacity" : "0.7"})               

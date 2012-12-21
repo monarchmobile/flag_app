@@ -25,13 +25,24 @@
 	z-index: 100;
 }
 
+.close_form {
+	float:right;
+	padding-right:5px;
+	margin-top:-3px;
+	z-index:100;
+
+	&:hover {
+		background:blue;
+	}
+}
+
 
 .purr {
   position: fixed;
   top: 30px;
   right: 100px;
   width: 250px;
-  padding: 20px;
+  padding: 10px;
   background-color: #FCC;
   border: solid 2px #C66;
   &:first-letter { text-transform: uppercase; }
@@ -320,14 +331,10 @@ box-shadow:         2px 2px 2px #ccc;
 }
 
 
-
-
-
-// sign in
-.auth-form {
+// styling for sign-up and sign-in forms
+.home_forms {
 	margin-top: 35px;
 	margin-left: -128px;
-	width: 156px;
 	background: #F5ACAC;
 	border-radius: 5px;
 	webkit-border-radius: 5px;
@@ -338,6 +345,16 @@ box-shadow:         2px 2px 2px #ccc;
 	height: 185px;
 	position: absolute;
 	padding: 15px 5px 15px 25px;
+}
+
+// sign in
+.auth-form {
+	width: 156px;
+}
+
+// sign_up
+.sign-up-form {
+	width: 195px;
 }
 
 .image_form {
@@ -633,6 +650,8 @@ border: 2px solid #5F5A5A;
 	position:fixed;
 	margin-left: 1000px;
 	bottom: 87px;
+	border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .gray_nav_btn {

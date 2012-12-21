@@ -19,17 +19,6 @@ class Image < ActiveRecord::Base
  
   def self.range?(range)
     range.to_sym == true
-  end
-
- #  def get_day_positions(id)
- #  	image = @user.images.find(id)
- #   	if image.day_p 
-	# 	 @left = image.day_p.split(",")[0].to_i 
-	# 	 @top = image.day_p.split(",")[1].to_i 
-	# else 
-	# 	 @left = "" 
-	# 	 @top = "" 
-	# end
- #  end  
+  end  
 
 end

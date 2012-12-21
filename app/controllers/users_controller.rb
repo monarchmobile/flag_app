@@ -30,16 +30,22 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-		if params[:user][:nav_menu]
-			@user.update_attributes(params[:user])
-			respond_to do |format|
-				@boolean = params[:user][:nav_menu]
-				format.js
+		if @user.update_attributes(params[:user])
+			if params[:user][:nav_menu]	
+				respond_to do |format|
+					@boolean = params[:user][:nav_menu]
+					format.js
+				end
+			else
+				respond_with @user
 			end
 		else
-			@user.update_attributes(params[:user])
-			respond_with @user
+			respond_to do |format|
+		      format.html { render :action => "edit" }
+		      format.json { render :json => @user.errors.full_messages, :status => :unprocessable_entity }
+		    end
 		end
+	
 	end
 	
 	def create 

@@ -1,29 +1,30 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password_digest, :password_confirmation, :password, :first_name, :last_name, :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :user_type, :nav_menu
+  attr_accessible :email, :password_digest, :password_confirmation, :password, :first_name, :last_name, :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :user_type, :nav_menu, :member_photo
   # has_secure_password
   before_create { generate_token(:auth_token) }
   before_create { set_nav_menu_to_true }
 
+  validates :last_name,
+    :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
+    :presence => {:message => "can't be blank"}, unless: :guest?
+  validates :first_name,
+    :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
+    :presence => {:message => "can't be blank"}, unless: :guest?
+  validates :city,
+    :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
+    :presence => {:message => "can't be blank"}, unless: :guest?
+
   validates_presence_of :email, :password_digest, unless: :guest?
   validates_confirmation_of :password
-  # validations
-  # validates :email,
-  #       :presence => {:message => "can't be blank"},
-  #       :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
-  #                               :message => "has wrong email format"},
-  #       :uniqueness => { :message => "already taken"}
-  # validates :password, 
-  #       :presence => {:on => :create, :length => { :minimum => 5 } }
 
-  # validates :first_name,
-  #       :length => { :on => :update, :minimum => 2, :maximum => 24, :message => "has invalid length"},
-  #       :presence => { :on => :update }
-  # validates :last_name,
-  #       :length => { :on => :update, :minimum => 2, :maximum => 24, :message => "has invalid length"},
-  #       :presence => { :on => :update }
-  # validates :city, 
-  #       :length => { :on => :update, :minimum => 2, :message => "has invalid length" },
-  #       :presence => { :on => :update }
+  extend FriendlyId
+  friendly_id :last_name
+
+  mount_uploader :member_photo, ProfilepicUploader
+
+  # def to_param
+  #   [id, full_name.parameterize].join("-")
+  # end
 
   # override has_secure_password to customize validation until Rails 4.
   require 'bcrypt'
