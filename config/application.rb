@@ -12,9 +12,9 @@ if defined?(Bundler)
 end
 
 
-heroku_config = File.expand_path('../application.yml', __FILE__)
-if File.exists?(heroku_config)
-    config = YAML.load(File.read(heroku_config))
+local_ENVs = File.expand_path('../application.yml', __FILE__)
+if File.exists?(local_ENVs)
+    config = YAML.load(File.read(local_ENVs))
     config.merge! config.fetch(Rails.env, {})
     config.each do |key, value|
       ENV[key] = value unless value.kind_of? Hash

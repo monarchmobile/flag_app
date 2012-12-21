@@ -24,10 +24,6 @@ class User < ActiveRecord::Base
   # profile pic
   mount_uploader :member_photo, ProfilepicUploader
 
-  # def to_param
-  #   [id, full_name.parameterize].join("-")
-  # end
-
   # override has_secure_password to customize validation until Rails 4.
   require 'bcrypt'
   attr_reader :password
