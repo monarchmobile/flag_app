@@ -4,18 +4,33 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   before_create { set_nav_menu_to_true }
 
+  validates_presence_of :email, :password_digest, unless: :guest?
+  validates_confirmation_of :password, unless: :guest?
+
+  validates :email, :email_pattern => true, unless: :guest?
+
   validates :last_name,
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
-    :presence => {:message => "can't be blank"}, unless: :guest?
+    :presence => {:message => "can't be blank"},
+    :on => :update,
+    unless: :guest?
+
   validates :first_name,
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
-    :presence => {:message => "can't be blank"}, unless: :guest?
+    :presence => {:message => "can't be blank"},
+    :on => :update,
+    unless: :guest?
+    
   validates :city,
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
-    :presence => {:message => "can't be blank"}, unless: :guest?
+    :presence => {:message => "can't be blank"},
+    :on => :update,
+    unless: :guest?
 
-  validates_presence_of :email, :password_digest, unless: :guest?
-  validates_confirmation_of :password
+  def on_update_if_not_guest
+    errors.add(:first_name, "You must fill out first_name.") if 
+    !storage.blank?
+  end
 
   # pretty url
   extend FriendlyId
@@ -77,5 +92,6 @@ class User < ActiveRecord::Base
       "#{email}"
     end
   end
+
 
 end
