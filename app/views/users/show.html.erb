@@ -1,18 +1,18 @@
 <%= render 'shared/announcements' %>
 
-<% unless @user.guest? %>
-<div class="profile_container">
-    <ul>
-        <li><%= link_to image_tag(profile_pic_if_uploaded(@user), size: "100x100"), user_path(@user) %>
-        <li><%= best_in_place_if members_page(@user), @user, :first_name %> <%= best_in_place_if members_page(@user), @user, :last_name %></li>
-        <li>City:<%= best_in_place_if members_page(@user), @user, :city %></li>
-        <li>School Attending:<%= best_in_place_if members_page(@user), @user, :school %></li>
-        <li>Email:<%= best_in_place_if members_page(@user), @user, :email %></li>
-    	<li><%= link_to "edit profile", edit_user_path if members_page(@user) %></li>
-        <li><%= link_to "All Flag Students", users_path %></li>
-        <li><%= link_to "Scrapbook", day_path() if !@user.guest? %>
-    </ul>    
-</div>
+<% if !@user.guest? %>
+    <div class="profile_container">
+        <ul>
+            <li><%= link_to image_tag(profile_pic_if_uploaded(@user), size: "100x100"), user_path(@user) %>
+            <li><%= best_in_place_if members_page(@user), @user, :first_name %> <%= best_in_place_if members_page(@user), @user, :last_name %></li>
+            <li>City:<%= best_in_place_if members_page(@user), @user, :city %></li>
+            <li>School Attending:<%= best_in_place_if members_page(@user), @user, :school %></li>
+            <li>Email:<%= best_in_place_if members_page(@user), @user, :email %></li>
+        	<li><%= link_to "edit profile", edit_user_path if members_page(@user) %></li>
+            <li><%= link_to "All Flag Students", users_path %></li>
+            <li><%= link_to "Scrapbook", day_path() if !@user.guest? %>
+        </ul>    
+    </div>
 <% end %>
 <div class="flag_feed">
     <% @random_images = Image.all %>
