@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
   end
 
   # pretty url
-  extend FriendlyId
-  friendly_id :last_name
+  # extend FriendlyId
+  # friendly_id :last_name
 
   # profile pic
   mount_uploader :member_photo, ProfilepicUploader
