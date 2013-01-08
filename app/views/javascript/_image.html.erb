@@ -140,7 +140,7 @@ $(document).ready(function() {
                 range = ui.draggable.attr("data-range")
                 beg_range = ui.draggable.attr("data-beg")
                 end_range = ui.draggable.attr("data-end")
-                coordinates = [50, 400]
+                coordinates = [300, 100]
                 data = {}
                 URL = root+"users/"+user_id+"/images/"+img_id+"/update"
                 data[range] = true;
@@ -323,12 +323,31 @@ $(document).ready(function() {
         return DATA;
     }
 
+    jQuery.fn.dynamic_cp_styling = function() {
+        this.show().css({
+            "width": (image_width-25)+"px"
+        })
+        // new_panel_margin_top()
+    }
+    jQuery.fn.dynamic_img_desc_styling = function() {
+        this.show().css({
+            "width": (image_width-25)+"px",
+            "top": (image_height-15) + "px"
+        })
+    }
+
     // control_panel on hover
     if (<%= members_page(@user) %>) {
         $(".image_container").hover(function() {
-            $(this).children(":first").show()
+            image = $(this).find("img")
+            image_width = image.innerWidth();
+            image_height = image.innerHeight();
+            $(this).find(".control_panel").dynamic_cp_styling()
+            // $(this).children(":first").show()
+            $(this).find(".image_description").dynamic_img_desc_styling()
         }, function(){
-            $(this).children(":first").hide()
+            $(this).find(".control_panel").hide()
+            $(this).find(".image_description").hide()
         })
     }
 

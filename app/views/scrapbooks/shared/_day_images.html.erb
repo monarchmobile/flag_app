@@ -6,7 +6,7 @@
 	<div class="hide" id="edit_container"></div>
 	<div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;" data-id="<%= image.id %>" data-range="<%= page %>" data-root="<%= root_path %>">
 		
-		<ul class="control_panel">
+		<ul class="control_panel" style="width:<%= @con_width %>px;">
 			<%= render("scrapbooks/shared/control_panel", image: image )  %>
 			<li class="gallery_msg cp">
                 <!-- if image has been taken off of week or has never been added-->				
@@ -24,6 +24,10 @@
 					<%= link_to content_tag(:div, "Part of weekly Gallery"), go_to_up_link(@user)+up_link_params, remote: true %>
 				<% end %>
 			</li>
+		</ul>
+		<ul class="image_description">
+			<%= content_tag :li, image.title %>
+			<%= content_tag :li, image.content %>
 		</ul>
 		
 	   	<%= render("scrapbooks/shared/the_image", image: image ) %>	
