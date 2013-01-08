@@ -24,10 +24,6 @@ group :assets do
 
 end
 gem 'rake' , '>= 0.9.2'
-  
-#group :libv8 do
-#  gem 'libv8', "~> 3.11.8"
-#end
 
 gem 'jquery-rails'
 gem 'client_side_validations'
@@ -37,17 +33,7 @@ gem 'friendly_id'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'thin'
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
+#upload photos
 gem "rmagick"
 gem "carrierwave"

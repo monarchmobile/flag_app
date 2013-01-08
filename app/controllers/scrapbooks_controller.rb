@@ -23,7 +23,7 @@ class ScrapbooksController < ApplicationController
     set_scrapbook_vars
     if params[:beg_range]
       params_vars
-    
+     
       @user_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
       @month_images = @user.images.where(date_taken: @beg_range..@end_range).order("date_taken ASC")
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, day: true)

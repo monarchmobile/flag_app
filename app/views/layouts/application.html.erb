@@ -9,9 +9,6 @@
 <body>
 
 <%= render 'shared/header' %> 
-<% flash.each do |key,msg| %>  
-  <%= content_tag :p, msg, :id => key %>  
-<% end %>
 <div class="master_container">
 	<div style="margin:auto;"><%= yield %></div>
 	<div id="large"></div>

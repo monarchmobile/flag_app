@@ -1,11 +1,12 @@
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base 
   attr_accessible :email, :password_digest, :password_confirmation, :password, :first_name, :last_name, :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :user_type, :nav_menu, :member_photo
   # has_secure_password
   before_create { generate_token(:auth_token) }
   before_create { set_nav_menu_to_true }
 
-  validates_presence_of :email, :password_digest, unless: :guest?
-  validates_confirmation_of :password, unless: :guest?
+  has_secure_password
+    
+  validates_uniqueness_of :email
 
   validates :email, :email_pattern => true, unless: :guest?
 
@@ -13,23 +14,30 @@ class User < ActiveRecord::Base
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
     :presence => {:message => "can't be blank"},
     :on => :update,
-    unless: :guest?
+    unless: :guest?,
+    unless: :requireds_are_blank
 
   validates :first_name,
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
     :presence => {:message => "can't be blank"},
     :on => :update,
-    unless: :guest?
+    unless: :guest?,
+    unless: :requireds_are_blank
     
   validates :city,
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
     :presence => {:message => "can't be blank"},
     :on => :update,
-    unless: :guest?
+    unless: :guest?,
+    unless: :requireds_are_blank
 
-  def on_update_if_not_guest
-    errors.add(:first_name, "You must fill out first_name.") if 
-    !storage.blank?
+  def requireds_are_blank
+    required_fields = %W(first_name, last_name, city)
+    required_fields.each do |r|
+      r.blank?
+    end
+    # errors.add(:base, "Msg") 
+    # last_name.blank? && first_name.blank? && city.blank?  
   end
 
   # pretty url
@@ -50,7 +58,7 @@ class User < ActiveRecord::Base
 
   # set nav_menu boolean to true
   def set_nav_menu_to_true
-    self.nav_menu = true
+    self.nav_menu = true 
   end
 
   # send email to user to reset password
