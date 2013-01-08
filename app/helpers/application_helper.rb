@@ -7,6 +7,8 @@ module ApplicationHelper
 	def profile_pic_if_uploaded(user) 
 		if user.member_photo
 			user.member_photo_url
+		else
+			"blank.jpg"
 		end
 	end
 	
