@@ -15,7 +15,7 @@ class ImagesController < ApplicationController
   # SHOW
   def show
   	@user = current_user
-    @image = @user.images.find(params[:id])
+    get_associated_image
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,7 +42,7 @@ class ImagesController < ApplicationController
   # EDIT
   def edit
   	@user = current_user
-    @image = @user.images.find(params[:id])
+    get_associated_image
     @date_taken = @image.date_taken
     # @image_id = params[:id]
     respond_to do |format|
@@ -76,7 +76,7 @@ class ImagesController < ApplicationController
   def update 
 
     @user = current_user
-    @image = @user.images.find(params[:id])
+    get_associated_image
    
     respond_to do |format|
       if @image.update_attributes(params[:image])
@@ -111,19 +111,18 @@ class ImagesController < ApplicationController
 
   # DESTROY
   def destroy
-  
-    @image = Image.find(params[:id])
+    @user = current_user
+    get_associated_image
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to scrapbook_path }
-      format.json { head :no_content }
+      format.js
     end
   end
 
   def resize
     @user = current_user
-    @image = @user.images.find(params[:id])
+    get_associated_image
     respond_to do |format|
       if @image.update_attributes(params[:image])
         format.js
@@ -133,11 +132,16 @@ class ImagesController < ApplicationController
 
   def drag
     @user = current_user
-    @image = @user.images.find(params[:id])
+    get_associated_image
     respond_to do |format|
       if @image.update_attributes(params[:image])
         format.js
       end
     end
   end 
+
+  def get_associated_image
+    @image = @user.images.find(params[:id])
+  end
+
 end

@@ -1,0 +1,19 @@
+<div class="journal_container">
+	<% if page == "week" %>
+		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%d')}-#{@end_range.strftime('%d')}, #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
+	<% elsif page == "month" %>
+		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
+	<% elsif page == "year" %>
+		<%= content_tag :h2, "#{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
+	<% elsif page == "day" %>
+		<%= content_tag :h2, "#{@beg_range.strftime('%B')} #{@beg_range.strftime('%d')}, #{@beg_range.strftime('%Y')}", class: "journal_date_range" %>
+	<% end %>
+	
+	<% @entry = @user.journals.where(entry_date: @beg_range, page.to_sym => true).select([:content, :id, :entry_date]).first %>
+	<div class="journal_content">
+		<%= best_in_place [@user, @entry], :content, :type => :textarea  if @entry %>
+	</div>
+	
+</div>
+
+ 

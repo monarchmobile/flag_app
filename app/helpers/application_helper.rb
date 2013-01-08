@@ -7,9 +7,22 @@ module ApplicationHelper
 	def profile_pic_if_uploaded(user) 
 		if user.member_photo
 			user.member_photo_url
-		else
-			"blank.jpg"
 		end
+	end
+
+	# ** USER TYPES ** 
+	def admin?(user)
+		user.user_type == 1
+	end
+
+	def student?(user)
+		user.user_type == 2
+	end
+
+
+
+	def notice
+		"<p id='notice'><%= notice %></p>"
 	end
 	
 	# members_page and member is not a guest

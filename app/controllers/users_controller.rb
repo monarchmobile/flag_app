@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 		if @user.save 
 			if params[:user] #user filled out signup form
 				cookies.permanent[:auth_token] = @user.auth_token
-				redirect_to edit_user_path(@user), notice: "Thank you for signing up! Please fill out required fields for full functionality"
+				redirect_to user_path(@user), notice: "Thank you for signing up! Once you fill out your profile and are approved, you can begin adding images"
 			else
 				#automatically signed up as guest
 				@page = params[:page] #page user requested prior to reroute/guest sign in

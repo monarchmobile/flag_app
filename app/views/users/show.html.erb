@@ -1,5 +1,5 @@
 <%= render 'shared/announcements' %>
-
+<%= link_to "create announcement", new_announcement_path if admin?(current_user) %>
 <% if !@user.guest? %>
     <div class="profile_container">
         <ul>
@@ -12,6 +12,9 @@
             <li>City:<%= best_in_place_if members_page(@user), @user, :city %></li>
             <li>School Attending:<%= best_in_place_if members_page(@user), @user, :school %></li>
             <li>Email:<%= best_in_place_if members_page(@user), @user, :email %></li>
+            <% if admin?(current_user) %>
+                <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %><li>
+            <% end %>
         	<li><%= link_to "edit profile", edit_user_path if members_page(@user) %></li>
             <li><%= link_to "All Flag Students", users_path %></li>
             <li><%= link_to "Scrapbook", day_path() if !@user.guest? %>

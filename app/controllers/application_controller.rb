@@ -43,7 +43,7 @@ private
         else
           cookies[:auth_token] = user.auth_token
         end
-        redirect_to root_path
+        redirect_to user_path(user)
       else
         flash.now.alert = "Invalid email or password"
         render "new"

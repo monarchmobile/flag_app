@@ -262,6 +262,7 @@ $(document).ready(function() {
             image_width = this_image.innerWidth();  
             image_height = this_image.innerHeight();
             ratio = image_height/image_width;  //Define image ratio
+            
             // set the environment
             $(".cp").hide()
             this_obj.parent().parent(".image_container").draggable("option", "disabled", true ).css("opacity", "1");
@@ -311,8 +312,9 @@ $(document).ready(function() {
 
     // grab the new image dimensions after resize and update db
      jQuery.fn.get_new_dimensions = function() {
-        var endW = $(event.target).innerWidth();
-        var endH = $(event.target).innerHeight();
+        var endW = $(this).innerWidth();
+        var endH = $(this).innerHeight();
+        
         var WH = [endW, endH];
         var data = {};
         

@@ -1,3 +1,5 @@
-<% flash.each do |key,msg| %>  
-  <%= content_tag :p, msg, :id => key %>  
+<% if flash %>
+	<% flash.each do |key,msg| %>  
+	  <%= content_tag :p, msg, :id => key %>  
+	<% end %>
 <% end %>
