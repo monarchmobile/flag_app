@@ -258,7 +258,7 @@ $(document).ready(function() {
         $(".resize_msg").toggle(function() {
             $(this).get_vars() // common vars
             // new vars
-            this_image = $(this).parent().next(".resizable");
+            this_image = $(this).parent().parent().find(".resizable");
             image_width = this_image.innerWidth();  
             image_height = this_image.innerHeight();
             ratio = image_height/image_width;  //Define image ratio
