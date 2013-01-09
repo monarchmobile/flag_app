@@ -29,6 +29,9 @@ FlagApp::Application.routes.draw do
   resources :sessions
   resources :announcements
   resources :password_resets
+  resources :votes
+
+  
   
   
 

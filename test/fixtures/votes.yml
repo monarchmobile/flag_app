@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  owner_id: 1
+  votable_range: 2013-01-09
+
+two:
+  user: 
+  owner_id: 1
+  votable_range: 2013-01-09

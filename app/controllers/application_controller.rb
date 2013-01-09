@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 
-  helper_method :converted_date, :correct_image, :restrict_access
+  helper_method :converted_date, :correct_image, :restrict_access, :current_vote
   def converted_date(date)
   	date.split(' ')[0]
   end
@@ -16,6 +16,13 @@ class ApplicationController < ActionController::Base
 
   def restrict_access
     redirect_to root_path, :notice => "Access denied"
+  end
+
+  def current_vote(f)
+    @votes = current_user.votes.where(votable_range: previous_week_beg(Date.today), owner_id: f.id)
+    @votes.each do |vote| 
+      @vote = vote
+    end
   end
 
 private 
@@ -50,5 +57,6 @@ private
       end
     end
      helper_method :login_user 
+
 
 end
