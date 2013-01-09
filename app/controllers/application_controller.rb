@@ -18,12 +18,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :notice => "Access denied"
   end
 
-  def current_vote(f)
-    @votes = current_user.votes.where(votable_range: previous_week_beg(Date.today), owner_id: f.id)
-    @votes.each do |vote| 
-      @vote = vote
-    end
-  end
+  
 
 private 
   def current_user 

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 		redirect_to create_guest_path unless current_user
 		@users = User.find(:all, :conditions => "email IS NOT NULL")
 		@page = params[:page]
-		@vote = current_user.votes.build
+	
 
 	end
 	
