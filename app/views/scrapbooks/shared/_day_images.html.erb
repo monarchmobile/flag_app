@@ -17,11 +17,11 @@
 						  Add to your week
 						<% end %>
 					<% else %>
-						<%= link_to content_tag(:div, "Your week is full"), go_to_up_link(@user)+up_link_params, remote: true %>
+						<%= link_to content_tag(:div, "Your week is full"), go_to_up_link(@user)+up_link_params(@user), remote: true %>
 					<% end %>
 					
 				<% elsif image.week == true %>
-					<%= link_to content_tag(:div, "Part of weekly Gallery"), go_to_up_link(@user)+up_link_params, remote: true %>
+					<%= link_to content_tag(:div, "Part of weekly Gallery"), go_to_up_link(@user)+up_link_params(@user), remote: true %>
 				<% end %>
 			</li>
 		</ul>

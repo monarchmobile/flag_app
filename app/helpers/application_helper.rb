@@ -59,7 +59,7 @@ module ApplicationHelper
 	end
  
 	def current_path(user)
-		"#{root_path}users/#{@user.id}/scrapbook/#{page}%3F"
+		"#{root_path}users/#{user.id}/scrapbook/#{page}%3F"
 
 	end
 
@@ -206,6 +206,8 @@ module ApplicationHelper
 		@go_to
 	end
 
+
+
 	def go_to_up_link(user)
 		page
 		frames
@@ -289,7 +291,7 @@ module ApplicationHelper
 	end
 
 	# up link parameters
-	def up_link_params
+	def up_link_params(user)
 		declare_beg_range
 	 	if page == frames[0]
 	 		num = (@beg_range.strftime("%d").to_i-1)/7 
@@ -305,11 +307,11 @@ module ApplicationHelper
 			@new_beg_range = @bread_crumb
 		 	@new_end_range = @bread_crumb
 		end
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
 	# down link parameters
-	def down_link_params
+	def down_link_params(user)
 		declare_beg_range
 		if page == frames[1]
 			num = (@beg_range.strftime("%d").to_i-1)/7 
@@ -322,42 +324,76 @@ module ApplicationHelper
 			@new_beg_range = @beg_range.beginning_of_year
 		 	@new_end_range = @beg_range.next_month-1
 		end
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
 	# previous link parameters
-	def prev_link_params
+	def prev_link_params(user)
 		determine_page_time_frame
 		@bread_crumb = @beg_range
-		"?beg_range=#{@prev_beg_range}&end_range=#{@prev_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
+		"?beg_range=#{@prev_beg_range}&end_range=#{@prev_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
 	# next link parameters
-	def next_link_params
+	def next_link_params(user)
 		determine_page_time_frame
 		@bread_crumb = @beg_range
-		"?beg_range=#{@next_beg_range}&end_range=#{@next_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
+		"?beg_range=#{@next_beg_range}&end_range=#{@next_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
-	def date_range_params(day)
-		"?beg_range=#{day}&end_range=#{day}&bread_crumb=#{current_path(@user)}#{current_params}"
+	def date_range_params(day,user)
+		"?beg_range=#{day}&end_range=#{day}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
-	def weeks_of_month_params(num) 
+	def previous_week_beg(today)
+	   day_date = today.strftime("%Y-%m-%").split("-")[2]
+	   num = day_date.to_i
+	   @num = (num/7)
+	   @first_of_month = today.to_date.beginning_of_month
+	   @new_beg_range = @first_of_month.to_date+@num.weeks
+	    
+	   @new_beg_range
+	end
+
+	def previous_week_end(today)
+		previous_week_beg(today)
+		if @num == 4 
+	         @new_end_range = @first_of_month.to_date.next_month-1 
+	    else 
+	         @new_end_range = @first_of_month.to_date+(@num+1).weeks-1 
+	    end
+
+	end
+
+	def determine_week_params(date_taken,user)
+	   day_date = date_taken.split("-")[2]
+	   num = (day_date.to_i)
+	   num = ((num-1)/7)
+	   @first_of_month = date_taken.to_date.beginning_of_month
+	   weeks_of_month_params(num,user)
+	end
+
+	def last_month_contest_params(date_taken, user)
+		@new_beg_range = date_taken.beginning_of_month
+		@new_end_range = date_taken.end_of_month
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+	end
+
+	def weeks_of_month_params(num,user) 
 		@new_beg_range = @first_of_month.to_date+num.weeks 
 		if num == 4 
 	         @new_end_range = @first_of_month.to_date.next_month-1 
 	    else 
 	         @new_end_range = @first_of_month.to_date+(num+1).weeks-1 
 	    end  
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(@user)}#{current_params}"
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
-	def months_of_year_params(num) 
-		@join_date = @user.created_at 
+	def months_of_year_params(num,user) 
+		@join_date = user.created_at 
 		@beg_month = (@join_date.to_date >> num).beginning_of_month 
 		@end_month = (@join_date.to_date >> num).end_of_month 
-		"?beg_range=#{@beg_month}&end_range=#{@end_month}&bread_crumb=#{current_path(@user)}#{current_params}"
+		"?beg_range=#{@beg_month}&end_range=#{@end_month}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
 	def determine_page_time_frame

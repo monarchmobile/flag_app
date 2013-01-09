@@ -15,7 +15,7 @@
                 <% if current_user %>
                     <%= content_tag :li, current_user.fullname %>
                     <% if current_user.guest? %>
-                      <%= link_to "Become a Member", new_user_path %>
+                      <%= link_to content_tag(:li, "Become a Member"), new_user_path %>
                     <% else %>
                       <%= link_to content_tag(:li, "Sign Out"), logout_path, method: "delete" %>
                     <% end %>

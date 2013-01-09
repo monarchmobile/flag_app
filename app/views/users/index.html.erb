@@ -1,5 +1,11 @@
 <%= render 'shared/announcements' %>
 <div class="user_index">
+	<ul class="users_dash_header">
+		<li></li>
+		<li>Student</li>
+		<li>Last Week</li>
+		<li>Last Month</li>
+	</ul>
 	<ul>
 	<% @users.each do |f| %>
 		<li class="<%= cycle('odd', 'even') %>">
@@ -23,18 +29,18 @@
             	</li>
             	<li>
             		<ul class="user_items">
-						<% @week_images = f.images.for_this_range(Date.today.beginning_of_week-7.days, Date.today, "week").order("user_id DESC") %>
+						<% @week_images = f.images.for_this_range(previous_week_beg(Date.today), previous_week_end(Date.today), "week").order("user_id DESC") %>
 						<% @week_images.each do |img| %>
-							<%= link_to image_tag(img.image, size: "50x50"), "#" %>
+							<%= link_to image_tag(img.image, size: "50x50"), go_to_week_link(f)+ determine_week_params(img.date_taken.strftime("%Y-%m-%d"), f) %>
 						<% end %>
 						
 					</ul>
 				</li>
 				<li>
 					<ul class="user_items">
-						<% @week_images = f.images.for_this_range(Date.today.beginning_of_week-7.days, Date.today, "week").order("user_id DESC")  %>
+						<% @week_images = f.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").order("user_id DESC")  %>
 						<% @week_images.each do |img| %>
-							<%= content_tag :li, image_tag(img.image, size: "50x50") %>
+							<%= link_to image_tag(img.image, size: "50x50"), go_to_month_link(f)+ last_month_contest_params(img.date_taken, f)  %>
 						<% end %>
 						
 					</ul>

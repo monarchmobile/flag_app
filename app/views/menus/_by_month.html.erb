@@ -5,12 +5,12 @@
 		<% @beg_month = (@join_date.to_date >> num).beginning_of_month %>
 		<% @end_month = (@join_date.to_date >> num).end_of_month %>
 		<% if @beg_range.to_date.between?(@beg_month, @end_month) %>
-			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), go_to_month_link(@user)+months_of_year_params(num), remote: true %>
+			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months month_pointer"), go_to_month_link(@user)+months_of_year_params(num, @user), remote: true %>
 		<!--  Future days : add future_date class  --> 
         <% elsif Date.today < @beg_month %>
-            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months future_date"), go_to_month_link(@user)+months_of_year_params(num), remote: true %>
+            <%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months future_date"), go_to_month_link(@user)+months_of_year_params(num, @user), remote: true %>
 		<% else %>
-			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), go_to_month_link(@user)+months_of_year_params(num), remote: true %>
+			<%= link_to content_tag(:li, @beg_month.strftime("%b"), class: "months_of_year clickable_months"), go_to_month_link(@user)+months_of_year_params(num, @user), remote: true %>
 		<% end %>
 	<% end %>
 	</div>

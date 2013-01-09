@@ -15,7 +15,7 @@
                           Add to your month
                         <% end %>
                     <% else %>
-                        <%= link_to content_tag(:div, "Your month is full"), go_to_up_link(@user)+up_link_params, remote: true %>
+                        <%= link_to content_tag(:div, "Your month is full"), go_to_up_link(@user)+up_link_params(@user), remote: true %>
                     <% end %>
                     <%= form_for [@user, image], html: {id: "remove_image_#{image.id}" }, remote: true do |f| %>
                         <%= f.check_box :week %>
@@ -23,7 +23,7 @@
                     <% end %>  
 
                 <% elsif image.month == true %>
-                    <%= link_to content_tag(:div, "Part of monthly Gallery"), go_to_up_link(@user)+up_link_params, remote: true %>
+                    <%= link_to content_tag(:div, "Part of monthly Gallery"), go_to_up_link(@user)+up_link_params(@user), remote: true %>
                 <% end %>
             </li>  
         </ul>

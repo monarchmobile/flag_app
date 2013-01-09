@@ -9,13 +9,13 @@
     <% end %>
     <!--  Week_pointer: add pointer class  -->
     <% if @bread_crumb.between?(@beginning_of_dyn_range, @end_of_dyn_range) %> 
-        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), go_to_week_link(@user)+weeks_of_month_params(num), remote: true  %>
+        <%= link_to content_tag(:li, "#{@beginning_of_dyn_range.strftime('%m/%d')} to #{@end_of_dyn_range.strftime('%m/%d')}", class: "weeks_of_month clickable_weeks week_pointer"), go_to_week_link(@user)+weeks_of_month_params(num, @user), remote: true  %>
     <!--  Future days : add future_date class  -->	
 	<% elsif Date.today < @end_of_dyn_range %>
-		<%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), go_to_week_link(@user)+weeks_of_month_params(num), remote: true %>
+		<%= link_to content_tag(:li, "week #{num+1}", class: "weeks_of_month clickable_weeks future_date"), go_to_week_link(@user)+weeks_of_month_params(num, @user), remote: true %>
     <% else %>
     <!--  No extra classes --> 
-        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), go_to_week_link(@user)+weeks_of_month_params(num), remote: true %>
+        <%= link_to content_tag(:li, "week #{num+1}",  class: "weeks_of_month clickable_weeks"), go_to_week_link(@user)+weeks_of_month_params(num, @user), remote: true %>
     <% end %>
 <% end %>
 </ul> 

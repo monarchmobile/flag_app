@@ -19,6 +19,8 @@ class Image < ActiveRecord::Base
  
   def self.range?(range)
     range.to_sym == true
-  end  
+  end 
+
+   
 
 end
