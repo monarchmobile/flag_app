@@ -1,6 +1,6 @@
 
 
- <div class="header_container">
+ <div class="header_container"> 
    	<div class="thousand_wide_container ">
         <!-- Start of the nav bar content -->   
           	<ul class="nav_bar">
@@ -13,7 +13,7 @@
             <!-- The drop down menu --> 
             <ul class="nav_authentication">
                 <% if current_user %>
-                    <%= content_tag :li, current_user.name %>
+                    <%= content_tag :li, current_user.fullname %>
                     <% if current_user.guest? %>
                       <%= link_to "Become a Member", new_user_path %>
                     <% else %>

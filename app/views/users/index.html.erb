@@ -2,21 +2,47 @@
 <div class="user_index">
 	<ul>
 	<% @users.each do |f| %>
-		<li class="user_snapshot">
-			<ul>
-				<% if f.member_photo.blank? %>
-	            <li><%= link_to image_tag("blank.jpg", size: "100x100"), user_path(f)  %></li>
-	            <% else %>
-	            <li><%= link_to image_tag(profile_pic_if_uploaded(f), size: "100x100"), user_path(f)  %></li>
-	            <% end %>
-				<%= link_to "#{f.first_name} #{f.last_name}", user_path(f) %><br />
-				<%= mail_to f.email %><br />
-				<%= f.country %><br />
-				<%= f.school %><br />
-			</ul>
+		<li class="<%= cycle('odd', 'even') %>">
+            <ul class="user_row">
+            	<li>
+            		<ul class="user_items">
+            			<% if f.member_photo.blank? %>
+			            	<%= link_to image_tag("blank.jpg", size: "50x50"), user_path(f)  %>
+			            <% else %>
+			            	<%= link_to image_tag(profile_pic_if_uploaded(f), size: "50x50"), user_path(f)  %>
+			            <% end %>
+
+            		</ul>
+            	</li>
+            	<li>
+            		<ul class="user_items">
+						<%= link_to content_tag(:li, "#{f.fullname}"), user_path(f) %>
+						<%= content_tag :li, f.school %>
+					</ul>
+
+            	</li>
+            	<li>
+            		<ul class="user_items">
+						<% @week_images = f.images.for_this_range(Date.today.beginning_of_week-7.days, Date.today, "week").order("user_id DESC") %>
+						<% @week_images.each do |img| %>
+							<%= link_to image_tag(img.image, size: "50x50"), "#" %>
+						<% end %>
+						
+					</ul>
+				</li>
+				<li>
+					<ul class="user_items">
+						<% @week_images = f.images.for_this_range(Date.today.beginning_of_week-7.days, Date.today, "week").order("user_id DESC")  %>
+						<% @week_images.each do |img| %>
+							<%= content_tag :li, image_tag(img.image, size: "50x50") %>
+						<% end %>
+						
+					</ul>
+            	</li>
+            </ul>
 		</li>
 	<% end %>
-	<ul>
+	</ul>
 </div>
 
  

@@ -16,7 +16,7 @@ class ScrapbooksController < ApplicationController
   def params_vars #**** should be moved to application_controller
     @beg_range = params[:beg_range]
     @end_range = params[:end_range]
-    @bread_crumb = params[:bread_crumb]
+    @bread_crumb = params[:bread_crumb] 
   end
  
   def day

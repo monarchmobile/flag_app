@@ -97,13 +97,14 @@ class User < ActiveRecord::Base
   end
 
   # current_user has filled out form? "first_name last_name" : email
-  def full_name
-    if !first_name.nil? && !last_name.nil?
-      "#{first_name} #{last_name}"
-    else
-      "#{email}"
-    end
+  def fullname 
+    [first_name, last_name].join(" ")
   end
 
+  def fullname=(name)
+    split = name.split(" ", 2)
+    self.first_name = split[0]
+    self.last_name = split[1]
+  end
 
 end
