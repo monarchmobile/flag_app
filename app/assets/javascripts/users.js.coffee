@@ -27,3 +27,5 @@ jQuery ->
 	), ->
 	  $(this).css "z-index", "0"
 	  $(this).find(".img_content_container").hide()
+
+	

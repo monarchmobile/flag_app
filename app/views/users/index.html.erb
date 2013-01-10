@@ -1,4 +1,6 @@
 <%= render 'shared/announcements' %>
+
+<div class="testing"></div>
 <div class="user_index">
 	<ul class="users_dash_header">
 		<li></li>
@@ -28,7 +30,8 @@
 
             	</li>
             	<li>
-            		<ul class="user_items week_gallery">
+
+            		<ul class="user_items week_gallery <%= chosen(@already_voted_for_week, f) %>">
             			
             			<%= render 'vote_for_week', f: f %>
 						<% @week_images = f.images.for_this_range(previous_week_beg(Date.today), previous_week_end(Date.today), "week").order("user_id DESC") %>
@@ -39,7 +42,7 @@
 					</ul>
 				</li>
 				<li>
-					<ul class="user_items month_gallery">
+					<ul class="user_items month_gallery <%= chosen(@already_voted_for_month, f) %>">
 						<%= render 'vote_for_month', f: f %>
 						<% @week_images = f.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").order("user_id DESC")  %>
 						<% @week_images.each do |img| %>

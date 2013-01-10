@@ -19,6 +19,12 @@ module ApplicationHelper
 		user.user_type == 2
 	end
 
+	def chosen(already, owner)
+		if already && already.owner_id == owner.id 
+			"chosen"
+		end
+	end
+
 
 
 	def notice
