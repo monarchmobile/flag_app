@@ -16,12 +16,14 @@ class VotesController < ApplicationController
   end
 
   def update
-  	@vote = Vote.find(params[:id])
-  	respond_to do |format|
-  		if @vote.update_attributes(params[:vote])
-  		
-  			format.js
-  		end
-  	end
+  	@user = current_user
+  	@vote = @user.votes.find(params[:id])
+  	if @vote.update_attributes(params[:vote])
+	  	respond_to do |format|
+	  		@owner_id = @vote.owner_id
+  			@range_type = @vote.range_type
+	  		format.js
+	  	end
+	end
   end
 end

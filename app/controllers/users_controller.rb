@@ -7,7 +7,11 @@ class UsersController < ApplicationController
 		@users = User.find(:all, :conditions => "email IS NOT NULL")
 		@page = params[:page]
 
-		@vote = Vote.new
+		if @vote
+			@vote = Vote.find(params[:id])
+		else
+			@vote = Vote.new
+		end
 	
 
 	end

@@ -2,14 +2,22 @@
 					.where(:range_type=>1)
 					.where(voted: true).first %>
 
-	
-		<%= form_for @vote, html: {id: "student_#{f.id}_best_week", class: "best_week"}, remote: true do |v| %>
+<% if @voted_for %>
+	<% unless f.id == @voted_for.owner_id %>
+		<%= form_for @voted_for, html: {id: "student_#{f.id}_best_week", class: "best_week"}, remote: true do |v| %>
+			<%= v.hidden_field :id, value: @voted_for.id %>
 			<%= v.hidden_field :owner_id, value: f.id %>
-			<%= v.hidden_field :beg_range, value: previous_week_beg(Date.today) %>
-			<%= v.hidden_field :range_type, value: 1 %>
-			<%= v.hidden_field :voted, value: true %>
-			<%= v.submit "Best Week", class: "best_btn" %>
-
+			<%= v.submit "Change Vote", class: "best_btn" %>
 		<% end %>
+	<% end %>
+<% else %>
+	<%= form_for @vote, html: {id: "student_#{f.id}_best_week", class: "best_week"}, remote: true do |v| %>
+		<%= v.hidden_field :owner_id, value: f.id %>
+		<%= v.hidden_field :beg_range, value: previous_week_beg(Date.today) %>
+		<%= v.hidden_field :range_type, value: 1 %>
+		<%= v.hidden_field :voted, value: true %>
+		<%= v.submit "Best Week", class: "best_btn" %>
+	<% end %>
+<% end %>
 
 

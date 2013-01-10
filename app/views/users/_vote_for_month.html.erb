@@ -1,8 +1,22 @@
-<%= form_for @vote,html: {id: "student_#{f.id}_best_month", class: "best_month"}, remote: true do |v| %>
-	<%= v.hidden_field :owner_id, value: f.id %>
-	<%= v.hidden_field :beg_range, value: Date.today.beginning_of_month %>
-	<%= v.hidden_field :range_type, value: 2 %>
-	<%= v.hidden_field :voted, value: true %>
-	<%= v.submit "Best Month", class: "best_btn" %>
+<% @voted_for = Vote.where(:beg_range=>Date.today.beginning_of_month)
+					.where(:range_type=>2)
+					.where(voted: true).first %>
 
+<% if @voted_for %>
+	<% unless f.id == @voted_for.owner_id %>
+		<%= form_for @voted_for, html: {id: "student_#{f.id}_best_month", class: "best_month"}, remote: true do |v| %>
+			<%= v.hidden_field :id, value: @voted_for.id %>
+			<%= v.hidden_field :owner_id, value: f.id %>
+			<%= v.submit "Change Vote", class: "best_btn" %>
+		<% end %>
+	<% end %>
+<% else %>
+	<%= form_for @vote,html: {id: "student_#{f.id}_best_month", class: "best_month"}, remote: true do |v| %>
+		<%= v.hidden_field :owner_id, value: f.id %>
+		<%= v.hidden_field :beg_range, value: Date.today.beginning_of_month %>
+		<%= v.hidden_field :range_type, value: 2 %>
+		<%= v.hidden_field :voted, value: true %>
+		<%= v.submit "Best Month", class: "best_btn" %>
+
+	<% end %>
 <% end %>
