@@ -9,7 +9,7 @@ class VotesController < ApplicationController
   		respond_to do |format|
   			@owner_id = params[:vote][:owner_id]
   			@range_type = params[:vote][:range_type]
-	  		format.js
+	  		format.html { redirect_to users_path}
 	  	end
   	end
   	
