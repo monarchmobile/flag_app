@@ -7,10 +7,10 @@ class UsersController < ApplicationController
 		@users = User.find(:all, :conditions => "email IS NOT NULL")
 		@page = params[:page]
 
-		@already_voted_for_week = Vote.where(:beg_range=>previous_week_beg(Date.today))
+		@already_voted_for_week = current_user.votes.where(:beg_range=>previous_week_beg(Date.today))
 					.where(:range_type=>1)
 					.where(voted: true).last
-		@already_voted_for_month = Vote.where(:beg_range=>Date.today.beginning_of_month) 
+		@already_voted_for_month = current_user.votes.where(:beg_range=>Date.today.beginning_of_month) 
 					.where(:range_type=>2)
 					.where(voted: true).last
 

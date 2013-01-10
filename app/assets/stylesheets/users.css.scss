@@ -87,7 +87,7 @@ list-style: none;
 
 ul.users_dash_header {
 	position: fixed;
-	margin-left: 50px;
+	margin-left: 10px;
 	bottom: -13px;
 	background: black;
 	color: white;
@@ -124,13 +124,17 @@ ul.users_dash_header {
 
 .user_index {
 
-	ul li {
+	ul {
+		padding:0px;
+		
+		li {
 			height:60px;
 			width: 975px;
 			padding: 15px;
 			font-size: 11px;
 			margin:5px;
 			list-style: none;
+		}
 	}
 }
 
@@ -146,6 +150,7 @@ ul.user_row {
 	li:nth-child(1) {
 		padding: 0px;
 		width: 60px;
+		margin-left:-10px;
 	}
 
 	li:nth-child(2) {
@@ -158,7 +163,7 @@ ul.user_row {
 	}
 
 	ul.user_items {
-	padding:0px;
+	padding-left:0px;
 
 		li {
 			float:left;
@@ -183,7 +188,7 @@ ul.user_row {
 
 .chosen {	
 	background-color: white;
-border: 3px solid green;
+border: 3px solid #DFC663;
 height: 63px;
 padding: 5px 0px 0px 5px;
 width: 315px;
@@ -194,9 +199,18 @@ margin-left: 0px;
 
 .best_btn {
 	position: absolute;
-margin-left: 315px;
-margin-top: 22px;
-font-size: 9px;
+	margin-left: 325px;
+	margin-top: 22px;
+	font-size: 9px;
+}
+
+.voting_totals {
+	margin-left: 352px;
+width: 15px;
+margin-top: -10px;
+height: 15px;
+padding: 3px;
+position: absolute;
 }
 
 

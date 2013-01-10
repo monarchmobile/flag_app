@@ -1,12 +1,16 @@
 
 <% if @already_voted_for_month %>
-	<% unless f.id == @month_vote.owner_id %>
+	
 		<%= form_for @month_vote, html: {id: "student_#{f.id}_best_month", class: "best_month"}, remote: true do |v| %>
 			<%= v.hidden_field :id, value: @month_vote.id %>
 			<%= v.hidden_field :owner_id, value: f.id %>
-			<%= v.submit "Change Vote", class: "best_btn" %>
+			<% if @already_voted_for_month.owner_id == f.id %>
+				<%= v.submit "Voted For", class: "best_btn" %>
+			<% else %>
+				<%= v.submit "Change Vote", class: "best_btn" %>
+			<% end %>
 		<% end %>
-	<% end %>
+	
 <% else %>
 	<%= form_for @month_vote, html: {id: "student_#{f.id}_best_month", class: "best_month"} do |v| %>
 		<%= v.hidden_field :owner_id, value: f.id %>

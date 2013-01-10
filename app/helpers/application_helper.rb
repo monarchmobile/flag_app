@@ -19,13 +19,20 @@ module ApplicationHelper
 		user.user_type == 2
 	end
 
+	# highlights gallery that current_user has voted on 
 	def chosen(already, owner)
 		if already && already.owner_id == owner.id 
 			"chosen"
 		end
 	end
 
+	def total_vote(owner, range)
+		@week_total = Vote.find(:all, conditions: { owner_id: owner.id, range_type: range }).count
+	end 
 
+	# def month_total(owner)
+	# 	@month_total = Vote.find(:all, conditions: { owner_id: owner.id, range_type: 2 }).count
+	# end
 
 	def notice
 		"<p id='notice'><%= notice %></p>"

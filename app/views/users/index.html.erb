@@ -1,6 +1,10 @@
 <%= render 'shared/announcements' %>
 
-<div class="testing"></div>
+<div class="testing">
+	<h2>voting total</h2>
+
+
+</div>
 <div class="user_index">
 	<ul class="users_dash_header">
 		<li></li>
@@ -10,6 +14,10 @@
 	</ul>
 	<ul>
 	<% @users.each do |f| %>
+		
+		
+
+		
 		<li class="<%= cycle('odd', 'even') %> student_<%= f.id %>_week">
             <ul class="user_row">
             	<li>
@@ -30,7 +38,8 @@
 
             	</li>
             	<li>
-
+            		<div class="voting_totals"><%= total_vote(f, 1) %></div>
+		
             		<ul class="user_items week_gallery <%= chosen(@already_voted_for_week, f) %>">
             			
             			<%= render 'vote_for_week', f: f %>
@@ -42,6 +51,7 @@
 					</ul>
 				</li>
 				<li>
+					<div class="voting_totals"><%= total_vote(f, 2) %></div>
 					<ul class="user_items month_gallery <%= chosen(@already_voted_for_month, f) %>">
 						<%= render 'vote_for_month', f: f %>
 						<% @week_images = f.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").order("user_id DESC")  %>
