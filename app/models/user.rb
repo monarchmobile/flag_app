@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
   has_many :images 
   has_many :journals
   has_many :scrapbooks
+  has_many :votes
 
   # set nav_menu boolean to true
   def set_nav_menu_to_true

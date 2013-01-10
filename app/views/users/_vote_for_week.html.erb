@@ -1,0 +1,15 @@
+<% @voted_for = Vote.where(:beg_range=>previous_week_beg(Date.today))
+					.where(:range_type=>1)
+					.where(voted: true).first %>
+
+	
+		<%= form_for @vote, html: {id: "student_#{f.id}_best_week", class: "best_week"}, remote: true do |v| %>
+			<%= v.hidden_field :owner_id, value: f.id %>
+			<%= v.hidden_field :beg_range, value: previous_week_beg(Date.today) %>
+			<%= v.hidden_field :range_type, value: 1 %>
+			<%= v.hidden_field :voted, value: true %>
+			<%= v.submit "Best Week", class: "best_btn" %>
+
+		<% end %>
+
+

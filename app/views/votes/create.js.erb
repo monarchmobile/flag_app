@@ -1,0 +1,16 @@
+// if best week gallery chosen
+// else if best month gallery chosen
+if (<%= @range_type %> == 1) {
+	$("#student_<%= @owner_id %>_best_week").remove()
+	$(".student_<%= @owner_id %>_week .week_gallery").addClass("chosen")
+	$(".student_<%= @owner_id %>_week .week_gallery").parent().parent().parent().addClass("chosen")
+	$(".best_week input[type=submit]").val("change_vote")
+
+
+} else if (<%= @range_type %> == 2) {
+	$("#student_<%= @owner_id %>_best_month").remove()
+	$(".student_<%= @owner_id %>_week .month_gallery").addClass("chosen")
+	$(".best_month input[type=submit]").val("change_vote")
+}
+
+

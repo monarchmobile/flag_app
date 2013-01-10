@@ -1,0 +1,8 @@
+<%= form_for @vote,html: {id: "student_#{f.id}_best_month", class: "best_month"}, remote: true do |v| %>
+	<%= v.hidden_field :owner_id, value: f.id %>
+	<%= v.hidden_field :beg_range, value: Date.today.beginning_of_month %>
+	<%= v.hidden_field :range_type, value: 2 %>
+	<%= v.hidden_field :voted, value: true %>
+	<%= v.submit "Best Month", class: "best_btn" %>
+
+<% end %>

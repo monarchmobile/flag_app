@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109210156) do
+ActiveRecord::Schema.define(:version => 20130109212706) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -87,5 +87,17 @@ ActiveRecord::Schema.define(:version => 20130109210156) do
     t.boolean  "guest"
     t.string   "member_photo"
   end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "owner_id"
+    t.date     "beg_range"
+    t.integer  "range_type"
+    t.integer  "user_id"
+    t.boolean  "voted"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end

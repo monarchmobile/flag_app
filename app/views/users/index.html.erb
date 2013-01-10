@@ -8,7 +8,7 @@
 	</ul>
 	<ul>
 	<% @users.each do |f| %>
-		<li class="<%= cycle('odd', 'even') %>">
+		<li class="<%= cycle('odd', 'even') %> student_<%= f.id %>_week">
             <ul class="user_row">
             	<li>
             		<ul class="user_items">
@@ -28,9 +28,9 @@
 
             	</li>
             	<li>
-            		<ul class="user_items">
+            		<ul class="user_items week_gallery">
             			
-            			
+            			<%= render 'vote_for_week', f: f %>
 						<% @week_images = f.images.for_this_range(previous_week_beg(Date.today), previous_week_end(Date.today), "week").order("user_id DESC") %>
 						<% @week_images.each do |img| %>
 							<%= link_to image_tag(img.image, size: "50x50"), go_to_week_link(f)+ determine_week_params(img.date_taken.strftime("%Y-%m-%d"), f) %>
@@ -39,8 +39,8 @@
 					</ul>
 				</li>
 				<li>
-					<ul class="user_items">
-						
+					<ul class="user_items month_gallery">
+						<%= render 'vote_for_month', f: f %>
 						<% @week_images = f.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").order("user_id DESC")  %>
 						<% @week_images.each do |img| %>
 							<%= link_to image_tag(img.image, size: "50x50"), go_to_month_link(f)+ last_month_contest_params(img.date_taken, f)  %>

@@ -95,7 +95,7 @@ ul.users_dash_header {
 	padding: 0px;
 
 	li:nth-child(3), li:nth-child(4){
-		width:335px;
+		width:325px;
 		text-align: center;
 		padding-top:5px;
 		margin:0px;
@@ -103,8 +103,12 @@ ul.users_dash_header {
 		float:left;
 	}
 
+	li:nth-child(3) {
+		margin-left:66px;
+	}
+
 	li:nth-child(4) {
-		margin-left:60px;
+		margin-left:33px;
 	}
 
 	li:nth-child(1), li:nth-child(2) {
@@ -135,24 +139,22 @@ ul.user_row {
 
 	li {
 		float:left;
-		width:370px;
+		width:330px;
 		margin-left:10px;
 		padding: 0px;
 	}
 	li:nth-child(1) {
 		padding: 0px;
 		width: 60px;
-
 	}
 
 	li:nth-child(2) {
 		width:100px;
 		padding: 0px;
-
 	}
 
 	li:nth-child(4) {
-		margin: 5px 0px 0px 10px;
+		margin: 5px 0px 0px 70px;
 	}
 
 	ul.user_items {
@@ -176,12 +178,26 @@ ul.user_row {
 			padding:2px;
 			border:2px solid #fff;
 		}
+	}
 }
 
-	
+.chosen {	
+	background-color: white;
+border: 3px solid green;
+height: 63px;
+padding: 5px 0px 0px 5px;
+width: 315px;
+margin-top: -10px;
+box-shadow: 1px 1px 15px;
+margin-left: 0px;
 }
 
-
+.best_btn {
+	position: absolute;
+margin-left: 315px;
+margin-top: 22px;
+font-size: 9px;
+}
 
 
 .odd {
