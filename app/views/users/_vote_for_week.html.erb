@@ -1,11 +1,11 @@
-<% @voted_for = Vote.where(:beg_range=>previous_week_beg(Date.today))
+<% @vote = Vote.where(:beg_range=>previous_week_beg(Date.today))
 					.where(:range_type=>1)
 					.where(voted: true).first %>
 
-<% if @voted_for %>
-	<% unless f.id == @voted_for.owner_id %>
-		<%= form_for @voted_for, html: {id: "student_#{f.id}_best_week", class: "best_week"}, remote: true do |v| %>
-			<%= v.hidden_field :id, value: @voted_for.id %>
+<% if @vote %>
+	<% unless f.id == @vote.owner_id %>
+		<%= form_for @vote, html: {id: "student_#{f.id}_best_week", class: "best_week"}, remote: true do |v| %>
+			<%= v.hidden_field :id, value: @vote.id %>
 			<%= v.hidden_field :owner_id, value: f.id %>
 			<%= v.submit "Change Vote", class: "best_btn" %>
 		<% end %>
