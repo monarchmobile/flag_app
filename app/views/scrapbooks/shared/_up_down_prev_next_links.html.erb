@@ -10,7 +10,8 @@
 
 <div class="nav_arrows">
 	
-	    <%= link_to content_tag(:div, "", class: "prev prev-next direction absolute_withZ"), go_to_date_link(@user)+prev_link_params(@user), remote: true %>
+	    <%= link_to content_tag(:div, content_tag(:div, prev_next_link_text("prev", @user), class: "nav_text"), class: "prev prev-next direction absolute_withZ"), go_to_date_link(@user)+prev_link_params(@user), remote: true %>
 	
-	    <%= link_to content_tag(:div, "", class: "next prev-next direction absolute_withZ"), go_to_date_link(@user)+next_link_params(@user), remote: true %>
+	    <%= link_to content_tag(:div, content_tag(:div, prev_next_link_text("next", @user), class: "nav_text"), class: "next prev-next direction absolute_withZ"), go_to_date_link(@user)+next_link_params(@user), remote: true %>
 </div>
+<%=  %>

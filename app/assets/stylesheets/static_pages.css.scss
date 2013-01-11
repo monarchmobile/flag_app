@@ -118,7 +118,7 @@ ul.middle {
 	}
 
 	a:nth-child(2) li {
-		margin-left:235px;
+		margin-left:260px;
 	}
 
 	
@@ -298,6 +298,12 @@ overflow: hidden;
 	&:active {
 		background: url("buttons.png") 35% 97% no-repeat;
 	}
+
+	div.nav_text {
+		font-size: 10px;
+		margin-top: 26px;
+		margin-left: -35px;
+	}
 }
 
 .next {
@@ -315,6 +321,12 @@ overflow: hidden;
 
 	&:active {
 		background: url("buttons.png") 64% 97% no-repeat;
+	}
+
+	div.nav_text {
+		font-size: 10px;
+		margin-top: 26px;
+		margin-left: 15px;
 	}
 }
 

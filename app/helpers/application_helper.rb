@@ -347,6 +347,14 @@ module ApplicationHelper
 		"?beg_range=#{@prev_beg_range}&end_range=#{@prev_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
+	def prev_next_link_text(dir, user)
+		if dir == "prev"
+			prev_link_params(user).split("&")[0].split("=")[1].split("-")[2]
+		elsif dir == "next"
+			next_link_params(user).split("&")[0].split("=")[1].split("-")[2]
+		end
+	end
+
 	# next link parameters
 	def next_link_params(user)
 		determine_page_time_frame
