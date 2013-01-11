@@ -231,7 +231,7 @@ $(document).ready(function() {
     if (<%= members_page(@user) %>) {
         $(".image_container").draggable({
             disabled: false,
-            containment: $(".photos_container"),
+            containment: $(".master_container"),
             stop: function() {
                 $(this).get_vars()
                 // new vars

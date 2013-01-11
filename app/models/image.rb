@@ -21,6 +21,4 @@ class Image < ActiveRecord::Base
     range.to_sym == true
   end 
 
-   
-
 end

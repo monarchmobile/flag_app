@@ -1,6 +1,6 @@
 <% @images = @user.images.find_all_by_year(true) %> 
 <% for image in @images do %>
-	
+	   <div class="hide" id="edit_container"></div>
         <div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;" data-id="<%= image.id %>" data-range="<%= page %>" data-root="<%= root_path %>">
             <ul class="control_panel">
                 <%= render("scrapbooks/shared/control_panel", image: image )  %>
@@ -12,6 +12,7 @@
 					<% end %>
                 </li>                         
             </ul>
+            <%= render("scrapbooks/shared/image_description", image: image ) %>
             <%= render("scrapbooks/shared/the_image", image: image ) %>
         </div>
   

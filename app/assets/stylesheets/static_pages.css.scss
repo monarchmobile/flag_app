@@ -3,6 +3,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$burgandy: rgb(159,21,15);
 
 // core classes to be used everywhere //
 .hide {
@@ -63,50 +64,80 @@ text-align: center;
 padding: 5px;
 }
 
+
 // header //
 .header_container {
 	width: 100%;
-	height: 50px;	
-	background: #D53838;	
-
+	height: 50px;
+	background: $burgandy;
+	position: absolute;
+	z-index: 100;
+	-moz-box-shadow:    0px 0px 15px #000;
+	-webkit-box-shadow: 0px 0px 15px #000;
+	box-shadow:         0px 0px 15px #000;
 
 	.thousand_wide_container {
 		background:155, 0, 14;
 		height:50px;
 		width:1000px;
-	 	//background:gray;
+	 	//background:gray;	 
+	}
+}
 
-		ul.nav_bar {
-			margin: 12px 0px 0px 100px;
-			padding: 10px 0px;
-			width: 630px;
-			float: left;
-			//background:gray;
+ul.nav_bar {
 
-			a li {
-				width: 116px;
-			margin-left: 7px;
-			float: left;
-			list-style: none;
-			color: black;
-			text-align: center;
-			font-size: 17px;
-			}
+	a li {
+		list-style: none;
+		color: black;
+		text-align: center;
+		font-size: 17px;
+		text-decoration: none;
+		float:left;
+		padding-top:10px;
+	}
 
-			a:hover li {
-				color:#fff;
-			}
-			a:nth-child(3) li {
-				width:250px;
-			}
+	a:hover li {
+		color:#fff;
+	}
 			
-		} 
+}
+
+ul.left_side {
+	position:absolute;
+	left:20px;
+	width:175px;
+}
+ul.middle {
+	position:absolute;
+	margin-left:210px;
+	width:600px;
+	padding:0px;
+	a li {
+			width:150px;
+			
+	}
+
+	a:nth-child(2) li {
+		margin-left:235px;
+	}
+
+	
+
+}
+ul.right_side {
+	position:absolute;
+	right:30px;
+	width:175px;
+	a li {
+		width: 80px;
+margin-left: 5px;
+float: left;
 	}
 }
 
 // authentication
 ul.nav_authentication {
-  	width: 270px;
+  	width: 0px;
 	float: left;
 	padding: 8px 0px;
 
@@ -151,9 +182,13 @@ ul.nav_authentication {
 // Start in application layouts, hold all yield //
 .master_container {
 	margin:auto;
+	background:url("background.jpg") 50% 5% no-repeat;;
 	width:1000px; 
 	min-height:668px;
 	padding-bottom: 20px;
+	-moz-box-shadow:    0px 0px 25px 2px #000;
+	-webkit-box-shadow: 0px 0px 25px 2px #000;
+	box-shadow:         0px 0px 25px 2px #000;
 
 	h1 {
 		font-size: 38.5px;
@@ -185,14 +220,36 @@ ul.nav_authentication {
 	text-align: center;
 	width: 300px;
 	height: 21px;
-	background: #D53838;
+	background: $burgandy;
 	font-size: 22px;
 	color: black;
 	top:0px;
 	padding: 8px 0px;
+	overflow:hidden;
 	
 	&:hover {
 		color:white;
+	}
+}
+.nav_up2 {
+	margin-left: 475px;
+text-align: center;
+width: 82px;
+height: 46px;
+background: url("buttons.png") 2% 6% no-repeat;
+font-size: 22px;
+color: black;
+top: 25px;
+padding: 8px 0px;
+overflow: hidden;
+
+
+	&:hover {
+		background: url("buttons.png") 2% 48% no-repeat;
+	}
+
+	&:active {
+		background: url("buttons.png") 2% 91% no-repeat;
 	}
 }
 
@@ -205,11 +262,11 @@ ul.nav_authentication {
 .direction {
 	
 	text-align: center;
-	height: 21px;
+	height: 30px;
 	background: inherit;
 	font-size: 22px;
 	padding: 8px 3px;
-	background: gray;
+	
 	border-radius: 15px;
 	text-decoration:none;
 	
@@ -220,7 +277,7 @@ ul.nav_authentication {
 
 		&:hover {
 			color:white;
-			background:#D53838;
+			background:none;
 			text-decoration: underline;
 		}
 	}
@@ -228,37 +285,70 @@ ul.nav_authentication {
 
 .prev {
 	left: 20px;
-	top: 50%;
-	width: 25px;
-	
+	top: 40%;
+	overflow: hidden;
+	width: 66px;
+	height: 74px;
+	background: url("buttons.png") 35% 3% no-repeat;
+
+	&:hover {
+		background: url("buttons.png") 35% 50% no-repeat;
+	}
+
+	&:active {
+		background: url("buttons.png") 35% 97% no-repeat;
+	}
 }
 
 .next {
 	
 	right:20px;
-	top: 50%;
-	width: 25px;
+	top: 40%;
+	overflow: hidden;
+	width: 66px;
+	height: 74px;
+	background: url("buttons.png") 64% 3% no-repeat;
+
+	&:hover {
+		background: url("buttons.png") 64% 50% no-repeat;
+	}
+
+	&:active {
+		background: url("buttons.png") 64% 97% no-repeat;
+	}
 }
 
 
 .nav_down {	
-	margin-left: 415px;
-	color: gray;
-	padding: 7px 12px;
-	position: fixed;
-	bottom: 86px;
-	width: 150px;
-	text-align: center;
-	height: 21px;
-	background: inherit;
-	font-size: 22px;
-	border-radius: 15px;
-	text-decoration:none;
+
+	margin-left: 470px;
+width: 75px;
+height: 71px;
+bottom: 73px;
+padding: 8px 0px;
+overflow: hidden;
+position: fixed;
+text-align: center;
+background: url("buttons.png") 93% 4% no-repeat;
+font-size: 22px;
+color: black;
+	
 
 	&:hover {
-		background:#9c9c9c;
-		color:#fff;
+		background: url("buttons.png") 93% 50% no-repeat;	
 	}
+
+	&:active {
+		background: url("buttons.png") 93% 97% no-repeat;
+	}
+
+	a img {
+		position: absolute;
+		margin-left: -50px;
+		margin-top: -29px;
+		z-index: 200;
+	}
+
 }
 
 // Forms //
@@ -397,7 +487,7 @@ box-shadow:         2px 2px 2px #ccc;
 h2.journal_date_range {
 	margin-left: 10px;
 	margin-top: 39px;
-	color: #D53838;
+	color: $burgandy;
 	font-size: 20px;
 	text-decoration: underline;
 	text-align: center;
@@ -683,14 +773,24 @@ font-size:10px;
 	
 }
 
-.time_navigation {
+.time_nav_container { 
+	background:url("background-red.png");
+	width:100%;
 	position:fixed;
 	bottom:-4px;
-	width:1000px;
 	height:77px;
-	z-index:400;
-	
 }
+
+
+	.time_navigation {
+		position:fixed;
+		bottom:-4px;
+		width:1000px;
+		height:77px;
+		z-index:400;
+		
+	}
+
 
 ul.thumbnail_images {
 	width: 960px;
@@ -746,7 +846,7 @@ ul.dom_container {
 	}
 
 	a li.pointer {
-		background: red;
+		background: $burgandy;
 	opacity: .8;
 	color: white;
 	height: 23px;
@@ -793,7 +893,7 @@ padding: 0px 0px 0px;
 	}
 	
 	a li.week_pointer {
-		background: red;
+		background: $burgandy;
 	}
 }
 
@@ -826,7 +926,7 @@ ul.moy_container {
 	}
 
 	a li.month_pointer {
-		background: red;
+		background: $burgandy;
 		height: 16px;
 		width: 45px;
 		margin-top:0px;

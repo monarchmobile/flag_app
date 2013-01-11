@@ -47,7 +47,7 @@ class ImagesController < ApplicationController
     # @image_id = params[:id]
     respond_to do |format|
 
-      format.html {  render "images/crop" }
+      # format.html {  render "images/crop" }
       format.js 
     end
     #@user = User.find(params[:image][:user_id])

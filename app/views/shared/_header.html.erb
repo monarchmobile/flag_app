@@ -3,17 +3,19 @@
  <div class="header_container"> 
    	<div class="thousand_wide_container ">
         <!-- Start of the nav bar content -->   
-          	<ul class="nav_bar">
+          	<ul class="left_side nav_bar">
               <%= link_to_profile_if_logged_in_else_community() %>
+            </ul>
+            <ul class="middle nav_bar">
               <% if registered_member %>
                 <%= link_to content_tag(:li, "Scrapbook"), root_path+"users/"+current_user.id.to_s+"/scrapbook/day" %>
               <% end %>
               <%= link_to content_tag(:li, "About"), about_path %>
             </ul>
             <!-- The drop down menu --> 
-            <ul class="nav_authentication">
+            <ul class="right_side nav_bar">
                 <% if current_user %>
-                    <%= content_tag :li, current_user.fullname %>
+                   
                     <% if current_user.guest? %>
                       <%= link_to content_tag(:li, "Become a Member"), new_user_path %>
                     <% else %>

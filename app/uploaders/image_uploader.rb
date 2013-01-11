@@ -24,14 +24,15 @@ class ImageUploader < CarrierWave::Uploader::Base
     resize_to_fit(800, 10000)
   end
 
-  version :scrap do
-    process :crop
-    resize_to_fit(300, 300)
-  end
-
   version :profile do
     process :crop
     resize_to_limit(200, 10000)
+  end
+
+
+  version :scrap do
+    process :crop
+    resize_to_fit(300, 300)
   end
 
   version :thumb do

@@ -25,10 +25,7 @@
 				<% end %>
 			</li>
 		</ul>
-		<ul class="image_description">
-			<%= content_tag :li, image.title %>
-			<%= content_tag :li, image.content %>
-		</ul>
+		<%= render("scrapbooks/shared/image_description", image: image ) %>
 		
 	   	<%= render("scrapbooks/shared/the_image", image: image ) %>	
 	</div>
