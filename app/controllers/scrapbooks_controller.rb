@@ -10,6 +10,7 @@ class ScrapbooksController < ApplicationController
     @user = User.find(params[:id])
     @time = request.path.split("/")[4]  
     @nav_menu = @user.nav_menu
+    
   end
 
   # set params if params[:beg_range] exists
@@ -21,6 +22,9 @@ class ScrapbooksController < ApplicationController
  
   def day
     set_scrapbook_vars
+    # @uploader = current_user.images.new.image
+    # @uploader.success_action_redirect = "/users/#{@user.id}/images/new"
+    
     if params[:beg_range]
       params_vars
      
