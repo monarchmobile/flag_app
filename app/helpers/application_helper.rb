@@ -292,6 +292,50 @@ module ApplicationHelper
 		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
 	end
 
+	def go_to_year_link(user)
+		page
+		frames
+		@destination = frames[3] 
+		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
+	end
+
+	# control_panel routes
+	def go_to_month_params(user)
+		@new_beg_range = @beg_range.beginning_of_month 
+		@new_end_range = @beg_range.beginning_of_month.end_of_month
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+	end
+
+	def go_to_year_params(user)
+		@new_beg_range = @beg_range.beginning_of_year 
+		@new_end_range = @beg_range.beginning_of_year.end_of_year
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+	end
+
+	def dynamic_image_link(duration)
+		link_to content_tag(:span, "D", class: "included #{duration}_link"), go_to_day_link(@user)+duration_params(image.date_taken, @user, "day"), remote: true
+	end
+
+	def duration_params(date_taken, user, duration)
+		@date_taken = date_taken
+		if duration == "day"
+			@new_beg_range = @date_taken 
+			@new_end_range = @date_taken
+		elsif duration == "week"
+			num = date_taken.strftime("%d").to_i 
+			num = (num-1)/7 
+			@new_beg_range = @date_taken.beginning_of_month+num.weeks 
+			@new_end_range = @date_taken.beginning_of_month+num.weeks+6.days 
+		elsif duration == "month"
+			@new_beg_range = @date_taken.beginning_of_month 
+			@new_end_range = @date_taken.end_of_month
+		end
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+	end
+
+	# range, date_taken, user
+	# l
+
 	# *** END -- up down previous and next links -- END ***
 
 	# *** START -- up down previous and next link parameters -- START ***
@@ -322,6 +366,20 @@ module ApplicationHelper
 		end
 		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
+
+	# control_panel routes
+	def go_to_month_params(user)
+		@new_beg_range = @beg_range.beginning_of_month 
+		@new_end_range = @beg_range.beginning_of_month.end_of_month
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+	end
+
+	def go_to_year_params(user)
+		@new_beg_range = @beg_range.beginning_of_year 
+		@new_end_range = @beg_range.beginning_of_year.end_of_year
+		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+	end
+
 
 	# down link parameters
 	def down_link_params(user)

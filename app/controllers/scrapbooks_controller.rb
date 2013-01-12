@@ -93,6 +93,7 @@ class ScrapbooksController < ApplicationController
   end
 
   def year
+    # @images = @user.images.find_all_by_year(true
   
     set_scrapbook_vars
     if params[:beg_range]

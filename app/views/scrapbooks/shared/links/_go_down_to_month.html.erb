@@ -1,0 +1,2 @@
+<!-- go to month -->
+<%= link_to content_tag(:li, content_tag(:span, "M", class: "included"), :"data-purpose" => "check out month gallery", class: "cp"), go_to_month_link(@user)+duration_params(image.date_taken, @user, "month"), remote: true %>

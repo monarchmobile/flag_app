@@ -332,7 +332,7 @@ $(document).ready(function() {
     jQuery.fn.dynamic_img_desc_styling = function() {
         this.show().css({
             "width": (image_width-25)+"px",
-            "top": (image_height-15) + "px"
+            "top": (image_height-50) + "px"
         })
     }
 
@@ -348,6 +348,16 @@ $(document).ready(function() {
         }, function(){
             $(this).find(".control_panel").hide()
             $(this).find(".image_description").hide()
+        })
+
+        $(".cp").hover(function() {
+            purpose = $(this).attr("data-purpose")
+            if (!purpose == "") {
+                $(".helper_box").html(purpose).show()
+            }
+        }, function() {
+            $(".helper_box").hide()
+            $(".helper_box").html("")
         })
     }
 

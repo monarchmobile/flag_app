@@ -1,0 +1,21 @@
+<%= render('scrapbooks/shared/links/go_down_to_day', image: image) %> 
+<% if image.week == false || image.week == nil %> 
+	<% if (@user.images.where(date_taken: @beg_week..@end_week, week: true).count < 5) %>
+		<li class="cp" data-purpose="image not in week gallery"><span class="not_included">W</span></li>
+		<%= form_for [@user, image], html: {id: "add_image_#{image.id}" }, remote: true do |f| %>
+		  <%= f.check_box :week %>
+		  
+		<% end %>
+	<% else %>
+		<%= link_to content_tag(:li, content_tag(:span, "W", class: "full"), class: "cp", :"data-purpose" => "Your week is full"), go_to_up_link(@user)+up_link_params(@user), remote: true %>
+	<% end %>
+	
+<% elsif image.week == true %>
+	<%= link_to content_tag(:li, content_tag(:span, "W", class: "included"), class: "cp", :"data-purpose" => "This image part of week"), go_to_up_link(@user)+up_link_params(@user), remote: true %>
+<% end %>
+
+
+<!-- month links -->
+<%= render('scrapbooks/shared/links/go_up_to_month', image: image) %>
+<%= render('scrapbooks/shared/links/go_up_to_year', image: image) %>
+

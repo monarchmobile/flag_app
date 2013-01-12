@@ -1,19 +1,19 @@
  
 if (<%= @boolean %> == 0) {
 	this_obj = $('#remove_image_<%=@image.id%>')
-	this_obj.parent().parent(".control_panel").children(".message")
+	this_obj.parent(".control_panel").children(".message")
 										.html("Deleting image from this page")
 										.parent().parent(".image_container").fadeOut(2000);
-	this_obj.parent().children().hide()
+	
 } else if (<%= @boolean %> == 1) {
 	// /weekly_scrapbook
 	
     $(".cp").show()
     this_obj = $('#add_image_<%=@image.id%>')
- 	this_obj.parent().parent(".control_panel").children(".message")
+ 	this_obj.parent(".control_panel").children(".message")
  									.html('Image added to your gallery' )
  									.fadeOut(10000);
- 	this_obj.parent().children().hide()
+ 
 
 } else if (<%= @boolean %> == 2) {
 	

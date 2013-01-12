@@ -284,12 +284,14 @@ overflow: hidden;
 }
 
 .prev {
-	left: 20px;
-	top: 40%;
-	overflow: hidden;
-	width: 66px;
-	height: 74px;
-	background: url("buttons.png") 35% 3% no-repeat;
+	margin-left: -37px;
+top: 125px;
+
+overflow: hidden;
+width: 66px;
+height: 74px;
+background: url("buttons.png") 35% 3% no-repeat;
+position: relative;
 
 	&:hover {
 		background: url("buttons.png") 35% 50% no-repeat;
@@ -308,12 +310,13 @@ overflow: hidden;
 
 .next {
 	
-	right:20px;
-	top: 40%;
+	margin-left:975px;
+	top: 35px;
 	overflow: hidden;
 	width: 66px;
 	height: 74px;
 	background: url("buttons.png") 64% 3% no-repeat;
+	position: relative;
 
 	&:hover {
 		background: url("buttons.png") 64% 50% no-repeat;
@@ -485,7 +488,7 @@ box-shadow:         2px 2px 2px #ccc;
 	top: 50px;
 	padding: 10px;
 	float: left;
-	margin-left: 700px;
+	margin-left: 660px;
 	position: absolute;
 	background:url('/assets/journal.png') no-repeat;
 
@@ -513,7 +516,7 @@ h2.journal_date_range {
 	top: 160px;
 	padding: 10px;
 	float: left;
-	margin-left:750px;
+	margin-left:666px;
 	position: absolute;
 	border:0px;
 	z-index:100;
@@ -592,30 +595,30 @@ img {
 
 
 
-.gallery_msg {
-	color: white;
-	width: auto;
-	clear: both;
-	margin-left: 9px;
-	margin-top: 5px;
-	text-align: left;
-	background:inherit;
+// .gallery_msg {
+// 	color: white;
+// 	width: auto;
+// 	clear: both;
+// 	margin-left: 9px;
+// 	margin-top: 5px;
+// 	text-align: left;
+// 	background:inherit;
 		
-	a {
-		text-decoration: none;
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+// 	a {
+// 		text-decoration: none;
+// 		&:hover {
+// 			text-decoration: underline;
+// 		}
+// 	}
 
-	form {
-		margin-left:-3px;
+// 	form {
+// 		margin-left:-3px;
 
-		input[type='checkbox']:hover {
-			background:red;
-		}
-	}
-}
+// 		input[type='checkbox']:hover {
+// 			background:red;
+// 		}
+// 	}
+// }
  
 
 .smaller_images {
@@ -662,17 +665,18 @@ border: 2px solid gray;
 
 ul.image_description {
 	height:auto;
-	background: #EDF5FA;
+	background: #000;
+	opacity:.75;
 	position: absolute;
 	z-index: 100;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-right: 15px;
 	padding-left:10px;
-	display:none;
+	color:#fff;
 	border: 2px solid #5F5A5A;
 	font-size:10px;
-
+	display:none;
 	li:first-child {
 		text-align: center;
 	}
@@ -683,56 +687,67 @@ ul.image_description {
 
 }
 
+.helper_box {
+	position:absolute;
+	float:left;
+	margin-left:5px;
+	top:-25px;
+	padding:5px;
+	border:2px solid $burgandy;
+	display:none;
+	border-radius: 5px;
+	webkit-border-radius: 5px;
+	moz-border-radius: 5px;
+	background:#fff;
+}
+
 ul.control_panel {
 
 height: auto;
-background: #9E9E9E;
+background: #000;
+opacity:.75;
 position: absolute;
 z-index: 100;
-padding-top: 10px;
-padding-bottom: 10px;
-padding-right: 15px;
-padding-left:10px;
+padding:5px 15px 5px 10px;
 margin-top: 0px;
-display:none;
 border: 2px solid #5F5A5A;
-font-size:10px;
-	
-	.cp {
-		margin-left:5px;
-		text-decoration: none;
-		color:#fff;
+font-size:12px;
+display:none;
+	// .cp {
+	// 	margin-left:5px;
+	// 	text-decoration: none;
+	// 	color:#fff;
 
 
-		&:hover {
-			text-decoration: underline;
-			background:inherit;
-			color: red;
-		}
-	}
+	// 	&:hover {
+	// 		text-decoration: underline;
+	// 		background:inherit;
+	// 		color: red;
+	// 	}
+	// }
 
-	.message {
-		color:#45DD1F;
-		font-weight:bold;
+	// .message {
+	// 	color:#45DD1F;
+	// 	font-weight:bold;
 		
-		clear:both;
-	}
+	// 	clear:both;
+	// }
 
-
+	
 
 	li {
 		
 		float: left;
-		
 		text-align: center;
 		width: auto;
 		text-decoration: none;
 		list-style: none;
 		color:#fff;
 		cursor:pointer;
+		margin-left:15px;
+		display: inline-block;
 
 		a {
-			margin-left:0px;
 			color: white;
 			text-decoration: none;
 		}
@@ -741,10 +756,37 @@ font-size:10px;
 			text-decoration: underline;
 			background:inherit;
 		}
+
+		span {
+			margin-left:15px;
+		}
+
+		span.included {
+			color:green;
+		}
+
+		span.not_included {
+			color:red;
+		}
+
+		span.full {
+			color: blue;
+		}
+
+		
+
 	}
-	li:nth-child(3), li:nth-child(4) {
-		margin-left:0px
+
+	form {
+		float: left;
+
+		input[type="checkbox"] {
+			display:inline-block;
+		}
 	}
+	// li:nth-child(3), li:nth-child(4) {
+	// 	margin-left:0px
+	// }
 }
 
 

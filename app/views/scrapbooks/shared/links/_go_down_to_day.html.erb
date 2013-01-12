@@ -1,0 +1,5 @@
+<!-- go to day link -->
+<%= link_to content_tag(:li, content_tag(:span, "D", class: "included"), :"data-purpose" => "check out day gallery", class: "cp"), go_to_day_link(@user)+duration_params(image.date_taken, @user, "day"), remote: true %>
+
+
+	

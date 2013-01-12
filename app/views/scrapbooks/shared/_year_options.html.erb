@@ -1,0 +1,8 @@
+<%= render('scrapbooks/shared/links/go_down_to_day', image: image) %>
+<%= render('scrapbooks/shared/links/go_down_to_week', image: image) %>
+<%= render('scrapbooks/shared/links/go_down_to_month', image: image) %>
+<!-- remove from year gallery -->
+<li class="cp" data-purpose="year gallery"><span class="included">Y</span></li>
+<%= form_for [@user, image], html: {id: "remove_image_#{image.id}" }, :"data-purpose" => "click box to remove from year gallery", remote: true do |f| %> 
+	<%= f.check_box :year %>
+<% end %>

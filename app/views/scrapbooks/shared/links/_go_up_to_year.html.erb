@@ -1,0 +1,6 @@
+<!-- year gallery options -->
+<% if image.year == true %>
+    <%= link_to content_tag(:li, content_tag(:span, "Y", class: "included"), :"data-purpose" => "this image included in year gallery", class: "cp"), go_to_year_link(@user)+duration_params(image.date_taken, @user, "year"), remote: true %>
+<% else  %>
+    <%= content_tag(:li, content_tag(:span, "Y", class: "not_included"), :"data-purpose" => "this image not included in year gallery", class: "cp") %>
+<% end %>
