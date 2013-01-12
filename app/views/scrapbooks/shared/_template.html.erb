@@ -7,7 +7,7 @@
 
 	<div class="hide" id="edit_container"></div>
 	<div class="image_container thumbnail" style="width:<%= @con_width %>px;height:<%= @con_height %>px;left:<%= @left %>px;top:<%= @top %>px;position:absolute;" data-id="<%= image.id %>" data-range="<%= page %>" data-root="<%= root_path %>">
-		<div class="helper_box"></div>
+		
 		<ul class="control_panel" style="width:<%= @con_width %>px;">
 			<!-- resize, edit, delete, week, month, year -->
 			<%= render("scrapbooks/shared/control_panel", image: image )  %>
