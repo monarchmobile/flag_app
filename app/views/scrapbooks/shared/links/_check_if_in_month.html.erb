@@ -1,0 +1,8 @@
+<!-- month gallery options --> 
+<% if image.month == true %> 
+    <%= render('scrapbooks/shared/links/month_true', image: image) %>
+
+<% else  %>
+    <%= link_to content_tag(:li, content_tag(:span, "M", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['month_false'], class: "cp"), go_to_range(@user, 2)+duration_params(image.date_taken, @user, "month"), remote: true %>
+<% end %>
+

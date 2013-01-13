@@ -2,16 +2,16 @@
     <% (@beg_range.to_date.beginning_of_month..@beg_range.to_date.end_of_month).each do |day| %>
         <!--  Pointer : add pointer class -->
         <% if @beg_range.to_date == day %>
-            <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), go_to_day_link(@user)+date_range_params(day, @user), remote: true %>
+            <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates pointer"), go_to_range(@user, 0)+date_range_params(day, @user), remote: true %>
         <!--  Future days : add future_date class  -->  
         <% elsif Date.today < day %>
-                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), go_to_day_link(@user)+date_range_params(day, @user), remote: true %>
+                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates future_date"), go_to_range(@user, 0)+date_range_params(day, @user), remote: true %>
         <!--  Future days : no extra classes  -->   
         <% else %>
             <% if @user.images.where(date_taken: day..day).any? || @user.journals.where(entry_date: day..day, day: true).any?%>
-                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), go_to_day_link(@user)+date_range_params(day, @user), remote: true %>
+                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates content_exists"), go_to_range(@user, 0)+date_range_params(day, @user), remote: true %>
             <% else %>
-                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates"), go_to_day_link(@user)+date_range_params(day, @user), remote: true %>
+                <%= link_to content_tag(:li, day.strftime("%d"), class: "days_of_month clickable_dates"), go_to_range(@user, 0)+date_range_params(day, @user), remote: true %>
 
             <% end %>
         <% end %>

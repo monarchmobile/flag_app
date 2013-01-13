@@ -305,6 +305,7 @@ position: relative;
 		font-size: 10px;
 		margin-top: 26px;
 		margin-left: -35px;
+		color:#fff;
 	}
 }
 
@@ -330,6 +331,7 @@ position: relative;
 		font-size: 10px;
 		margin-top: 26px;
 		margin-left: 15px;
+		color:#fff;
 	}
 }
 
@@ -362,6 +364,13 @@ color: black;
 		margin-left: -50px;
 		margin-top: -29px;
 		z-index: 200;
+	}
+
+	div.nav_text {
+		font-size: 10px;
+margin-top: 22px;
+margin-left: 1px;
+color: #fff;
 	}
 
 }
@@ -690,15 +699,18 @@ ul.image_description {
 .helper_box {
 	position:absolute;
 	float:left;
-	margin-left:5px;
-	top:-25px;
+	margin-left:-12px;
+	top:-30px;
 	padding:5px;
-	border:2px solid $burgandy;
+	-moz-box-shadow:    0px 0px 5px $burgandy;
+	-webkit-box-shadow: 0px 0px 5px $burgandy;
+	box-shadow:         0px 0px 5px $burgandy;
 	display:none;
-	border-radius: 5px;
-	webkit-border-radius: 5px;
-	moz-border-radius: 5px;
-	background:#fff;
+	background:black;
+	opacity:.75;
+	color:#fff;
+	text-align:center;
+	width:230px;
 }
 
 ul.control_panel {
@@ -758,7 +770,7 @@ display:none;
 		}
 
 		span {
-			margin-left:15px;
+			margin-left:5px;
 		}
 
 		span.included {

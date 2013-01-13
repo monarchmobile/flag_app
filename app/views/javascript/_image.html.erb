@@ -330,10 +330,13 @@ $(document).ready(function() {
         // new_panel_margin_top()
     }
     jQuery.fn.dynamic_img_desc_styling = function() {
-        this.show().css({
-            "width": (image_width-25)+"px",
-            "top": (image_height-50) + "px"
-        })
+        desc = this.attr("data-desc")
+        if (desc == "true") {
+            this.show().css({
+                "width": (image_width-25)+"px",
+                "top": (image_height-46) + "px"
+            })
+        }
     }
 
     // control_panel on hover

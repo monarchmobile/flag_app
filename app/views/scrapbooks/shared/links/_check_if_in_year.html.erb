@@ -1,0 +1,6 @@
+<!-- year gallery options -->
+<% if image.year == true %>
+    <%= link_to content_tag(:li, content_tag(:span, "Y", class: "included"), :"data-purpose" => Arrays::CP_MESSAGE['year_true'], class: "cp"), go_to_range(@user, 3)+duration_params(image.date_taken, @user, "year"), remote: true %>
+<% else  %>
+    <%= link_to content_tag(:li, content_tag(:span, "Y", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['year_false'], class: "cp"), go_to_range(@user, 3)+duration_params(image.date_taken, @user, "year"), remote: true %>
+<% end %>

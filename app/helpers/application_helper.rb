@@ -103,6 +103,10 @@ module ApplicationHelper
 		new_url
 	end
 
+	def description?(image)
+		image.content.length > 0
+	end
+
 	# gets width height left and top for images in scrapbook
 	def get_dimensions(id, range)
 	  
@@ -241,24 +245,31 @@ module ApplicationHelper
 
 	# dynamic downlink
 	def go_to_down_link(user)
-		page
-		frames
-		num = 0
-		while num < 4 
-			if page == frames[num] 
-				if num == 0
-					@destination = frames[num+3]
-				else
-					@destination = frames[num-1] 
-				end
-			end 
-			num += 1 
-		end
-		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
+		# page
+		# frames
+		# num = 0
+		# while num < 4 
+		# 	if page == frames[num] 
+		# 		if num == 0
+		# 			@destination = frames[num+3]
+		# 		else
+		# 			@destination = frames[num-1] 
+		# 		end
+		# 	end 
+		# 	num += 1 
+		# end
+		# @base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
+		@bread_crumb.split("?")[0]
 	end
 
 	# dynamic specific day, previous, or next link
 	def go_to_date_link(user)
+		dynamic_range
+		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
+	end
+
+	# dynamically tells you what page range you are on %w[day week month year]
+	def dynamic_range 
 		page
 		frames
 		num = 0
@@ -268,52 +279,14 @@ module ApplicationHelper
 			end 
 			num += 1 
 		end
-		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
 	end
 
-	def go_to_day_link(user)
+	# static specific day
+	def go_to_range(user, num)
 		page
 		frames
-		@destination = frames[0] 
+		@destination = frames[num] 
 		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
-	end
-
-	def go_to_week_link(user)
-		page
-		frames
-		@destination = frames[1] 
-		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
-	end
-
-	def go_to_month_link(user)
-		page
-		frames
-		@destination = frames[2] 
-		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
-	end
-
-	def go_to_year_link(user)
-		page
-		frames
-		@destination = frames[3] 
-		@base_path = root_path+"users/#{user.id}/scrapbook/#{@destination}"
-	end
-
-	# control_panel routes
-	def go_to_month_params(user)
-		@new_beg_range = @beg_range.beginning_of_month 
-		@new_end_range = @beg_range.beginning_of_month.end_of_month
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
-	end
-
-	def go_to_year_params(user)
-		@new_beg_range = @beg_range.beginning_of_year 
-		@new_end_range = @beg_range.beginning_of_year.end_of_year
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
-	end
-
-	def dynamic_image_link(duration)
-		link_to content_tag(:span, "D", class: "included #{duration}_link"), go_to_day_link(@user)+duration_params(image.date_taken, @user, "day"), remote: true
 	end
 
 	def duration_params(date_taken, user, duration)
@@ -332,9 +305,6 @@ module ApplicationHelper
 		end
 		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
-
-	# range, date_taken, user
-	# l
 
 	# *** END -- up down previous and next links -- END ***
 
@@ -367,27 +337,18 @@ module ApplicationHelper
 		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
-	# control_panel routes
-	def go_to_month_params(user)
-		@new_beg_range = @beg_range.beginning_of_month 
-		@new_end_range = @beg_range.beginning_of_month.end_of_month
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+	def determine_week(date)
+		@num = (date.strftime("%d").to_i-1)/7
 	end
-
-	def go_to_year_params(user)
-		@new_beg_range = @beg_range.beginning_of_year 
-		@new_end_range = @beg_range.beginning_of_year.end_of_year
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
-	end
-
 
 	# down link parameters
 	def down_link_params(user)
 		declare_beg_range
 		if page == frames[1]
-			num = (@beg_range.strftime("%d").to_i-1)/7 
-			@new_beg_range = @beg_range.beginning_of_month+num.weeks
-			@new_end_range = @beg_range.beginning_of_month+num.weeks
+			determine_week(@beg_range)
+			 
+			@new_beg_range = @beg_range.beginning_of_month+@num.weeks
+			@new_end_range = @beg_range.beginning_of_month+@num.weeks
 		elsif page == frames[2]
 			@new_beg_range = @beg_range.beginning_of_month 
 		 	@new_end_range = @beg_range.beginning_of_month+6.days
@@ -395,7 +356,7 @@ module ApplicationHelper
 			@new_beg_range = @beg_range.beginning_of_year
 		 	@new_end_range = @beg_range.next_month-1
 		end
-		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
+		"?#{@bread_crumb.split("?")[1]}&bread_crumb=#{current_path(user)}#{current_params}"
 	end
 
 	# previous link parameters
@@ -406,12 +367,34 @@ module ApplicationHelper
 	end
 
 	def prev_next_link_text(dir, user)
+		declare_beg_range
+		determine_page_time_frame
 		if dir == "prev"
-			prev_link_params(user).split("&")[0].split("=")[1].split("-")[2]
+			if page == frames[0]
+				@prev_beg_range.strftime("%d")
+			elsif page == frames[1]
+				determine_week(@beg_range)
+				"#{@prev_beg_range.strftime("%d")}-#{@prev_end_range.strftime("%d")}"
+			elsif page == frames[2]
+				@prev_beg_range.strftime("%b")
+			elsif page == frames[3]
+				@prev_beg_range.strftime("%Y")
+			end
 		elsif dir == "next"
-			next_link_params(user).split("&")[0].split("=")[1].split("-")[2]
+			if page == frames[0]
+				@next_beg_range.strftime("%d")
+			elsif page == frames[1]
+				determine_week(@end_range)
+				"#{@next_beg_range.strftime("%d")}-#{@next_end_range.strftime("%d")}"
+			elsif page == frames[2]
+				@next_beg_range.strftime("%b")
+			elsif page == frames[3]
+				@next_beg_range.strftime("%Y")
+			end
 		end
 	end
+
+
 
 	# next link parameters
 	def next_link_params(user)

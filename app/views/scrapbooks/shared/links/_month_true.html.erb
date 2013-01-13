@@ -1,0 +1,2 @@
+<!-- go to month -->
+<%= link_to content_tag(:li, content_tag(:span, "M", class: "included"), :"data-purpose" => Arrays::CP_MESSAGE['month_true'], class: "cp"), go_to_range(@user, 2)+duration_params(image.date_taken, @user, "month"), remote: true %>

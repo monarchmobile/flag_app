@@ -1,0 +1,2 @@
+<!-- go down to week -->
+<%= link_to content_tag(:li, content_tag(:span, "W", class: "included"), :"data-purpose" => Arrays::CP_MESSAGE['week_true'], class: "cp"), go_to_range(@user, 1)+duration_params(image.date_taken, @user, "week"), remote: true %>
