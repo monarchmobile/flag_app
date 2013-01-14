@@ -9,11 +9,12 @@ class UsersController < ApplicationController
 
 		@already_voted_for_week = current_user.votes.where(:beg_range=>previous_week_beg(Date.today))
 					.where(:range_type=>1)
-					.where(voted: true).last
+					.where(voted: true).last if current_user
 		@already_voted_for_month = current_user.votes.where(:beg_range=>Date.today.beginning_of_month) 
 					.where(:range_type=>2)
-					.where(voted: true).last
+					.where(voted: true).last if current_user
 
+		
 		if @already_voted_for_week
 			@week_vote = Vote.find(@already_voted_for_week)
 		else

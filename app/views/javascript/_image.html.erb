@@ -245,8 +245,7 @@ $(document).ready(function() {
 
                         $(".cp").show()
                         this_obj.css("opacity", "1")
-                        this_obj.children(".control_panel").css("background", "#9E9E9E")
-                        this_obj.children(".control_panel").children(".message").html("New position saved").fadeOut(5000)
+                        this_obj.children(".control_panel").children(".helper_box").html("New position saved").show().delay(1000).fadeOut(3000)
                     }
                 })
             } // end stop function
@@ -267,7 +266,7 @@ $(document).ready(function() {
             $(".cp").hide()
             this_obj.parent().parent(".image_container").draggable("option", "disabled", true ).css("opacity", "1");
             this_obj.show()
-            this_obj.parent().children(".message").html("Image is now resizable").show()
+            this_obj.parent().children(".helper_box").html("Image is now resizable").show()
 
             // action: allows user to resize while keeping original aspectRatio
             this_image.resizable({
@@ -282,8 +281,7 @@ $(document).ready(function() {
                        success: function() {
                             $(".cp").show()
                             this_obj.parent().parent().css("opacity", "1")
-                            this_obj.parent().css("background", "#9E9E9E")
-                            this_obj.parent().children(".message").html("new dimensions saved").fadeOut(2000)
+                            this_obj.parent().children(".helper_box").html("new dimensions saved").show().delay(1000).fadeOut(3000)
                             this_image.resizable("destroy")  
                             this_obj.parent().parent(".image_container").draggable("option", "disabled", false );   
                        }
@@ -292,8 +290,7 @@ $(document).ready(function() {
             })
         }, function() {
             $(".cp").show()
-            $(this).parent().css("background", "#9E9E9E")
-            $(this).parent().children(".message").html("").hide()        
+            $(this).parent().children(".helper_box").html("").hide()        
             
         });
     }
@@ -376,6 +373,18 @@ $(document).ready(function() {
     })
     // *** END Control Panel END *** 
 
+    // textarea max length
+    if ($('textarea').length > 0){
+        $('textarea[maxlength]').keypress(
+          function(e){
+            return imposeMaxLength(e,$(this))
+          }
+        );
+      }
+    function imposeMaxLength(event,el) {
+      var key = event.charCode || 0;
+      return((key<32||key>126)||(el.val().length < el.attr('maxlength')));
+    }
      
 });
 </script>

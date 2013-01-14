@@ -21,7 +21,7 @@ module ApplicationHelper
 
 	# highlights gallery that current_user has voted on 
 	def chosen(already, owner)
-		if already && already.owner_id == owner.id 
+		if already && already.owner_id == owner.id && current_user
 			"chosen"
 		end
 	end

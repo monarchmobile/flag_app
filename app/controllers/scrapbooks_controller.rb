@@ -79,8 +79,8 @@ class ScrapbooksController < ApplicationController
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, month: true)
       
     else
-      @beg_range = Date.today.beginning_of_week
-      @end_range = Date.today.end_of_week
+      @beg_range = Date.today.beginning_of_month
+      @end_range = Date.today.end_of_month
       @user_images = @user.images.for_this_range(@beg_range, @end_range, "month")
       @month_images = @user.images.where(date_taken: @beg_range..@end_range, week: true).order("date_taken ASC")
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, month: true)
@@ -98,13 +98,14 @@ class ScrapbooksController < ApplicationController
     set_scrapbook_vars
     if params[:beg_range]
       params_vars
-
+      @month_images = @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC")
       @user_images = @user.images.for_this_range(@beg_range, @end_range, "year")
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, year: true )
       
     else
-      @beg_range = Date.today.beginning_of_week
-      @end_range = Date.today.end_of_week
+      @beg_range = Date.today.beginning_of_year
+      @end_range = Date.today.end_of_year
+      @month_images = @user.images.where(date_taken: @beg_range..@end_range, month: true).order("date_taken ASC")
       @user_images = @user.images.for_this_range(@beg_range, @end_range, "year")
       @journal = @user.journals.where(entry_date: @beg_range..@end_range, year: true)
      

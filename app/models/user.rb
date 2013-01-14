@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base 
   # attributes by row %w[ stock admin added virtual ]
   attr_accessible :email, :first_name, :last_name, :password_digest, :password_confirmation, :password
-  attr_accessible :user_type
+  attr_accessible :user_type, :guest
   attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
   # attr_accessible :
   # has_secure_password
@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
     
-  validates_uniqueness_of :email
-
+  validates_presence_of :password_digest, unless: :guest?
+  validates_confirmation_of :password
   validates :email, :email_pattern => true, unless: :guest?
 
   validates :last_name,
@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
 
   # profile pic
   mount_uploader :member_photo, ProfilepicUploader
+
 
   # override has_secure_password to customize validation until Rails 4.
   require 'bcrypt'

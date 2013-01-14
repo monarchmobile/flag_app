@@ -1,7 +1,7 @@
  
 if (<%= @boolean %> == 0) {
 	this_obj = $('#remove_image_<%=@image.id%>')
-	this_obj.parent(".control_panel").children(".message")
+	this_obj.parent(".control_panel").children(".helper_box")
 										.html("Deleting image from this page")
 										.parent().parent(".image_container").fadeOut(2000);
 	
@@ -10,7 +10,7 @@ if (<%= @boolean %> == 0) {
 	
     $(".cp").show()
     this_obj = $('#add_image_<%=@image.id%>')
- 	this_obj.parent(".control_panel").children(".message")
+ 	this_obj.parent(".control_panel").children(".helper_box")
  									.html('Image added to your gallery' )
  									.fadeOut(10000);
  
