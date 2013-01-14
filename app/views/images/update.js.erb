@@ -1,17 +1,40 @@
- 
+
+
+
 if (<%= @boolean %> == 0) {
-	this_obj = $('#remove_image_<%=@image.id%>')
+	if (<%= @range %> == 1) {
+		this_obj = $("#remove_image_<%= @image.id %>_from_week")
+	} else if (<%= @range %> == 2) {
+		this_obj = $("#remove_image_<%= @image.id %>_from_month")
+	} else if (<%= @range %> == 3 ) {
+		this_obj = $("#remove_image_<%= @image.id %>_from_year")
+	}
+
+	this_obj.prev().children().removeClass("included").addClass("not_included")
 	this_obj.parent(".control_panel").children(".helper_box")
-										.html("Deleting image from this page")
-										.parent().parent(".image_container").fadeOut(2000);
+										.html("Deleting image from this page").show()
+										.delay(3000).fadeOut(2000);
+
+	range = this_obj.parent().parent(".image_container").data("range") 
+
+	if (range == "<%= @string %>") {
+		this_obj.parent().parent(".image_container").fadeOut(1000);
+	}
 	
 } else if (<%= @boolean %> == 1) {
 	// /weekly_scrapbook
-	
+	if (<%= @range %> == 1) {
+		this_obj = $("#add_image_<%= @image.id %>_to_week")
+	} else if (<%= @range %> == 2) {
+		this_obj = $("#add_image_<%= @image.id %>_to_month")
+	} else if (<%= @range %> == 3 ) {
+		this_obj = $("#add_image_<%= @image.id %>_to_year")
+	}
     $(".cp").show()
-    this_obj = $('#add_image_<%=@image.id%>')
+   
+    this_obj.prev().children().removeClass("not_included").addClass("included")
  	this_obj.parent(".control_panel").children(".helper_box")
- 									.html('Image added to your gallery' )
+ 									.html('Image added to your gallery' ).show().delay(3000)
  									.fadeOut(10000);
  
 
@@ -24,4 +47,5 @@ if (<%= @boolean %> == 0) {
 		"margin-top": "-100px",
 		"opacity": "0"
 	}, 6000)
+	$(".image_description").html("<%= @image.content %>")
 }

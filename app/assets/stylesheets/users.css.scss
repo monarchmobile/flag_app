@@ -44,14 +44,17 @@
     }
 }
 
-.img_content_container {
+.img_content_container { 
+	height:auto;
     text-align: center;
     width:190px;
-    background:gray;
+    background: #000;
+    opacity:.75;
     margin:auto;
     color:#fff;
     padding:5px;
 }
+
 
 .img_feed_container {
 position:absolute;

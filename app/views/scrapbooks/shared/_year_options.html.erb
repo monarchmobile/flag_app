@@ -1,8 +1,4 @@
 <%= render('scrapbooks/shared/links/day_true', image: image) %> 
-<%= render('scrapbooks/shared/links/week_true', image: image) %>
-<%= render('scrapbooks/shared/links/month_true', image: image) %>
-<!-- remove from year gallery -->
-<li class="cp" data-purpose="<%= Arrays::CP_MESSAGE['year_present'] %>"><span class="included">Y</span></li>
-<%= form_for [@user, image], html: {id: "remove_image_#{image.id}" }, :"data-purpose" => "click box to remove from year gallery", remote: true do |f| %> 
-	<%= f.check_box :year, :"data-purpose" => Arrays::CP_MESSAGE['year_remove'], class: "cp" %>
-<% end %>
+<%= render('scrapbooks/shared/links/check_if_in_week', image: image) %>
+<%= render('scrapbooks/shared/links/check_if_in_month', image: image) %>
+<%= render('scrapbooks/shared/links/check_if_in_year', image: image) %>

@@ -3,7 +3,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$burgandy: rgb(159,21,15);
+$theme_color: rgb(159,21,15);
 
 // core classes to be used everywhere //
 .hide {
@@ -69,7 +69,7 @@ padding: 5px;
 .header_container {
 	width: 100%;
 	height: 50px;
-	background: $burgandy;
+	background: $theme_color;
 	position: absolute;
 	z-index: 100;
 	-moz-box-shadow:    0px 0px 15px #000;
@@ -104,7 +104,7 @@ ul.nav_bar {
 
 ul.left_side {
 	position:absolute;
-	left:20px;
+	left:50px;
 	width:175px;
 }
 ul.middle {
@@ -113,25 +113,19 @@ ul.middle {
 	width:600px;
 	padding:0px;
 	a li {
-			width:150px;
+		width:200px;
 			
 	}
-
-	a:nth-child(2) li {
-		margin-left:260px;
-	}
-
-	
-
 }
+
 ul.right_side {
 	position:absolute;
-	right:30px;
+	margin-left:800px;
 	width:175px;
 	a li {
 		width: 80px;
-margin-left: 5px;
-float: left;
+		margin-left: 5px;
+		float: left;
 	}
 }
 
@@ -219,11 +213,11 @@ padding-bottom: 20px;
 
 // Go to { time frame } [Week, Month, Year]
 .nav_up {
-	margin-left: 350px;
-	text-align: center;
-	width: 300px;
+	margin-left: 400px;
+text-align: center;
+width: 200px;
 	height: 21px;
-	background: $burgandy;
+	background: $theme_color;
 	font-size: 22px;
 	color: black;
 	top:0px;
@@ -514,7 +508,7 @@ box-shadow:         2px 2px 2px #ccc;
 h2.journal_date_range {
 	margin-left: 10px;
 	margin-top: 39px;
-	color: $burgandy;
+	color: $theme_color;
 	font-size: 20px;
 	text-decoration: underline;
 	text-align: center;
@@ -689,12 +683,11 @@ ul.image_description {
 	border: 2px solid #5F5A5A;
 	font-size:10px;
 	display:none;
-	li:first-child {
-		text-align: center;
-	}
 
 	li {
+		text-align: center;
 		list-style: none;
+		
 	}
 
 }
@@ -705,9 +698,9 @@ ul.image_description {
 	margin-left:-12px;
 	top:-30px;
 	padding:5px;
-	-moz-box-shadow:    0px 0px 5px $burgandy;
-	-webkit-box-shadow: 0px 0px 5px $burgandy;
-	box-shadow:         0px 0px 5px $burgandy;
+	-moz-box-shadow:    0px 0px 5px $theme_color;
+	-webkit-box-shadow: 0px 0px 5px $theme_color;
+	box-shadow:         0px 0px 5px $theme_color;
 	display:none;
 	background:black;
 	opacity:.75;
@@ -820,7 +813,7 @@ display:none;
 	width: 25px;
 	height: 19px;
 	z-index: 500;
-	background: gray;
+	background: $theme_color;
 	color: white;
 	text-align: center;
 	padding-top: 2px;
@@ -915,7 +908,7 @@ ul.dom_container {
 	}
 
 	a li.pointer {
-		background: $burgandy;
+		background: $theme_color;
 	opacity: .8;
 	color: white;
 	height: 23px;
@@ -962,7 +955,7 @@ padding: 0px 0px 0px;
 	}
 	
 	a li.week_pointer {
-		background: $burgandy;
+		background: $theme_color;
 	}
 }
 
@@ -995,7 +988,7 @@ ul.moy_container {
 	}
 
 	a li.month_pointer {
-		background: $burgandy;
+		background: $theme_color;
 		height: 16px;
 		width: 45px;
 		margin-top:0px;

@@ -2,7 +2,12 @@
 
 <div class="testing">
 	<h2>voting total</h2>
-
+	<% @users = [] %>
+	<%= @owners_that_received_votes.count %><br >
+	<% @owners_that_received_votes.each do |o| %>
+	<% @user = User.find(o[0]) %>
+	<% @users << @user %>
+	<% end %>
 
 </div>
 <div class="user_index">

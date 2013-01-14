@@ -1,8 +1,19 @@
-<!-- month gallery options --> 
-<% if image.month == true %> 
-    <%= render('scrapbooks/shared/links/month_true', image: image) %>
+<!-- month gallery options -->  
+<% if image.month == false || image.month == nil %>
+    <% if (@user.images.where(date_taken: @first_of_month..@last_of_month, month: true).count < 11) %>
 
-<% else  %>
-    <%= link_to content_tag(:li, content_tag(:span, "M", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['month_false'], class: "cp"), go_to_range(@user, 2)+duration_params(image.date_taken, @user, "month"), remote: true %>
+        <%= content_tag(:li, content_tag(:span, "M", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['month_false'], class: "cp change_gallery") %>
+        <%= form_for [@user, image], html: {id: "add_image_#{image.id}_to_month" }, remote: true do |f| %>
+          <%= f.hidden_field :month, value: true %>
+        <% end %>
+
+    <% else %>
+        <%= content_tag(:li, content_tag(:span, "M", class: "full"), :"data-purpose" => Arrays::CP_MESSAGE['month_full'], class: "cp") %>
+    <% end %>
+      
+<% elsif image.month == true %>
+    <%= content_tag(:li, content_tag(:span, "M", class: "included"), :"data-purpose" => Arrays::CP_MESSAGE['month_true'], class: "cp change_gallery") %>
+    <%= form_for [@user, image], html: {id: "remove_image_#{image.id}_from_month" }, remote: true do |f| %>
+          <% f.hidden_field :month, value: false %>
+    <% end %>
 <% end %>
-

@@ -1,26 +1,5 @@
 <!-- remove from week gallery -->
 <%= render('scrapbooks/shared/links/day_true', image: image) %> 
-<li class="cp" data-purpose="<%= Arrays::CP_MESSAGE['week_present'] %>"><span class="included">W</span></li>
-<%= form_for [@user, image], html: {id: "remove_image_#{image.id}" }, remote: true do |f| %>
-  <%= f.check_box :week, :"data-purpose" => Arrays::CP_MESSAGE['week_remove'], class: "cp" %>  
-<% end %>
-
-<!-- month gallery options -->
-<% if image.month == false || image.month == nil %>
-    <% if (@user.images.where(date_taken: @first_of_month..@last_of_month, month: true).count < 5) %>
-
-        <%= link_to content_tag(:li, content_tag(:span, "M", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['month_false'], class: "cp"), go_to_range(@user, 2)+duration_params(image.date_taken, @user, "month"), remote: true %>
-        <%= form_for [@user, image], html: {id: "add_image_#{image.id}" }, remote: true do |f| %>
-          <%= f.check_box :month, :"data-purpose" => Arrays::CP_MESSAGE['month_add'], class: "cp" %>
-        <% end %>
-
-    <% else %>
-        <%= link_to content_tag(:li, content_tag(:span, "M", class: "full"), :"data-purpose" => Arrays::CP_MESSAGE['month_full'], class: "cp"), go_to_range(@user, 2)+duration_params(image.date_taken, @user, "month"), remote: true %>
-    <% end %>
-      
-<% elsif image.month == true %>
-    <%= link_to content_tag(:li, content_tag(:span, "M", class: "included"), :"data-purpose" => Arrays::CP_MESSAGE['month_true'], class: "cp"), go_to_range(@user, 2)+duration_params(image.date_taken, @user, "month"), remote: true %>
-<% end %>
-
-<!-- year gallery options -->
+<%= render('scrapbooks/shared/links/check_if_in_week', image: image) %>
+<%= render('scrapbooks/shared/links/check_if_in_month', image: image) %>
 <%= render('scrapbooks/shared/links/check_if_in_year', image: image) %>

@@ -1,6 +1,14 @@
 <!-- year gallery options -->
-<% if image.year == true %>
-    <%= link_to content_tag(:li, content_tag(:span, "Y", class: "included"), :"data-purpose" => Arrays::CP_MESSAGE['year_true'], class: "cp"), go_to_range(@user, 3)+duration_params(image.date_taken, @user, "year"), remote: true %>
-<% else  %>
-    <%= link_to content_tag(:li, content_tag(:span, "Y", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['year_false'], class: "cp"), go_to_range(@user, 3)+duration_params(image.date_taken, @user, "year"), remote: true %>
+<% if image.year == false || image.year == nil %>
+	<% if (@user.images.where(date_taken: @first_of_month..@last_of_month, year: false).count < 11) %> 
+	    <%= content_tag(:li, content_tag(:span, "Y", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['year_false'], class: "cp change_gallery") %>
+	    <%= form_for [@user, image], html: {id: "add_image_#{image.id}_to_year" }, remote: true do |f| %>
+	          <%= f.hidden_field :year, value: true %>
+	    <% end %>
+	<% end %>
+<% elsif image.year == true  %>
+    <%= content_tag(:li, content_tag(:span, "Y", class: "included"), :"data-purpose" => Arrays::CP_MESSAGE['year_true'], class: "cp change_gallery") %>
+    <%= form_for [@user, image], html: {id: "remove_image_#{image.id}_from_year" }, remote: true do |f| %>
+          <%= f.hidden_field :year, value: false %>
+    <% end %>
 <% end %>

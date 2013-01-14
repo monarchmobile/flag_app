@@ -1,7 +1,7 @@
 class ScrapbooksController < ApplicationController
   # Index 
   def index
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) 
     @scrapbooks = @user.scrapbooks.all
   end
 

@@ -85,15 +85,18 @@ class ImagesController < ApplicationController
         
         #   if params[:image][:week] || params[:image][:month] || params[:image][:year]
           if params[:image][:week] 
-            @range = "week"
+            @range = 1
+            @string = "week"
             @boolean = params[:image][:week]
             format.js  
           elsif params[:image][:month]
-            @range = "month"
+            @range = 2
+            @string = "month"
             @boolean = params[:image][:month]
             format.js 
           elsif params[:image][:year]
-            @range = "year"
+            @range = 3
+            @string = "year"
             @boolean = params[:image][:year]
             format.js 
           else

@@ -1,0 +1,20 @@
+<!--  check if in week  -->
+<% if image.week == false || image.week == nil %> 
+	<% if (@user.images.where(date_taken: @beg_week..@end_week, week: true).count < 11) %>
+
+
+		<%= content_tag(:li, content_tag(:span, "W", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['week_false'], class: "cp change_gallery") %>
+		<%= form_for [@user, image], html: {id: "add_image_#{image.id}_to_week" }, remote: true do |f| %>
+		  <%= f.hidden_field :week, value: true %>
+		<% end %>
+
+	<% else %>
+		<%= content_tag(:li, content_tag(:span, "W", class: "full"), :"data-purpose" => Arrays::CP_MESSAGE['week_full'], class: "cp") %>
+	<% end %>
+	
+<% elsif image.week == true %>
+	<%= content_tag(:li, content_tag(:span, "W", class: "included change_gallery"), :"data-purpose" => Arrays::CP_MESSAGE['week_true'], class: "cp change_gallery") %>
+	<%= form_for [@user, image], html: {id: "remove_image_#{image.id}_from_week" }, remote: true do |f| %>
+		  <%= f.hidden_field :week, value: false %>
+	<% end %>
+<% end %>

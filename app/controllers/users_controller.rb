@@ -4,7 +4,19 @@ class UsersController < ApplicationController
 
 	def index 
 		redirect_to create_guest_path unless current_user
-		@users = User.find(:all, :conditions => "email IS NOT NULL")
+		# @users = User.find(:all, :conditions => "email IS NOT NULL")
+		@owners_that_received_votes = Vote.group("owner_id").order("owner_id asc").count
+		# @owners_that_received_votes.each do |o|
+		# 	# @users = User.find(:all, conditions: {id: o.owner_id})
+		# 	o.owner_id
+		# end
+		# @users = User.where("last_name IS NOT NULL")
+		# @users.each do |u|
+		# 	@voted_on_users = []
+		# 	@voted_on_users << u.votes.where(owner_id: u.id, range_type: 1)
+		# end
+		
+
 		@page = params[:page]
 
 		@already_voted_for_week = current_user.votes.where(:beg_range=>previous_week_beg(Date.today))
@@ -14,7 +26,6 @@ class UsersController < ApplicationController
 					.where(:range_type=>2)
 					.where(voted: true).last if current_user
 
-		
 		if @already_voted_for_week
 			@week_vote = Vote.find(@already_voted_for_week)
 		else

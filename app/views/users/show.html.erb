@@ -16,7 +16,6 @@
                 <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %><li>
             <% end %>
         	<li><%= link_to "edit profile", edit_user_path if members_page(@user) %></li>
-            <li><%= link_to "All Flag Students", users_path %></li>
             <li><%= link_to "Scrapbook", day_path() if !@user.guest? %>
         </ul>    
     </div>
@@ -27,12 +26,10 @@
     <ul>
     <% @random_images.each do |image| %>
         <li class="img_feed_container" data-counter = "<%= n+=1 %>" >
-            <%= image_tag image.image_url(:scrap), width: "200px" %>
-            <div class="img_content_container hide">
-                <%= content_tag :div, image.title %>
-
+            <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
+            <div class="img_content_container hide image_desc">
                 <%= content_tag :div, image.content, class: "image_content" %>
-                <%= link_to content_tag(:div, "Image taken by #{image.user.last_name} on #{image.date_taken.strftime("%B %d, %Y")}"), user_path(image.user) %>
+                <%= link_to content_tag(:div, "Image taken by #{image.user.last_name} on #{image.date_taken.strftime("%B %d, %Y")}"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
             </div>
         </li>
     <% end %>
