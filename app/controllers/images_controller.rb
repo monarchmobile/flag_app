@@ -143,7 +143,7 @@ class ImagesController < ApplicationController
     @user = current_user
     get_associated_image
     respond_to do |format|
-      if @image.update_attributes(params[:image])
+      if @image.update_attributes!(params[:image])
         format.js
       end
     end

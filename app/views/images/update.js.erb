@@ -1,15 +1,18 @@
 
 if (<%= @boolean %> == 0) {
 	if (<%= @range %> == 1) {
+		@time_frame = "week"
 		this_obj = $("#remove_image_<%= @image.id %>_from_week")
 	} else if (<%= @range %> == 2) {
+		@time_frame = "month"
 		this_obj = $("#remove_image_<%= @image.id %>_from_month")
 	} else if (<%= @range %> == 3 ) {
+		@time_frame = "year"
 		this_obj = $("#remove_image_<%= @image.id %>_from_year")
 	}
 	this_obj.prev().children().removeClass("included").addClass("not_included")
 	this_obj.parent(".control_panel").children(".helper_box")
-										.html("Deleting image from this page").show()
+										.html("Deleting image from <%= @time_frame %>").show()
 										.delay(3000).fadeOut(2000);
 	range = this_obj.parent().parent(".image_container").data("range") 
 	if (range == "<%= @string %>") {

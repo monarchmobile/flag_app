@@ -236,13 +236,36 @@ $(document).ready(function() {
             $(this).get_vars()
             purpose = $(this).attr("data-purpose")
             z_index = parseInt($(this).attr("data-z"))
-            var data = []
+            var data = {}
             if (purpose == "push image back") {
-                data[page+'_z'] = z_index - 100
-                msg = "image moved back" 
+                if (z_index < 0)  {
+                    data[page+'_z'] = 0
+                    msg = "image can not be moved any further back"
+                } else if (z_index > 500)  {
+                    data[page+'_z'] = 500
+                    msg = "image reset to front"
+                }else if (z_index == 0)  {
+                    data[page+'_z'] = z_index
+                    msg = "image can't be moved back any farther"
+                } else {
+                    data[page+'_z'] = z_index - 100
+                    msg = "image moved back" 
+                }
             } else if (purpose == "bring image forward") {
-                data[page+'_z'] = z_index + 100
-                msg = "image moved forward" 
+                if (z_index < 0)  {
+                    data[page+'_z'] = 0
+                    msg = "image reset to back"
+                } else if (z_index > "500") {
+                    data[page+'_z'] = 500
+                    msg = "image can't be moved forward any farther"
+                } else if (z_index == 500) {
+                    data[page+'_z'] = z_index
+                    msg = "image can't be moved forward any farther"
+                }else {
+                    data[page+'_z'] = z_index + 100
+                    msg = "image moved forward" 
+                }
+                
             }
            
             DATA = {image: data }
@@ -258,7 +281,8 @@ $(document).ready(function() {
                     this_obj.parent().parent(".image_container").css({
                         "z-index": data[page+'_z']
                     })
-                    this_obj.parent().parent(".control_panel").children(".helper_box").html(msg).show().delay(1000).fadeOut(3000)
+
+                    this_obj.parent(".control_panel").children(".helper_box").html("").html(msg).show().delay(2000)
                 }
             })
         })
