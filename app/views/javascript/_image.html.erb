@@ -234,20 +234,17 @@ $(document).ready(function() {
     if (<%= members_page(@user) %>) {
         $(".z_index").click(function() {
             $(this).get_vars()
-
             purpose = $(this).attr("data-purpose")
             z_index = parseInt($(this).attr("data-z"))
-           
             var data = []
-            if (purpose == 1) {
+            if (purpose == "push image back") {
                 data[page+'_z'] = z_index - 100
                 msg = "image moved back" 
-            } else if (purpose == 2) {
+            } else if (purpose == "bring image forward") {
                 data[page+'_z'] = z_index + 100
                 msg = "image moved forward" 
             }
            
-            $(".testing").html(data[page+'_z'])
             DATA = {image: data }
             var URL = root+"users/"+user_id+"/images/"+img_id+"/z_index"
 

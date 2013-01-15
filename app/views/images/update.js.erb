@@ -7,18 +7,14 @@ if (<%= @boolean %> == 0) {
 	} else if (<%= @range %> == 3 ) {
 		this_obj = $("#remove_image_<%= @image.id %>_from_year")
 	}
-
 	this_obj.prev().children().removeClass("included").addClass("not_included")
 	this_obj.parent(".control_panel").children(".helper_box")
 										.html("Deleting image from this page").show()
 										.delay(3000).fadeOut(2000);
-
 	range = this_obj.parent().parent(".image_container").data("range") 
-
 	if (range == "<%= @string %>") {
 		this_obj.parent().parent(".image_container").fadeOut(1000);
 	}
-	
 } else if (<%= @boolean %> == 1) {
 	// /weekly_scrapbook
 	if (<%= @range %> == 1) {
@@ -36,7 +32,7 @@ if (<%= @boolean %> == 0) {
  									.fadeOut(10000);
  
 
-} else  {
+} else if (<%= @boolean %> == 2) {
 	alert("hi")
 	$("#edit_container").hide()
 	$("#background").fadeOut("slow")

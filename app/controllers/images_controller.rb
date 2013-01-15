@@ -72,18 +72,6 @@ class ImagesController < ApplicationController
     end
   end
 
-  def z_index
-    @user = current_user
-    get_associated_image
-   
-    respond_to do |format|
-      if @image.update_attributes(params[:image])
-        format.js
-      end
-    end
-
-  end
-
   # UPDATE
   def update 
 
@@ -94,9 +82,11 @@ class ImagesController < ApplicationController
       if @image.update_attributes(params[:image])
         # if params[:image][:crop_x].present?
         #   format.html { render ("images/crop") }
-        
-        if params[:image][:week] || params[:image][:month] || params[:image][:year]
-          if params[:image][:week] 
+        #if params[:image][:week] || params[:image][:month] || params[:image][:year]
+          if params[:image][:content] 
+            @boolean = 2
+            format.js
+          elsif params[:image][:week] 
             @range = 1
             @string = "week"
             @boolean = params[:image][:week]
@@ -111,14 +101,7 @@ class ImagesController < ApplicationController
             @string = "year"
             @boolean = params[:image][:year]
             format.js
-          end 
-        else
-          parameters = "beg_range=#{@image.date_taken}&end_range=#{@image.date_taken}"
-          # format.html { redirect_to root_path+"users/"+@user.id.to_s+"/scrapbook/day?"+parameters }
-          @boolean = 2
-          format.js
-          # format.html { redirect_to :back }
-        end
+          end
       else
         format.js { render alert("error")}
       end
@@ -155,6 +138,16 @@ class ImagesController < ApplicationController
       end
     end
   end 
+
+  def z_index
+    @user = current_user
+    get_associated_image
+    respond_to do |format|
+      if @image.update_attributes(params[:image])
+        format.js
+      end
+    end
+  end
 
   def get_associated_image
     @image = @user.images.find(params[:id])
