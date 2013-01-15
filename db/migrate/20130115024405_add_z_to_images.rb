@@ -1,8 +1,8 @@
 class AddZToImages < ActiveRecord::Migration
   def change
-    add_column :images, :day_z, :integer
-    add_column :images, :week_z, :integer
-    add_column :images, :month_z, :integer
-    add_column :images, :year_z, :integer
+    change_column :images, :day_z, :integer, :default => 500
+    change_column :images, :week_z, :integer, :default => 500
+    change_column :images, :month_z, :integer, :default => 500
+    change_column :images, :year_z, :integer, :default => 500
   end
 end
