@@ -238,15 +238,15 @@ $(document).ready(function() {
             purpose = $(this).attr("data-purpose")
             z_index = parseInt($(this).attr("data-z"))
            
-            var data = {}
-            if (purpose == "push back") {
+            var data = []
+            if (purpose == 1) {
                 data[page+'_z'] = z_index - 100
-                msg = "image pushedback"
-            } else if (purpose == "bring forward") {
+                msg = "image moved back" 
+            } else if (purpose == 2) {
                 data[page+'_z'] = z_index + 100
-                msg = "image brought forward"
+                msg = "image moved forward" 
             }
-
+           
             $(".testing").html(data[page+'_z'])
             DATA = {image: data }
             var URL = root+"users/"+user_id+"/images/"+img_id+"/update"
