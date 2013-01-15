@@ -113,7 +113,10 @@ module ApplicationHelper
 	    image = @user.images.find(id)
 	    time_frame = range+'_dim'
 	    dim_params = image.send(time_frame)
+	    time_frame2 = range+'_z'
+	    z_params = image.send(time_frame2)
 	    # get width and height dimensions 
+	    @z_index = z_params
 
 	    if dim_params
 	        @con_width = dim_params.split(",")[0].to_i  

@@ -1,6 +1,4 @@
 
-
-
 if (<%= @boolean %> == 0) {
 	if (<%= @range %> == 1) {
 		this_obj = $("#remove_image_<%= @image.id %>_from_week")
@@ -48,4 +46,8 @@ if (<%= @boolean %> == 0) {
 		"opacity": "0"
 	}, 6000)
 	$(".image_description").html("<%= @image.content %>")
+} else if (<%= @boolean %> == 3 ) {
+
+
+    
 }

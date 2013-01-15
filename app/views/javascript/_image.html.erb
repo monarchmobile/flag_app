@@ -230,6 +230,44 @@ $(document).ready(function() {
         root = $(this).attr("data-root")
     }
 
+    // Z_index
+    if (<%= members_page(@user) %>) {
+        $(".z_index").click(function() {
+            $(this).get_vars()
+
+            purpose = $(this).attr("data-purpose")
+            z_index = parseInt($(this).attr("data-z"))
+           
+            var data = {}
+            if (purpose == "push back") {
+                data[page+'_z'] = z_index - 100
+                msg = "image pushedback"
+            } else if (purpose == "bring forward") {
+                data[page+'_z'] = z_index + 100
+                msg = "image brought forward"
+            }
+
+            $(".testing").html(data[page+'_z'])
+            DATA = {image: data }
+            var URL = root+"users/"+user_id+"/images/"+img_id+"/update"
+            $.ajax({
+                url: URL,
+                type: 'put',
+                data: DATA,
+                success: function() {
+                    $(".cp").show()
+                    this_obj.parent().find(".z_index").attr("data-z", data[page+'_z'])
+                    this_obj.parent().parent(".image_container").css({
+                        "z-index": data[page+'_z']
+                    })
+                    this_obj.parent().parent(".control_panel").children(".helper_box").html(msg).show().delay(1000).fadeOut(3000)
+                }
+            })
+
+
+        })
+    }
+
     // Drag
     if (<%= members_page(@user) %>) {
         $(".image_container").draggable({

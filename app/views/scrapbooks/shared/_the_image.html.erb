@@ -1,1 +1,1 @@
-<%= image_tag(image.image_url(:scrap), class: "scrap_image resizable", :"data-id" => image.id, :"data-content" => image.content, :"data-src" => image.image_url(:scrap), :"data-range" => page, style: "width:#{@width}px; height:#{@height}px;") %> 
+<%= image_tag(image.image_url(:scrap), class: "scrap_image resizable", :"data-id" => image.id, :"data-content" => image.content, :"data-src" => image.image_url(:scrap), :"data-range" => page, style: "width:#{@width}px; height:#{@height}px; z-index:#{@z_index}") %> 

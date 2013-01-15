@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109212706) do
+ActiveRecord::Schema.define(:version => 20130115024405) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(:version => 20130109212706) do
     t.string   "week_dim"
     t.string   "month_dim"
     t.string   "year_dim"
+    t.integer  "day_z"
+    t.integer  "week_z"
+    t.integer  "month_z"
+    t.integer  "year_z"
   end
 
   create_table "journals", :force => true do |t|

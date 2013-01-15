@@ -687,7 +687,7 @@ ul.image_description {
 	li {
 		text-align: center;
 		list-style: none;
-		
+
 	}
 
 }
@@ -1000,4 +1000,14 @@ ul.moy_container {
 
 a li.future_date {	
 	opacity: .5;
+}
+
+.ui-resizable-se {
+cursor: se-resize;
+width: 37px;
+height: 40px;
+right: -1px;
+bottom: -8px;
+color: red;
+background: url("rails.png");
 }
