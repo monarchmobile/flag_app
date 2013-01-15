@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115143422) do
+ActiveRecord::Schema.define(:version => 20130115155858) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(:version => 20130115143422) do
     t.boolean  "week"
     t.boolean  "month"
     t.boolean  "year"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.string   "image"
     t.string   "day_p"
     t.string   "week_p"
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(:version => 20130115143422) do
     t.string   "week_dim"
     t.string   "month_dim"
     t.string   "year_dim"
-    t.integer  "day_z"
-    t.integer  "week_z"
-    t.integer  "month_z"
-    t.integer  "year_z"
+    t.integer  "day_z",      :default => 500
+    t.integer  "week_z",     :default => 500
+    t.integer  "month_z",    :default => 500
+    t.integer  "year_z",     :default => 500
   end
 
   create_table "journals", :force => true do |t|

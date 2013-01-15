@@ -8,7 +8,6 @@ class Image < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  before_create :set_z_index
   after_update :crop_avatar
   
   def crop_avatar
@@ -17,13 +16,6 @@ class Image < ActiveRecord::Base
 
   def set_nav_menu_to_true
     self.nav_menu = true 
-  end
-
-  def set_z_index
-    self.day_z ||= 500
-    self.week_z ||= 500
-    self.month_z ||= 500
-    self.year_z ||= 500
   end
 
   def self.for_this_range(beg_range, end_range, range)

@@ -249,7 +249,8 @@ $(document).ready(function() {
            
             $(".testing").html(data[page+'_z'])
             DATA = {image: data }
-            var URL = root+"users/"+user_id+"/images/"+img_id+"/update"
+            var URL = root+"users/"+user_id+"/images/"+img_id+"/z_index"
+
             $.ajax({
                 url: URL,
                 type: 'put',
@@ -263,8 +264,6 @@ $(document).ready(function() {
                     this_obj.parent().parent(".control_panel").children(".helper_box").html(msg).show().delay(1000).fadeOut(3000)
                 }
             })
-
-
         })
     }
 
