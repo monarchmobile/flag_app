@@ -469,22 +469,41 @@ color: #fff;
 }
 
 .photo_btn {
-	margin-left: 715px;
+	background: url("icons.png") no-repeat -344px -21px;
+position: absolute;
+margin-left: 770px;
+top: 0px;
+width:52px;
+height:42px;
+
+}
+.photo_btn:hover {
+	background: url("icons.png") no-repeat -344px -102px;
 }
 
-a:hover .photo_btn {
-	text-decoration:underline;
-	color:#3b5998;
+.photo_btn:active {
+	background: url("icons.png") no-repeat -344px -170px;
 }
 
 .journal_btn {
-	margin-left: 985px;
+	width:30px;
+	height:30px;
+	position: absolute;
+	margin-left: 697px;
+	top: 122px;
+	background: url("icons.png") no-repeat -130px -36px;
 }
 
-a:hover .journal_btn {
-	text-decoration:underline;
-	color:#3b5998;
+.journal_btn:hover {
+	background: url("icons.png") no-repeat -130px -117px;
 }
+
+.journal_btn:active {
+	background: url("icons.png") no-repeat -130px -185px;
+}
+	
+
+
 
 #photo_form {
 	display: none;
@@ -774,7 +793,7 @@ ul.image_description {
 .helper_box {
 	position:absolute;
 	float:left;
-	margin-left:-12px;
+	
 	top:-30px;
 	padding:5px;
 	-moz-box-shadow:    0px 0px 5px $theme_color;
@@ -799,7 +818,7 @@ ul.control_panel {
 	margin-top: 0px;
 	border: 2px solid #5F5A5A;
 	font-size:12px;
-	display:block;
+	display:none;
 	
 
 	li {

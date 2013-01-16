@@ -10,7 +10,7 @@ module ApplicationHelper
 		end
 	end
 
-	def correct_level(range)
+	def correct_level(range) 
 		page
 		if page == range
 			"on_#{range}_frame"
@@ -205,8 +205,12 @@ module ApplicationHelper
 	end
 
 	# :"data-range" => get_range(@user) on journal_script.html.erb
-	def get_range(user)
-		go_to_date_link(user).split("/")[4]
+	def unless_already_on_scrapbook_page
+		if request.path.split("/")[3] == "scrapbook"
+			""
+		else
+			"Scrapbook"
+		end
 	end
 	# dynamic uplink
 

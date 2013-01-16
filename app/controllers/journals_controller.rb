@@ -8,7 +8,7 @@ class JournalsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @journals }
-    end
+    end 
   end
 
   # SHOW

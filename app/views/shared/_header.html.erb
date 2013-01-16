@@ -10,9 +10,9 @@
             </ul>
             <ul class="middle nav_bar">
               <%= link_to content_tag( :li, "Community" ), users_path %>
-              <% if registered_member %>
-                <%= link_to content_tag(:li, "Scrapbook"), root_path+"users/"+current_user.id.to_s+"/scrapbook/day" %>
-              <% end %>
+              
+                <%= link_to content_tag(:li, unless_already_on_scrapbook_page), root_path+"users/"+current_user.id.to_s+"/scrapbook/day"  %>
+              
               <%= link_to content_tag(:li, "About"), about_path %>
             </ul>
             <!-- The drop down menu --> 
@@ -21,14 +21,16 @@
                    
                     <% if current_user.guest? %>
                       <%= link_to content_tag(:li, "Become a Member"), new_user_path %>
+                      <%= link_to content_tag(:li, "Sign In", class: 'drop-auth'), new_session_path, remote: true %>
                     <% else %>
                       <%= link_to content_tag(:li, "Sign Out"), logout_path, method: "delete" %>
                     <% end %>
                 <% else %>
                     <%= link_to content_tag(:li, "Sign In", class: 'drop-auth'), new_session_path, remote: true %>
-                    <div class="auth_form_container"></div>
+                    
                     <%= link_to content_tag(:li, "Sign Up"), new_user_path, remote: true %>
                 <% end %>
+                <div class="auth_form_container"></div>
             </ul>
       </div>
   </div>

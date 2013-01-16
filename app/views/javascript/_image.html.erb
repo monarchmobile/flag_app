@@ -183,7 +183,7 @@ $(document).ready(function() {
         date = $(this).attr("data-date")
         data = {}
         data['entry_date'] = date
-        data[page] = true
+        data[range] = true
         URL = root+"users/"+user_id+"/journals/new"
         // action
         $.ajax({
@@ -420,7 +420,7 @@ $(document).ready(function() {
 
     jQuery.fn.dynamic_cp_styling = function() {
         this.show().css({
-            "width": (image_width-25)+"px"
+            "width": (image_width)+"px"
         })
         // new_panel_margin_top()
     }
