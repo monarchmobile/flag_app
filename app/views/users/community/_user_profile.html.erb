@@ -1,5 +1,6 @@
-<% if f.member_photo.blank? %>
-	<%= link_to image_tag("blank.jpg", size: "50x50"), user_path(f)  %>
+<% if f.member_photo.blank? %> 
+	<%= link_to image_tag("blank.jpg", size: "50x50", class: "profile_image"), user_path(f)  %>
+
 <% else %>
-	<%= link_to image_tag(profile_pic_if_uploaded(f), size: "50x50"), user_path(f)  %>
+	<%= link_to image_tag(profile_pic_if_uploaded(f), size: "50x50", class: "profile_image"), user_path(f)  %>
 <% end %>

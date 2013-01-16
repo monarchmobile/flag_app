@@ -1,6 +1,7 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$theme_color: rgb(159,21,15);
 
 .message_board {
     width:900px;
@@ -133,13 +134,16 @@ ul.users_dash_header {
 	}
 }
 
+// winners
+
 .winner_index {
-	width: 475px;
-	border: 1px solid black;
-	margin-left: 20px;
-	margin-top: 100px;
-	height:300px;
-	float:left;
+	width: 468px;
+border: 1px solid black;
+margin-left: 20px;
+margin-top: 100px;
+min-height: 100px;
+height: auto;
+padding: -0px;
 	ul {
 		padding:0px;
 		
@@ -161,82 +165,156 @@ ul.users_dash_header {
 	float:left;
 }
 
+
+
+
+
 .user_index {
 	clear:both;
-
+	padding-top:25px;
 	ul {
 		padding:0px;
 		
 		li {
-			height:60px;
+			
 			width: 960px;
-			padding: 15px;
-			font-size: 11px;
-			margin:5px;
-			list-style: none;
+padding: 8px;
+font-size: 11px;
+margin: 5px;
+list-style: none;
+height: 75px;
 		}
 	}
 	
 }
 
+.thumb_image {
+	-moz-box-shadow:    0px 0px 5px #000;
+	-webkit-box-shadow: 0px 0px 5px #000;
+	box-shadow:         0px 0px 5px #000;
+	padding:2px;
+	border:2px solid #fff;
+	background:#000;
+}
+.profile_image {
+	-moz-box-shadow:    0px 0px 5px #000;
+	-webkit-box-shadow: 0px 0px 5px #000;
+	box-shadow:         0px 0px 5px #000;
+	padding:2px;
+	border:2px solid #fff;
+	background:#000;
+}
+
+ul.winner_row {
+	padding:0px;
+	a img {
+		float: left;
+		width: 50px;
+		margin-top: 5px;
+		margin: 4px 0px 0px 8px;
+	}
+
+	li {
+		width: 300px;
+		background:#fff;
+		margin-left: 75px;
+		min-height: 60px;
+		margin-top:5px;
+		border:1px solid $theme_color;
+
+		ul.winner_gallery {
+			a img {
+				float: left;
+				margin-left: 5px;
+			}
+		}
+	}
+
+	.voting_totals {
+		margin-left: 408px;
+		width: 15px;
+		margin-top: -31px;
+		height: 15px;
+		padding: 3px;
+		position: absolute;
+	}
+
+	form {
+		width:50px;
+		margin-left:-15px;
+	}
+}
+
 ul.user_row {
 	padding:0px;
 
+	a img {
+		float: left;
+		width: 50px;
+		margin-top: 5px;
+		margin: 4px 0px 0px 8px;
+	}
 
 	li {
 		float:left;
-		width:330px;
-		margin-left:10px;
-		padding: 0px;
-	}
-	li:nth-child(1) {
-		padding: 0px;
-		width: 60px;
-		margin-left:-10px;
-	}
+		width: 400px;
+		
+		margin-left: 15px;
+		min-height: 50px;
+		height:auto;
+		margin-top:5px;
+		
 
-	li:nth-child(2) {
-		width:100px;
-		padding: 0px;
-	}
-
-	li:nth-child(4) {
-		margin: 5px 0px 0px 70px;
-	}
-
-	ul.user_items {
-	padding-left:0px;
-	width:310px;
-		li {
-			float:left;
-			width:50px;
-			margin-left:5px;
+		ul.user_gallery {
+			a img {
+				float: left;
+				margin-left: 5px;
+				margin-top: 0px;
+				padding: 0px;
+			}
 		}
-
-		a li {
-			width:100px;
-			height: 10px;
-		}
-
-		a img {
-			-moz-box-shadow:    0px 0px 5px gray;
-			-webkit-box-shadow: 0px 0px 5px gray;
-			box-shadow:         0px 0px 5px gray;
-			padding:2px;
-			border:2px solid #fff;
+		.chosen {	
+			background-color: white;
+			border: 3px solid #DFC663;
+			height: 66px;
+			padding: 5px 0px 0px 5px;
+			width: 300px;
+			margin-top: -16px;
+			box-shadow: 1px 1px 15px;
+			margin-left: -1px;
 		}
 	}
+	
+
+	.voting_totals {
+		
+width: 15px;
+margin-top: 2px;
+height: 15px;
+padding: 3px;
+position: absolute;
+	}
+
+	.for_week {
+		margin-left:444px;
+	}
+
+	.for_month {
+		margin-left:878px;
+	}
+
+	
 }
 
 .chosen {	
 	background-color: white;
 border: 3px solid #DFC663;
-height: 63px;
+height: 66px;
 padding: 5px 0px 0px 5px;
-width: 315px;
-margin-top: -10px;
+width: 300px;
+margin-top: -1px;
 box-shadow: 1px 1px 15px;
-margin-left: 0px;
+margin-left: -1px;
 }
 
 .best_btn {

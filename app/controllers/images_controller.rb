@@ -80,28 +80,7 @@ class ImagesController < ApplicationController
    
     respond_to do |format|
       if @image.update_attributes(params[:image])
-        # if params[:image][:crop_x].present?
-        #   format.html { render ("images/crop") }
-        #if params[:image][:week] || params[:image][:month] || params[:image][:year]
-          # if params[:image][:content] 
-          #   @boolean = 2
-          #   format.js
-          if params[:image][:week] 
-            @range = 1
-            @string = "week"
-            @boolean = params[:image][:week]
-            format.js  
-          elsif params[:image][:month]
-            @range = 2
-            @string = "month"
-            @boolean = params[:image][:month]
-            format.js 
-          elsif params[:image][:year]
-            @range = 3
-            @string = "year"
-            @boolean = params[:image][:year]
-            format.js
-          end
+          format.js
       else
         format.js { render alert("error")}
       end

@@ -20,9 +20,11 @@ module ApplicationHelper
 	end
 
 	# highlights gallery that current_user has voted on 
-	def chosen(already, owner)
+	def chosen(already, owner, other)
 		if already && already.owner_id == owner.id && current_user
 			"chosen"
+		else
+			other
 		end
 	end
 
@@ -411,9 +413,9 @@ module ApplicationHelper
 	end
 
 	def previous_week_beg(today)
-	   day_date = today.strftime("%Y-%m-%").split("-")[2]
+	   day_date = today.strftime("%Y-%m-%d").split("-")[2]
 	   num = day_date.to_i
-	   @num = (num/7)
+	   @num = (num/7)-1
 	   @first_of_month = today.to_date.beginning_of_month
 	   @new_beg_range = @first_of_month.to_date+@num.weeks
 	    

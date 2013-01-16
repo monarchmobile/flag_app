@@ -310,7 +310,7 @@ $(document).ready(function() {
                 }
                 
             }
-           
+            
             DATA = {image: data }
             var URL = root+"users/"+user_id+"/images/"+img_id+"/z_index"
 
@@ -322,7 +322,7 @@ $(document).ready(function() {
                     $(".cp").show()
                     this_obj.parent().find(".z_index").attr("data-z", data[range+'_z'])
                     this_obj.parent().parent(".image_container").css({
-                        "z-index": data[page+'_z']
+                        "z-index": data[range+'_z']
                     })
 
                     this_obj.parent(".control_panel").children(".helper_box").html("").html(msg).show().delay(2000)

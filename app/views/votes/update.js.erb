@@ -12,6 +12,6 @@ if (<%= @range_type %> == 1) {
 	$(".month_gallery .best_month").show()
 	$(".month_gallery").removeClass("chosen")
 	$("#student_<%= @owner_id %>_best_month").hide()
-	$(".student_<%= @owner_id %>_week .month_gallery").addClass("chosen")
+	$(".student_<%= @owner_id %>_month .month_gallery").addClass("chosen")
 	$(".best_month input[type=submit]").val("change_vote")
 }

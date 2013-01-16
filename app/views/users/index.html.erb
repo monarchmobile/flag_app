@@ -1,5 +1,5 @@
 <%= render 'shared/announcements' %> 
- 
+
 <div class="winner_index best_week">
 	
 	<% @week_winners = [] %>
@@ -10,17 +10,16 @@
 	<% end %>
 	<ul>
 		<% @week_winners.each do |f| %>
-			<li class="student_<%= f.id %>_week">
-	            <ul class="user_row">
-	            	<li>
-	            		<ul class="user_items">
-	            			<%= render'users/community/user_profile', f: f %>
-	            		</ul>
-	            	</li>
-	            	<li>
-	            		<%= render 'users/community/week_voting_tally', f: f %>
-					</li>	
-	            </ul>
+			<li class="student_<%= f.id %>_week" %>
+				<ul class="winner_row">
+					<%= render'users/community/user_profile', f: f %>
+					<li>
+						<ul class="<%= chosen(@already_voted_for_week, f, "winner_gallery") %> week_gallery">
+							<%= render'users/community/week_voting_tally', f: f %>
+						</ul>
+					</li>
+					<div class="voting_totals"><%= total_vote(f, 1) %></div>
+				</ul>
 			</li>
 		<% end %>
 	</ul>
@@ -37,15 +36,14 @@
 	<ul>
 		<% @month_winners.each do |f| %>
 			<li class="student_<%= f.id %>_week">
-	            <ul class="user_row">
+	            <ul class="winner_row">
+	            	<%= render'users/community/user_profile', f: f %>
 	            	<li>
-	            		<ul class="user_items">
-	            			<%= render'users/community/user_profile', f: f %>
-	            		</ul>
-	            	</li>
-	            	<li>
-						<%= render 'users/community/month_voting_tally', f: f %>
-            		</li>	
+						<ul class="<%= chosen(@already_voted_for_month, f, "winner_gallery") %> month_gallery">
+							<%= render'users/community/month_voting_tally', f: f %>
+						</ul>
+            		</li>
+            		<div class="voting_totals"><%= total_vote(f, 2) %></div>	
 	            </ul>
 			</li>
 		<% end %>
@@ -62,19 +60,25 @@
 	</ul>
 	<ul>
 	<% @users.each do |f| %>
-
-		<li class="<%= cycle('odd', 'even') %> student_<%= f.id %>_week">
-            <ul class="user_row">
-            	<li>
-            		<ul class="user_items">
-            			<%= render'users/community/user_profile', f: f %>
-            		</ul>
-            	</li>
-            	<li>
-            		<%= render 'users/community/month_voting_tally', f: f %>
+		<li class="<%= cycle("odd", "even") %> student_<%= f.id %>">
+			<ul class="user_row">
+				<%= render'users/community/user_profile', f: f %>
+				<li class="student_<%= f.id %>_week">
+					<ul class="<%= chosen(@already_voted_for_week, f, "user_gallery") %> week_gallery">
+						<%= render'users/community/week_voting_tally', f: f %>
+					</ul>
+					
+				</li>
+				<div class="voting_totals for_week"><%= total_vote(f, 1) %></div>
+				<li class="student_<%= f.id %>_month">
+					<ul class="<%= chosen(@already_voted_for_month, f, "user_gallery") %> month_gallery">
+						<%= render'users/community/month_voting_tally', f: f %>
+					</ul>
+					
 				</li>
 				
-            </ul>
+				<div class="voting_totals for_month"><%= total_vote(f, 2) %></div>
+			</ul> 
 		</li>
 	<% end %>
 	</ul>

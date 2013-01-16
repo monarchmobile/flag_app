@@ -1,6 +1,6 @@
 class UsersController < ApplicationController 
 	respond_to :html, :json
-	include ApplicationHelper
+	include ApplicationHelper 
  
 	def index 
 		redirect_to create_guest_path unless current_user
