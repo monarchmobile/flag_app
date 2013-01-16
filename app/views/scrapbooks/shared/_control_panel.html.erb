@@ -1,5 +1,5 @@
 <!-- <li class="drag_msg cp" data-id="<%= image.id %>" data-range= "<%= page %>" data-root= "<%= root_path %>">Pos</li> --> 
-
+ 
 <li class="resize_msg cp" data-id="<%= image.id %>" data-range="<%= page %>" data-root= "<%= root_path %>" data-purpose="Resize your image">R</li>
 <%= content_tag :li, "B", class: "z_index cp change_z_#{image.id}", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => "push image back", :"data-z" => @z_index, :"data-range" => page %>
 

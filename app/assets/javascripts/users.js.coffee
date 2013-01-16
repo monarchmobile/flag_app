@@ -28,4 +28,11 @@ jQuery ->
 	  $(this).css "z-index", "0"
 	  $(this).find(".img_content_container").hide()
 
+	# profile image on onhover
+
+	$(".profile_image").hover (->
+		$(this).parent().next(".member_info").show()
+	), ->
+		$(this).parent().next(".member_info").hide()
+
 	

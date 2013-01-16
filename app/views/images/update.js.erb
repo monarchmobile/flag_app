@@ -6,4 +6,6 @@ $(".notice").html("Changes Saved!").show().animate({
 	"margin-top": "-100px",
 	"opacity": "0"
 }, 6000)
-$(".image_description").html("<%= @image.content %>")
+image = $(".image_container[data-id='<%= @image.id %>']");
+
+image.children(".image_description").html("<%= @image.content %>")

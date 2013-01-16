@@ -21,7 +21,7 @@
     </div>
 <% end %>
 <div class="flag_feed">
-    <% @random_images = Image.all %>
+    <% @random_images = Image.order("date_taken DESC").limit(9) %>
     <% n = 0 %>
     <ul>
     <% @random_images.each do |image| %>
