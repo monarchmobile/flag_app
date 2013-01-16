@@ -242,14 +242,16 @@ $(document).ready(function() {
                 type: 'put',
                 data: DATA,
                 success: function() {
+                    included_range_class = range+"_included"
                     if (data[range] == true) {
-                        this_obj.addClass("included").removeClass("not_included")
+                        
                         msg = "image added to "+range+" gallery"
+                        
+                        this_obj.addClass(included_range_class).removeClass("not_included")
                         this_obj.parent(".control_panel").children(".helper_box").html("").html(msg).show().delay(2000)
 
-
                     } else if (data[range] == false) {
-                        this_obj.addClass("not_included").removeClass("included")
+                        this_obj.addClass("not_included").removeClass(included_range_class)
                         msg = "image removed from "+range+" gallery"
                         this_obj.parent(".control_panel").children(".helper_box").html("").html(msg).show().delay(2000)
 

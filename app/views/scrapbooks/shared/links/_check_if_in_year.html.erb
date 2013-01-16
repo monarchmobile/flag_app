@@ -1,8 +1,8 @@
 <!-- year gallery options -->
 <% if image.year == false || image.year == nil %>
 	<% if (@user.images.where(date_taken: @first_of_month..@last_of_month, year: false).count < 11) %> 
-	    <%= content_tag :li, "Y", class: "cp change_gallery not_included", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['year_false'], :"data-boo" => true,  :"data-range" => "year" %>
+	    <%= content_tag :li, "", class: "cp change_gallery not_included year_gallery", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['year_false'], :"data-boo" => true,  :"data-range" => "year" %>
 	<% end %>
 <% elsif image.year == true  %>
-    <%= content_tag :li, "Y", class: "cp change_gallery included", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['year_true'], :"data-boo" => false,  :"data-range" => "year", :"data-page" => page %>
+    <%= content_tag :li, "", class: "cp change_gallery year_included year_gallery", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['year_true'], :"data-boo" => false,  :"data-range" => "year", :"data-page" => page %>
 <% end %>

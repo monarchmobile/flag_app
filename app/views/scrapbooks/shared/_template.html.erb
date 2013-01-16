@@ -13,7 +13,8 @@
 			
                 <!-- add or remove image from given range-->		
 			<%= render("scrapbooks/shared/options", image: image ) %>
-			
+			<li><%= link_to "", [@user, image], id: "delete_image_#{image.id}", :confirm => 'Are you sure?', :method => :delete, :"data-purpose" => "Delete your image",class: "image_X cp", remote: true %></li>
+			<!-- <div class="range_options"></div> -->
 		</ul>
 		<%= render("scrapbooks/shared/image_description", image: image ) %>
 	   	<%= render("scrapbooks/shared/the_image", image: image ) %>	

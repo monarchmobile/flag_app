@@ -1,7 +1,7 @@
 <!--  check if in week  -->
 	<% if (@user.images.where(date_taken: @beg_week..@end_week, week: true).count < 11) %>
 
-		<%= content_tag :li, "W", class: "cp change_gallery not_included", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['week_false'], :"data-boo" => true,  :"data-range" => "week" %>
+		<%= content_tag :li, "", class: "cp change_gallery not_included week_gallery", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['week_false'], :"data-boo" => true,  :"data-range" => "week" %>
 
 	<% else %>
 		<%= content_tag(:li, content_tag(:span, "W", class: "full"), :"data-purpose" => Arrays::CP_MESSAGE['week_full'], class: "cp") %>

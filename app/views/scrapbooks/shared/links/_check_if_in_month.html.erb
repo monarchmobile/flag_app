@@ -2,12 +2,12 @@
 <% if image.month == false || image.month == nil %>
     <% if (@user.images.where(date_taken: @first_of_month..@last_of_month, month: true).count < 11) %>
 
-        <%= content_tag :li, "M", class: "cp change_gallery not_included", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['month_false'], :"data-boo" => true,  :"data-range" => "month" %>
+        <%= content_tag :li, "", class: "cp change_gallery not_included month_gallery", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['month_false'], :"data-boo" => true,  :"data-range" => "month" %>
 
     <% else %>
-        <%= content_tag(:li, content_tag(:span, "M", class: "full"), :"data-purpose" => Arrays::CP_MESSAGE['month_full'], class: "cp") %>
+        <%= content_tag(:li, content_tag(:span, "", class: "full"), :"data-purpose" => Arrays::CP_MESSAGE['month_full'], class: "cp") %>
     <% end %>
       
 <% elsif image.month == true %>
-    <%= content_tag :li, "M", class: "cp change_gallery included", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['month_true'], :"data-boo" => false,  :"data-range" => "month", :"data-page" => page %>
+    <%= content_tag :li, "", class: "cp change_gallery month_included month_gallery", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['month_true'], :"data-boo" => false,  :"data-range" => "month", :"data-page" => page %>
 <% end %>
