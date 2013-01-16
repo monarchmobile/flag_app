@@ -1,15 +1,58 @@
 <%= render 'shared/announcements' %> 
-
-<div class="testing">
-	<h2>voting total</h2>
-	<% @users = [] %>
-	<%= @owners_that_received_votes.count %><br >
-	<% @owners_that_received_votes.each do |o| %>
-	<% @user = User.find(o[0]) %>
-	<% @users << @user %>
+ 
+<div class="winner_index best_week">
+	
+	<% @week_winners = [] %>
+	<% @owners_that_received_week_votes.count %><br >
+	<% @owners_that_received_week_votes.each do |o| %>
+		<% @week_user = User.find(o[0]) %>
+		<% @week_winners << @week_user %>
 	<% end %>
+	<ul>
+		<% @week_winners.each do |f| %>
+			<li class="student_<%= f.id %>_week">
+	            <ul class="user_row">
+	            	<li>
+	            		<ul class="user_items">
+	            			<%= render'users/community/user_profile', f: f %>
+	            		</ul>
+	            	</li>
+	            	<li>
+	            		<%= render 'users/community/week_voting_tally', f: f %>
+					</li>	
+	            </ul>
+			</li>
+		<% end %>
+	</ul>
 
 </div>
+
+<div class="winner_index best_month">
+	<% @month_winners = [] %>
+	<% @owners_that_received_month_votes.count %><br >
+	<% @owners_that_received_month_votes.each do |o| %>
+		<% @month_user = User.find(o[0]) %>
+		<% @month_winners << @month_user %>
+	<% end %>
+	<ul>
+		<% @month_winners.each do |f| %>
+			<li class="student_<%= f.id %>_week">
+	            <ul class="user_row">
+	            	<li>
+	            		<ul class="user_items">
+	            			<%= render'users/community/user_profile', f: f %>
+	            		</ul>
+	            	</li>
+	            	<li>
+						<%= render 'users/community/month_voting_tally', f: f %>
+            		</li>	
+	            </ul>
+			</li>
+		<% end %>
+	</ul>
+</div>
+
+
 <div class="user_index">
 	<ul class="users_dash_header">
 		<li></li>
@@ -24,45 +67,13 @@
             <ul class="user_row">
             	<li>
             		<ul class="user_items">
-            			<% if f.member_photo.blank? %>
-			            	<%= link_to image_tag("blank.jpg", size: "50x50"), user_path(f)  %>
-			            <% else %>
-			            	<%= link_to image_tag(profile_pic_if_uploaded(f), size: "50x50"), user_path(f)  %>
-			            <% end %>
-
+            			<%= render'users/community/user_profile', f: f %>
             		</ul>
             	</li>
             	<li>
-            		<ul class="user_items">
-						<%= link_to content_tag(:li, "#{f.fullname}"), user_path(f) %>
-						<%= content_tag :li, f.school %>
-					</ul>
-
-            	</li>
-            	<li>
-            		<div class="voting_totals"><%= total_vote(f, 1) %></div>
-		
-            		<ul class="user_items week_gallery <%= chosen(@already_voted_for_week, f) %>">
-            			
-            			<%= render 'vote_for_week', f: f unless current_user.guest %>
-						<% @week_images = f.images.for_this_range(previous_week_beg(Date.today), previous_week_end(Date.today), "week").order("user_id DESC") %>
-						<% @week_images.each do |img| %>
-							<%= link_to image_tag(img.image, size: "50x50"), go_to_range(f, 1)+ determine_week_params(img.date_taken.strftime("%Y-%m-%d"), f) %>
-						<% end %>
-						
-					</ul>
+            		<%= render 'users/community/month_voting_tally', f: f %>
 				</li>
-				<li>
-					<div class="voting_totals"><%= total_vote(f, 2) %></div>
-					<ul class="user_items month_gallery <%= chosen(@already_voted_for_month, f) %>">
-						<%= render 'vote_for_month', f: f  unless current_user.guest %>
-						<% @week_images = f.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").order("user_id DESC")  %>
-						<% @week_images.each do |img| %>
-							<%= link_to image_tag(img.image, size: "50x50"), go_to_range(f, 2)+ last_month_contest_params(img.date_taken, f)  %>
-						<% end %>
-						
-					</ul>
-            	</li>
+				
             </ul>
 		</li>
 	<% end %>

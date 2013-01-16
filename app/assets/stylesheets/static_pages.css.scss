@@ -510,7 +510,7 @@ h2.journal_date_range {
 	margin-top: 39px;
 	color: $theme_color;
 	font-size: 20px;
-	text-decoration: underline;
+	
 	text-align: center;
 	width: 300px;
 }
@@ -781,6 +781,8 @@ display:none;
 			color: blue;
 		}
 
+
+
 		
 
 	}
@@ -791,6 +793,14 @@ display:none;
 		input[type="checkbox"] {
 			display:inline-block;
 		}
+	}
+
+	.included {
+		color:green;
+	}
+
+	.not_included {
+		color:red;
 	}
 	// li:nth-child(3), li:nth-child(4) {
 	// 	margin-left:0px

@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
   # INDEX
   def index
     #@images = Image.all
-    @user = current_user
+    @user = current_user 
     @images = @user.images.all
 
     respond_to do |format|
@@ -83,10 +83,10 @@ class ImagesController < ApplicationController
         # if params[:image][:crop_x].present?
         #   format.html { render ("images/crop") }
         #if params[:image][:week] || params[:image][:month] || params[:image][:year]
-          if params[:image][:content] 
-            @boolean = 2
-            format.js
-          elsif params[:image][:week] 
+          # if params[:image][:content] 
+          #   @boolean = 2
+          #   format.js
+          if params[:image][:week] 
             @range = 1
             @string = "week"
             @boolean = params[:image][:week]
@@ -134,6 +134,16 @@ class ImagesController < ApplicationController
     get_associated_image
     respond_to do |format|
       if @image.update_attributes(params[:image])
+        format.js
+      end
+    end
+  end
+
+  def time_frame
+    @user = current_user
+    get_associated_image
+    respond_to do |format|
+      if @image.update_attributes!(params[:image])
         format.js
       end
     end

@@ -1,14 +1,8 @@
 <!-- year gallery options -->
 <% if image.year == false || image.year == nil %>
 	<% if (@user.images.where(date_taken: @first_of_month..@last_of_month, year: false).count < 11) %> 
-	    <%= content_tag(:li, content_tag(:span, "Y", class: "not_included"), :"data-purpose" => Arrays::CP_MESSAGE['year_false'], class: "cp change_gallery") %>
-	    <%= form_for [@user, image], html: {id: "add_image_#{image.id}_to_year" }, remote: true do |f| %>
-	          <%= f.hidden_field :year, value: true %>
-	    <% end %>
+	    <%= content_tag :li, "Y", class: "cp change_gallery not_included", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['year_false'], :"data-boo" => true,  :"data-range" => "year" %>
 	<% end %>
 <% elsif image.year == true  %>
-    <%= content_tag(:li, content_tag(:span, "Y", class: "included"), :"data-purpose" => Arrays::CP_MESSAGE['year_true'], class: "cp change_gallery") %>
-    <%= form_for [@user, image], html: {id: "remove_image_#{image.id}_from_year" }, remote: true do |f| %>
-          <%= f.hidden_field :year, value: false %>
-    <% end %>
+    <%= content_tag :li, "Y", class: "cp change_gallery included", :"data-root" => root_path, :"data-id" => image.id, :"data-purpose" => Arrays::CP_MESSAGE['year_true'], :"data-boo" => false,  :"data-range" => "year", :"data-page" => page %>
 <% end %>

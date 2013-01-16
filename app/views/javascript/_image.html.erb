@@ -2,9 +2,10 @@
 $(document).ready(function() { 
     
     // *** add and delete images from time frames ***
-    $(".change_gallery").click(function() {
-        $(this).next("form").submit()
-    })
+    // $(".change_gallery").click(function() {
+    //     $(this).next("form").submit()
+    // })
+
     // $(".edit_image input[type=checkbox]").click(function() {
     //     $(this).parent("form").submit() 
     // })
@@ -28,7 +29,7 @@ $(document).ready(function() {
             type: "put",
             url: URL,
             success: function() {
-                $(".time_navigation").fadeOut(2000)
+                $(".time_navigation").slideUp(2000)
                 $(".gray_nav_btn").css({
                     "bottom":"87px",
                     "border-bottom-left-radius": "5px",
@@ -37,7 +38,7 @@ $(document).ready(function() {
                     "bottom":"0px",
                     "border-bottom-left-radius": "0px",
                     "border-bottom-right-radius": "0px"
-                }, 1200)
+                }, 2000)
                 $(".delete_nav_btn").hide()
             }
         }) 
@@ -56,7 +57,7 @@ $(document).ready(function() {
             type: "put",
             url: URL,
             success: function() {
-                $(".time_navigation").fadeIn(3000)
+                $(".time_navigation").slideDown(2000)
                 $(".gray_nav_btn").hide()
                 $(".delete_nav_btn").css({
                     "bottom":"0px",
@@ -66,7 +67,7 @@ $(document).ready(function() {
                     "bottom":"87px",
                     "border-bottom-left-radius": "5px",
                     "border-bottom-right-radius": "5px"
-                }, 1200)
+                }, 2000)
             }
         }) 
     })
@@ -145,7 +146,7 @@ $(document).ready(function() {
                 end_range = ui.draggable.attr("data-end")
                 coordinates = [300, 100]
                 data = {}
-                URL = root+"users/"+user_id+"/images/"+img_id+"/update"
+                URL = root+"users/"+user_id+"/images/"+img_id+"/time_frame"
                 data[range] = true;
                 data[range+'_p'] = coordinates.join(",")
                 DATA = { image: data };
@@ -226,8 +227,50 @@ $(document).ready(function() {
         this_obj = $(this)
         user_id = <%= @user.id %>
         img_id = $(this).attr("data-id")
-        page = $(this).attr("data-range")
+        range = $(this).attr("data-range")
+        page = $(this).attr("data-page")
         root = $(this).attr("data-root")
+    }
+
+    // time_frame
+    if (<%= members_page(@user) %>) {
+        $(".change_gallery").click(function() {
+            $(this).get_vars()
+            purpose = $(this).attr("data-purpose")
+            boo = $(this).attr("data-boo")
+            
+            var data = {}
+            if (boo == "true") {
+                data[range] = true
+            } else if (boo == "false") {
+                data[range] = false
+            }
+
+            DATA = {image: data }
+            URL = root+"users/"+user_id+"/images/"+img_id+"/time_frame" 
+            $.ajax({
+                url: URL,
+                type: 'put',
+                data: DATA,
+                success: function() {
+                    if (data[range] == true) {
+                        this_obj.addClass("included").removeClass("not_included")
+                        msg = "image added to "+range+" gallery"
+                        this_obj.parent(".control_panel").children(".helper_box").html("").html(msg).show().delay(2000)
+
+
+                    } else if (data[range] == false) {
+                        this_obj.addClass("not_included").removeClass("included")
+                        msg = "image removed from "+range+" gallery"
+                        this_obj.parent(".control_panel").children(".helper_box").html("").html(msg).show().delay(2000)
+
+                        if (page == range) {
+                            this_obj.parent(".control_panel").parent(".image_container").fadeOut(3000)
+                        }
+                    }
+                }
+            })
+        })
     }
 
     // Z_index
@@ -239,30 +282,30 @@ $(document).ready(function() {
             var data = {}
             if (purpose == "push image back") {
                 if (z_index < 0)  {
-                    data[page+'_z'] = 0
+                    data[range+'_z'] = 0
                     msg = "image can not be moved any further back"
                 } else if (z_index > 500)  {
-                    data[page+'_z'] = 500
+                    data[range+'_z'] = 500
                     msg = "image reset to front"
                 }else if (z_index == 0)  {
-                    data[page+'_z'] = z_index
+                    data[range+'_z'] = z_index
                     msg = "image can't be moved back any farther"
                 } else {
-                    data[page+'_z'] = z_index - 100
+                    data[range+'_z'] = z_index - 100
                     msg = "image moved back" 
                 }
             } else if (purpose == "bring image forward") {
                 if (z_index < 0)  {
-                    data[page+'_z'] = 0
+                    data[range+'_z'] = 0
                     msg = "image reset to back"
                 } else if (z_index > "500") {
-                    data[page+'_z'] = 500
+                    data[range+'_z'] = 500
                     msg = "image can't be moved forward any farther"
                 } else if (z_index == 500) {
-                    data[page+'_z'] = z_index
+                    data[range+'_z'] = z_index
                     msg = "image can't be moved forward any farther"
                 }else {
-                    data[page+'_z'] = z_index + 100
+                    data[range+'_z'] = z_index + 100
                     msg = "image moved forward" 
                 }
                 
@@ -277,7 +320,7 @@ $(document).ready(function() {
                 data: DATA,
                 success: function() {
                     $(".cp").show()
-                    this_obj.parent().find(".z_index").attr("data-z", data[page+'_z'])
+                    this_obj.parent().find(".z_index").attr("data-z", data[range+'_z'])
                     this_obj.parent().parent(".image_container").css({
                         "z-index": data[page+'_z']
                     })
@@ -313,8 +356,8 @@ $(document).ready(function() {
         }) // end draggable
     }
     
+    // Resize
     if (<%= members_page(@user) %>) {
-    // control_panel: RESIZE 
         $(".resize_msg").toggle(function() {
             $(this).get_vars() // common vars
             // new vars
@@ -323,7 +366,7 @@ $(document).ready(function() {
             image_height = this_image.innerHeight();
             ratio = image_height/image_width;  //Define image ratio
             
-            // set the environment
+            // set the environment 
             $(".cp").hide()
             this_obj.parent().parent(".image_container").draggable("option", "disabled", true ).css("opacity", "1");
             this_obj.show()
@@ -341,10 +384,13 @@ $(document).ready(function() {
                        data: this_image.get_new_dimensions(),
                        success: function() {
                             $(".cp").show()
-                            this_obj.parent().parent().css("opacity", "1")
+                            this_obj.parent().css({
+                                "opacity": "1",
+                                "z-index": "600"
+                            }).show()
                             this_obj.parent().children(".helper_box").html("new dimensions saved").show().delay(1000).fadeOut(3000)
                             this_image.resizable("destroy")  
-                            this_obj.parent().parent(".image_container").draggable("option", "disabled", false );   
+                            this_obj.parent().parent(".image_container").draggable("option", "disabled", false ); 
                        }
                   })
                }
@@ -363,7 +409,7 @@ $(document).ready(function() {
         var new_top = new_position.top
         var coordinates = [new_left, new_top]
         var data = {};
-        data[page+'_p'] = coordinates.join(",")
+        data[range+'_p'] = coordinates.join(",")
         DATA = {image: data }
         return DATA
     }
@@ -376,7 +422,7 @@ $(document).ready(function() {
         var WH = [endW, endH];
         var data = {};
         
-        data[page+'_dim'] = WH.join(",");
+        data[range+'_dim'] = WH.join(",");
         DATA = { image: data };
         return DATA;
     }

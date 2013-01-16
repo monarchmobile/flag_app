@@ -133,24 +133,55 @@ ul.users_dash_header {
 	}
 }
 
+.winner_index {
+	width: 475px;
+	border: 1px solid black;
+	margin-left: 20px;
+	margin-top: 100px;
+	height:300px;
+	float:left;
+	ul {
+		padding:0px;
+		
+		li {
+			height: 70px;
+			
+			font-size: 11px;
+			margin: 0px;
+			list-style: none;
+		}
+	}
+}
+
+.best_week {
+	float:left;
+}
+
+.best_month {
+	float:left;
+}
+
 .user_index {
+	clear:both;
 
 	ul {
 		padding:0px;
 		
 		li {
 			height:60px;
-			width: 975px;
+			width: 960px;
 			padding: 15px;
 			font-size: 11px;
 			margin:5px;
 			list-style: none;
 		}
 	}
+	
 }
 
 ul.user_row {
 	padding:0px;
+
 
 	li {
 		float:left;
@@ -175,7 +206,7 @@ ul.user_row {
 
 	ul.user_items {
 	padding-left:0px;
-
+	width:310px;
 		li {
 			float:left;
 			width:50px;

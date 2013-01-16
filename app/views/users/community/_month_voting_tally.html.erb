@@ -1,0 +1,11 @@
+<div class="voting_totals"><%= total_vote(f, 2) %></div>
+
+<ul class="user_items month_gallery <%= chosen(@already_voted_for_month, f) %>">
+	
+	<%= render 'vote_for_month', f: f  unless current_user.guest %>
+	<% @week_images = f.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").order("user_id DESC")  %>
+	<% @week_images.each do |img| %>
+		<%= link_to image_tag(img.image, size: "50x50"), go_to_range(f, 2)+ last_month_contest_params(img.date_taken, f)  %>
+	<% end %>
+	
+</ul>

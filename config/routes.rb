@@ -14,6 +14,7 @@ FlagApp::Application.routes.draw do
   match 'monthly_scrapbook', to: "static_pages#monthly"
   match 'yearly_scrapbook', to: "static_pages#yearly"
   match "users/:id/images/:id/resize", to: "images#resize"
+  match "users/:id/images/:id/time_frame", to: "images#time_frame"
   match "users/:id/images/:id/z_index", to: "images#z_index"
   match "users/:id/images/:id/drag", to: "images#drag"
   match "users/:id/images/:id/update", to: "images#update"

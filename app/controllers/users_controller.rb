@@ -1,16 +1,17 @@
 class UsersController < ApplicationController 
 	respond_to :html, :json
 	include ApplicationHelper
-
+ 
 	def index 
 		redirect_to create_guest_path unless current_user
 		# @users = User.find(:all, :conditions => "email IS NOT NULL")
-		@owners_that_received_votes = Vote.group("owner_id").order("owner_id asc").count
+		@owners_that_received_week_votes = Vote.group("owner_id").where(range_type: 1).order("owner_id asc").count
+		@owners_that_received_month_votes = Vote.group("owner_id").where(range_type: 2).order("owner_id asc").count
 		# @owners_that_received_votes.each do |o|
 		# 	# @users = User.find(:all, conditions: {id: o.owner_id})
 		# 	o.owner_id
 		# end
-		# @users = User.where("last_name IS NOT NULL")
+		@users = User.where("last_name IS NOT NULL")
 		# @users.each do |u|
 		# 	@voted_on_users = []
 		# 	@voted_on_users << u.votes.where(owner_id: u.id, range_type: 1)
