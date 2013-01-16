@@ -1,8 +1,13 @@
 <!-- Determines the next time period. ie. if on day page, then will create: "Go to Week" link in menu -->  
 
-<%= link_to content_tag(:div, go_to_text("up"), class: "nav_up absolute_withZ"), go_to_up_link(@user)+up_link_params(@user), remote: true %>
+<ul class="triangle">
+	
+	<li><a href="<%= go_to_range(@user, 3) + up_link_params(@user,"year") %>" class="<%= correct_level("year") %> pyramid"></a></li>
+	<li><a href="<%= go_to_range(@user, 2) + up_link_params(@user,"month") %>" class="<%= correct_level("month") %> pyramid"></a></li>
+	<li><a href="<%= go_to_range(@user, 1) + up_link_params(@user,"week") %>" class="<%= correct_level("week") %> pyramid"></a></li>
+	<li><a href="<%= go_to_range(@user, 0) + up_link_params(@user,"day") %>" class="<%= correct_level("day") %> pyramid"></a></li>
+</ul>
 
-<%= link_to content_tag(:div, "", class: "nav_up2 absolute_withZ"), go_to_up_link(@user)+up_link_params(@user), remote: true %>
 
 
 <%= link_to content_tag(:div, content_tag(:div, "back", class: "nav_text"), class: "nav_down absolute_withZ"), go_to_down_link(@user)+down_link_params(@user), remote: true unless page == "day" %>

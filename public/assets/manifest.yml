@@ -12,6 +12,7 @@ images.jpeg: images-2ec2fede45f7eb70436cbbea0545b55c.jpeg
 journal.png: journal-c487e4486c190ad102e0e4d1e97e43ab.png
 journal_entry.png: journal_entry-bb5f7b45e9e24b6ec70db2d1934420bc.png
 logo.png: logo-034e952daca69801a02a037a73c84453.png
+opacity.png: opacity-1a00dbd7e7a54142422acfca003245df.png
 overview.jpg: overview-680be1457a10d2ef309ddac33e216f0c.jpg
 pad_of_paper.jpeg: pad_of_paper-ae836e240f0b47187178d999c01f363e.jpeg
 pad_of_paper.png: pad_of_paper-e79e5a909f18f39b68a7cc4eeb729514.png
@@ -23,7 +24,7 @@ tabs.png: tabs-d99d2626f16a17c6c97573ea563d86de.png
 triangle.png: triangle-c13aed53ef5e0a19394657fcd92c2bd2.png
 upload_image.png: upload_image-170665e8fd653c7c5ec3b7a920fddfe8.png
 application.js: application-83876af5feb515682fed51398d3628ce.js
-application.css: application-5be34c7d9818529efee1284e72c70780.css
+application.css: application-013fc13a0c4e412a298507ca03508801.css
 Jcrop.gif: Jcrop-439599ec2f8447453c1a0ba7c9f1b229.gif
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-a1eb3e0764573ed4b261ca742ed96ac3.png
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: jquery-ui/ui-bg_flat_75_ffffff_40x100-841636c8f8d33987bb8d2f31e8ef92ca.png

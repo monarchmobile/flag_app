@@ -22,7 +22,7 @@ jQuery ->
 
 	# content box on profile page
 	$(".img_feed_container").hover (->
-	  $(this).css "z-index", "100"
+	  $(this).css "z-index", "100" 
 	  $(this).find(".img_content_container").show()
 	), ->
 	  $(this).css "z-index", "0"

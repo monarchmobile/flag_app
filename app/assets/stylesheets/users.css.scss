@@ -94,7 +94,25 @@ list-style: none;
 }
 
 .image_content {
-    color:#D4DFF1;
+    height:auto;
+	background: #000;
+	opacity:.75;
+	position: absolute;
+	z-index: 100;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 15px;
+	padding-left:10px;
+	color:#fff;
+	border: 2px solid #5F5A5A;
+	font-size:10px;
+	display:none;
+
+	li {
+		text-align: center;
+		list-style: none;
+
+	}  
 }
 
 .users_header_style {

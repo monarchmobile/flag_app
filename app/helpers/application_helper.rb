@@ -10,6 +10,15 @@ module ApplicationHelper
 		end
 	end
 
+	def correct_level(range)
+		page
+		if page == range
+			"on_#{range}_frame"
+		else
+			"off_frame"
+		end
+	end
+
 	# ** USER TYPES ** 
 	def admin?(user)
 		user.user_type == 1
@@ -323,21 +332,21 @@ module ApplicationHelper
 	end
 
 	# up link parameters
-	def up_link_params(user)
+	def up_link_params(user,range)
 		declare_beg_range
-	 	if page == frames[0]
-	 		num = (@beg_range.strftime("%d").to_i-1)/7 
+	 	if range == frames[0]
+			@new_beg_range = @beg_range 
+			@new_end_range = @beg_range
+		elsif range == frames[1]
+			num = (@beg_range.strftime("%d").to_i-1)/7 
 			@new_beg_range = @beg_range.beginning_of_month+num.weeks 
-			@new_end_range = @beg_range.beginning_of_month+num.weeks+6.days 
-		elsif page == frames[1]
+			@new_end_range = @beg_range.beginning_of_month+num.weeks+6.days
+		elsif range == frames[2]
 			@new_beg_range = @beg_range.beginning_of_month 
 		 	@new_end_range = @beg_range.beginning_of_month.end_of_month
-		elsif page == frames[2]
+		elsif range == frames[3]
 			@new_beg_range = @beg_range.beginning_of_year
 		 	@new_end_range = @beg_range.end_of_year
-		elsif page == frames[3]
-			@new_beg_range = @bread_crumb
-		 	@new_end_range = @bread_crumb
 		end
 		"?beg_range=#{@new_beg_range}&end_range=#{@new_end_range}&bread_crumb=#{current_path(user)}#{current_params}"
 	end

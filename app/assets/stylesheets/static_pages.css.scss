@@ -37,6 +37,12 @@ $theme_color: rgb(159,21,15);
 	}
 }
 
+.flag_header_logo {
+	margin-left: -66px;
+margin-top: 15px;
+float: left;
+}
+
 
 .purr {
   position: fixed;
@@ -104,7 +110,7 @@ ul.nav_bar {
 
 ul.left_side {
 	position:absolute;
-	left:50px;
+	margin-left:5px;
 	width:175px;
 }
 ul.middle {
@@ -212,41 +218,93 @@ padding-bottom: 20px;
 // navigation buttons: Go To, Back, Prev, Next  //
 
 // Go to { time frame } [Week, Month, Year]
-.nav_up {
-	margin-left: 400px;
-text-align: center;
-width: 200px;
-	height: 21px;
-	background: $theme_color;
-	font-size: 22px;
-	color: black;
-	top:0px;
-	padding: 8px 0px;
-	overflow:hidden;
-	
-	&:hover {
-		color:white;
-	}
-}
-.nav_up2 {
-	margin-left: 475px;
-text-align: center;
-width: 82px;
-height: 46px;
-background: url("buttons.png") 2% 6% no-repeat;
-font-size: 22px;
-color: black;
-top: 25px;
-padding: 8px 0px;
-overflow: hidden;
+ul.triangle {
+	height: 83px;
+position: absolute;
+width: 118px;
+margin-left: 447px;
+top: -13px;
+padding: 0px;
+z-index: 600;
 
-
-	&:hover {
-		background: url("buttons.png") 2% 48% no-repeat;
+	li {
+		list-style: none;
+		padding: 0px;
+		margin:0px;
+		a {
+			cursor:pointer;
+			display: block;
+		}
 	}
 
-	&:active {
-		background: url("buttons.png") 2% 91% no-repeat;
+	li:nth-child(1) {
+		a {
+			height: 25px;
+		}
+		
+		a.on_year_frame {
+			background: url("triangle.png") no-repeat 9% -388px;
+		}
+		a.off_frame {
+			background: url("triangle.png") no-repeat 7% -11px;
+		}	
+
+		a.off_frame:hover {
+			background: url("triangle.png") no-repeat 9% -388px;
+		}
+		
+	}
+
+	li:nth-child(2) {
+		a {
+			height: 16px;
+		}
+		
+		a.on_month_frame {
+			background: url("triangle.png") no-repeat 9% -282px;
+		}
+		
+		a.off_frame {
+			background: url("triangle.png") no-repeat 7% -36px;
+		}
+		a.off_frame:hover {
+			background: url("triangle.png") no-repeat 9% -282px;
+		}
+	}
+
+	li:nth-child(3) {
+		a {
+			height: 17px;
+		}
+		
+		a.on_week_frame {
+			background: url("triangle.png") no-repeat 7% -175px;
+		}
+		a.off_frame {
+			background: url("triangle.png") no-repeat 7% -52px;
+		}
+
+		a.off_frame:hover {
+			background: url("triangle.png") no-repeat 7% -175px;
+		}
+		
+	}
+
+	li:nth-child(4) {
+		a {
+			height: 23px;
+		}
+		a.on_day_frame{
+			background: url("triangle.png") no-repeat 7% -69px;
+		}
+		a.off_frame {
+			background: url("triangle.png") no-repeat 7% -192px;
+		}
+
+		a.off_frame:hover {
+			background: url("triangle.png") no-repeat 7% -69px;
+		}
+		
 	}
 }
 
@@ -671,7 +729,7 @@ border: 2px solid gray;
 
 ul.image_description {
 	height:auto;
-	background: #000;
+	background: url("opacity.png") repeat;
 	opacity:.75;
 	position: absolute;
 	z-index: 100;
@@ -712,7 +770,7 @@ ul.image_description {
 ul.control_panel {
 
 height: auto;
-background: #000;
+background: url("opacity.png") repeat ;
 opacity:.75;
 position: absolute;
 z-index: 100;

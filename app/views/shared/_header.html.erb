@@ -1,7 +1,9 @@
 
 
  <div class="header_container"> 
+
    	<div class="thousand_wide_container ">
+      <%= image_tag "logo.png", class: "flag_header_logo" %>
         <!-- Start of the nav bar content -->   
           	<ul class="left_side nav_bar">
               <%= link_to content_tag(:li, current_user.last_name), user_path(current_user.id) if current_user%>
