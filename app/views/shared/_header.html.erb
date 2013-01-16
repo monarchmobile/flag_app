@@ -3,16 +3,18 @@
  <div class="header_container"> 
 
    	<div class="thousand_wide_container ">
-      <%= image_tag "logo.png", class: "flag_header_logo" %>
+      <%= link_to image_tag("logo.png", class: "flag_header_logo"), root_path %>
         <!-- Start of the nav bar content -->   
           	<ul class="left_side nav_bar">
               <%= link_to content_tag(:li, current_user.last_name), user_path(current_user.id) if current_user%>
             </ul>
             <ul class="middle nav_bar">
               <%= link_to content_tag( :li, "Community" ), users_path %>
-              
-                <%= link_to content_tag(:li, unless_already_on_scrapbook_page), root_path+"users/"+current_user.id.to_s+"/scrapbook/day"  %>
-              
+              <% if registered_member %>
+                <%= link_to content_tag(:li, unless_already_on_scrapbook_page), root_path+"users/"+current_user.id.to_s+"/scrapbook/day" %>
+              <% else %>
+                <%= link_to content_tag(:li, ""), "" %>
+              <% end %>
               <%= link_to content_tag(:li, "About"), about_path %>
             </ul>
             <!-- The drop down menu --> 

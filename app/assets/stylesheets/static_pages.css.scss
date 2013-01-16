@@ -364,17 +364,14 @@ z-index: 600;
 top: 125px;
 
 overflow: hidden;
-width: 66px;
-height: 74px;
-background: url("buttons.png") 35% 3% no-repeat;
+width: 53px;
+height: 92px;
+background: url("tabs.png") -11px -10px no-repeat;
 position: relative;
 
 	&:hover {
-		background: url("buttons.png") 35% 50% no-repeat;
-	}
+		background: url("tabs.png") -182px -10px no-repeat;
 
-	&:active {
-		background: url("buttons.png") 35% 97% no-repeat;
 	}
 
 	div.nav_text {
@@ -390,17 +387,13 @@ position: relative;
 	margin-left:975px;
 	top: 35px;
 	overflow: hidden;
-	width: 66px;
-	height: 74px;
-	background: url("buttons.png") 64% 3% no-repeat;
+	width: 53px;
+height: 92px;
+	background: url("tabs.png") -17px -125px no-repeat;
 	position: relative;
 
 	&:hover {
-		background: url("buttons.png") 64% 50% no-repeat;
-	}
-
-	&:active {
-		background: url("buttons.png") 64% 97% no-repeat;
+		background: url("tabs.png") -188px -125px no-repeat;
 	}
 
 	div.nav_text {
@@ -414,32 +407,21 @@ position: relative;
 
 .nav_down {	
 
-	margin-left: 470px;
-width: 75px;
-height: 71px;
+	margin-left: 465px;
+width: 92px;
+height: 53px;
 bottom: 73px;
 padding: 8px 0px;
 overflow: hidden;
 position: fixed;
 text-align: center;
-background: url("buttons.png") 93% 4% no-repeat;
+background: url("tabs.png") -11px -249px no-repeat;
 font-size: 22px;
 color: black;
 	
 
 	&:hover {
-		background: url("buttons.png") 93% 50% no-repeat;	
-	}
-
-	&:active {
-		background: url("buttons.png") 93% 97% no-repeat;
-	}
-
-	a img {
-		position: absolute;
-		margin-left: -50px;
-		margin-top: -29px;
-		z-index: 200;
+		background: url("tabs.png") -181px -249px no-repeat;
 	}
 
 	div.nav_text {

@@ -212,6 +212,10 @@ module ApplicationHelper
 			"Scrapbook"
 		end
 	end
+
+	def go_to_scrapbook 
+		root_path+"users/"+current_user.id.to_s+"/scrapbook/day"
+	end
 	# dynamic uplink
 
 	def go_to_text(direction)
