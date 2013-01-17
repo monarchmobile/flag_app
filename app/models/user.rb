@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   before_create { set_nav_menu_to_true }
     
-  validates_presence_of :password_digest, unless: :guest?
+  validates_presence_of :password_digest, :first_name, :last_name, unless: :guest?
   validates_confirmation_of :password
   validates :email, :email_pattern => true, unless: :guest?
 

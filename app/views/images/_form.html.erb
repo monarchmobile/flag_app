@@ -11,12 +11,6 @@
     </div> 
   <% end %>  
   <%= f.hidden_field :user_id, value: @user.id %> 
-
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
   
 <% if @image.new_record? %>
   <%= f.hidden_field :date_taken, value: @date_taken %>

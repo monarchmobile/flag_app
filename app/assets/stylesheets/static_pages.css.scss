@@ -15,6 +15,12 @@ $theme_color: rgb(159,21,15);
 	clear:both;
 }
 
+.separator_box {
+	height:100px;
+	width:1000px;
+	clear:both;
+}
+
 .thousand_wide_container {
 	width: 1000px;
 	margin:auto;	
@@ -394,14 +400,13 @@ z-index: 600;
 }
 
 .prev {
-	margin-left: -37px;
-top: 125px;
-
-overflow: hidden;
-width: 53px;
-height: 92px;
-background: url("tabs.png") -11px -10px no-repeat;
-position: relative;
+	background: url("tabs.png") no-repeat scroll -11px -10px transparent;
+    height: 92px;
+    margin-left: -41px;
+    overflow: hidden;
+    position: relative;
+    top: 200px;
+    width: 53px;
 
 	&:hover {
 		background: url("tabs.png") -182px -10px no-repeat;
@@ -409,63 +414,37 @@ position: relative;
 	}
 
 	div.nav_text {
-		font-size: 10px;
-		margin-top: 26px;
-		margin-left: -35px;
-		color:#fff;
+		color: #000000;
+    font-size: 16px;
+    margin-left: -3px;
+    margin-top: 38px;
 	}
 }
 
 .next {
 	
-	margin-left:975px;
-	top: 35px;
-	overflow: hidden;
-	width: 53px;
-height: 92px;
-	background: url("tabs.png") -17px -125px no-repeat;
-	position: relative;
+	background: url("tabs.png") no-repeat scroll -17px -125px transparent;
+    height: 92px;
+    margin-left: 984px;
+    overflow: hidden;
+    position: relative;
+    top: 90px;
+    width: 53px;
 
 	&:hover {
 		background: url("tabs.png") -188px -125px no-repeat;
 	}
 
 	div.nav_text {
-		font-size: 10px;
-		margin-top: 26px;
-		margin-left: 15px;
-		color:#fff;
+		color: #000000;
+    font-size: 16px;
+    margin-left: -1px;
+    margin-top: 36px;
 	}
 }
 
 
-.nav_down {	
 
-	margin-left: 465px;
-width: 92px;
-height: 53px;
-bottom: 73px;
-padding: 8px 0px;
-overflow: hidden;
-position: fixed;
-text-align: center;
-background: url("tabs.png") -11px -249px no-repeat;
-font-size: 22px;
-color: black;
-	
-
-	&:hover {
-		background: url("tabs.png") -181px -249px no-repeat;
-	}
-
-	div.nav_text {
-		font-size: 10px;
-margin-top: 22px;
-margin-left: 1px;
-color: #fff;
-	}
-
-}
 
 // Forms //
 
@@ -509,6 +488,7 @@ height:42px;
 	height:30px;
 	position: absolute;
 	margin-left: 697px;
+	z-index:1;
 	top: 122px;
 	background: url("icons.png") no-repeat -130px -36px;
 }
@@ -529,9 +509,10 @@ height:42px;
 position: absolute;
 background: #F0F1F1;
 padding: 25px;
-z-index: 10;
+z-index: 600;
 min-height: 200px;
 min-width: 200px;
+width:380px;
 color: #369;
 		border-radius: 15px;
 		webkit-border-radius: 15px;
@@ -577,12 +558,27 @@ box-shadow:         2px 2px 2px #ccc;
 
 // sign in
 .auth-form {
-	width: 156px;
+    background: url("opacity.png") repeat scroll 0 0 transparent;
+width: 400px;
+height: auto;
+margin-left: 300px;
+}
+.auth_form_container {
+	width:auto;
+	height:auto;
+}
+
+.forgot_password {
+	float:right;
+	color: #fff;
 }
 
 // sign_up
 .sign-up-form {
-	width: 195px;
+	background: url("opacity.png") repeat scroll 0 0 transparent;
+width: 400px;
+height: auto;
+margin-left: 300px;
 }
 
 // .sign_up_btn {
@@ -649,9 +645,13 @@ margin-left: 704px;
 position: absolute;
 border: 0px;
 z-index: 100;
+	.field {
+		background:none;
+	}
 
 	form label {
 		text-align: center;
+		color:#000;
 	}
 
 	form .field input, form .field textarea {
@@ -1049,12 +1049,12 @@ margin-top: -7px;
 	margin-left: 465px;
 width: 92px;
 height: 53px;
-bottom: 73px;
+bottom: 89px;
 
 overflow: hidden;
 position: fixed;
 text-align: center;
-background: url("tabs.png") -11px -249px no-repeat;
+
 font-size: 22px;
 color: black;
 	
@@ -1063,15 +1063,21 @@ color: black;
 }
 
 .delete_nav_btn {
-	position: fixed;
-margin-left: 466px;
-bottom: 71px;
+	 background: url("tabs.png") no-repeat scroll -11px -249px transparent;
+    bottom: 87px;
+    height: 53px;
+    margin-left: 465px;
+    position: fixed;
+    width: 100px;
 }
 
 .gray_nav_btn {
-	position:fixed;
-	margin-left: 465px;
-	bottom: 0px;
+	background: url("tabs.png") no-repeat scroll -11px -249px transparent;
+    bottom: 0;
+    height: 53px;
+    margin-left: 465px;
+    position: fixed;
+    width: 100px;
 	
 }
 
@@ -1089,7 +1095,7 @@ bottom: 71px;
 		bottom:-4px;
 		width:1000px;
 		height:77px;
-		z-index:400;
+		z-index:9000;
 		
 	}
 
@@ -1262,6 +1268,7 @@ background: url("corner.png");
     height: 26px;
     margin: 5px 0px 10px;
     padding:2px 5px;
+    color: #000;
 }
 
 .edit_user {

@@ -164,12 +164,17 @@ ul.users_dash_header {
 
 .winner_index {
 	width: 468px;
-border: 1px solid black;
-margin-left: 20px;
-margin-top: 100px;
-min-height: 100px;
-height: auto;
-padding: -0px;
+	border: 1px solid black;
+	margin-left: 20px;
+	margin-top: 100px;
+	min-height: 100px;
+	height: auto;
+	padding: -0px;
+	float: left;
+    background: url("opacity.png") repeat scroll 0 0 transparent;
+    border-radius: 10px;
+    webkit-border-radius: 10px;
+    moz-border-radius: 10px;
 	ul {
 		padding:0px;
 		
@@ -184,15 +189,12 @@ padding: -0px;
 }
 
 .best_week {
-	float:left;
+	
 }
 
 .best_month {
-	float:left;
+	
 }
-
-
-
 
 
 .user_index {
@@ -204,11 +206,14 @@ padding: -0px;
 		li {
 			
 			width: 960px;
-padding: 8px;
-font-size: 11px;
-margin: 5px;
-list-style: none;
-height: 75px;
+			padding: 8px;
+			font-size: 11px;
+			margin: 5px;
+			list-style: none;
+			height: 75px;
+			border-radius: 10px;
+			webkit-border-radius: 10px;
+			moz-border-radius: 10px;
 		}
 	}
 	
@@ -380,29 +385,37 @@ position: absolute;
 
 
 .odd {
-	background: #EBE9E9;
+	background: url("opacity.png") repeat scroll 0 0 transparent;
+
 }
 
 .even {
-	background: #E0F5FD;
+	
 }
 
-.profile_container ul li 
-	a {
+.profile_container {
 
-		margin: 0px;
-		img {
-		padding:1px;
-		border:1px solid gray;
-		-moz-box-shadow:    0px 0px 5px #ccc;
-		-webkit-box-shadow: 0px 0px 5px #ccc;
-		box-shadow:         0px 0px 5px #ccc;
+	float: left;
+    height: auto;
+    margin-top: 20px;
+    min-height: 300px;
+    width: 250px;
+	ul {
 
-		&:hover {
-			text-decoration: none;
-			background: inherit;
-			border:1px solid #3b5998;
+		li  {
+
+		font-size: 14px;
+	    font-weight: bold;
+	    list-style: none outside none;
+	    margin: 10px;
+	    width: auto;
+		}
+
+		li:first-child {
+			margin-left: 70px
 		}
 	}
 }
+
+
 
