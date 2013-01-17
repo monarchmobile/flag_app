@@ -52,6 +52,9 @@ position: absolute;
 z-index: 9000;
 width: 130px;
 height: 151px;
+	img {
+
+	}
 }
 
 #home_content {
@@ -572,8 +575,9 @@ margin-left:300px;
 
 }
 .auth_form_container {
-	width:auto;
-	height:auto;
+	width:400px;
+	height:400px;
+
 }
 
 .forgot_password {
@@ -1012,7 +1016,7 @@ ul.control_panel {
 		display: block;
 		width: 25px;
 		height: 25px;
-		margin-left: 0px;
+		margin-left: -20px;
 		background: url("icons.png") no-repeat -290px -36px;
 	}
 
