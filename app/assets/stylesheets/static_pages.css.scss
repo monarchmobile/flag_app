@@ -159,6 +159,13 @@ ul.right_side {
 		margin-left: 5px;
 		float: left;
 	}
+
+	li {
+		list-style: none;
+		width:80px;
+		margin-left:5px;
+		float:left;
+	}
 }
 
 // authentication
@@ -216,6 +223,7 @@ ul.nav_authentication {
 	-moz-box-shadow:    0px 0px 25px 2px #000;
 	-webkit-box-shadow: 0px 0px 25px 2px #000;
 	box-shadow:         0px 0px 25px 2px #000;
+	margin-bottom:35px;
 
 	h1 {
 		font-size: 38.5px;
@@ -461,7 +469,10 @@ color: #fff;
 
 // Forms //
 
-.required_field{
+.required_
+
+
+{
 	margin-left:5px;
 	color:#FF9494;
 	display:inline-block;
@@ -573,6 +584,12 @@ box-shadow:         2px 2px 2px #ccc;
 .sign-up-form {
 	width: 195px;
 }
+
+// .sign_up_btn {
+// 	width:50px;
+// 	height:50px;
+// 	cursor:pointer;
+// }
 
 .image_form {
 	margin-top: 75px;
@@ -1029,29 +1046,31 @@ margin-top: -7px;
 }
 
 .nav_btn_style {
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	width: 25px;
-	height: 19px;
-	z-index: 500;
-	background: $theme_color;
-	color: white;
-	text-align: center;
-	padding-top: 2px;
+	margin-left: 465px;
+width: 92px;
+height: 53px;
+bottom: 73px;
+
+overflow: hidden;
+position: fixed;
+text-align: center;
+background: url("tabs.png") -11px -249px no-repeat;
+font-size: 22px;
+color: black;
+	
+	z-index: 600;
 	cursor: pointer;
 }
 
 .delete_nav_btn {
-	position:fixed;
-	margin-left: 1000px;
-	bottom: 87px;
-	border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+	position: fixed;
+margin-left: 466px;
+bottom: 71px;
 }
 
 .gray_nav_btn {
 	position:fixed;
-	margin-left: 1000px;
+	margin-left: 465px;
 	bottom: 0px;
 	
 }
@@ -1233,4 +1252,33 @@ right: 3px;
 bottom: 3px;
 color: red;
 background: url("corner.png");
+}
+
+
+.field > input {
+    
+    border-radius: 5px 5px 5px 5px;
+    font-size: 17px;
+    height: 26px;
+    margin: 5px 0px 10px;
+    padding:2px 5px;
+}
+
+.edit_user {
+    margin: 30px 0px 30px 85px;   
+}
+
+
+label {
+    font-size: 18px;
+    color:white;
+}
+
+.field {
+    background: url("opacity.png") repeat scroll 0 0 transparent;
+    border-radius: 10px 10px 10px 10px;
+    float: left;
+    margin-right: 41px;
+    padding: 15px;
+    width: 351px;
 }

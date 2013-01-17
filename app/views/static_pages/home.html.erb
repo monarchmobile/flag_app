@@ -1,4 +1,33 @@
 <div id="home_content">
 	<%= image_tag "homepage.png" %>
-	<%= link_to content_tag(:div, "", class: "sign_in_from_home_page"), login_path %>
+	<%= link_to content_tag(:li, "Sign Up", class: "sign_in_from_home_page"), new_user_path, remote: true %>
+	<div class="auth_form_container"></div>
 </div>
+
+
+
+// <script>
+
+// var background_fadeIn, background_fadeOut;
+
+// background_fadeIn = $("#background").css({
+//   opacity: "0.7"
+// });
+
+// background_fadeOut = $("#background");
+
+// $(".sign_up_btn").toggle((function() {
+//   var URL;
+//   URL = "/users/new";
+//   background_fadeIn.fadeIn("slow");
+//   alert("hi");
+//   $.ajax({
+//     url: URL,
+//     type: "get"
+//   });
+//   return false;
+// }), function() {
+//   $(this).next(".auth_form_container").hide();
+//   return background_fadeOut.fadeOut("slow");
+// });
+// </script>

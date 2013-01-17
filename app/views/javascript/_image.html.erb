@@ -20,13 +20,9 @@ $(document).ready(function() {
             success: function() {
                 $(".time_navigation").slideUp(2000)
                 $(".gray_nav_btn").css({
-                    "bottom":"87px",
-                    "border-bottom-left-radius": "5px",
-                    "border-bottom-right-radius": "5px"
+                    "bottom":"73px"
                 }).show().animate({
-                    "bottom":"0px",
-                    "border-bottom-left-radius": "0px",
-                    "border-bottom-right-radius": "0px"
+                    "bottom":"0px"
                 }, 2000)
                 $(".delete_nav_btn").hide()
             }
@@ -49,13 +45,9 @@ $(document).ready(function() {
                 $(".time_navigation").slideDown(2000)
                 $(".gray_nav_btn").hide()
                 $(".delete_nav_btn").css({
-                    "bottom":"0px",
-                    "border-bottom-left-radius": "0px",
-                    "border-bottom-right-radius": "0px"
+                    "bottom":"0px"
                 }).show().animate({
-                    "bottom":"87px",
-                    "border-bottom-left-radius": "5px",
-                    "border-bottom-right-radius": "5px"
+                    "bottom":"73px"
                 }, 2000)
             }
         }) 
@@ -154,7 +146,8 @@ $(document).ready(function() {
     }
 
     // *** END Timeline add image to scrap page END ***
-
+    // action
+        
     // *** New Entries ***
     // add photo
     $(".photo_btn").toggle(function() {
