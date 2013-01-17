@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   
+  $("img.close_form").hover ->
+    $("img.close_form").parent(".home_forms").hide()
 
   $("#journal_form").addClass("hide")
 
