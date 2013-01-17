@@ -15,7 +15,7 @@
             <% if admin?(current_user) %>
                 <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %><li>
             <% end %>
-        	<li><%= link_to "edit profile", edit_user_path if members_page(@user) %></li>
+        	<li><%= link_to "update profile", edit_user_path if members_page(@user) %></li>
             <li><%= link_to "Scrapbook", day_path() if !@user.guest? %>
         </ul>    
     </div>

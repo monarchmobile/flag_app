@@ -11,4 +11,4 @@ jQuery.fn.center_form = function () {
 		"margin-top" : margin_top + "px"
 	})
 }
-$(".auth_form_container").html("<%= j render('shared/sign_in_form') %>")
+$(".login_form_container").html("<%= j render('shared/sign_in_form') %>").center_form()

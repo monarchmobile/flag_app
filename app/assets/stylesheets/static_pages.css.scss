@@ -550,8 +550,8 @@ box-shadow:         2px 2px 2px #ccc;
 
 // styling for sign-up and sign-in forms
 .home_forms {
-	margin-top: 35px;
-	margin-left: -128px;
+	
+	
 	background: #F5ACAC;
 	border-radius: 5px;
 	webkit-border-radius: 5px;
@@ -559,7 +559,7 @@ box-shadow:         2px 2px 2px #ccc;
 	-moz-box-shadow: 0px 0px 5px #ccc;
 	-webkit-box-shadow: 0px 0px 5px #CCC;
 	box-shadow: 0px 0px 5px #CCC;
-	height: 185px;
+	
 	position: absolute;
 	padding: 15px 5px 15px 25px;
 }
@@ -571,21 +571,32 @@ width: 400px;
 height: auto;
 position:absolute;
 float:left;
-
-
-}
-.auth_form_container {
-	
-
+margin-top: -56px;
 }
 
-#sign_up_form {
-	
+// sign_up
+.sign-up-form {
+	background: url("opacity.png") repeat scroll 0 0 transparent;
+width: 400px;
+height: auto;
+margin-left: 300px;
+margin-top: -158px;
+padding-bottom: 50px;
+
 }
+
 
 .forgot_password {
 	float:right;
 	color: #fff;
+}
+
+.edit_user .actions > input {
+   border-radius: 10px 10px 10px 10px;
+   font-size: 20px;
+   height: 50px;
+   padding: 10px;
+   width: 383px;
 }
 
 // sign_up
