@@ -5,6 +5,14 @@
 		<%= render 'shared/errors', :object => f.object  %>
 		
 		<div class="field">
+		    <%= f.label :first_name%><%= required_field %><br />
+		    <%= f.text_field :first_name %>
+		</div>
+		<div class="field">
+		    <%= f.label :last_name%><%= required_field %><br />
+		    <%= f.text_field :last_name %>
+		</div>
+		<div class="field">
 		    <%= f.label :email, "Email" %><br />
 		    <%= f.text_field :email %>
 		</div>

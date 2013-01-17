@@ -16,22 +16,19 @@ class User < ActiveRecord::Base
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
     :presence => {:message => "can't be blank"},
     :on => :update,
-    unless: :guest?,
-    unless: :requireds_are_blank
+    unless: :guest?
 
   validates :first_name,
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
     :presence => {:message => "can't be blank"},
     :on => :update,
-    unless: :guest?,
-    unless: :requireds_are_blank
+    unless: :guest?
     
   validates :city,
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
     :presence => {:message => "can't be blank"},
     :on => :update,
-    unless: :guest?,
-    unless: :requireds_are_blank
+    unless: :guest?
 
   def requireds_are_blank
     required_fields = %W(first_name, last_name, city)

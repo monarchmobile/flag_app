@@ -572,6 +572,7 @@ height: auto;
 position:absolute;
 float:left;
 margin-top: -56px;
+margin-left:-275px;
 }
 
 .login_form {
@@ -593,6 +594,7 @@ margin-top: -56px;
 .sign-up-page-form {
 	width:850px;
 	margin:auto;
+
 	.actions > input {
    		border-radius: 10px 10px 10px 10px;
 		font-size: 20px;
@@ -607,12 +609,12 @@ margin-top: -56px;
 
 // sign_up
 .sign-up-form {
-	background: url("opacity.png") repeat scroll 0 0 transparent;
-	width: 400px;
-	height: auto;
-	margin-left: 300px;
-	margin-top: -58px;
-	padding-bottom: 50px;
+
+   background: url("opacity.png") repeat scroll 0 0 transparent;
+   height: 600px;
+   margin-left: 513px;
+   width: 400px;
+   margin-top:-258px;
 
 
 
