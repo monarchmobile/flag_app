@@ -570,14 +570,17 @@ box-shadow:         2px 2px 2px #ccc;
 width: 400px;
 height: auto;
 position:absolute;
-margin-left:300px;
+margin-left:-300px;
 
 
 }
 .auth_form_container {
-	width:400px;
-	height:400px;
+	
 
+}
+
+#sign_up_form {
+	
 }
 
 .forgot_password {
