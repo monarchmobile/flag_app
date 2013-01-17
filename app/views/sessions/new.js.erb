@@ -1,1 +1,14 @@
-$(".auth_form_container").html("<%= j render('shared/sign_in_form') %>") 
+
+jQuery.fn.center_form = function () {
+
+	b_height = $(window).height() 
+	b_width = $(window).width()
+	container_height = $(this).outerHeight()
+	container_width = $(this).outerWidth()
+	margin_top = (b_height - container_height)/4
+	margin_left = (b_width - container_width)/2
+	$(this).css({
+		"margin-top" : margin_top + "px"
+	})
+}
+$(".auth_form_container").html("<%= j render('shared/sign_in_form') %>").center_form

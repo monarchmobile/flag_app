@@ -44,9 +44,14 @@ $theme_color: rgb(159,21,15);
 }
 
 .flag_header_logo {
-	margin-left: -66px;
-margin-top: 15px;
+	margin-left: -64px;
+margin-top: 2px;
 float: left;
+background: url("logo.png") 50% 106% no-repeat;
+position: absolute;
+z-index: 9000;
+width: 130px;
+height: 151px;
 }
 
 #home_content {
@@ -561,7 +566,10 @@ box-shadow:         2px 2px 2px #ccc;
     background: url("opacity.png") repeat scroll 0 0 transparent;
 width: 400px;
 height: auto;
-margin-left: 300px;
+position:absolute;
+margin-left:300px;
+
+
 }
 .auth_form_container {
 	width:auto;
@@ -804,7 +812,7 @@ ul.image_description {
 	padding-left:10px;
 	color:#fff;
 	border: 2px solid #5F5A5A;
-	font-size:10px;
+	font-size:13px;
 	display:none;
 
 	li {

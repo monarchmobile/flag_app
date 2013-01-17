@@ -3,7 +3,7 @@
  <div class="header_container"> 
 
    	<div class="thousand_wide_container ">
-      <%= link_to image_tag("logo.png", class: "flag_header_logo"), root_path %>
+      <%= link_to content_tag(:div, "", class: "flag_header_logo"), root_path %>
         <!-- Start of the nav bar content -->   
           	<ul class="left_side nav_bar">
               <%= link_to content_tag(:li, current_user.last_name), user_path(current_user.id) if current_user%>
@@ -29,12 +29,13 @@
                     <% end %>
                 <% else %>
                     <%= link_to content_tag(:li, "Sign In", class: 'drop-auth'), new_session_path, remote: true %>
-                    
+                    <div class="auth_form_container"></div>
                     <%= link_to content_tag(:li, "Sign Up"), new_user_path, remote: true %>
                 <% end %>
                 
             </ul>
-            <div class="auth_form_container"></div>
+
       </div>
+      
   </div>
     
