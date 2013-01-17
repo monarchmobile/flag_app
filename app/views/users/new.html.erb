@@ -1,19 +1,21 @@
-<h1>Sign Up </h1>
+<div class="sign-up-page-form">
+	<h1>Sign Up </h1>
 
-<%= form_for @user, :validate => true do |f| %>
-	<%= render 'shared/errors', :object => f.object  %>
-	
-	<div class="field">
-	    <%= f.label :email, "Email" %><br />
-	    <%= f.text_field :email %>
-	</div>
-	<div class="field">
-	    <%= f.label :password %><br />
-	    <%= f.password_field :password %>
-	</div>
-	<div class="field">
-	    <%= f.label :password_confirmation, "Confirm Password" %><br />
-	    <%= f.password_field :password_confirmation %>
-	</div>
-	<div class="actions"><%= f.submit "Sign Up" %></div>
-<% end %>
+	<%= form_for @user, :validate => true do |f| %>
+		<%= render 'shared/errors', :object => f.object  %>
+		
+		<div class="field">
+		    <%= f.label :email, "Email" %><br />
+		    <%= f.text_field :email %>
+		</div>
+		<div class="field">
+		    <%= f.label :password %><br />
+		    <%= f.password_field :password %>
+		</div>
+		<div class="field">
+		    <%= f.label :password_confirmation, "Confirm Password" %><br />
+		    <%= f.password_field :password_confirmation %>
+		</div>
+		<div class="actions"><%= f.submit "Sign Up" %></div>
+	<% end %>
+</div>

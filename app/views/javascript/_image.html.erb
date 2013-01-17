@@ -430,12 +430,14 @@ $(document).ready(function() {
     }
 
     // control_panel on hover
-    if (<%= members_page(@user) %>) {
+    
         $(".image_container").hover(function() {
             image = $(this).find("img")
             image_width = image.innerWidth();
             image_height = image.innerHeight();
+            if (<%= members_page(@user) %>) {
             $(this).find(".control_panel").dynamic_cp_styling()
+             }
             // $(this).children(":first").show()
             $(this).find(".image_description").dynamic_img_desc_styling()
         }, function(){
@@ -452,7 +454,7 @@ $(document).ready(function() {
             $(".helper_box").hide()
             $(".helper_box").html("")
         })
-    }
+   
 
     // control_panel: crop
     $(".crop_msg").click(function() {

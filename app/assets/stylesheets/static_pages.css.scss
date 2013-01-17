@@ -574,14 +574,47 @@ float:left;
 margin-top: -56px;
 }
 
+.login_form {
+	width:850px;
+	margin:auto;
+
+		.actions > input {
+	   border-radius: 10px 10px 10px 10px;
+	font-size: 20px;
+	height: 50px;
+	padding: 10px;
+	width: 383px;
+	clear: both;
+	margin-top: 50px;
+	margin-left: 215px;
+	}
+}
+
+.sign-up-page-form {
+	width:850px;
+	margin:auto;
+	.actions > input {
+   		border-radius: 10px 10px 10px 10px;
+		font-size: 20px;
+		height: 50px;
+		padding: 10px;
+		width: 383px;
+		clear: both;
+		margin-top: 50px;
+		margin-left: 215px;
+	}
+}
+
 // sign_up
 .sign-up-form {
 	background: url("opacity.png") repeat scroll 0 0 transparent;
-width: 400px;
-height: auto;
-margin-left: 300px;
-margin-top: -158px;
-padding-bottom: 50px;
+	width: 400px;
+	height: auto;
+	margin-left: 300px;
+	margin-top: -58px;
+	padding-bottom: 50px;
+
+
 
 }
 
