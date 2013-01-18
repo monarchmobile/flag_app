@@ -22,7 +22,7 @@
                    
                     <% if current_user.guest? %>
                       <%= link_to content_tag(:li, "Become a Member"), new_user_path %>
-                      <%= link_to content_tag(:li, "Sign In", class: 'drop-auth'), new_session_path, remote: true %>
+                      
                     <% else %>
                       <%= link_to content_tag(:li, "Sign Out"), logout_path, method: "delete" %>
                     <% end %>
