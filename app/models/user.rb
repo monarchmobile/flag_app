@@ -104,4 +104,6 @@ class User < ActiveRecord::Base
     self.last_name = split[1]
   end
 
+  
+
 end

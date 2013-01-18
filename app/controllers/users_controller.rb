@@ -1,5 +1,5 @@
 class UsersController < ApplicationController 
-	respond_to :html, :json
+	respond_to :html, :json 
 	include ApplicationHelper 
  
 	def index 
@@ -42,6 +42,7 @@ class UsersController < ApplicationController
 	end
 	
 	def new 
+		
 		@user = User.new
 	end
 	
@@ -82,10 +83,14 @@ class UsersController < ApplicationController
 	end
 	
 	def create 
+		if current_user && current_user.guest
+			cookies.delete(:auth_token)
+			# redirect_to { method: :delete )
+		end
 		@user = params[:user] ? User.new(params[:user]) : User.new_guest
 		if @user.save 
 			if params[:user] #user filled out signup form
-				cookies.permanent[:auth_token] = @user.auth_token
+				cookies[:auth_token] = @user.auth_token
 				redirect_to user_path(@user), notice: "Thank you for signing up! Once you fill out your profile and are approved, you can begin adding images"
 			else
 				#automatically signed up as guest

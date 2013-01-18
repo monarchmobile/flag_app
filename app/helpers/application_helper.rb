@@ -19,6 +19,10 @@ module ApplicationHelper
 		end
 	end
 
+	def remove_from_db(user)
+	    user.destroy
+	end
+
 	# ** USER TYPES ** 
 	def admin?(user)
 		user.user_type == 1

@@ -152,6 +152,15 @@ ul.left_side {
 	position:absolute;
 	margin-left:5px;
 	width:175px;
+
+	a li, li.guest_pass {
+		list-style: none;
+		color: #b4b2b2;
+		padding-top: 10px;
+		margin-left: 10px;
+		font-size: 17px;
+	}
+
 }
 ul.middle {
 	position:absolute;
@@ -166,7 +175,7 @@ ul.middle {
 
 ul.right_side {
 	position:absolute;
-	margin-left:800px;
+	margin-left:780px;
 	width:175px;
 	a li {
 		width: 80px;
@@ -179,7 +188,25 @@ ul.right_side {
 		width:80px;
 		margin-left:5px;
 		float:left;
+		padding-top:10px;
 	}
+
+	a li.guest_btns {
+		width: 166px;
+		font-size: 13px;
+		text-align: left;
+		line-height: .7em;
+		color: rgb(0, 0, 0);
+		padding-top: 7px;
+
+		&:hover {
+			color:#fff;
+		}
+	}
+
+	
+
+	
 }
 
 // authentication
