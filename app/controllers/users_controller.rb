@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 			else
 				respond_with @user
 			end
-		else
+		else 
 			respond_to do |format|
 		      format.html { render :action => "edit" }
 		      format.json { render :json => @user.errors.full_messages, :status => :unprocessable_entity }
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
 			else
 				#automatically signed up as guest
 				@page = params[:page] #page user requested prior to reroute/guest sign in
-				cookies.permanent[:auth_token] = @user.auth_token
+				cookies[:auth_token] = @user.auth_token
 				redirect_to correct_page(@page), notice: "You are logged in as a guest"
 			end
 		else	

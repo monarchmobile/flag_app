@@ -6,6 +6,7 @@
 $theme_color: rgb(159,21,15);
 
 // core classes to be used everywhere //
+
 .hide {
 	
 	display:none;
@@ -33,10 +34,13 @@ $theme_color: rgb(159,21,15);
 }
 
 .close_form {
-	float:right;
-	padding-right:5px;
-	margin-top:-3px;
-	z-index:100;
+	
+padding-right: 5px;
+margin-top: -3px;
+z-index: 9000;
+margin-left: 300px;
+position: absolute;
+cursor: pointer;
 
 	&:hover {
 		background:blue;

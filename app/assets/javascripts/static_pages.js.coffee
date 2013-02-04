@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   
-  $("img.close_form").hover ->
-    $("img.close_form").parent(".home_forms").hide()
+  $.fn.close_form = ->
+    $(this).append("what")
 
   $("#journal_form").addClass("hide")
 
@@ -33,6 +33,8 @@ jQuery ->
    # background_fadeOut = $("#background")
 
    # 
+
+  
 
     
       

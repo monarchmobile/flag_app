@@ -5,6 +5,9 @@
 jQuery ->
 
   	new AvatarCropper()
+  
+  	$(".close_form").click ->
+  		alert("hi")
 
 class AvatarCropper
 	constructor: ->
