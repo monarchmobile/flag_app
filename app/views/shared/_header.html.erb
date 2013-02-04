@@ -1,47 +1,36 @@
-
-
- <div class="header_container"> 
-
-   	<div class="thousand_wide_container ">
-      <%= link_to content_tag(:div, "", class: "flag_header_logo"), root_path %>
-        <!-- Start of the nav bar content -->   
-          	<ul class="left_side nav_bar">
-            
-                <%= content_tag :li, "Guest pass", class: "guest_btns guest_pass" if current_user && current_user.guest? %>
-           
-                <%= link_to content_tag(:li, current_user.last_name), user_path(current_user.id) if current_user%>
-            </ul>
-            <ul class="middle nav_bar">
-              <%= link_to content_tag( :li, "Community" ), users_path %>
-              <% if registered_member %>
-                <%= link_to content_tag(:li, unless_already_on_scrapbook_page), root_path+"users/"+current_user.id.to_s+"/scrapbook/day" %>
+<div class="header_container"> 
+ 	<div class="thousand_wide_container ">
+    <%= link_to content_tag(:div, "", class: "flag_header_logo"), root_path %>
+      <!-- Start of the nav bar content -->   
+        	<ul class="left_side nav_bar">
+          
+              <%= content_tag :li, "Guest pass", class: "guest_btns guest_pass" if current_user && current_user.guest? %>
+         
+              <%= link_to content_tag(:li, current_user.last_name), user_path(current_user.id) if current_user%>
+          </ul>
+          <ul class="middle nav_bar">
+            <%= link_to content_tag( :li, "Community" ), users_path %>
+            <% if registered_member %>
+              <%= link_to content_tag(:li, unless_already_on_scrapbook_page), root_path+"users/"+current_user.id.to_s+"/scrapbook/day" %>
+            <% else %>
+              <%= link_to content_tag(:li, ""), "" %>
+            <% end %>
+          </ul>
+          <!-- The drop down menu --> 
+          <ul class="right_side nav_bar">
+              <% if current_user %>
+                  <% if current_user.guest? %>
+                    <%= link_to content_tag(:li, "Register as new user", class: "drop_auth guest_btns"), new_user_path %>
+                    <%= link_to content_tag(:li, "Sign in as different user", class: 'drop-auth guest_btns'), new_session_path, remote: true %>
+                  <% else %>
+                    <%= link_to content_tag(:li, "Sign Out"), logout_path, method: "delete" %>
+                  <% end %>
               <% else %>
-                <%= link_to content_tag(:li, ""), "" %>
+                  <%= link_to content_tag(:li, "Sign In", class: 'drop-auth'), new_session_path, remote: true %>
+                  <%= link_to content_tag(:li, "Sign Up"), new_user_path %>  
               <% end %>
-            </ul>
-            <!-- The drop down menu --> 
-            <ul class="right_side nav_bar">
-                <% if current_user %>
-                   
-                    <% if current_user.guest? %>
-                      
-                      <%= link_to content_tag(:li, "Register as new user", class: "drop_auth guest_btns"), new_user_path %>
-                      
-                      <%= link_to content_tag(:li, "Sign in as different user", class: 'drop-auth guest_btns'), new_session_path, remote: true %>
-                    <% else %>
-                      <%= link_to content_tag(:li, "Sign Out"), logout_path, method: "delete" %>
-                    <% end %>
-                <% else %>
-                    <%= link_to content_tag(:li, "Sign In", class: 'drop-auth'), new_session_path, remote: true %>
-                    <%= link_to content_tag(:li, "Sign Up"), new_user_path %>
-                   
-                    
-                <% end %>
-                <div class="login_form_container"></div>
-                 
-            </ul>
-
-      </div>
-
-  </div>
+              <div class="login_form_container"></div>
+          </ul>
+    </div>
+</div>
     

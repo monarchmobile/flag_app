@@ -1,4 +1,4 @@
-class ImagesController < ApplicationController
+class ImagesController < ApplicationController 
 
   # INDEX
   def index

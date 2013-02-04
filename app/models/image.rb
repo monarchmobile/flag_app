@@ -1,4 +1,4 @@
-class Image < ActiveRecord::Base
+class Image < ActiveRecord::Base 
   
   attr_accessible :content, :date_taken, :week, :month, :year, :title, :url, :user_id, :image, :crop_x, :crop_y, :crop_w, :crop_h, :day_p, :week_p, :month_p, :year_p, :day_dim, :week_dim, :month_dim, :year_dim, :nav_menu
   attr_accessible :day_z, :week_z, :month_z, :year_z

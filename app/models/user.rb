@@ -26,9 +26,10 @@ class User < ActiveRecord::Base
     
   validates :city,
     :length => { :minimum => 2, :maximum => 24, :message => "has invalid length"},
-    :presence => {:message => "can't be blank"},
+    :allow_blank => true,
     :on => :update,
     unless: :guest?
+   
 
   def requireds_are_blank
     required_fields = %W(first_name, last_name, city)
