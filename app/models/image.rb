@@ -21,6 +21,18 @@ class Image < ActiveRecord::Base
   def self.for_this_range(beg_range, end_range, range)
       where(date_taken: beg_range..end_range, range.to_sym => true ).order("date_taken ASC")
   end
+
+  def self.have_votes(range)
+    for_this_range(previous_week_beg(Date.today), previous_week_end(Date.today), range)
+  end
+
+  def previous_week_beg(today)
+     day_date = today.strftime("%d")
+     num = day_date.to_i
+     @num = (num/7)-1.01
+     @first_of_month = today.to_date.beginning_of_month
+     @new_beg_range = @first_of_month.to_date+@num.weeks
+  end
  
   def self.range?(range)
     range.to_sym == true

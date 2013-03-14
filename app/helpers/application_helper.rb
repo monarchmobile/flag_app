@@ -45,17 +45,11 @@ module ApplicationHelper
 		@week_total = Vote.find(:all, conditions: { owner_id: owner.id, range_type: type, beg_range: beg_range }).count
 	end 
 
-	# def month_total(owner)
-	# 	@month_total = Vote.find(:all, conditions: { owner_id: owner.id, range_type: 2 }).count
-	# end
+	
+	
 
-	# check if user has any images that were voted on last week
-	def has_week_images_voted_for?
-		for_this_range(previous_week_beg(Date.today), previous_week_end(Date.today), "week").count > 0
-	end
-
-	def has_month_images_voted_for?
-		for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").count > 0
+	def hello
+		"hello"
 	end
 
 	def notice
