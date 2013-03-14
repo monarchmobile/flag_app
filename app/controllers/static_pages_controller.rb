@@ -18,8 +18,10 @@ class StaticPagesController < ApplicationController
   	@user = @current_user
   end
 
-    def scrap
+  def book
     @page = page_requested
+    redirect_to create_guest_path(page: @page) unless current_user
+    @user = @current_user
   end
 
 end
