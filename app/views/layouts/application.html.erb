@@ -12,7 +12,11 @@
 <%= render 'shared/header' %> 
 <div class="header_separator"></div>
 <div class="master_container">
-	<div style="margin:auto;"><%= yield %></div>
+	<div class="main">
+		<div class="logo_blank"></div>
+		<%= yield %>
+
+	</div>
 	<div id="large"></div>
 	<div id="background"></div>
 </div>

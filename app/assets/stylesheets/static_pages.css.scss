@@ -7,6 +7,24 @@ $theme_color: rgb(159,21,15);
 
 // core classes to be used everywhere //
 
+h1 {
+	color: $theme_color;
+	text-shadow: 1px 1px 2px black;
+	font-size: 38.5px;
+	margin: auto;
+	text-align: center;
+	margin: 15px auto;
+	padding-top: 15px;
+	padding-bottom: 20px;
+}
+
+h2 {
+	font-size: 20px;
+	color: $theme_color;
+	border-top: 1px dashed $theme_color;
+	padding-top: 15px;
+}
+
 .hide {
 	
 	display:none;
@@ -48,25 +66,45 @@ cursor: pointer;
 }
 
 .flag_header_logo {
-	margin-left: -64px;
-margin-top: 2px;
-float: left;
-background: url("logo.png") 50% 106% no-repeat;
-position: absolute;
-z-index: 9000;
-width: 130px;
-height: 151px;
+    height: 151px;
+    margin-left: -64px;
+    width: 130px;
+    float: left;
+    margin-top: 10px;
 	img {
 
 	}
 }
 
+.main {
+	width: 970px;
+	padding: 0px 15px 30px;
+	p, ul, li {
+		font-size: 15px;
+		line-height: 2;
+	}
+	li {
+		padding-left: 50px;
+		list-style: inside;
+	}
+}
+
+.logo_blank {
+	float: left;
+    height: 88px;
+    width: 53px;}
+
 #home_content {
-	width:1000px;
-	height:auto;
 	img {
 		padding:0px;
-		margin-left:-100px;
+	}
+	img.students {
+		margin-top: -130px;
+	}
+	h1 {
+		margin: 10px auto;
+	    text-align: left;
+	    width: 821px;
 	}
 }
 
@@ -135,107 +173,84 @@ padding: 5px;
 }
 
 ul.nav_bar {
-
-	a li {
+	padding: 5px 0px;	
+	li{
 		list-style: none;
-		color: black;
-		text-align: center;
-		font-size: 17px;
-		text-decoration: none;
 		float:left;
-		padding-top:10px;
+		margin-top: 4px;
+	}
+	a {
+		background-color: #ba1710;
+	    border-radius: 5px 5px 5px 5px;
+	    box-shadow: 0 0 4px -1px black inset;
+	    color: white;
+	    font-size: 15px;
+	    margin: 0 5px;
+	    padding: 4px 10px;
+	    text-align: center;
+	    text-decoration: none;
 	}
 
-	a:hover li {
-		color:#fff;
+	a:hover {
+		box-shadow: 0 0 2px -1px black inset;
 	}
 			
 }
 
-ul.left_side {
-	position:absolute;
-	margin-left:5px;
-	width:175px;
+// ul.left_side {
+// 	float: left;
+// 	width: auto;
+// 	li {
+// 		float:left;
+// 	}
+// 	a {
+// 		list-style: none;
+// 		color: #b4b2b2;
+// 		padding-top: 10px;
+// 		margin-left: 10px;
+// 		font-size: 17px;
+// 	}
 
-	a li, li.guest_pass {
-		list-style: none;
-		color: #b4b2b2;
-		padding-top: 10px;
-		margin-left: 10px;
-		font-size: 17px;
-	}
+// }
 
-}
-ul.middle {
-	position:absolute;
-	margin-left:210px;
-	width:600px;
-	padding:0px;
-	a li {
-		width:200px;
-			
-	}
-}
+// ul.middle {
+// 	float: left;
+// 	a {
+// 		width:auto;		
+// 	}
+// }
 
-ul.right_side {
-	position:absolute;
-	margin-left:780px;
-	width:175px;
-	a li {
-		width: 80px;
-		margin-left: 5px;
-		float: left;
-	}
+// ul.right_side {
 
-	li {
-		list-style: none;
-		width:80px;
-		margin-left:5px;
-		float:left;
-		padding-top:10px;
-	}
+// 	a {
+// 		width: auto;
+// 		float: left;
+// 	}
+// }
 
-	a li.guest_btns {
-		width: 166px;
-		font-size: 13px;
-		text-align: left;
-		line-height: .7em;
-		color: rgb(0, 0, 0);
-		padding-top: 7px;
+// // authentication
+// ul.nav_authentication {
+//   	width: 0px;
+// 	float: left;
+// 	padding: 8px 0px;
 
-		&:hover {
-			color:#fff;
-		}
-	}
+//    	a li {
+// 	  width: 60px;
+// 	  float:left;
+// 	  list-style: none;
+// 	  color:black;
+// 	}
 
-	
+// 	a:hover li {
+// 		color:#fff;
+// 	}
 
-	
-}
-
-// authentication
-ul.nav_authentication {
-  	width: 0px;
-	float: left;
-	padding: 8px 0px;
-
-   	a li {
-	  width: 60px;
-	  float:left;
-	  list-style: none;
-	  color:black;
-	}
-
-	a:hover li {
-		color:#fff;
-	}
-
-	li:first-child {
-		width:180px;
-		list-style: none;
-		float:left;
-	}
-}
+// 	li:first-child {
+// 		width:180px;
+// 		list-style: none;
+// 		float:left;
+// 	}
+// }
 
  
 .announcement {
@@ -269,16 +284,6 @@ ul.nav_authentication {
 	-webkit-box-shadow: 0px 0px 25px 2px #000;
 	box-shadow:         0px 0px 25px 2px #000;
 	margin-bottom:35px;
-
-	h1 {
-		font-size: 38.5px;
-margin: auto;
-width: 300px;
-text-align: center;
-margin-top: 10px;
-padding-top: 15px;
-padding-bottom: 20px;
-	}
 }
 
 .notice {
@@ -856,6 +861,7 @@ img {
 	height: 500px;
 	top: 70px;
 	margin-top: 35px;
+	margin-left: -68px;
 
 	// li
 }  // images_container

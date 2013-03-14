@@ -9,6 +9,13 @@ body {
   margin-top:-13px;
 }
 
+.right {
+  float:right;
+}
+
+.left {
+  float: left;
+}
 
 .header_separator {
   height: 34px;
@@ -17,8 +24,6 @@ body {
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
 }
 
 pre {

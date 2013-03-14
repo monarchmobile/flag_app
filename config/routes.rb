@@ -6,6 +6,7 @@ FlagApp::Application.routes.draw do
   match 'logout', to: "sessions#destroy"
   match 'profile', to: "users#show"
   match 'about', to: "static_pages#about"
+  match 'book', to: "static_pages#book"
   match 'users/:id/scrapbook/day', as:'day', to: "scrapbooks#day"
   match 'users/:id/scrapbook/week', as:'week', to: "scrapbooks#week"
   match 'users/:id/scrapbook/month', as:'month', to: "scrapbooks#month"
