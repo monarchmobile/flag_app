@@ -1,4 +1,4 @@
-module ApplicationHelper 
+module ApplicationHelper  
 	# if user has a profile pic, this is displayed, otherwise an "empty image" is displayed
 	def if_requireds_are_blank?(user)
 		user.first_name && user.last_name && user.city
@@ -41,13 +41,16 @@ module ApplicationHelper
 		end
 	end
 
-	def total_vote(owner, range)
-		@week_total = Vote.find(:all, conditions: { owner_id: owner.id, range_type: range }).count
+	def total_vote(owner, type, beg_range)
+		@week_total = Vote.find(:all, conditions: { owner_id: owner.id, range_type: type, beg_range: beg_range }).count
 	end 
 
-	# def month_total(owner)
-	# 	@month_total = Vote.find(:all, conditions: { owner_id: owner.id, range_type: 2 }).count
-	# end
+	
+	
+
+	def hello
+		"hello"
+	end
 
 	def notice
 		"<p id='notice'><%= notice %></p>"
@@ -436,11 +439,11 @@ module ApplicationHelper
 	def previous_week_beg(today)
 	   day_date = today.strftime("%Y-%m-%d").split("-")[2]
 	   num = day_date.to_i
-	   @num = (num/7)-1
+	   @num = (num/7)-1.01
 	   @first_of_month = today.to_date.beginning_of_month
 	   @new_beg_range = @first_of_month.to_date+@num.weeks
 	    
-	   @new_beg_range
+	   
 	end
 
 	def previous_week_end(today)

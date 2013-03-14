@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 	def index 
 		redirect_to create_guest_path unless current_user
 		# @users = User.find(:all, :conditions => "email IS NOT NULL")
-		@owners_that_received_week_votes = Vote.group("owner_id").where(range_type: 1).order("owner_id asc").count
-		@owners_that_received_month_votes = Vote.group("owner_id").where(range_type: 2).order("owner_id asc").count
+		@owners_that_received_week_votes = Vote.group("owner_id").where(range_type: 1, beg_range: previous_week_beg(Date.today)).order("owner_id asc").count
+		@owners_that_received_month_votes = Vote.group("owner_id").where(range_type: 2, beg_range: Date.today.beginning_of_month).order("owner_id asc").count
 		# @owners_that_received_votes.each do |o|
 		# 	# @users = User.find(:all, conditions: {id: o.owner_id})
 		# 	o.owner_id

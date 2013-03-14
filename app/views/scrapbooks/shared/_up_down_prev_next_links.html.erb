@@ -1,5 +1,5 @@
 <!-- Determines the next time period. ie. if on day page, then will create: "Go to Week" link in menu -->  
-
+ 
 <ul class="triangle"> 
 	<li><%= link_to "", go_to_range(@user, 3) + up_link_params(@user, "year"), class: "#{correct_level('year')} pyramid", remote: true %></li>
 	

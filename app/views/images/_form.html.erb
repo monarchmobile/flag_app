@@ -1,5 +1,4 @@
 <%= form_for [@user, @image], html: {:multipart => true}, remote: true do |f| %> 
-<%= image_tag "delete.png", size: "50x50", class: "close_form" %>
 
   <% if @image.errors.any? %>
     <div id="error_explanation">

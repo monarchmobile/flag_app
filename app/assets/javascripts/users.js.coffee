@@ -18,7 +18,7 @@ jQuery ->
 	    i++
 
 	# $(".message_board").append("<li>image"+x+" is "+image[i]+"px</li>")
-	), 500
+	), 1000
 
 	# content box on profile page
 	$(".img_feed_container").hover (->

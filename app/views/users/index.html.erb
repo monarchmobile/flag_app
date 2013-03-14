@@ -1,5 +1,7 @@
 <%= render 'shared/announcements' %> 
-<h1>Community</h1>
+
+
+<h1>Community</h1> 
 
 <div class="winner_index best_week">
 	<h2>Winners Last Week</h2>
@@ -7,19 +9,23 @@
 	<% @owners_that_received_week_votes.count %><br >
 	<% @owners_that_received_week_votes.each do |o| %>
 		<% @week_user = User.find(o[0]) %>
-		<% @week_winners << @week_user %>
+		<% if @week_user.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").count > 0 %>
+			<% @week_winners << @week_user %>
+		<% end %>
 	<% end %>
 	<ul>
 		<% @week_winners.each do |f| %>
 			<li class="student_<%= f.id %>_week" %>
+
 				<ul class="winner_row">
 					<%= render'users/community/user_profile', f: f %>
 					<li>
 						<ul class="<%= chosen(@already_voted_for_week, f, "winner_gallery") %> week_gallery">
 							<%= render'users/community/week_voting_tally', f: f %>
+
 						</ul>
 					</li>
-					<div class="voting_totals"><%= total_vote(f, 1) %></div>
+					<div class="voting_totals"><%= total_vote(f, 1, previous_week_beg(Date.today)) %></div>
 				</ul>
 			</li>
 		<% end %>
@@ -33,7 +39,9 @@
 	<% @owners_that_received_month_votes.count %><br >
 	<% @owners_that_received_month_votes.each do |o| %>
 		<% @month_user = User.find(o[0]) %>
-		<% @month_winners << @month_user %>
+		<% if @month_user.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").count > 0 %>
+			<% @month_winners << @month_user %>
+		<% end %>
 	<% end %>
 	<ul>
 		<% @month_winners.each do |f| %>
@@ -45,7 +53,7 @@
 							<%= render'users/community/month_voting_tally', f: f %>
 						</ul>
             		</li>
-            		<div class="voting_totals"><%= total_vote(f, 2) %></div>	
+            		<div class="voting_totals"><%= total_vote(f, 2, Date.today.beginning_of_month) %></div>	
 	            </ul>
 			</li>
 		<% end %>
@@ -62,26 +70,34 @@
 	</ul>
 	<ul>
 	<% @users.each do |f| %>
+	  <% if f.images.for_this_range(previous_week_beg(Date.today), previous_week_end(Date.today), "week").count > 0 || 
+	  	    f.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").count > 0 %>
 		<li class="<%= cycle("odd", "even") %> student_<%= f.id %>">
 			<ul class="user_row">
 				<%= render'users/community/user_profile', f: f %>
-				<li class="student_<%= f.id %>_week">
-					<ul class="<%= chosen(@already_voted_for_week, f, "user_gallery") %> week_gallery">
-						<%= render'users/community/week_voting_tally', f: f %>
-					</ul>
-					
-				</li>
-				<div class="voting_totals for_week"><%= total_vote(f, 1) %></div>
-				<li class="student_<%= f.id %>_month">
-					<ul class="<%= chosen(@already_voted_for_month, f, "user_gallery") %> month_gallery">
-						<%= render'users/community/month_voting_tally', f: f %>
-					</ul>
-					
-				</li>
+				<% if f.images.for_this_range(previous_week_beg(Date.today), previous_week_end(Date.today), "week").count > 0 %>
+					<li class="student_<%= f.id %>_week">
+						<ul class="<%= chosen(@already_voted_for_week, f, "user_gallery") %> week_gallery">
+							<%= render'users/community/week_voting_tally', f: f %>
+						</ul>
+						
+					</li>
+					<div class="voting_totals for_week"><%= total_vote(f, 1, previous_week_beg(Date.today)) %></div>
+				<% end %>
+				<% if f.images.for_this_range(Date.today.beginning_of_month, Date.today.end_of_month, "month").count > 0 %>
 				
-				<div class="voting_totals for_month"><%= total_vote(f, 2) %></div>
+					<li class="student_<%= f.id %>_month">
+						<ul class="<%= chosen(@already_voted_for_month, f, "user_gallery") %> month_gallery">
+							<%= render'users/community/month_voting_tally', f: f %>
+						</ul>
+						
+					</li>
+					
+					<div class="voting_totals for_month"><%= total_vote(f, 2, Date.today.beginning_of_month) %></div>
+				<% end %>
 			</ul> 
 		</li>
+	  <% end %>
 	<% end %>
 	</ul>
 </div>
