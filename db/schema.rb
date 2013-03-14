@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115155858) do
+ActiveRecord::Schema.define(:version => 20130314142323) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(:version => 20130115155858) do
     t.boolean  "week"
     t.boolean  "month"
     t.boolean  "year"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.boolean  "published",  :default => false
+    t.string   "slug"
+    t.integer  "position"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "scrapbooks", :force => true do |t|

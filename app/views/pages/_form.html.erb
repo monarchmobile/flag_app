@@ -1,0 +1,20 @@
+<%= form_for @page do |f| %>
+	<%= render 'shared/errors', object: @page %>
+	<div class="field">
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
+	<div class="field">
+		<%= f.label :content %>
+		<%= f.text_area :content, :class => 'ckeditor' %>
+	</div>
+	<div class="field">
+		<%= f.label :published %>
+		<%= f.check_box :published %>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+
+
+<% end %>

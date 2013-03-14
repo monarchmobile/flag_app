@@ -9,6 +9,11 @@
               <%= link_to content_tag(:li, current_user.last_name), user_path(current_user.id) if current_user%>
           </ul>
           <ul class="middle nav_bar">
+            <% @pages = Page.where(:published => true) %>
+
+            <% @pages.each do |page| %>
+              <%= content_tag :li, link_to(page.title, [page]) %>
+            <% end %>
             <%= link_to content_tag( :li, "Community" ), users_path %>
             <% if registered_member %>
               <%= link_to content_tag(:li, unless_already_on_scrapbook_page), root_path+"users/"+current_user.id.to_s+"/scrapbook/day" %>
