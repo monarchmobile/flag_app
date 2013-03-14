@@ -18,4 +18,8 @@ class StaticPagesController < ApplicationController
   	@user = @current_user
   end
 
+    def scrap
+    @page = page_requested
+  end
+
 end
