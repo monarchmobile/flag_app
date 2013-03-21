@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base 
   # attributes by row %w[ stock admin added virtual ]
   attr_accessible :email, :first_name, :last_name, :password_confirmation, :password
-  attr_accessible :user_type, :guest
+  attr_accessible :user_type, :guest, :roles
   attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
   # attr_accessible :
   # has_secure_password
   before_create { generate_token(:auth_token) }
   before_create { set_nav_menu_to_true }
+  before_create :setup_role
+
+  has_and_belongs_to_many :roles
     
   validates_presence_of :password_digest, :first_name, :last_name, unless: :guest?
   validates_confirmation_of :password
@@ -78,7 +81,7 @@ class User < ActiveRecord::Base
   end
   
   def has_not_reached_daily_image_limit?(d)
-      images.where(:date_taken => d).count < 5
+      images.where(:date_taken => d).count < 5 
   end
 
   def monthly_image_submissions
@@ -105,6 +108,16 @@ class User < ActiveRecord::Base
     self.last_name = split[1]
   end
 
+  def role?(role)
+   return !!self.roles.find_by_name(role.to_s)
+  end
+
+  private
+    def setup_role
+      if self.role_ids.empty?
+        self.role_ids = [7]
+      end
+    end
   
 
 end

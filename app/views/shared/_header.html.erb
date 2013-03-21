@@ -1,4 +1,4 @@
-<div class="header_container"> 
+<div class="header_container">  
  	<div class="thousand_wide_container ">
     <div class="flag_header_logo">
         <%= image_tag "logo.png", class:"right students" %> 
@@ -40,6 +40,7 @@
                     <%= content_tag :li, link_to("Register as new user", new_user_path) %>
                     <%= content_tag :li, link_to("Sign In", new_session_path, remote: true) %>
                   <% else %>
+                    <%= content_tag :li, link_to("Dashboard", dashboard_path) if current_user.role? :Admin %>
                     <%= content_tag :li, link_to("Sign Out", logout_path, method: "delete") %>
                   <% end %>
               <% else %>

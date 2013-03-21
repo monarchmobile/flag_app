@@ -1,3 +1,5 @@
+$theme_color: rgb(159,21,15);
+
 body {
   background:url("background-camera.jpg") 50% 3% no-repeat;
   color: #333;
@@ -92,12 +94,13 @@ div {
   line-height: 1;
 }
 
-flag_feed li {
+.flag_feed li {
   padding-left: 0px;
   line-height: 1;
   list-style: none;
 }
 
+<<<<<<< HEAD
 form.new_page .field, form.edit_page .field {
   clear:both;
   width:97%;
@@ -107,3 +110,17 @@ form.new_page .field textarea, form.edit_page .field textarea {
   width: 100%;
 }
 
+=======
+ul.crud_buttons li a{
+  padding:5px;
+  background:$theme_color;
+  width:50px;
+  border-radius: 5px;
+  -moz-box-shadow:    0px 0px 5px #ccc;
+  -webkit-box-shadow: 0px 0px 5px #ccc;
+  box-shadow:         0px 0px 5px #ccc;
+  text-align:center;
+  height:20px;
+  color:#fff;
+}
+>>>>>>> roles
