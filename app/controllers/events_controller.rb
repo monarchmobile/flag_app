@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class EventsController < ApplicationController 
 
 	def new
 		@event = Event.new
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 		find_event
 		respond_to do |format|
 			if @event.update_attributes(params[:event])
-				format.html { redirect_to @event, :notice => "updates saved"}
+				format.html { redirect_to :back, notice: "changes saved" }
 				format.js
 			else
 				format.html { render 'edit', :notice => "updates not saved"}

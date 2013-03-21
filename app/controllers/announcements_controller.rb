@@ -1,4 +1,4 @@
-class AnnouncementsController < ApplicationController
+class AnnouncementsController < ApplicationController 
 	def hide
 		ids = [params[:id], *cookies.signed[:hidden_announcement_ids]]
 		cookies.permanent.signed[:hidden_announcement_ids] = ids
@@ -47,7 +47,7 @@ class AnnouncementsController < ApplicationController
 		@announcement = Announcement.find(params[:id])
 		respond_to do |format|
 			if @announcement.update_attributes(params[:announcement])
-				format.html { render 'show' }
+				format.html { redirect_to dashboard_path, notice: "changes saved" }
 				format.js
 			end
 		end

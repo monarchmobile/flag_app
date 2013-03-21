@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class PagesController < ApplicationController 
 	# load_and_authorize_resource
 	def new 
 		@page = Page.new
@@ -35,7 +35,7 @@ class PagesController < ApplicationController
 		find_page
 		respond_to do |format|
 			if @page.update_attributes(params[:page])
-				format.html { redirect_to @page, :notice => "The #{@page.title} page was succesfully updated"}
+				format.html { redirect_to dashboard_path, notice: "changes saved" }
 				format.js
 			else
 				format.html { render :action => "edit"}
