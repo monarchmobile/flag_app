@@ -17,10 +17,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :notice => "Access denied"
   end
 
-  # rescue_from CanCan::AccessDenied do |exception|
-  #   flash[:error] = "Access denied."
-  #   redirect_to root_url
-  # end
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied."
+    redirect_to root_url
+  end
 
   
 
