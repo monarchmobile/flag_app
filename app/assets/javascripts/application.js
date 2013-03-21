@@ -22,6 +22,7 @@
 //= require jquery.ui.resizable
 //= require jquery.ui.position
 //= require jquery.Jcrop
+//= require ckeditor/init
 //= require_tree .
 
 

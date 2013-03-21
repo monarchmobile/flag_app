@@ -97,3 +97,13 @@ flag_feed li {
   line-height: 1;
   list-style: none;
 }
+
+form.new_page .field, form.edit_page .field {
+  clear:both;
+  width:97%;
+}
+
+form.new_page .field textarea, form.edit_page .field textarea {
+  width: 100%;
+}
+
