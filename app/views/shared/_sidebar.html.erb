@@ -1,0 +1,96 @@
+<style type="text/css">
+	.sidebar {
+		width:350px;
+		min-height:100px;
+		background:#fff;
+		border-radius: 5px;
+		webkit-border-radius: 5px;
+		moz-border-radius: 5px;
+		-moz-box-shadow:    0px 0px 5px #ccc;
+		-webkit-box-shadow: 0px 0px 5px #ccc;
+		box-shadow:         0px 0px 5px #ccc;
+		margin-top:300px;
+		clear:both;
+	}
+
+	.sidbar_tables {
+		border:1px solid blue;
+		width:300px;
+		margin:auto;
+		padding:10px;
+
+	}
+
+	ul.table_header {
+		margin: 0px;
+		padding: 0px;
+		height: 45px;
+	}
+
+	ul.table_header li {
+		float: left;
+		width: 60px;
+		list-style: none;
+		font-size: 12px;
+		border:1px solid orange;
+		text-align: center;
+		padding: 0px;
+	}
+
+	ul.table_row {
+		margin: 0px;
+		padding: 0px;
+		height: 45px;
+		clear:both;
+	}
+
+	ul.table_row li {
+		float: left;
+		width: 60px;
+		list-style: none;
+		font-size: 12px;
+		border:1px solid orange;
+		text-align: center;
+		padding: 0px;
+	}
+
+	
+</style>
+
+<div class="sidebar">
+	<div class="sidbar_tables">
+		<h2>Announcements</h2>
+		<ul class="table_header">
+			<%= content_tag :li, "title" %>
+			<%= content_tag :li, "Message" %>
+			
+		</ul>
+		<% @announcements.each do |a| %>
+			<ul class="table_row">
+				<%= content_tag :li, a.title %>
+				<%= content_tag :li, a.message %>
+				
+			</ul>
+		<% end %>
+	</div>
+	<div class="sidbar_tables">
+		<h2>Events</h2>
+		<ul class="table_header">
+			<li>Title</li>
+			<li>Date</li>
+			<li>Description</li>
+			<li>location</li>
+			
+		</ul>
+		<% @events.each do |e| %>
+			<ul class="table_row">
+				<%= content_tag :li, e.title %>
+				<%= content_tag :li, e.date %>
+				<%= content_tag :li, e.location %>
+				<%= content_tag :li, e.description %>
+				
+			</ul>
+		<% end %>
+	</div>
+
+</div>
