@@ -1458,3 +1458,84 @@ ul.contact_information li{
     width: 5%;
 }
 
+// dashboard
+
+ul.model_table {
+
+  li {
+    width: 95%;
+height: 50px;
+background: rgb(224, 224, 224);
+float: none;
+border-radius: 5px;
+padding: 5px;
+margin-top: 10px;
+list-style:none;
+  }
+}
+ 
+ul.instance_detail {
+  margin:0px;
+  padding:0px;
+
+  li {
+    float: left;
+	width: 40px;
+	height: auto;
+	margin: 0px;
+	list-style:none;
+  }
+
+  form {
+   	float: left;
+    margin: 12px;
+    width: 60px;
+  }
+
+  select {
+    float: left;
+    width: auto; 
+  }
+
+}
+
+.contact_container {
+    width:250px;
+    height:150px;
+    -moz-box-shadow:    0px 0px 5px #ccc;
+    -webkit-box-shadow: 0px 0px 5px #ccc;
+    box-shadow:         0px 0px 5px #ccc;
+    border-radius: 5px;
+    clear:both;
+}
+
+ul.contact_information li{
+	width:200px;
+	margin-top:3px;
+	padding:5px;
+
+	a {
+	 color:#3b5998;
+
+
+	 &:hover {
+	   color:red;
+	 }
+	}
+}	
+
+
+ul.crud_buttons {
+	float: right;
+	li{
+		margin:0px;
+		width: auto;
+	}
+	a {
+		text-decoration: none;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+

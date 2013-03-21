@@ -101,12 +101,12 @@ div {
 }
 
 
-form.new_page .field, form.edit_page .field {
+form.new_page .field, form.edit_page .field, form.new_announcement .field, form.edit_announcement .field, form.new_announcement .actions, form.new_event .field, form.edit_event .field, {
   clear:both;
   width:97%;
 }
 
-form.new_page .field textarea, form.edit_page .field textarea, form.new_announcement .field textarea, form.edit_announcement .field textarea {
+form.new_page .field textarea, form.edit_page .field textarea, form.new_announcement .field textarea, form.edit_announcement .field textarea, form.new_event .field textarea, form.edit_event .field textarea {
   width: 100%;
 }
 
