@@ -30,24 +30,22 @@ class EventsController < ApplicationController
 		find_event
 		respond_to do |format|
 			if @event.update_attributes(params[:event])
-				format.html { redirect_to :back, notice: "changes saved" }
+				format.html { redirect_to @event, notice: "changes saved" }
 				format.js
 			else
 				format.html { render 'edit', :notice => "updates not saved"}
 				format.js
 			end
 		end
-
 	end
 
 	def destroy
 		find_event
 		@event.destroy
 		respond_to do |format|
-			format.html {redirect_to root_url, "#{@event.title} deleted succesfully"}
+			format.html {redirect_to dashboard_path, "#{@event.title} deleted succesfully"}
 			format.js
 		end
-		
 	end
 
 	def find_event

@@ -1,5 +1,6 @@
 
-<h2>Pages</h2>
+<h2>Pages</h2> 
+<%= content_tag :li, link_to("new", new_page_path), class: "new_instance_button" %>
 <ul class="model_table">
 	<% @pages.each do |page| %>
 		<li>
@@ -12,7 +13,7 @@
 				
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_page_path(page)) %>
-					<%= content_tag :li, link_to("show", page_path(page)) %>
+					<%= content_tag :li, link_to("view", page_path(page)) %>
 					<%= content_tag :li, link_to("delete", page_path(page), :confirm => "are you sure?", :method => :delete ) %>
 				</ul>
 			</ul>
@@ -21,15 +22,22 @@
 </ul>
 
 <h2>Announcements</h2>
+<%= content_tag :li, link_to("new", new_announcement_path), class: "new_instance_button" %>
 <ul class="model_table">
 	<% @announcements.each do |announcement| %>
 		<li>
 			<ul class="instance_detail">
 				<%= content_tag :li, announcement.title %>
 				<%= content_tag :li, announcement.message %>
+				<%= content_tag :li, announcement.starts_at %>
+				<%= content_tag :li, announcement.ends_at %>
+				
+				<%= form_for page, remote: true do |a| %>
+					<%= a.select(:published, [["draft", false], ["published", true]]) %>
+				<% end %>
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)) %>
-					<%= content_tag :li, link_to("show", announcement_path(announcement)) %>
+					<%= content_tag :li, link_to("view", announcement_path(announcement)) %>
 					<%= content_tag :li, link_to("delete", announcement_path(announcement), :confirm => "are you sure?", :method => :delete ) %>
 					
 				</ul>
@@ -42,6 +50,7 @@
 
 
 <h2>Events</h2>
+<%= content_tag :li, link_to("new", new_event_path), class: "new_instance_button" %>
 <ul class="model_table">
 	<% @events.each do |event| %>
 		<li>
@@ -50,9 +59,11 @@
 				<%= content_tag :li, event.date %>
 				<%= content_tag :li, event.location %>
 				<%= content_tag :li, event.description %>
+				<%= content_tag :li, event.publish_to_web %>
+				<%= content_tag :li, event.pull_from_web %>
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_event_path(event)) %>
-					<%= content_tag :li, link_to("show", event_path(event)) %>
+					<%= content_tag :li, link_to("view", event_path(event)) %>
 					<%= content_tag :li, link_to("delete", event_path(event), :confirm => "are you sure?", :method => :delete ) %>
 					
 				</ul>

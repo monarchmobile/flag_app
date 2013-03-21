@@ -35,7 +35,7 @@ class PagesController < ApplicationController
 		find_page
 		respond_to do |format|
 			if @page.update_attributes(params[:page])
-				format.html { redirect_to dashboard_path, notice: "changes saved" }
+				format.html { redirect_to @page, notice: "changes saved" }
 				format.js
 			else
 				format.html { render :action => "edit"}
@@ -47,7 +47,7 @@ class PagesController < ApplicationController
 		find_page
 		@page.destroy
 		respond_to do |format|
-			format.html { redirect_to root_url, :notice => "The #{@page.title} page was successfully deleted" }
+			format.html { redirect_to dashboard_path, :notice => "The #{@page.title} page was successfully deleted" }
 			format.js
 		end
 	end

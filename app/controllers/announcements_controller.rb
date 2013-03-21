@@ -19,7 +19,7 @@ class AnnouncementsController < ApplicationController
 
 		
 		if @announcement.save
-			redirect_to announcements_path
+			redirect_to users_path
 			
 		else
 			redirect_to 'new'
@@ -30,7 +30,7 @@ class AnnouncementsController < ApplicationController
 	def show
 		@announcement = Announcement.find(params[:id])
 		respond_to do |format|
-			format.html { render announcement }
+			format.html { render @announcement }
 			format.js
 		end
 	end
@@ -47,7 +47,7 @@ class AnnouncementsController < ApplicationController
 		@announcement = Announcement.find(params[:id])
 		respond_to do |format|
 			if @announcement.update_attributes(params[:announcement])
-				format.html { redirect_to dashboard_path, notice: "changes saved" }
+				format.html { redirect_to users_path, notice: "changes saved" }
 				format.js
 			end
 		end
@@ -57,7 +57,7 @@ class AnnouncementsController < ApplicationController
 		@announcement = Announcement.find(params[:id])
 		@announcement.destroy
 		respond_to do |format|
-			format.html { redirect_to home_path }
+			format.html { redirect_to users_path }
 			format.js
 		end
 	end
