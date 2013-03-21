@@ -1,11 +1,12 @@
+<h1>My Dashboard</h1>
 <div class="dashboard_container">
 <h2>Pages</h2> 
-<%= content_tag :li, link_to("new", new_page_path), class: "new_instance_button" %>
+<%= content_tag :p, link_to("+ New", new_page_path), class: "new_instance_button" %>
 <ul class="model_table">
 	<% @pages.each do |page| %>
 		<li>
 			<ul class="instance_detail">
-				<%= content_tag :li, page.title %>
+				<%= content_tag :li, page.title, class: "title"  %>
 				
 				<%= form_for page, remote: true do |a| %>
 					<%= a.select(:published, [["draft", false], ["published", true]]) %>
@@ -17,23 +18,20 @@
 					<%= content_tag :li, link_to("delete", page_path(page), :confirm => "are you sure?", :method => :delete ) %>
 				</ul>
 			</ul>
+			<br class="clear"/>
 		</li>
 	<% end %>
 </ul>
 
 <h2>Announcements</h2>
-<%= content_tag :li, link_to("new", new_announcement_path), class: "new_instance_button" %>
+<%= content_tag :p, link_to("+ New", new_announcement_path), class: "new_instance_button" %>
 <ul class="model_table">
 	<% @announcements.each do |announcement| %>
 		<li>
 			<ul class="instance_detail">
-				<%= content_tag :li, announcement.title %>
-				<%= content_tag :li, announcement.message %>
-				<%= content_tag :li, announcement.starts_at %>
-				<%= content_tag :li, announcement.ends_at %>
-				
+				<%= content_tag :li, announcement.title, class: "title"  %>
 				<%= form_for page, remote: true do |a| %>
-					<%= a.select(:published, [["draft", false], ["published", true]]) %>
+					<%= a.select(:published, [["draft", false], ["published", true]]) %>	
 				<% end %>
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)) %>
@@ -41,8 +39,12 @@
 					<%= content_tag :li, link_to("delete", announcement_path(announcement), :confirm => "are you sure?", :method => :delete ) %>
 					
 				</ul>
+				<%= content_tag :li, announcement.message, class: "message"  %>
+				<%= content_tag :li, announcement.starts_at, class: "date" %>
+				<%= content_tag :li, announcement.ends_at, class: "date" %>
 				
 			</ul>
+			<br class="clear"/>
 		</li>
 	<% end %>
 </ul>
@@ -50,17 +52,17 @@
 
 
 <h2>Events</h2>
-<%= content_tag :li, link_to("new", new_event_path), class: "new_instance_button" %>
+<%= content_tag :p, link_to("+ New", new_event_path), class: "new_instance_button" %>
 <ul class="model_table">
 	<% @events.each do |event| %>
 		<li>
 			<ul class="instance_detail">
-				<%= content_tag :li, event.title %>
+				<%= content_tag :li, event.title, class: "title"  %>
 				<%= content_tag :li, event.date %>
 				<%= content_tag :li, event.location %>
-				<%= content_tag :li, event.description %>
-				<%= content_tag :li, event.publish_to_web %>
-				<%= content_tag :li, event.pull_from_web %>
+				<%= content_tag :li, event.description, class: "message" %>
+				<%= content_tag :li, event.publish_to_web, class: "date" %>
+				<%= content_tag :li, event.pull_from_web, class: "date" %>
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_event_path(event)) %>
 					<%= content_tag :li, link_to("view", event_path(event)) %>
@@ -69,6 +71,7 @@
 				</ul>
 				
 			</ul>
+			<br class="clear"/>
 		</li>
 	<% end %>
 </ul>
@@ -80,7 +83,7 @@
 	<% @users.each do |user| %>
 		<li>
 			<ul class="instance_detail">
-				<%= content_tag :li, user.fullname %>
+				<%= content_tag :li, user.fullname, class: "title"  %>
 				
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_user_path(user)) %>
@@ -90,6 +93,7 @@
 				</ul>
 				
 			</ul>
+			<br class="clear"/>
 		</li>
 	<% end %>
 </ul>

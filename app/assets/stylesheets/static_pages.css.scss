@@ -1223,7 +1223,7 @@ ul.dom_container {
 		border-radius: 50px;
 		webkit-border-radius: 50px;
 		moz-border-radius: 50px;
-		padding: 0px 2px 4px 2px;
+		padding: 2px 2px 2px 2px;
 		float: left;
 		list-style: none;
 		text-align: center;
@@ -1234,6 +1234,7 @@ ul.dom_container {
 		height: 13px;
 		color: black;
 		font-size: 11px;
+		line-height: 1;
 	}
 
 	a:hover li.clickable_dates {
@@ -1386,10 +1387,10 @@ label {
 // dashboard
 
 ul.model_table {
-
+	clear:both;
   li {
-    width: 670px;
-	height: 50px;
+    width: 95%;
+	height: auto;
 	background: rgb(224, 224, 224);
 	float: none;
 	border-radius: 5px;
@@ -1398,6 +1399,7 @@ ul.model_table {
 	list-style:none;
   }
 }
+
  
 ul.instance_detail {
   margin:0px;
@@ -1422,6 +1424,21 @@ ul.instance_detail {
     width: auto; 
   }
 
+}
+
+ul.instance_detail .message {
+	width:700px;
+}
+
+ul.instance_detail .title {
+	border-bottom: 1px dashed $theme_color;
+    border-radius: 0 0 0 0;
+    font-weight: bold;
+    width: 500px;
+}
+
+ul.instance_detail .date {
+	width:163px;
 }
 
 .contact_container {
@@ -1461,22 +1478,14 @@ ul.contact_information li{
 // dashboard
 
 .dashboard_container h2 {
-	width:600px;
-	background: gray;
-}
-
-ul.model_table {
-
-  li {
-    width: 95%;
-height: 50px;
-background: rgb(224, 224, 224);
-float: none;
-border-radius: 5px;
-padding: 5px;
-margin-top: 10px;
-list-style:none;
-  }
+   	background: none repeat scroll 0 0 gray;
+    border-radius: 10px 10px 10px 10px;
+    color: white;
+    cursor: pointer;
+    float: left;
+    padding: 10px;
+    text-shadow: 1px 1px 1px black;
+    width: 98%;
 }
  
 ul.instance_detail {
@@ -1544,3 +1553,6 @@ ul.crud_buttons {
 	}
 }
 
+.dashboard_container {
+	clear: both;
+}

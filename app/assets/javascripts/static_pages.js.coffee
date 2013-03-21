@@ -14,7 +14,7 @@ jQuery ->
   $("#dashboard_ends_at").datepicker
     dateFormat: 'yy-mm-dd'
 
-  $("ul.model_table").hide()
+  $("ul.model_table").show()
 
   ### Fix bug - When clicking on any area of form, form was dis ###
   # $(" .auth-form input, 
