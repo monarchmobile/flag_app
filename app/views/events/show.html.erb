@@ -1,0 +1,8 @@
+<h2><%= @event.title %></h2>
+
+<%= content_tag :li, @event.date %>
+<%= content_tag :li, @event.location %>
+<%= content_tag :li, @event.description %>
+
+<%= content_tag :li, @event.publish_to_web %>
+<%= content_tag :li, @event.pull_from_web %>
