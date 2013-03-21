@@ -1,0 +1,32 @@
+<%= form_for @event do |f| %>
+	<%= render 'shared/errors', object: @event %>
+	<div class="field">
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
+	<div class="field">
+		<%= f.label :date %>
+		<%= f.text_field :date %>
+	</div>
+	<div class="field">
+		<%= f.label :description %>
+		<%= f.text_area :description %>
+	</div>
+	<div class="field">
+		<%= f.label :location %>
+		<%= f.text_field :location %>
+	</div>
+	<div class="field">
+		<%= f.label :publish_to_web %>
+		<%= f.text_field :publish_to_web %>
+	</div>
+	<div class="field">
+		<%= f.label :pull_from_web %>
+		<%= f.text_field :pull_from_web %>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+
+
+<% end %>

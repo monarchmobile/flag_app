@@ -3,41 +3,8 @@ class UsersController < ApplicationController
 	include ApplicationHelper 
  
 	def index 
-		redirect_to create_guest_path unless current_user
-		# @users = User.find(:all, :conditions => "email IS NOT NULL")
-		@owners_that_received_week_votes = Vote.group("owner_id").where(range_type: 1, beg_range: previous_week_beg(Date.today)).order("owner_id asc").count
-		@owners_that_received_month_votes = Vote.group("owner_id").where(range_type: 2, beg_range: Date.today.beginning_of_month).order("owner_id asc").count
-		# @owners_that_received_votes.each do |o|
-		# 	# @users = User.find(:all, conditions: {id: o.owner_id})
-		# 	o.owner_id
-		# end
-		@users = User.where("last_name IS NOT NULL")
-		# @users.each do |u|
-		# 	@voted_on_users = []
-		# 	@voted_on_users << u.votes.where(owner_id: u.id, range_type: 1)
-		# end
-		
-
-		@page = params[:page]
-
-		@already_voted_for_week = current_user.votes.where(:beg_range=>previous_week_beg(Date.today))
-					.where(:range_type=>1)
-					.where(voted: true).last if current_user
-		@already_voted_for_month = current_user.votes.where(:beg_range=>Date.today.beginning_of_month) 
-					.where(:range_type=>2)
-					.where(voted: true).last if current_user
-
-		if @already_voted_for_week
-			@week_vote = Vote.find(@already_voted_for_week)
-		else
-			@week_vote = Vote.new
-		end
-
-		if @already_voted_for_month
-			@month_vote = Vote.find(@already_voted_for_month)
-		else
-			@month_vote = Vote.new
-		end
+		@announcements = Announcement.all
+		@events = Event.all
 
 	end
 	
