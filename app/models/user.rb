@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   end
   
   def has_not_reached_daily_image_limit?(d)
-      images.where(:date_taken => d).count < 5
+      images.where(:date_taken => d).count < 5 
   end
 
   def monthly_image_submissions

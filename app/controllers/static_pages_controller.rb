@@ -24,4 +24,11 @@ class StaticPagesController < ApplicationController
     @user = @current_user
   end
 
+  def dashboard
+    @pages = Page.all
+    @announcements = Announcement.all 
+    @events = Event.all 
+    @users = User.all
+  end
+
 end
