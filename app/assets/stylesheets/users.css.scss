@@ -35,7 +35,7 @@ $theme_color: rgb(159,21,15);
 
 .flag_feed {
 
-    width:725px;
+    width:715px;
     min-height: 300px;
     height:auto;
     float:left;
@@ -402,8 +402,9 @@ position: absolute;
 
 .profile_container {
 
-	float: left;
+    float: left;
     height: auto;
+    margin-left: -10px;
     margin-top: 20px;
     min-height: 300px;
     width: 250px;

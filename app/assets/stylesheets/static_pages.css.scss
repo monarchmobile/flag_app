@@ -250,12 +250,13 @@ ul.nav_bar {
 
  
 .announcement {
-	width:1000px;
-	margin:auto;
-	background: gray;
-	color:#fff;
-	text-align:center;
-	padding:5px;
+    background: none repeat scroll 0 0 #050551;
+    border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    margin: 15px auto auto 70px;
+    padding: 10px 29px;
+    text-align: center;
+    width: 833px;
 
 	a {
 		text-decoration: none;
@@ -1376,4 +1377,15 @@ label {
     margin-right: 41px;
     padding: 15px;
     width: 351px;
+}
+
+.gotit {
+    border-left: 1px dashed white;
+    color: white;
+    display: block;
+    float: right;
+    height: 100%;
+    margin: 0;
+    text-align: right;
+    width: 5%;
 }

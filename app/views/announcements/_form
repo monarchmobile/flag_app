@@ -1,5 +1,9 @@
 <%= form_for @announcement do |f| %>
 	<div class="field">
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
+	<div class="field">
 		<%= f.label :message %>
 		<%= f.text_area :message, rows: 4 %>
 	</div>

@@ -2,23 +2,27 @@
 	.sidebar {
 		width:350px;
 		min-height:100px;
-		background:#fff;
 		border-radius: 5px;
 		webkit-border-radius: 5px;
 		moz-border-radius: 5px;
-		-moz-box-shadow:    0px 0px 5px #ccc;
-		-webkit-box-shadow: 0px 0px 5px #ccc;
-		box-shadow:         0px 0px 5px #ccc;
 		margin-top:300px;
 		clear:both;
 	}
 
 	.sidbar_tables {
-		border:1px solid blue;
+		box-shadow: 0px 0px 5px;
 		width:300px;
-		margin:auto;
+		margin:10px auto;
 		padding:10px;
+		background:#fff;
+		border-radius: 5px;
+	}
 
+	.sidbar_tables h2 {
+		border:none;
+		margin: 0 0 10px;
+		padding-top: 2px;
+		text-align: center;
 	}
 
 	ul.table_header {
@@ -32,9 +36,15 @@
 		width: 60px;
 		list-style: none;
 		font-size: 12px;
-		border:1px solid orange;
 		text-align: center;
 		padding: 0px;
+	}
+
+	.item {
+		border-radius: 5px;
+		box-shadow: 0px 0px 2px inset;
+		padding: 10px;
+		margin:10px 0px;
 	}
 
 	ul.table_row {
@@ -46,12 +56,19 @@
 
 	ul.table_row li {
 		float: left;
-		width: 60px;
+		width: 100%;
 		list-style: none;
 		font-size: 12px;
-		border:1px solid orange;
-		text-align: center;
 		padding: 0px;
+
+	}
+
+	.title {
+		font-weight: bold;
+	}
+
+	.message {
+		clear: both;
 	}
 
 	
@@ -59,37 +76,32 @@
 
 <div class="sidebar">
 	<div class="sidbar_tables">
-		<h2>Announcements</h2>
-		<ul class="table_header">
-			<%= content_tag :li, "title" %>
-			<%= content_tag :li, "Message" %>
-			
-		</ul>
+		<h2>Latest News</h2>
 		<% @announcements.each do |a| %>
-			<ul class="table_row">
-				<%= content_tag :li, a.title %>
-				<%= content_tag :li, a.message %>
-				
-			</ul>
+			<div class="item">
+				<ul class="table_row">
+					<%= content_tag :li, a.title, class: "title"  %>
+					<%= content_tag :li, a.message, class: "message" %>
+					
+				</ul>
+				<br class="clear">
+			</div>
 		<% end %>
+		<br class="clear">
 	</div>
 	<div class="sidbar_tables">
-		<h2>Events</h2>
-		<ul class="table_header">
-			<li>Title</li>
-			<li>Date</li>
-			<li>Description</li>
-			<li>location</li>
-			
-		</ul>
+		<h2>Upcoming Events</h2>
 		<% @events.each do |e| %>
-			<ul class="table_row">
-				<%= content_tag :li, e.title %>
-				<%= content_tag :li, e.date %>
-				<%= content_tag :li, e.location %>
-				<%= content_tag :li, e.description %>
-				
-			</ul>
+			<div class="item">
+				<ul class="table_row">
+					<%= content_tag :li, e.title, class: "title" %>
+					<%= content_tag :li, "<strong>When:</strong>#{e.date}" %>
+					<%= content_tag :li, e.location %>
+					<%= content_tag :li, e.description, class: "message" %>
+					
+				</ul>
+				<br class="clear">
+			</div>
 		<% end %>
 	</div>
 
