@@ -8,6 +8,12 @@ jQuery ->
 
   $("#journal_form").addClass("hide")
 
+  $("#dashboard_starts_at").datepicker()
+    # dateFormat: 'yy-mm-dd'
+
+  $("#dashboard_ends_at").datepicker
+    dateFormat: 'yy-mm-dd'
+
   ### Fix bug - When clicking on any area of form, form was dis ###
   # $(" .auth-form input, 
   #     .auth-form label,

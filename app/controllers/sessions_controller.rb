@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   def new
     respond_to do |format|
       format.js
+      format.
     end 
   end
   

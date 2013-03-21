@@ -26,8 +26,11 @@ class StaticPagesController < ApplicationController
 
   def dashboard
     @pages = Page.all
+    @page = Page.new
     @announcements = Announcement.all 
+    @announcement = Announcement.new
     @events = Event.all 
+    @event = Event.new
     @users = User.all
   end
 
