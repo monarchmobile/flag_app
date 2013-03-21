@@ -1,6 +1,6 @@
 <style type="text/css">
 	.sidebar {
-		width:450px;
+		width:350px;
 		min-height:100px;
 		background:#fff;
 		border-radius: 5px;
@@ -15,7 +15,7 @@
 
 	.sidbar_tables {
 		border:1px solid blue;
-		width:400px;
+		width:300px;
 		margin:auto;
 		padding:10px;
 
@@ -63,15 +63,13 @@
 		<ul class="table_header">
 			<%= content_tag :li, "title" %>
 			<%= content_tag :li, "Message" %>
-			<%= content_tag :li, "Publish" %>
-			<%= content_tag :li, "Pull" %>
+			
 		</ul>
 		<% @announcements.each do |a| %>
 			<ul class="table_row">
 				<%= content_tag :li, a.title %>
 				<%= content_tag :li, a.message %>
-				<%= content_tag :li, a.starts_at.to_s.split(" ")[0] %>
-				<%= content_tag :li, a.ends_at.to_s.split(" ")[0] %>
+				
 			</ul>
 		<% end %>
 	</div>
@@ -82,8 +80,7 @@
 			<li>Date</li>
 			<li>Description</li>
 			<li>location</li>
-			<li>Publish</li>
-			<li>Pull</li>
+			
 		</ul>
 		<% @events.each do |e| %>
 			<ul class="table_row">
@@ -91,8 +88,7 @@
 				<%= content_tag :li, e.date %>
 				<%= content_tag :li, e.location %>
 				<%= content_tag :li, e.description %>
-				<%= content_tag :li, e.publish_to_web.strftime("%B %d, %y") %>
-				<%= content_tag :li, e.pull_from_web.strftime("%B %d, %y") %>
+				
 			</ul>
 		<% end %>
 	</div>
