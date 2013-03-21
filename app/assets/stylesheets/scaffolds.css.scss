@@ -100,17 +100,17 @@ div {
   list-style: none;
 }
 
-<<<<<<< HEAD
+
 form.new_page .field, form.edit_page .field {
   clear:both;
   width:97%;
 }
 
-form.new_page .field textarea, form.edit_page .field textarea {
+form.new_page .field textarea, form.edit_page .field textarea, form.new_announcement .field textarea, form.edit_announcement .field textarea {
   width: 100%;
 }
 
-=======
+
 ul.crud_buttons li a{
   padding:5px;
   background:$theme_color;
@@ -123,4 +123,4 @@ ul.crud_buttons li a{
   height:20px;
   color:#fff;
 }
->>>>>>> roles
+
