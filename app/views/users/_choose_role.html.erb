@@ -1,0 +1,10 @@
+<%= f.fields_for :role do |builder| %>
+	<div class="field">
+	    <%= f.label :name, "Type of User" %><br />
+	    <% if current_user %>
+	    	<%= f.collection_select :id, Role.all, :id, :name if current_user.role? :Admin %>
+	    <% else %>
+	    	<%= f.select :name, [["Student", 1], ["Staff", 2], ["Moderator", 3]] %>
+	    <% end %>
+	</div>
+<% end %>

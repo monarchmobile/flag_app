@@ -1,8 +1,9 @@
 class SessionsController < ApplicationController
+
   def new
     respond_to do |format|
       format.js
-      format.
+      format.html
     end 
   end
   
@@ -15,4 +16,5 @@ class SessionsController < ApplicationController
   	cookies.delete(:auth_token)
   	redirect_to root_url, notice: "Logged out!"
   end
+
 end

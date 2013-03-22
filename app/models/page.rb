@@ -8,6 +8,10 @@ class Page < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug
 
+  def self.s_that_are_published
+    where(:published => true).order("position ASC")
+  end
+
   private
 	  def make_slug
 	    self.slug = self.title.downcase.gsub(/[^a-z1-9]+/, '-').chomp('-')

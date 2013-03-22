@@ -9,7 +9,9 @@
 		<li>
 			<ul class="instance_detail">
 				<%= content_tag :li, page.title, class: "title"  %>
-				
+				<%= form_for page, remote: true do |a| %>
+					<%= a.select(:position, 1..Page.find(:all, conditions: {published: true }).count) %>
+				<% end %>
 				<%= form_for page, remote: true do |a| %>
 					<%= a.select(:published, [["draft", false], ["published", true]]) %>
 				<% end %>
@@ -42,8 +44,8 @@
 					
 				</ul>
 				<%= content_tag :li, announcement.message, class: "message"  %>
-				<%= content_tag :li, announcement.starts_at, class: "date" %>
-				<%= content_tag :li, announcement.ends_at, class: "date" %>
+				Publish to site:<%= content_tag :li, announcement.starts_at, class: "date" %>
+				Pull from site:<%= content_tag :li, announcement.ends_at, class: "date" %>
 				
 			</ul>
 			<br class="clear"/>
@@ -81,22 +83,27 @@
 
 
 <h2>Users waiting to be approved</h2>
+<%= content_tag :p, @users.count, class: "user_count" %>
 <ul class="model_table">
-	<% @users.each do |user| %>
-		<li>
-			<ul class="instance_detail">
-				<%= content_tag :li, user.fullname, class: "title"  %>
-				
-				<ul class="crud_buttons">
-					<%= content_tag :li, link_to("edit", edit_user_path(user)) %>
-					<%= content_tag :li, link_to("show", user_path(user)) %>
-					<%= content_tag :li, link_to("delete", user_path(user), :confirm => "are you sure?", :method => :delete ) %>
+	<% if @users.count > 0 %>
+		<% @users.each do |user| %>
+			<li>
+				<ul class="instance_detail">
+					<%= content_tag :li, user.fullname, class: "title"  %>
+					
+					<ul class="crud_buttons">
+						<%= content_tag :li, link_to("edit", edit_user_path(user)) %>
+						<%= content_tag :li, link_to("show", user_path(user)) %>
+						<%= content_tag :li, link_to("delete", user_path(user), :confirm => "are you sure?", :method => :delete ) %>
+						
+					</ul>
 					
 				</ul>
-				
-			</ul>
-			<br class="clear"/>
-		</li>
+				<br class="clear"/>
+			</li>
+		<% end %>
+	<% else %>
+		<%= content_tag :p, "no users waiting to be approved" %>
 	<% end %>
 </ul>
 </div>

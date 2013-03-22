@@ -1,15 +1,5 @@
-<%= form_for @user, :validate => true do |f| %> 
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for @user, :validate => true do |f| %>  
+  <%= render 'shared/errors', object: @user %>
 
 
 <div class="field">
@@ -57,6 +47,14 @@
 	<%= f.text_field :family %>
 </div>
 <%= f.hidden_field :user_type ,value: 2 %>
+<% if current_user %>
+  <% if current_user.role? :Admin %>
+    <div class="field">
+      <%= f.label :approved %>
+      <%= f.check_box :approved %>
+    </div>
+  <% end %>
+<% end %>
 
   <div class="actions">
     <%= f.submit "Update Profile" %>

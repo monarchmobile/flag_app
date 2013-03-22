@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321200227) do
+ActiveRecord::Schema.define(:version => 20130322100008) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20130321200227) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "address1"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20130321200227) do
     t.datetime "password_reset_sent_at"
     t.boolean  "guest"
     t.string   "member_photo"
+    t.boolean  "approved",               :default => false
   end
 
   create_table "votes", :force => true do |t|

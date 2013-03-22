@@ -7,7 +7,7 @@
             <ul class="left nav_bar">
              <!--  <%= content_tag :li, link_to("Home", root_path) %>
               <%= content_tag :li, link_to("About", about_path) %> -->
-              <% @pages = Page.where(:published => true) %>
+              <% @pages = Page.s_that_are_published %>
 
               <% @pages.each do |page| %>
                 <%= content_tag :li, link_to(page.title, [page]) %>

@@ -31,7 +31,7 @@ class StaticPagesController < ApplicationController
     @announcement = Announcement.new
     @events = Event.all 
     @event = Event.new
-    @users = User.all
+    @users = User.where({approved: false, guest: false})
   end
 
 end

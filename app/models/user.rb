@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base 
   # attributes by row %w[ stock admin added virtual ]
   attr_accessible :email, :first_name, :last_name, :password_confirmation, :password
-  attr_accessible :user_type, :guest, :roles
+  attr_accessible :user_type, :guest, :roles, :approved
   attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
   # attr_accessible :
   # has_secure_password
@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
 
   # current_user ? full_name : Guest
   def name
-    guest ? "Guest" : full_name
+    guest ? "Guest" : fullname
   end
 
   # current_user has filled out form? "first_name last_name" : email
