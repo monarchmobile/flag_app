@@ -1,6 +1,17 @@
 
 <h1>My Dashboard</h1>
 <%= flash[:notice] %>
+<!-- 
+<%= andrew("1)events/form => last line cannot click on.") %>
+<%= andrew("2)dashboard#announcements => Iadded publish to site, pull from site, needs to be fitted into space") %>
+<%= andrew("where should we puts links for someone to access profile, right now only link is in dashboard where only admin has access") %>
+<%= rod("do backup image for user/show") %>
+<%= rod("scrapbook/images => ability to shift image 90 degrees") %> -->
+
+
+
+
+
 <div class="dashboard_container">
 <h2>Pages</h2> 
 <%= content_tag :p, link_to("+ New", new_page_path), class: "new_instance_button" %>
@@ -9,11 +20,14 @@
 		<li>
 			<ul class="instance_detail">
 				<%= content_tag :li, page.title, class: "title"  %>
-				<%= form_for page, remote: true do |a| %>
-					<%= a.select(:position, 1..Page.find(:all, conditions: {published: true }).count) %>
-				<% end %>
+
 				<%= form_for page, remote: true do |a| %>
 					<%= a.select(:published, [["draft", false], ["published", true]]) %>
+				<% end %>
+				<% if page.published? %>
+					<%= form_for page, remote: true do |a| %>
+						<%= a.select(:position, 1..Page.find_all_by_published(true).count) %>
+					<% end %>
 				<% end %>
 				
 				<ul class="crud_buttons">

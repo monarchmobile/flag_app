@@ -1,4 +1,5 @@
-<%= render 'shared/announcements' %> 
+<%= render 'shared/announcements' %>  
+<%= flash[:notice] %>
 <%= link_to "create announcement", new_announcement_path if admin?(current_user) %>
 <% if !@user.guest? %>
     <div class="profile_container">

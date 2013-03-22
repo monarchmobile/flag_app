@@ -10,6 +10,14 @@ module ApplicationHelper
 		end
 	end
 
+	def andrew(text)
+		content_tag(:div, "For Andrew:#{text}", class: "super_admin andrew") if current_user.role? :Admin
+	end
+
+	def rod(text)
+		content_tag(:div, "For Rod:#{text}", class: "super_admin rod") if current_user.role? :Admin
+	end
+
 	def correct_level(range) 
 		page
 		if page == range
