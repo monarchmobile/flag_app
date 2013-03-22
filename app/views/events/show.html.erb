@@ -1,3 +1,22 @@
+<style>
+	.flash {
+		width:100px;
+		height:50px;
+		background:white;
+	}
+
+	.flash_notice {
+		color:green;
+	}
+
+	.flash_error {
+		color:red;
+	}
+
+	.flash_waring {
+		color:orange;
+	}
+</style>
 <h2><%= @event.title %></h2>
 
 <%= content_tag :li, @event.date %>
@@ -6,3 +25,14 @@
 
 <%= content_tag :li, @event.publish_to_web %>
 <%= content_tag :li, @event.pull_from_web %>
+
+
+
+<%= flash[:notice] %>
+
+<ul class="crud_buttons">
+	<%= content_tag :li, link_to("edit", edit_event_path(@event)) %>
+	<%= content_tag :li, link_to("view", event_path(@event)) %>
+	<%= content_tag :li, link_to("delete", event_path(@event), :confirm => "are you sure?", :method => :delete ) %>
+</ul>
+

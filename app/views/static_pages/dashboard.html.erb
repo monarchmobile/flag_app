@@ -1,4 +1,6 @@
+
 <h1>My Dashboard</h1>
+<%= flash[:notice] %>
 <div class="dashboard_container">
 <h2>Pages</h2> 
 <%= content_tag :p, link_to("+ New", new_page_path), class: "new_instance_button" %>
