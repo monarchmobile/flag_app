@@ -1,5 +1,6 @@
 class EventsController < ApplicationController 
 
+	layout :resolve_layout
 	def new
 		@event = Event.new
 	end

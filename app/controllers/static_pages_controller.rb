@@ -1,10 +1,9 @@
 class StaticPagesController < ApplicationController
   before_filter :current_user, :except => [:home]
+  layout 'dashboard'
   include ApplicationHelper
 
-  def home 
-    @page = page_requested
-  end
+  
 
   def profile
     @page = page_requested
@@ -26,12 +25,18 @@ class StaticPagesController < ApplicationController
 
   def dashboard
     @pages = Page.all
-    @page = Page.new
+    # @page = Page.new
     @announcements = Announcement.all 
-    @announcement = Announcement.new
+    # @announcement = Announcement.new
     @events = Event.all 
-    @event = Event.new
+    # @event = Event.new
     @users = User.where({approved: false, guest: false})
+    @visible_models = Supermodel.where(visible: true)
   end
+
+ 
+
+  
+  
 
 end

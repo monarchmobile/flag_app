@@ -38,6 +38,8 @@ FlagApp::Application.routes.draw do
   resources :password_resets
   resources :votes
   resources :events
+  resources :supermodels
+  resources :links
   
 
   
