@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325161627) do
+ActiveRecord::Schema.define(:version => 20130325174600) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -85,6 +85,17 @@ ActiveRecord::Schema.define(:version => 20130325161627) do
     t.boolean  "week"
     t.boolean  "month"
     t.boolean  "year"
+  end
+
+  create_table "links", :force => true do |t|
+    t.string   "location"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "links_pages", :id => false, :force => true do |t|
+    t.integer "link_id"
+    t.integer "page_id"
   end
 
   create_table "pages", :force => true do |t|

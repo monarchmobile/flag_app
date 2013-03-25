@@ -12,6 +12,17 @@
 		<%= f.label :published %>
 		<%= f.check_box :published %>
 	</div>
+	<div class="field">
+		<%= f.label :position %>
+		<%= f.select(:position, 1..Page.all.count, { prompt: true } )%>
+	</div>
+	<div class="field">
+	  	<%= f.label :links %><br />
+	    <% @links.each do |link| %>
+	      <%= check_box_tag "page[link_ids][]", link.id, @page.links.include?(link) %>  
+	      <%= link.location %>  
+	    <% end %>
+	</div>
 	<div class="actions">
 		<%= f.submit %>
 	</div>

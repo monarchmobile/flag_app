@@ -17,7 +17,7 @@ class PagesController < ApplicationController
 
 	def edit 
 		find_page
-		
+		@links = Link.all
 	end
 
 	def create 
