@@ -25,7 +25,7 @@
 
 				<%= content_tag :li, event.description, class: "message events_message" %>
 				<%= content_tag :li, "Publish to Web: #{event.publish_to_web}", class: "date event_date" %>
-				Remove from Web<%= content_tag :li, "Remove from Web: #{event.pull_from_web}", class: "date event_date" %>
+				<%= content_tag :li, "Remove from Web: #{event.pull_from_web}", class: "date event_date" %>
 				
 			</ul>
 			<br class="clear"/>
