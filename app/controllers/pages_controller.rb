@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 	layout :resolve_layout
 	def new 
 		@page = Page.new
+		@links = Link.all
 	end
 
 	def index
@@ -17,7 +18,7 @@ class PagesController < ApplicationController
 
 	def edit 
 		find_page
-		
+		@links = Link.all
 	end
 
 	def create 

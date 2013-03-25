@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :converted_date, :correct_image, :restrict_access, :current_vote
+
+  helper_method :converted_date, :correct_image, :restrict_access, :current_vote, :resolve_layout
   def converted_date(date)
   	date.split(' ')[0]
   end
