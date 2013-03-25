@@ -33,7 +33,7 @@ class StaticPagesController < ApplicationController
     @events = Event.all 
     # @event = Event.new
     @users = User.where({approved: false, guest: false})
-    @visible_models = Supermodel.where(visible: true)
+    @visible_models = Supermodel.where(visible: true).order("name ASC")
   end
 
  
