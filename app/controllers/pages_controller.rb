@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 	layout :resolve_layout
 	def new 
 		@page = Page.new
+		@links = Link.all
 	end
 
 	def index

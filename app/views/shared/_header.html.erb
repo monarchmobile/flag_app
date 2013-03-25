@@ -10,7 +10,9 @@
               <% @pages = Page.s_that_are_published %>
 
               <% @pages.each do |page| %>
-                <%= content_tag :li, link_to(page.title, [page]) %>
+                <% if page.locations?("top_link") == true %>
+                     <%= content_tag :li, link_to(page.title, [page]) %>
+                <% end %>
               <% end %>
 
             </ul>
