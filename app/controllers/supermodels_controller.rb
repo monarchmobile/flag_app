@@ -1,6 +1,6 @@
 class SupermodelsController < ApplicationController
 
-	# layout 'dashboard'
+	layout 'dashboard'
 
 	def new 
 		@supermodel = Supermodel.new
