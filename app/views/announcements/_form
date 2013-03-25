@@ -15,6 +15,10 @@
 		<%= f.label :ends_at %>
 		<%= f.text_field :ends_at %>
 	</div>
+	<div class="field">
+		<%= f.label :published %>
+		<%= f.select(:published, [["draft", false], ["published", true]]) %>
+	</div>
 	<div class="actions">
 		<%= f.submit %>
 	</div>

@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325174600) do
+ActiveRecord::Schema.define(:version => 20130325183237) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "title"
     t.date     "starts_at"
     t.date     "ends_at"
+    t.boolean  "published",  :default => false
   end
 
   create_table "ckeditor_assets", :force => true do |t|

@@ -9,6 +9,10 @@ class EventsController < ApplicationController
 		find_event
 	end
 
+	def index
+		@events = Event.all
+	end
+
 	def create
 		@event = Event.new(params[:event])
 		respond_to do |format|
