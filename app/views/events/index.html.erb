@@ -1,0 +1,34 @@
+<h1>Events</h1>
+<div class="column_title pages">
+	<%= content_tag :p, link_to("+ New", new_event_path), class: "new_instance_button" %>
+	<ul>
+		<li class="title">Title</li>
+		<li class="date">Date</li>
+		<li class="location">Location</li>
+	</ul>
+	
+</div>
+<ul class="model_table">
+	<% @events.each do |event| %>
+		<li>
+			<ul class="instance_detail">
+				<%= content_tag :li, event.title, class: "title"  %>
+				<%= content_tag :li, event.date %>
+				<%= content_tag :li, event.location %>
+
+				<ul class="crud_buttons">
+					<%= content_tag :li, link_to("edit", edit_event_path(event)), class: "edit" %>
+					<%= content_tag :li, link_to("view", event_path(event)), class: "view" %>
+					<%= content_tag :li, link_to("delete", event_path(event), :confirm => "are you sure?", :method => :delete ), class: "delete" %>
+					
+				</ul>
+
+				<%= content_tag :li, event.description, class: "message events_message" %>
+				<%= content_tag :li, "Publish to Web: #{event.publish_to_web}", class: "date event_date" %>
+				Remove from Web<%= content_tag :li, "Remove from Web: #{event.pull_from_web}", class: "date event_date" %>
+				
+			</ul>
+			<br class="clear"/>
+		</li>
+	<% end %>
+</ul>
