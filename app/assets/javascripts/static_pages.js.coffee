@@ -14,7 +14,7 @@ jQuery ->
   $("#dashboard_ends_at").datepicker
     dateFormat: 'yy-mm-dd'
 
-  $("ul.model_table").hide()
+ 
   $(".dashboard_container h2").toggle (->
     $(this).next().next().slideDown(1000)
   ), ->
