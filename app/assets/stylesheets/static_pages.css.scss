@@ -1477,6 +1477,11 @@ ul.contact_information li{
 
 // dashboard
 
+.dashboard_container {
+	clear: both;
+	margin-bottom: 100px;
+}
+
 .dashboard_container h2 {
    	background: none repeat scroll 0 0 gray;
     border-radius: 10px 10px 10px 10px;
@@ -1551,8 +1556,4 @@ ul.crud_buttons {
 			text-decoration: underline;
 		}
 	}
-}
-
-.dashboard_container {
-	clear: both;
 }
