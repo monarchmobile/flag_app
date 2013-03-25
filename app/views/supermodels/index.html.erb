@@ -1,0 +1,25 @@
+<%= content_tag :h1, "Application Models" %>
+<% update_list %>
+
+<ul class="model_table">
+	<% @supermodels.each do |supermodel| %>
+		<li>
+			<ul class="instance_detail">
+				<%= content_tag :li, supermodel.name, class:"title"  %>
+				<%= form_for supermodel, remote: true do |a| %>
+					<%= a.check_box :visible, class: "supermodels", id: "supermodel#{supermodel.id}" %>
+				<% end %>
+				
+				<ul class="crud_buttons">
+					<%= content_tag :li, link_to("edit", edit_supermodel_path(supermodel)) %>
+					<%= content_tag :li, link_to("view", supermodel_path(supermodel)) %>
+					
+				</ul>
+				
+			</ul>
+			<br class="clear">
+		</li>
+	<% end %>
+</ul>
+
+

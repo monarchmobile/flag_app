@@ -22,6 +22,17 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  def resolve_layout
+    case action_name
+    when "show"
+      "application"
+    when "index", "edit", "new"
+      "dashboard"
+    else
+      "application"
+    end
+  end
+
   
 
 private 

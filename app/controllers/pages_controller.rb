@@ -1,5 +1,6 @@
 class PagesController < ApplicationController 
 	# load_and_authorize_resource
+	layout :resolve_layout
 	def new 
 		@page = Page.new
 	end

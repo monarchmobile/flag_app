@@ -581,4 +581,14 @@ module ApplicationHelper
 		end
 		(date_taken=(up_gallery_beg_range..@up_gallery_end_range)&page=true).count < 5
 	end
+
+	# supermodel grab all model names in database
+	def update_list
+  		models = ActiveRecord::Base.connection.tables.collect{|t| t.underscore.singularize.camelize}
+		models.each do |m|
+			if Supermodel.find(:all, conditions: {name: m }).count == 0
+				Supermodel.create(name: m)
+			end
+		end
+  end
 end
