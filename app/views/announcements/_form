@@ -20,7 +20,7 @@
 		<%= f.select(:published, [["draft", false], ["published", true]]) %>
 	</div>
 	<div class="actions">
-		<%= f.submit %>
+		<%= f.submit "Publish Now" %>
 	</div>
 	
 <% end %>
