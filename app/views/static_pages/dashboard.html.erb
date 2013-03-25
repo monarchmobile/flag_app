@@ -3,9 +3,12 @@
 		<div class="l_col">
 			<div class="dash_nav">
 				<ul>
-					<%= content_tag :li, link_to("Supermodels", supermodels_path) if current_user.role? :SuperAdmin %>
+					<% @visible_models.each do |visible| %>
+						<% model_name = visible.name.downcase %>
+						<%= content_tag :li, link_to(visible.name, send("#{model_name}s_path")) %>
+					<% end %>
+					<%= content_tag :li, link_to("Supermodel", supermodels_path) if current_user.role? :SuperAdmin %>
 				</ul>
-			
 			</div>
 		</div>
 
