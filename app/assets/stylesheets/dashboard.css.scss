@@ -308,25 +308,25 @@ ul.crud_buttons li a{
 }
 
 ul.crud_buttons li.edit a{
-  background: url(image_path('icons.png')) no-repeat -70px -14px;
+  background: url(image_path('icons2.png')) no-repeat -70px -14px;
   &:hover{
-    background: url(image_path('icons.png')) no-repeat -70px -64px;
+    background: url(image_path('icons2.png')) no-repeat -70px -64px;
     color: $s_color;
   }
 }
 
 ul.crud_buttons li.view a{
-  background: url(image_path('icons.png')) no-repeat -130px -14px;
+  background: url(image_path('icons2.png')) no-repeat -130px -14px;
   &:hover{
-    background: url(image_path('icons.png')) no-repeat -130px -63px;
+    background: url(image_path('icons2.png')) no-repeat -130px -63px;
     color: #f9f57c;
   }
 }
 
 ul.crud_buttons li.delete a{
-  background: url(image_path('icons.png')) no-repeat -182px -14px;
+  background: url(image_path('icons2.png')) no-repeat -182px -14px;
   &:hover{
-    background: url(image_path('icons.png')) no-repeat -182px -64px;
+    background: url(image_path('icons2.png')) no-repeat -182px -64px;
     color: #871010;
   }
 }
