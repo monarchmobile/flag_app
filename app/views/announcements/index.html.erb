@@ -1,18 +1,15 @@
-<h2>All announcements posted</h2>
+<h1>Announcements</h1>
+<div class="column_title pages">
+	<%= content_tag :p, link_to("+ New", new_announcement_path), class: "new_instance_button" %>
+	<ul>
+		<li class="title">Title</li>
+		<li>Status</li>
+		<li class="in announce_in">To Web</li>
+		<li class="out">Off Web</li>
+	</ul>
+	
+</div>
 
-<ul id="announcement_index">
-<% @announcements.each do |a| %>
-	<%= content_tag_for(:li, a) do %>
-		<%=  a.message %>
-		<%= link_to "edit", edit_announcement_path(a) %>
-		<%= link_to image_tag("delete.png", width: 15, height: 15), a, :method => :delete, class: "scrap_image_X", remote: true %>
-	<% end %>
-<% end %>
-</ul>
-
-
-<h2>Announcements</h2>
-<%= content_tag :p, link_to("+ New", new_announcement_path), class: "new_instance_button" %>
 <ul class="model_table">
 	<% @announcements.each do |announcement| %>
 		<li>
@@ -22,14 +19,14 @@
 					<%= a.select(:published, [["draft", false], ["published", true]]) %>	
 				<% end %>
 				<ul class="crud_buttons">
-					<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)) %>
-					<%= content_tag :li, link_to("view", announcement_path(announcement)) %>
-					<%= content_tag :li, link_to("delete", announcement_path(announcement), :confirm => "are you sure?", :method => :delete ) %>
+					<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)), class:"edit" %>
+					<%= content_tag :li, link_to("view", announcement_path(announcement)), class:"view"  %>
+					<%= content_tag :li, link_to("delete", announcement_path(announcement), :confirm => "are you sure?", :method => :delete ), class:"delete"  %>
 					
 				</ul>
+				<%= content_tag :li, announcement.starts_at, class: "date" %>
+				<%= content_tag :li, announcement.ends_at, class: "date" %>
 				<%= content_tag :li, announcement.message, class: "message"  %>
-				Publish to site:<%= content_tag :li, announcement.starts_at, class: "date" %>
-				Pull from site:<%= content_tag :li, announcement.ends_at, class: "date" %>
 				
 			</ul>
 			<br class="clear"/>

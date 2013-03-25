@@ -159,7 +159,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f3f3f', end
   a {
     border-radius: 5px 5px 5px 5px;
     display: block;
-    font-size: 24px;
+    font-size: 21px;
     height: 30px;
     margin: 15px 0;
     padding: 1px 0 8px;
@@ -374,12 +374,45 @@ li.status {
   margin-left: 58px;
 }
 
+li.date {
+  margin-left: 55px;
+}
+
+ul.model_table li ul li.date {
+  width: 100px;
+  float: left;
+  margin: 0px 20px;
+}
+
+ul.model_table li ul li.event_date {
+  width: 332px;
+  margin-top: 10px;
+  margin-left: 0px;
+}
+
+li.location {
+  margin-left: 46px;
+}
+
 li.in {
   margin-left: 58px;
 }
 
+li.announce_in {
+  margin-left: 88px;
+}
+
 li.out {
   margin-left: 58px;
+}
+
+ul.model_table li ul li.events_message {
+  padding: 5px;
+  margin: 5px;
+  border-top:1px $s_color dashed;
+  border-bottom:1px $s_color dashed;
+  clear:both;
+  width: 98%;
 }
 
 .schedule_in, .schedule_out {
@@ -410,4 +443,33 @@ a.dashboard {
     margin-left: -3px;
     position: absolute;
     width: 287px;
+}
+
+form.edit_announcement {
+  margin-right: 75px;
+}
+
+
+// Datepicker
+
+#ui-datepicker-div {
+  background-color: gray;
+  padding: 10px;
+  font-family: 'Michroma', sans-serif;
+  border-radius: 10px;
+}
+
+a.ui-datepicker-next {
+  float: right;
+}
+
+a.ui-corner-all {
+    border: 1px solid black;
+    border-radius: 5px 5px 5px 5px;
+    padding: 1px 12px;
+}
+
+.ui-datepicker-title {
+  font-weight: bold;
+  margin: 10px 0px;
 }
