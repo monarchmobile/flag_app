@@ -26,6 +26,7 @@ FlagApp::Application.routes.draw do
   match "users/:id/update", to: "users#update"
   match "users/create", to: "users#create", as: "create_guest"
 
+
   resources :users do 
   	resources :images
     resources :journals

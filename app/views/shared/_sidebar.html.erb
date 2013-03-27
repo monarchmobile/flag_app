@@ -95,8 +95,8 @@
 			<div class="item">
 				<ul class="table_row">
 					<%= content_tag :li, e.title, class: "title" %>
-					<%= content_tag :li, "<strong>When:</strong>#{e.date}" %>
-					<%= content_tag :li, e.location %>
+					<li><strong>When:</strong> <%= e.date %></li>
+					<li><strong>Where:</strong> <%= e.location %></li>
 					<%= content_tag :li, e.description, class: "message" %>
 					
 				</ul>
@@ -106,3 +106,5 @@
 	</div>
 
 </div>
+
+
