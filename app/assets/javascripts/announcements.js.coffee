@@ -6,3 +6,12 @@ jQuery ->
 	        dateFormat: 'yy-mm-dd'
 	$("#announcement_ends_at").datepicker
 	        dateFormat: 'yy-mm-dd'
+
+	# $(".schedule_fields").hide()
+
+
+	
+
+	
+
+

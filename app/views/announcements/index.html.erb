@@ -1,3 +1,4 @@
+
 <h1>Announcements</h1>
 <div class="column_title pages">
 	<%= content_tag :p, link_to("+ New", new_announcement_path), class: "new_instance_button" %>
@@ -12,12 +13,11 @@
 
 <ul class="model_table">
 	<% @announcements.each do |announcement| %>
+
 		<li>
 			<ul class="instance_detail">
 				<%= content_tag :li, announcement.title, class: "title"  %>
-				<%= form_for announcement, remote: true do |a| %>
-					<%= a.select(:published, [["draft", false], ["published", true]]) %>	
-				<% end %>
+				<%= content_tag :li, object_status(announcement) %>
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)), class:"edit" %>
 					<%= content_tag :li, link_to("view", announcement_path(announcement)), class:"view"  %>

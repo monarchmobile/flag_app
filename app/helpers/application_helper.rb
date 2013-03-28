@@ -4,6 +4,12 @@ module ApplicationHelper
 		user.first_name && user.last_name && user.city
 	end
 
+	def object_status(object)
+		status_id = object.status_ids.first.to_i
+		@status = Status.find(status_id)
+		@status.current_state
+	end
+
 	def profile_pic_if_uploaded(user) 
 		if user.member_photo
 			user.member_photo_url

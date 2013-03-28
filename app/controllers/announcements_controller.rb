@@ -9,6 +9,8 @@ class AnnouncementsController < ApplicationController
 
 	def index
 		@announcements = Announcement.all
+		@statuses = Status.all
+		
 		render { 'index' }
 	end
 
@@ -28,9 +30,12 @@ class AnnouncementsController < ApplicationController
 		end
 		
 	end
+	
 
 	def show
+
 		@announcement = Announcement.find(params[:id])
+		
 		respond_to do |format|
 			format.html { render @announcement }
 			format.js
@@ -39,6 +44,8 @@ class AnnouncementsController < ApplicationController
 
 	def edit
 		@announcement = Announcement.find(params[:id])
+		@statusable = @announcement
+		@statuses = Status.all
 		respond_to do |format|
 			format.html { render 'edit' }
 			format.js
@@ -47,6 +54,7 @@ class AnnouncementsController < ApplicationController
 
 	def update
 		@announcement = Announcement.find(params[:id])
+		# @statusable = @announcement
 		respond_to do |format|
 			if @announcement.update_attributes(params[:announcement])
 				format.html { redirect_to users_path, notice: "changes saved" }
@@ -57,6 +65,7 @@ class AnnouncementsController < ApplicationController
 
 	def destroy
 		@announcement = Announcement.find(params[:id])
+		@announcement.status_ids=[]
 		@announcement.destroy
 		respond_to do |format|
 			format.html { redirect_to users_path }

@@ -35,10 +35,14 @@ FlagApp::Application.routes.draw do
    
   resources :pages
   resources :sessions
-  resources :announcements
+  resources :announcements do 
+    resources :statuses_statusables
+  end
   resources :password_resets
   resources :votes
-  resources :events
+  resources :events do
+    resources :statuses_statusables
+  end
   resources :supermodels
   resources :links
   
