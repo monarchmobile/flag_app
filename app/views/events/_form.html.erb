@@ -1,4 +1,12 @@
-<%= form_for @event do |f| %>
+<script>
+$(document).ready(function() { 
+
+	$("#scheduled_status").hide()
+
+})
+</script>
+
+<%= form_for @event do |f| %> 
 	<%= render 'shared/errors', object: @event %>
 	<div class="field">
 		<%= f.label :title %>
@@ -24,13 +32,9 @@
 		<%= f.label :pull_from_web %>
 		<%= f.text_field :pull_from_web %>
 	</div>
-	<div class="field">
-	  	<%= f.label :statuses %><br />
-	    <% @statuses.each do |status| %>
-	      <%= check_box_tag "event[status_ids][]", status.id, @statusable.statuses.include?(status) %>  
-	      <%= status.current_state %>  
-	    <% end %>
-	</div>
+	
+	<%= render 'shared/status_form_field', model_name: :event, f: f %>
+	
 	<div class="actions">
 		<%= f.submit %>
 	</div>

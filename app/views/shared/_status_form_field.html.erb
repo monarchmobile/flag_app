@@ -1,0 +1,9 @@
+<div class="field statuses">
+  	<%= f.label :statuses %><br />
+    <% @statuses.each do |status| %>
+    	<div id="<%= status.current_state %>_status">
+	      <%= check_box_tag "#{model_name}[status_ids][]", status.id, @statusable.statuses.include?(status) %>  
+	      <%= status.current_state %>
+	    </div>  
+    <% end %>
+</div>

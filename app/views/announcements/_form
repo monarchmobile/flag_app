@@ -1,19 +1,14 @@
 <script>
 $(document).ready(function() { 
 
-	Select = {
-
-		init: function() {
-			console.log("hi")
-		}
-	}
-
 	$(".edit_announcement select").change(function() {
 		console.log($(this).val())
 		cur_value = $(this).children('option:selected').text();
 		console.log( cur_value)
 		Select.init()
 	})
+
+	$("#scheduled_status").hide()
 
 })
 
@@ -36,13 +31,7 @@ $(document).ready(function() {
 		<%= f.label :ends_at %>
 		<%= f.text_field :ends_at %>
 	</div>
-	<div class="field statuses">
-	  	<%= f.label :statuses %><br />
-	    <% @statuses.each do |status| %>
-	      <%= check_box_tag "announcement[status_ids][]", status.id, @statusable.statuses.include?(status) %>  
-	      <%= status.current_state %>  
-	    <% end %>
-	</div>
+	<%= render 'shared/status_form_field', model_name: :announcement, f: f %>
 	
 	<div class="actions">
 		<%= f.submit "save draft" %>
