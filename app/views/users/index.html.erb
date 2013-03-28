@@ -1,18 +1,33 @@
-<h1>Community</h1>
-<%= render 'shared/sidebar' %>
-<div class="flag_feed">
-    <% @random_images = Image.order("date_taken DESC").limit(9) %>
-    <% n = 0 %>
+<h1>Members</h1>
+<div class="column_title pages">
     <ul>
-    <% @random_images.each do |image| %>
-        <li class="img_feed_container" data-counter = "<%= n+=1 %>" >
-            <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
-            <div class="img_content_container hide image_desc">
-                <%= content_tag :div, image.content, class: "image_content" %>
-                <%= link_to content_tag(:div, "Image taken by #{image.user.last_name} on #{image.date_taken.strftime("%B %d, %Y")}"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
-            </div>
+        <%=content_tag :li, "First_name", class: "title" %>
+        <%=content_tag :li, "Last_name", class: "date" %>
+        <%=content_tag :li, "Email", class: "location" %>
+        <%=content_tag :li, "Approved", class: "location" %>
+       
+    </ul>
+</div>
+<ul class="model_table">
+    <% @users.each do |user| %>
+        <li>
+            <ul class="instance_detail">
+                <%= content_tag :li, user.first_name, class: "title"  %>
+                <%= content_tag :li, user.last_name %>
+                <%= content_tag :li, user.email %>
+                <%= content_tag :li, user.approved %>
+
+                <ul class="crud_buttons">
+                    <%= content_tag :li, link_to("edit", edit_user_path(user)), class: "edit" %>
+                    <%= content_tag :li, link_to("view", user_path(user)), class: "view" %>
+                    <%= content_tag :li, link_to("delete", user_path(user), :confirm => "are you sure?", :method => :delete ), class: "delete" %>
+                    
+                </ul>
+
+               
+                
+            </ul>
+            <br class="clear"/>
         </li>
     <% end %>
-    </ul> 
-    <br class="clear"/>
-</div>
+</ul>

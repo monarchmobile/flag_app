@@ -1,34 +1,18 @@
-<h1>Members</h1>
-<div class="column_title pages">
-	<ul>
-		<li class="title">Title</li>
-		<li class="date">Date</li>
-		<li class="location">Location</li>
-	</ul>
-	Email, First_name, last_name, approved
-	
+<h1>Community</h1>
+<%= render 'shared/sidebar' %>
+<div class="flag_feed">
+    <% @random_images = Image.order("date_taken DESC").limit(9) %>
+    <% n = 0 %>
+    <ul>
+    <% @random_images.each do |image| %>
+        <li class="img_feed_container" data-counter = "<%= n+=1 %>" >
+            <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
+            <div class="img_content_container hide image_desc">
+                <%= content_tag :div, image.content, class: "image_content" %>
+                <%= link_to content_tag(:div, "Image taken by #{image.user.last_name} on #{image.date_taken.strftime("%B %d, %Y")}"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
+            </div>
+        </li>
+    <% end %>
+    </ul> 
+    <br class="clear"/>
 </div>
-<ul class="model_table">
-	<% @events.each do |event| %>
-		<li>
-			<ul class="instance_detail">
-				<%= content_tag :li, event.title, class: "title"  %>
-				<%= content_tag :li, event.date %>
-				<%= content_tag :li, event.location %>
-
-				<ul class="crud_buttons">
-					<%= content_tag :li, link_to("edit", edit_event_path(event)), class: "edit" %>
-					<%= content_tag :li, link_to("view", event_path(event)), class: "view" %>
-					<%= content_tag :li, link_to("delete", event_path(event), :confirm => "are you sure?", :method => :delete ), class: "delete" %>
-					
-				</ul>
-
-				<%= content_tag :li, event.description, class: "message events_message" %>
-				<%= content_tag :li, "Publish to Web: #{event.publish_to_web}", class: "date event_date" %>
-				<%= content_tag :li, "Remove from Web: #{event.pull_from_web}", class: "date event_date" %>
-				
-			</ul>
-			<br class="clear"/>
-		</li>
-	<% end %>
-</ul>

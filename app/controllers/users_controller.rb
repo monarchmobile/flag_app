@@ -1,15 +1,16 @@
 class UsersController < ApplicationController 
 	respond_to :html, :json 
-	include ApplicationHelper 
-
+	include ApplicationHelper  
+	layout :resolve_layout
  
 	def index 
-		@announcements = Announcement.all
-		@events = Event.all
+		@users = User.all
 	end
 
 	def member_index
-		@users = User.all
+		@announcements = Announcement.all
+		@events = Event.all
+		
 	end
 	
 	def new 
