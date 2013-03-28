@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	layout :resolve_layout
  
 	def index 
-		@approved_users = User.where(approved: true, guest: false ).order("approved ASC")
+		@approved_users = User.where(approved: true).order("approved ASC")
 		@unapproved_users = User.where(approved: false, guest: false)
 	end
 
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
+		role = params(user[:id])
 		if @user.update_attributes(params[:user])
 			if params[:user][:nav_menu]	
 				respond_to do |format|
