@@ -477,3 +477,22 @@ a.ui-corner-all {
 .statuses {
  color: $s_color;
 }
+
+ul.model_table li ul.instance_detail li.first_name, li.first_name {
+  width: 200px;
+  overflow: hidden;
+}
+
+ul.model_table li ul.instance_detail li.last_name, li.last_name {
+  width: 200px;  overflow: hidden;
+}
+
+ul.model_table li ul.instance_detail li.email, li.email {
+  width: 200px;
+  overflow: hidden;
+}
+
+ul.model_table li ul.instance_detail li.approved, li.approved {
+  width: 50px; 
+  overflow: hidden;
+}
