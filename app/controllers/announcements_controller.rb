@@ -9,24 +9,29 @@ class AnnouncementsController < ApplicationController
 
 	def index
 		@announcements = Announcement.all
-		@statuses = Status.all
-		
-		render { 'index' }
+		status_vars
 	end
 
 	def new
+		
 		@announcement = Announcement.new
+		@statusable = @announcement
+		@statuses = Status.all
+		
 	end
 
 	def create
 		@announcement = Announcement.new(params[:announcement])
-
 		
-		if @announcement.save
-			redirect_to users_path
-			
-		else
-			redirect_to 'new'
+		respond_to do |format|
+			if @announcement.save
+				format.html { redirect_to dashboard_path }
+				format.js
+			else
+				format.html { redirect_to new_announcement_path, :notice => "You must fill out all required fields"}
+				format.js
+			end
+
 		end
 		
 	end
@@ -44,8 +49,7 @@ class AnnouncementsController < ApplicationController
 
 	def edit
 		@announcement = Announcement.find(params[:id])
-		@statusable = @announcement
-		@statuses = Status.all
+		status_vars
 		respond_to do |format|
 			format.html { render 'edit' }
 			format.js
@@ -71,5 +75,10 @@ class AnnouncementsController < ApplicationController
 			format.html { redirect_to users_path }
 			format.js
 		end
+	end
+
+	def status_vars
+		@statusable = @announcement
+		@statuses = Status.all
 	end
 end
