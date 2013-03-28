@@ -1,26 +1,30 @@
 <%= render 'shared/announcements' %>  
 <%= flash[:notice] %>
 <%= link_to "create announcement", new_announcement_path if admin?(current_user) %>
-<% if !@user.guest? %>
-    <div class="profile_container">
-        <ul>
-            <% if !@user.member_photo %>
-            <li><%= link_to image_tag("blank.jpg", size: "100x100"), user_path(@user)  %></li>
-            <% else %>
-            <li><%= link_to image_tag(profile_pic_if_uploaded(@user), size: "100x100"), user_path(@user)  %></li>
-            <% end %>
-            <li><%= best_in_place_if members_page(@user), @user, :first_name %> <%= best_in_place_if members_page(@user), @user, :last_name %></li>
-            <li>City:<%= best_in_place_if members_page(@user), @user, :city %></li>
-            <li>School Attending:<%= best_in_place_if members_page(@user), @user, :school %></li>
-            <li>Email:<%= best_in_place_if members_page(@user), @user, :email %></li>
-            <% if admin?(current_user) %>
-                <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %><li>
-            <% end %>
-        	<li><%= link_to "update profile", edit_user_path if members_page(@user) %></li>
-            <li><%= link_to "Scrapbook", day_path() if !@user.guest? %>
-        </ul>    
+<h1>Profile Page</h1>
+    <div class="sidebar">
+        <% if !@user.guest? %>
+            <div class="profile_container sidbar_tables">
+                <ul>
+                    <% if !@user.member_photo %>
+                    <li><%= link_to image_tag("blank.jpg", size: "100x100"), user_path(@user)  %></li>
+                    <% else %>
+                    <li><%= link_to image_tag(profile_pic_if_uploaded(@user), size: "100x100"), user_path(@user)  %></li>
+                    <% end %>
+                    <li><%= best_in_place_if members_page(@user), @user, :first_name %> <%= best_in_place_if members_page(@user), @user, :last_name %></li>
+                    <li>City:<%= best_in_place_if members_page(@user), @user, :city %></li>
+                    <li>School Attending:<%= best_in_place_if members_page(@user), @user, :school %></li>
+                    <li>Email:<%= best_in_place_if members_page(@user), @user, :email %></li>
+                    <% if admin?(current_user) %>
+                        <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %><li>
+                    <% end %>
+                	<li><%= link_to "update profile", edit_user_path if members_page(@user) %></li>
+                    <li><%= link_to "Scrapbook", day_path() if !@user.guest? %>
+                </ul>    
+            </div>
+        <% end %>
+        <br class="clear">
     </div>
-<% end %>
 <div class="flag_feed">
     <% @random_images = Image.order("date_taken DESC").limit(9) %>
     <% n = 0 %>
@@ -37,6 +41,7 @@
     </ul> 
     <br class="clear"/>
 </div>
+<br class="clear">
 
 
 
