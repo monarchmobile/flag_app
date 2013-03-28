@@ -1,5 +1,8 @@
 class Announcement < ActiveRecord::Base
-  attr_accessible :ends_at, :message, :starts_at, :title, :published
+  attr_accessible :ends_at, :message, :starts_at, :title, :status_ids
+
+  has_many :statuses_statusables, as: :statusable
+  has_many :statuses, :through => :statuses_statusables
 
   # scope :current, -> { where("starts_at <= :now and ends_at >= :now", now: Time.zone.now)}
   def self.current(hidden_ids = nil)

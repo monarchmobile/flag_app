@@ -1,4 +1,4 @@
-class EventsController < ApplicationController 
+class EventsController < ApplicationController  
 
 	layout :resolve_layout
 	def new
@@ -28,6 +28,8 @@ class EventsController < ApplicationController
 
 	def edit
 		find_event
+		@statusable = @event
+		@statuses = Status.all
 
 	end
 
@@ -46,6 +48,7 @@ class EventsController < ApplicationController
 
 	def destroy
 		find_event
+		@event.status_ids=[]
 		@event.destroy
 		respond_to do |format|
 			format.html {redirect_to dashboard_path, "#{@event.title} deleted succesfully"}

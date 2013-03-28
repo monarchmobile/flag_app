@@ -1,3 +1,24 @@
+<script>
+$(document).ready(function() { 
+
+	Select = {
+
+		init: function() {
+			console.log("hi")
+		}
+	}
+
+	$(".edit_announcement select").change(function() {
+		console.log($(this).val())
+		cur_value = $(this).children('option:selected').text();
+		console.log( cur_value)
+		Select.init()
+	})
+
+})
+
+</script>
+
 <%= form_for @announcement do |f| %>
 	<div class="field">
 		<%= f.label :title %>
@@ -7,20 +28,24 @@
 		<%= f.label :message %>
 		<%= f.text_area :message, rows: 4 %>
 	</div>
-	<div class="field">
+	<div class="field schedule_fields">
 		<%= f.label :starts_at %>
 		<%= f.text_field :starts_at %>
 	</div>
-	<div class="field">
+	<div class="field schedule_fields">
 		<%= f.label :ends_at %>
 		<%= f.text_field :ends_at %>
 	</div>
 	<div class="field">
-		<%= f.label :published %>
-		<%= f.select(:published, [["draft", false], ["published", true]]) %>
+	  	<%= f.label :statuses %><br />
+	    <% @statuses.each do |status| %>
+	      <%= check_box_tag "announcement[status_ids][]", status.id, @statusable.statuses.include?(status) %>  
+	      <%= status.current_state %>  
+	    <% end %>
 	</div>
+	
 	<div class="actions">
-		<%= f.submit "Publish Now" %>
+		<%= f.submit "save draft" %>
 	</div>
 	
 <% end %>

@@ -24,6 +24,13 @@
 		<%= f.label :pull_from_web %>
 		<%= f.text_field :pull_from_web %>
 	</div>
+	<div class="field">
+	  	<%= f.label :statuses %><br />
+	    <% @statuses.each do |status| %>
+	      <%= check_box_tag "event[status_ids][]", status.id, @statusable.statuses.include?(status) %>  
+	      <%= status.current_state %>  
+	    <% end %>
+	</div>
 	<div class="actions">
 		<%= f.submit %>
 	</div>
