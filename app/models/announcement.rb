@@ -4,6 +4,8 @@ class Announcement < ActiveRecord::Base
   has_many :statuses_statusables, as: :statusable
   has_many :statuses, :through => :statuses_statusables
 
+  validates_presence_of :status_ids
+
   # scope :current, -> { where("starts_at <= :now and ends_at >= :now", now: Time.zone.now)}
   def self.current(hidden_ids = nil)
   	result = where("starts_at <= :now and ends_at >= :now", now: Time.zone.now)
