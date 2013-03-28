@@ -1,16 +1,3 @@
-<h2>All announcements posted</h2>
-
-<ul id="announcement_index">
-<% @announcements.each do |a| %>
-	<%= content_tag_for(:li, a) do %>
-		<%=  a.message %>
-		<%= link_to "edit", edit_announcement_path(a) %>
-		<%= link_to image_tag("delete.png", width: 15, height: 15), a, :method => :delete, class: "scrap_image_X", remote: true %>
-	<% end %>
-<% end %>
-</ul>
-
-
 <h2>Announcements</h2>
 <%= content_tag :p, link_to("+ New", new_announcement_path), class: "new_instance_button" %>
 <ul class="model_table">
@@ -18,9 +5,7 @@
 		<li>
 			<ul class="instance_detail">
 				<%= content_tag :li, announcement.title, class: "title"  %>
-				<%= form_for announcement, remote: true do |a| %>
-					<%= a.select(:published, [["draft", false], ["published", true]]) %>	
-				<% end %>
+				
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)) %>
 					<%= content_tag :li, link_to("view", announcement_path(announcement)) %>

@@ -1,3 +1,3 @@
 jQuery ->
-	$("select").change ->
+	$(".edit_page select").change ->
 		$(this).closest("form").submit()
