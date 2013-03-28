@@ -13,10 +13,11 @@
 
 <ul class="model_table">
 	<% @announcements.each do |announcement| %>
+
 		<li>
 			<ul class="instance_detail">
 				<%= content_tag :li, announcement.title, class: "title"  %>
-				
+				<%= content_tag :li, object_status(announcement) %>
 				<ul class="crud_buttons">
 					<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)), class:"edit" %>
 					<%= content_tag :li, link_to("view", announcement_path(announcement)), class:"view"  %>
