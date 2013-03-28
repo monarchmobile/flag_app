@@ -46,15 +46,7 @@
 	<%= f.label :family%><br />
 	<%= f.text_field :family %>
 </div>
-<%= f.hidden_field :user_type ,value: 2 %>
-<% if current_user %>
-  <% if current_user.role? :Admin %>
-    <div class="field">
-      <%= f.label :approved %>
-      <%= f.check_box :approved %>
-    </div>
-  <% end %>
-<% end %>
+<%= render 'users/choose_role', f: f %>
 
   <div class="actions">
     <%= f.submit "Update Profile" %>

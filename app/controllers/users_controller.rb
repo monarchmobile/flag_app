@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 	layout :resolve_layout
  
 	def index 
-		@users = User.all
+		@approved_users = User.where(approved: true).order("approved ASC")
+		@unapproved_users = User.where(approved: false, guest: false)
 	end
 
 	def member_index
@@ -16,6 +17,8 @@ class UsersController < ApplicationController
 	def new 
 		
 		@user = User.new
+		# @numbers =  number.find(:all, :conditions => ["number_type IN (?)",["Small", "Medium", "Large"]])
+		@roles = Role.find(:all, :conditions => ["name IN (?)", ["Student", "Staff"]])
 	end
 	
 	def show
@@ -31,11 +34,20 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
-		restrict_access unless members_page(@user)
+		if members_page(@user) 
+			@roles = Role.find(:all, :conditions => ["name IN (?)", ["Student", "Staff"]])
+			users_path(@user) 
+		elsif current_user.role? :Admin
+			
+			users_path(@user)
+		else
+			restrict_access 
+		end
 	end
 
 	def update
 		@user = User.find(params[:id])
+		role = params(user[:id])
 		if @user.update_attributes(params[:user])
 			if params[:user][:nav_menu]	
 				respond_to do |format|

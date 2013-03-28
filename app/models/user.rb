@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base 
   # attributes by row %w[ stock admin added virtual ]
   attr_accessible :email, :first_name, :last_name, :password_confirmation, :password
-  attr_accessible :user_type, :guest, :roles, :approved
+  attr_accessible :user_type, :guest, :roles, :approved, :role_ids
   attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
   # attr_accessible :
   # has_secure_password
@@ -114,8 +114,10 @@ class User < ActiveRecord::Base
 
   private
     def setup_role
+      role = Role.find_by_name("Guest")
+
       if self.role_ids.empty?
-        self.role_ids = [7]
+        self.role_ids = [role.id]
       end
     end
   

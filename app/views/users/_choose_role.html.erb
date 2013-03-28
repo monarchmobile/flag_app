@@ -2,9 +2,14 @@
 	<div class="field">
 	    <%= f.label :name, "Type of User" %><br />
 	    <% if current_user %>
-	    	<%= f.collection_select :id, Role.all, :id, :name if current_user.role? :Admin %>
-	    <% else %>
-	    	<%= f.select :name, [["Student", 1], ["Staff", 2], ["Moderator", 3]] %>
+		    <% if current_user.role? :Admin %>
+		    	<%= f.collection_select :role_ids, Role.all, :id, :name, prompt: true %>
+
+		    <% else %>
+				<%= f.collection_select :role_ids, @roles, :id, :name %>
+		    <% end %>
+	    <% else  %>
+	    	<%= f.collection_select :role_ids, @roles, :id, :name %>
 	    <% end %>
 	</div>
 <% end %>
