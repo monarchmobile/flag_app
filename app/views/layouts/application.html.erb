@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<%= render 'shared/flash' %>
+<%= render 'shared/flash_messages' if !flash.empty? %>
 <%= render 'shared/header' %> 
 <div class="header_separator"></div>
 <div class="master_container">
