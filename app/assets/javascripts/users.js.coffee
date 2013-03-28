@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+
 jQuery ->
 	$(".flag_feed ul li:nth-child(3n+1)").addClass "first"
 	$(".flag_feed ul li:nth-child(3n+2)").addClass "second"
@@ -34,5 +35,8 @@ jQuery ->
 		$(this).parent().next(".member_info").show()
 	), ->
 		$(this).parent().next(".member_info").hide()
+
+	$('.best_in_place').best_in_place()
+
 
 	

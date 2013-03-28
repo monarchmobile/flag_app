@@ -1,5 +1,5 @@
 class Ability
-  include CanCan::Ability
+  include CanCan::Ability 
   
   def initialize(user)
 	user ||= User.new                     
@@ -7,8 +7,8 @@ class Ability
       can :manage, :all 
     elsif user.role? :Admin      #
 	    can :manage, :all
-	else
-		can :read, :all
-	end
+	  else
+		  can :read, :all
+	  end
   end
 end
