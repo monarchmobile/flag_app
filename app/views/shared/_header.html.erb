@@ -16,14 +16,7 @@
               <% end %>
 
             </ul>
-<!--        <ul class="left_side nav_bar">
-          
-              <%= content_tag :li, "Guest pass", class: "guest_btns guest_pass" if current_user && current_user.guest? %>
 
-              <%= content_tag :li, link_to(current_user.last_name, user_path(current_user.id)) if current_user %>
-
-              <%= content_tag :li, link_to("Home", root_path) %>
-          </ul> -->
           <ul class="left nav_bar">
             <%= content_tag :li, link_to("Community", users_path) if registered_member%>
             <% if registered_member %> 
@@ -36,7 +29,16 @@
             <% end %>
           </ul>
           <!-- The drop down menu --> 
+          <!--        <ul class="left_side nav_bar">
+          
+              <%= content_tag :li, "Guest pass", class: "guest_btns guest_pass" if current_user && current_user.guest? %>
+
+              <%= content_tag :li, link_to(current_user.last_name, user_path(current_user.id)) if current_user %>
+
+          </ul> -->
+
           <ul class="right nav_bar">
+              <%= content_tag :li, link_to(current_user.first_name, user_path(current_user.id)) if current_user %>
               <% if current_user %>
                   <% if current_user.guest? %>
                     <%= content_tag :li, link_to("Register as new user", new_user_path) %>
