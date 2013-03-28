@@ -48,6 +48,7 @@ class PagesController < ApplicationController
 	def destroy
 		find_page
 		@page.destroy
+		@page.link_ids=[]
 		respond_to do |format|
 			format.html { redirect_to dashboard_path, :notice => "The #{@page.title} page was successfully deleted" }
 			format.js
