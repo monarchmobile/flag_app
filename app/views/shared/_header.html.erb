@@ -18,7 +18,7 @@
             </ul>
 
           <ul class="left nav_bar">
-            <%= content_tag :li, link_to("Community", users_path) if registered_member%>
+            <%= content_tag :li, link_to("Community", member_index_path) if registered_member%>
             <% if registered_member %> 
 
                 <%= content_tag :li, link_to("Scrapbook", root_path+"users/"+current_user.id.to_s+"/scrapbook/day") %>
