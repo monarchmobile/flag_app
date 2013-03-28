@@ -479,20 +479,19 @@ a.ui-corner-all {
 }
 
 ul.model_table li ul.instance_detail li.first_name, li.first_name {
-  width: 200px;
+  width: 150px;
   overflow: hidden;
 }
 
 ul.model_table li ul.instance_detail li.last_name, li.last_name {
-  width: 200px;  overflow: hidden;
+  width: 150px;  overflow: hidden;
 }
 
 ul.model_table li ul.instance_detail li.email, li.email {
-  width: 200px;
+  width: 300px;
   overflow: hidden;
 }
 
 ul.model_table li ul.instance_detail li.approved, li.approved {
   width: 50px; 
-  overflow: hidden;
 }
