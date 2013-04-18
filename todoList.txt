@@ -1,0 +1,10 @@
+Rod
+	-set all approved users to:
+	guest: false
+
+
+
+
+andrew
+	-style the close button on signin.
+		scaffold.css

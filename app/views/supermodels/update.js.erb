@@ -1,0 +1,2 @@
+$("#visible_supermodels").html("<%= j render @visible_supermodels %>").prepend("<h3>Tables (<%= Supermodel.visible.count %>)</h3")
+$("#hidden_supermodels").html("<%= j render @hidden_supermodels %>").prepend("<h3>Hidden Tables (<%= Supermodel.hidden.count %>)</h3")

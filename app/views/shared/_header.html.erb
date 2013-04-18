@@ -7,7 +7,7 @@
             <ul class="left nav_bar">
              <!--  <%= content_tag :li, link_to("Home", root_path) %>
               <%= content_tag :li, link_to("About", about_path) %> -->
-              <% @pages = Page.s_that_are_published %>
+              <% @pages = Page.published %>
 
               <% @pages.each do |page| %>
                 <% if page.locations?("top_link") == true %>
@@ -38,7 +38,7 @@
           </ul> -->
 
           <ul class="right nav_bar">
-              <%= content_tag :li, link_to(current_user.first_name, user_path(current_user.id)) if current_user %>
+              <%= content_tag :li, link_to(current_user.first_name, user_path(current_user.id)) if current_user && current_user.guest == false %>
               <% if current_user %>
                   <% if current_user.guest? %>
                     <%= content_tag :li, link_to("Register as new user", new_user_path) %>

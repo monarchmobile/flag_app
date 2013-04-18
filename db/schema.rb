@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326052530) do
+ActiveRecord::Schema.define(:version => 20130418142727) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -101,11 +101,11 @@ ActiveRecord::Schema.define(:version => 20130326052530) do
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.boolean  "published",  :default => false
     t.string   "slug"
     t.integer  "position"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "current_state"
   end
 
   create_table "roles", :force => true do |t|
@@ -127,9 +127,9 @@ ActiveRecord::Schema.define(:version => 20130326052530) do
   end
 
   create_table "statuses", :force => true do |t|
-    t.string   "current_state"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "status_name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "statuses_statusables", :id => false, :force => true do |t|

@@ -1,33 +1,28 @@
-
+ 
 	<h1>Pages</h1> 
 	<div class="column_title pages">
 		<%= content_tag :p, link_to("+ New", new_page_path), class: "new_instance_button" %>
 		<ul>
 			<li class="title">Title</li>
+			<li>Index</li>
 			<li>Status</li>
 		</ul>
 		
 	</div>
 
-	<ul class="model_table">
-		<% @pages.each do |page| %>
-			<li>
-				<ul class="instance_detail">
-					<%= content_tag :li, page.title, class:"title" %>
-					<%= form_for page, remote: true do |a| %>
-						<%= a.select(:position, 1..Page.all.count) %>
-					<% end %>
-					<%= form_for page, remote: true do |a| %>
-						<%= a.select(:published, [["draft", false], ["published", true]]) %>
-					<% end %>
-					
-					<ul class="crud_buttons">
-						<%= content_tag :li, link_to("edit", edit_page_path(page)), class:"edit" %>
-						<%= content_tag :li, link_to("view", page_path(page)), class:"view" %>
-						<%= content_tag :li, link_to("delete", page_path(page), :confirm => "are you sure?", :method => :delete ), class:"delete" %>
-					</ul>
-				</ul>
-				<br class="clear">
-			</li>
-		<% end %>
+	<ul class="model_table pageStates" id="published_pages" data-update-url="<%= sort_pages_url %>">
+		<%= content_tag :h3, "Published Pages (#{Page.published.count})" %>
+		<%= render @published_pages %>
 	</ul>
+
+	<ul class="model_table pageStates" id="scheduled_pages" data-update-url="<%= sort_pages_url %>">
+		<%= content_tag :h3, "Scheduled Pages (#{Page.scheduled.count})" %>
+		<%= render @scheduled_pages %>
+	</ul>
+
+	<ul class="model_table pageStates" id="draft_pages" data-update-url="<%= sort_pages_url %>">
+		<%= content_tag :h3, "Draft Pages (#{Page.draft.count})" %>
+		<%= render @draft_pages %>
+	</ul>
+	
+	

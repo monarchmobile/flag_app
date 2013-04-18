@@ -1,5 +1,5 @@
-<%= form_for @page do |f| %>
-	<%= render 'shared/errors', object: @page %>
+<%= form_for @page, :html => {:class => 'page_form_edit'} do |f| %> 
+	<%= render 'shared/errors', object: @page %> 
 	<div class="field">
 		<%= f.label :title %>
 		<%= f.text_field :title %>
@@ -8,21 +8,21 @@
 		<%= f.label :content %>
 		<%= f.text_area :content, :class => 'ckeditor' %>
 	</div>
+	
 	<div class="field">
-		<%= f.label :published %>
-		<%= f.check_box :published %>
+		<%= f.label :current_state %>
+		<%= collection_select(:page, :current_state, Status.all, :id, :status_name, option = { :selected => @page.current_state}) %>
 	</div>
+	
 	<div class="field">
-		<%= f.label :position %>
-		<%= f.select(:position, 1..Page.all.count, { prompt: true } )%>
-	</div>
-	<div class="field">
-	  	<%= f.label :links %><br />
+	  	<%= hidden_field_tag "page[link_ids][]", nil %>
 	    <% @links.each do |link| %>
-	      <%= check_box_tag "page[link_ids][]", link.id, @page.links.include?(link) %>  
-	      <%= link.location %>  
+	      <%= check_box_tag "page[link_ids][]", link.id, @page.link_ids.include?(link.id), id: dom_id(link) %>  
+	
+      <%= label_tag dom_id(link), link.location %><br> 
 	    <% end %>
 	</div>
+	   
 	<div class="actions">
 		<%= f.submit %>
 	</div>

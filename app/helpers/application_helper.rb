@@ -597,4 +597,29 @@ module ApplicationHelper
 			end
 		end
   end
+
+  # pages index
+  def handle_if_published(page)
+    if page.is_published?
+      "[drag]"
+    else
+      ""
+    end
+  end
+
+  def position_if_published(page)
+    if page.is_published?
+      page.position
+    else
+      ""
+    end
+  end
+
+  def green_if_checked(page, link_id)
+    if page.link_ids.include?(link_id)
+      "green_background"
+    else
+      "red_background"
+    end
+  end
 end

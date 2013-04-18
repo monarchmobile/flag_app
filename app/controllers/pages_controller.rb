@@ -1,5 +1,7 @@
 class PagesController < ApplicationController 
-	# load_and_authorize_resource
+	
+	before_filter :find_page, :only => [:show, :edit, :update, :destroy, :status ]
+	before_filter :allPageStates, :only => [:index, :update, :sort, :status ]
 	layout :resolve_layout
 	def new 
 		@page = Page.new
@@ -7,17 +9,14 @@ class PagesController < ApplicationController
 	end
 
 	def index
-		@pages = Page.all 
+		@links = Link.all
 	end
 
 	def show 
-		find_page
-		
-		
+
 	end
 
 	def edit 
-		find_page
 		@links = Link.all
 	end
 
@@ -34,10 +33,16 @@ class PagesController < ApplicationController
 	end
 
 	def update
-		find_page
+		position = params[:page][:position]
+		current_state = params[:page][:current_state]
+		published = Status.find_by_status_name("published").id
+		if (!current_state ==  published) 
+			@page.position = nil
+		end
 		respond_to do |format|
 			if @page.update_attributes(params[:page])
-				format.html { redirect_to @page, notice: "changes saved" }
+				# reorder_pages(@page)
+				format.html { redirect_to @page, :notice => "The #{@page.title} page was succesfully updated"}
 				format.js
 			else
 				format.html { render :action => "edit"}
@@ -46,11 +51,10 @@ class PagesController < ApplicationController
 	end
 
 	def destroy
-		find_page
-		@page.destroy
 		@page.link_ids=[]
+		@page.destroy
 		respond_to do |format|
-			format.html { redirect_to dashboard_path, :notice => "The #{@page.title} page was successfully deleted" }
+			format.html { redirect_to root_url}
 			format.js
 		end
 	end
@@ -59,6 +63,34 @@ class PagesController < ApplicationController
 		@page = Page.find(params[:id])
 	end
 
-	
+	def sort
+	  params[:page].each_with_index do |id, index|
+	    Page.update_all({position: index+1}, {id: id})
+	  end
+	  render "update.js"
+	end
+
+	def status
+		current_state = params[:page][:current_state]
+		total_published = Page.published.count
+		published = Status.find_by_status_name("published").id
+		if (!current_state ==  published) 
+			@page.update_attributes({current_state: current_state, position: total_published})
+		else
+			@page.update_attributes({current_state: current_state, position: nil })
+		end
+
+		Page.published.each_with_index do |id, index|
+	    Page.published.update_all({position: index+1}, {id: id})
+	  end
+		render "update.js"
+	  
+	end
+
+	def allPageStates
+		@published_pages = Page.published.order_by_position
+		@scheduled_pages = Page.scheduled.order_by_position
+		@draft_pages = Page.draft.order_by_position
+	end
 
 end

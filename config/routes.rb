@@ -34,7 +34,10 @@ FlagApp::Application.routes.draw do
     resources :scrapbooks
   end 
    
-  resources :pages
+  resources :pages do
+    collection { post :sort }
+  end
+  match 'pages/:id/status', to: 'pages#status', as: 'status'
   resources :sessions
   resources :announcements do 
     resources :statuses_statusables

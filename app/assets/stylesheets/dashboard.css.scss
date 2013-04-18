@@ -11,6 +11,10 @@ br.clear {
   clear:both;
 }
 
+.hidden {
+  display:none;
+}
+
 h1, h2, h3, a, li, label, input, p {
   color: $p_color;
   margin:0px;
@@ -159,14 +163,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f3f3f', end
   a {
     border-radius: 5px 5px 5px 5px;
     display: block;
-    font-size: 21px;
-    height: 30px;
+    font-size: 15px;
+    height: 10px;
     margin: 15px 0;
     padding: 1px 0 8px;
     text-align: center;
     width: 100%;
     &:hover {
-      background: url(image_path('black_opac.png')) repeat;
+      background: url(image_path('images/black_opac.png')) repeat;
     }
   }
 }
@@ -495,3 +499,52 @@ ul.model_table li ul.instance_detail li.email, li.email {
 ul.model_table li ul.instance_detail li.approved, li.approved {
   width: 50px; 
 }
+
+// page index
+.handle { 
+  font-size: 12px;
+  color: #777;
+  cursor: move;
+  float: left;
+  margin-top: 5px;
+  width: 40px;
+}
+
+ul.instance_detail li.page_position {
+  margin-left:40px;
+  margin-top:-3px;
+  width:20px;
+}
+
+.horizontal_links_container {
+  width: 345px;
+height: 30px;
+margin-top: -4px;
+margin-left: 7px;
+}
+
+.horizontal_links {
+  float:left;
+}
+
+.page_link_location {
+float: left;
+width: auto;
+height: 18px;
+border-radius: 8px;
+webkit-border-radius: 8px;
+moz-border-radius: 8px;
+-moz-box-shadow: 0px 0px 5px #ccc;
+-webkit-box-shadow: 0px 0px 5px #ccc;
+box-shadow: 0px 0px 5px #ccc;
+padding: 5px;
+background: #c77171;
+margin-left: 20px;
+margin-top: 2px;
+font-size: 12px;
+cursor:pointer;
+}
+
+.red_background { background: rgb(170, 70, 70);}
+.green_background { background: rgb(62, 129, 62);}
+

@@ -1,14 +1,19 @@
-
+<% update_list %>
 <div class="dash_main">
+
 		<div class="l_col">
 			<div class="dash_nav">
 				<ul>
 					<% @visible_models.each do |visible| %>
+						<% count = visible.name.constantize.all.count %>
 						<% model_name = visible.name.downcase %>
-						<%= content_tag :li, link_to(visible.name, send("#{model_name}s_path")) %>
+						<%= content_tag :li, link_to("#{visible.name}s (#{count})", send("#{model_name}s_path")) %>
 					<% end %>
 					<%= content_tag :li, link_to("Supermodel", supermodels_path) if current_user.role? :SuperAdmin %>
 				</ul>
+
+				
+			
 			</div>
 		</div>
 
@@ -23,10 +28,6 @@
 				<h3>News</h3>
 				<p>We don't have anything new to share right now, but from time to time this area of the dashboard contains marketing tips, new websites, and other stuff that we think our clients might find helpful or interesting.</p>
 			</div>
+
 		</div>
 </div>
-
-
-
-
-

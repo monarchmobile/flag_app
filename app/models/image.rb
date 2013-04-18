@@ -18,6 +18,10 @@ class Image < ActiveRecord::Base
     self.nav_menu = true 
   end
 
+  def imageRotate(x) 
+    self.rotate!(x)
+  end
+
   def self.for_this_range(beg_range, end_range, range)
       where(date_taken: beg_range..end_range, range.to_sym => true ).order("date_taken ASC")
   end

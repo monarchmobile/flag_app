@@ -158,3 +158,19 @@ ul.crud_buttons li a{
   text-shadow: 1px 1px 1px black;
 }
 
+.close_form {
+  padding-right: 5px;
+margin-top: -3px;
+z-index: 9000;
+right: 25px;
+position: absolute;
+cursor: pointer;
+color: #fff;
+font-size: 20px;
+background: red;
+padding: 5px;
+border-radius: 5px;
+webkit-border-radius: 5px;
+moz-border-radius: 5px;
+}
+
