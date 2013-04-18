@@ -74,7 +74,7 @@ class PagesController < ApplicationController
 		current_state = params[:page][:current_state]
 		total_published = Page.published.count
 		published = Status.find_by_status_name("published").id
-		if (!current_state ==  published) 
+		if (current_state ==  published) 
 			@page.update_attributes({current_state: current_state, position: total_published})
 		else
 			@page.update_attributes({current_state: current_state, position: nil })
