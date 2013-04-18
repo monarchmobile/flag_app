@@ -29,7 +29,6 @@ group :assets do
   #, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 end
-gem 'rake' , '>= 0.9.2'
 
 gem 'jquery-rails'
 gem 'client_side_validations'

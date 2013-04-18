@@ -23,7 +23,6 @@ jQuery ->
 
   # page links
   $("body").delegate ".page_ajax_edit .page_link_location", "click", ->
-  	return
 	  checkbox = $(this).prev()
 	  attr_checked = checkbox.attr("checked")
 	  console.log(attr_checked)
