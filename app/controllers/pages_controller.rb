@@ -35,6 +35,7 @@ class PagesController < ApplicationController
 	def update
 		position = params[:page][:position]
 		current_state = params[:page][:current_state]
+		@link_ids = params[:page][:link_ids]
 		published = Status.find_by_status_name("published").id
 		if (!current_state ==  published) 
 			@page.position = nil
