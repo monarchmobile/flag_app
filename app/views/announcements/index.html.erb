@@ -1,35 +1,27 @@
-
+  
 <h1>Announcements</h1>
 <div class="column_title pages">
 	<%= content_tag :p, link_to("+ New", new_announcement_path), class: "new_instance_button" %>
 	<ul>
 		<li class="title">Title</li>
 		<li>Status</li>
-		<li class="in announce_in">To Web</li>
-		<li class="out">Off Web</li>
+		<li class="in announce_in">Go Live</li>
+		<li class="out">Expires On</li>
 	</ul>
 	
 </div>
 
-<ul class="model_table">
-	<% @announcements.each do |announcement| %>
+<ul class="model_table announcementStatus" id="published_announcements" data-update-url="<%= sort_announcements_url %>">
+	<%= content_tag :h3, "Published Announcements (#{Announcement.published.count})" %>
+	<%= render @published_announcements %>
+</ul>
 
-		<li>
-			<ul class="instance_detail">
-				<%= content_tag :li, announcement.title, class: "title"  %>
-				<%= content_tag :li, object_status(announcement) %>
-				<ul class="crud_buttons">
-					<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)), class:"edit" %>
-					<%= content_tag :li, link_to("view", announcement_path(announcement)), class:"view"  %>
-					<%= content_tag :li, link_to("delete", announcement_path(announcement), :confirm => "are you sure?", :method => :delete ), class:"delete"  %>
-					
-				</ul>
-				<%= content_tag :li, announcement.starts_at, class: "date" %>
-				<%= content_tag :li, announcement.ends_at, class: "date" %>
-				<%= content_tag :li, announcement.message, class: "message"  %>
-				
-			</ul>
-			<br class="clear"/>
-		</li>
-	<% end %>
+<ul class="model_table announcementStatus" id="scheduled_announcements" data-update-url="<%= sort_announcements_url %>">
+	<%= content_tag :h3, "Schedule Announcements (#{Announcement.scheduled.count})" %>
+	<%= render @scheduled_announcements %>
+</ul>
+
+<ul class="model_table announcementStatus" id="draft_announcements" data-update-url="<%= sort_announcements_url %>">
+	<%= content_tag :h3, "Draft Announcements (#{Announcement.draft.count})" %>
+	<%= render @draft_announcements %>
 </ul>

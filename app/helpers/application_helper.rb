@@ -622,4 +622,12 @@ module ApplicationHelper
       "red_background"
     end
   end
+
+  def check_if_draft(announcement)
+    current_state = announcement.current_state
+    draft = Status.find_by_status_name("draft").id
+    if current_state == draft
+      "hidden"
+    end
+  end
 end

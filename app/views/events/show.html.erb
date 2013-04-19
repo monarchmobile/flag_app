@@ -1,38 +1,8 @@
-<style>
-	.flash {
-		width:100px;
-		height:50px;
-		background:white;
-	}
+<%= content_tag :h1, @event.title %>
 
-	.flash_notice {
-		color:green;
-	}
+<%= content_tag :div, raw(@event.body) %>
 
-	.flash_error {
-		color:red;
-	}
-
-	.flash_waring {
-		color:orange;
-	}
-</style>
-<h2><%= @event.title %></h2>
-
-<%= content_tag :li, @event.date %>
-<%= content_tag :li, @event.location %>
-<%= content_tag :li, @event.description %>
-
-<%= content_tag :li, @event.publish_to_web %>
-<%= content_tag :li, @event.pull_from_web %>
-
-
-
-<%= flash[:notice] %>
-
-<ul class="crud_buttons">
-	<%= content_tag :li, link_to("edit", edit_event_path(@event)) %>
-	<%= content_tag :li, link_to("view", event_path(@event)) %>
-	<%= content_tag :li, link_to("delete", event_path(@event), :confirm => "are you sure?", :method => :delete ) %>
-</ul>
+<%= link_to 'Edit | ', edit_event_path(@event) if can? :edit, @event %>
+<%= link_to 'Back', events_path if can? :edit, @event %>
+<%= link_to '| Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } if can? :delete, @event%>
 

@@ -1,43 +1,46 @@
-<script>
-$(document).ready(function() { 
+ 
+  <%= form_for(@event) do |f| %> 
+    <%= render 'shared/errors', object: @event %>
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
 
-	$("#scheduled_status").hide()
+    <div class="field">
+      <%= f.label :body %><br />
+      <%= f.text_area :body, :class => 'ckeditor' %>
+    </div>
 
-})
-</script>
+    <div class="field schedule_fields">
+      <%= f.label :starts_at %>
+      <% if @event.starts_at %>
+        <%= f.text_field :starts_at, :class => "datepicker", :value => @event.month_day_year(@event.starts_at) %>
+      <% else %>
+        <%= f.text_field :starts_at %>
+      <% end %>
+    </div>
+    <div class="field schedule_fields">
+      <%= f.label :ends_at %>
+      <% if @event.ends_at %>
+        <%= f.text_field :ends_at, :class => "datepicker", :value => @event.month_day_year(@event.ends_at) %>
+      <% else %>
+        <%= f.text_field :ends_at %>
+      <% end %>
+    </div>
 
-<%= form_for @event do |f| %> 
-	<%= render 'shared/errors', object: @event %>
-	<div class="field">
-		<%= f.label :title %>
-		<%= f.text_field :title %>
-	</div>
-	<div class="field">
-		<%= f.label :date %>
-		<%= f.text_field :date %>
-	</div>
-	<div class="field">
-		<%= f.label :description %>
-		<%= f.text_area :description %>
-	</div>
-	<div class="field">
-		<%= f.label :location %>
-		<%= f.text_field :location %>
-	</div>
-	<div class="field">
-		<%= f.label :publish_to_web %>
-		<%= f.text_field :publish_to_web %>
-	</div>
-	<div class="field">
-		<%= f.label :pull_from_web %>
-		<%= f.text_field :pull_from_web %>
-	</div>
-	
-	<%= render 'shared/status_form_field', model_name: :event, f: f %>
-	
-	<div class="actions">
-		<%= f.submit %>
-	</div>
+    <div class="field schedule_fields">
+      <%= f.label :current_state %>
+      <%= collection_select(:event, :current_state, Status.all, :id, :status_name, option = { :selected => @event.current_state}) %>
+    </div>
 
+    <% if can? :edit, Event %>
+      <div class="field schedule_out">
+        <%= f.label :featured, "Feature in Sidebar?" %><br />
+        <%= f.select(:featured, [["featured event", true], ["non-featured event", false]]) %>
+      </div>
+    <% end %>
 
-<% end %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
