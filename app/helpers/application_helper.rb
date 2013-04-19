@@ -598,6 +598,15 @@ module ApplicationHelper
 		end
   end
 
+  # user index
+  def handle_if_approved(user)
+    if user.is_approved?
+      "[drag]"
+    else
+      ""
+    end
+  end
+
   # pages index
   def handle_if_published(page)
     if page.is_published?
@@ -617,6 +626,14 @@ module ApplicationHelper
 
   def green_if_checked(page, link_id)
     if page.link_ids.include?(link_id)
+      "green_background"
+    else
+      "red_background"
+    end
+  end
+
+  def green_if_role(user, role_id)
+    if user.role_ids.include?(role_id)
       "green_background"
     else
       "red_background"

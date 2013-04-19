@@ -516,6 +516,10 @@ ul.instance_detail li.page_position {
   width:20px;
 }
 
+ul.instance_detail li.message p {
+  color:black;
+}
+
 .horizontal_links_container {
   width: 345px;
 height: 30px;
@@ -655,5 +659,42 @@ cursor:pointer;
 
 .event_details .ends_at_date {
   color: red;
+}
+
+// users
+
+.horizontal_roles_container {
+  width: 700px;
+height: 30px;
+margin-top: -4px;
+margin-left: 7px;
+}
+
+.horizontal_roles {
+  float:left;
+}
+
+.user_role_name {
+float: left;
+width: auto;
+height: 18px;
+border-radius: 8px;
+webkit-border-radius: 8px;
+moz-border-radius: 8px;
+-moz-box-shadow: 0px 0px 5px #ccc;
+-webkit-box-shadow: 0px 0px 5px #ccc;
+box-shadow: 0px 0px 5px #ccc;
+padding: 5px;
+
+margin-left: 10px;
+margin-top: 2px;
+font-size: 10px;
+cursor:pointer;
+}
+
+.user_message {
+  width: auto;
+  clear: both;
+  min-height: 40px;
 }
 

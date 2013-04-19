@@ -28,15 +28,31 @@ jQuery ->
 	), ->
 	  $(this).css "z-index", "0"
 	  $(this).find(".img_content_container").hide()
-
-	# profile image on onhover
-
+# profile image on onhover
 	$(".profile_image").hover (->
 		$(this).parent().next(".member_info").show()
 	), ->
 		$(this).parent().next(".member_info").hide()
+# user roles
+  $("body").delegate ".user_role_name", "change", ->
+    $(this).closest("form").submit ->
+    	return
+# user roles
+  $("body").delegate ".user_role_name", "click", ->
+  	console.log("checked")
+	  checkbox = $(this).prev()
+	  attr_checked = checkbox.attr("checked")
+	  console.log(attr_checked)
+	  if attr_checked && attr_checked == "checked"
+	    checkbox.removeAttr "checked"
+	    checkbox.closest("form").submit()
+	  else
+	    checkbox.attr "checked", "checked"
+	    checkbox.closest("form").submit()
 
 	$('.best_in_place').best_in_place()
+
+
 
 
 	

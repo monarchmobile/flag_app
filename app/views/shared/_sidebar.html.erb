@@ -1,4 +1,4 @@
-
+ 
 <div class="sidebar">
 	<div class="sidbar_tables">
 		<h2>Latest News</h2>
@@ -20,9 +20,9 @@
 			<div class="item">
 				<ul class="table_row">
 					<%= content_tag :li, e.title, class: "title" %>
-					<li><strong>When:</strong> <%= e.date %></li>
+					<li><strong>When:</strong> <%= e.event_start %></li>
 					<li><strong>Where:</strong> <%= e.location %></li>
-					<%= content_tag :li, e.description, class: "message" %>
+					<%= content_tag :li, e.body, class: "message" %>
 					
 				</ul>
 				<br class="clear">

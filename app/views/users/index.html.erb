@@ -5,9 +5,10 @@ $(document).ready(function() {
 
 })
 </script>
-
+  
 <h1>Members</h1>
 <div class="column_title pages">
+    <%= content_tag :p, link_to("+ New", new_user_path), class: "new_instance_button" %>
     <ul>
         <%=content_tag :li, "First Name", class: "first_name" %>
         <%=content_tag :li, "Last Name", class: "last_name" %>
@@ -15,59 +16,16 @@ $(document).ready(function() {
         <%=content_tag :li, "Approved", class: "approved" %>
        
     </ul>
+    
 </div>
-<h2>Users Waiting to be approved</h2>
-<ul class="model_table">
-    <% @unapproved_users.each do |user| %>
-        <li>
-            <ul class="instance_detail">
-                <%= content_tag :li, user.first_name, class: "first_name"  %>
-                <%= content_tag :li, user.last_name, class: "last_name" %>
-                <%= content_tag :li, user.email, class: "email" %>
-                
-                <%= best_in_place user, :approved, type: :checkbox, collection: %w[No Yes] %>
 
-                <ul class="crud_buttons">
-                    <%= content_tag :li, link_to("edit", edit_user_path(user)), class: "edit" if current_user.role? :Admin %>
-                    <%= content_tag :li, link_to("view", user_path(user)), class: "view" %>
-                    <%= content_tag :li, link_to("delete", user_path(user), :confirm => "are you sure?", :method => :delete ), class: "delete" %>
-                    
-                </ul>
+<ul class="model_table userStatus" id="waiting_to_be_approved_users" data-update-url="<%= sort_users_url %>">
+    <%= content_tag :h3, "Users Waiting to be approved (#{User.waiting_to_be_approved_users.count})" %>
+    <%= render @waiting_to_be_approved_users %>
+</ul>
 
-               
-                
-            </ul>
-            <br class="clear"/>
-        </li>
-    <% end %>
-
-</ul> 
-<br class="clear"/>
-<h2>Approved Users</h2>
-<ul class="model_table">
-    <% @approved_users.each do |user| %>
-        <li>
-            <ul class="instance_detail">
-                <%= content_tag :li, user.first_name, class: "first_name"  %>
-                <%= content_tag :li, user.last_name, class: "last_name" %>
-                <%= content_tag :li, user.email, class: "email" %>
-                
-                <%= best_in_place user, :approved, type: :checkbox, collection: %w[No Yes] %>
-
-                <ul class="crud_buttons">
-                    <%= content_tag :li, link_to("edit", edit_user_path(user)), class: "edit" if current_user.role? :Admin %>
-                    <%= content_tag :li, link_to("view", user_path(user)), class: "view" %>
-                    <%= content_tag :li, link_to("delete", user_path(user), :confirm => "are you sure?", :method => :delete ), class: "delete" %>
-                    
-                </ul>
-
-               
-                
-            </ul>
-            <br class="clear"/>
-        </li>
-    <% end %>
-
-</ul> 
- 
+<ul class="model_table userStatus" id="approved_users" data-update-url="<%= sort_users_url %>">
+    <%= content_tag :h3, "Schedule users (#{User.approved_users.count})" %>
+    <%= render @approved_users %>
+</ul>
 

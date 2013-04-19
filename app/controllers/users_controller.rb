@@ -4,8 +4,7 @@ class UsersController < ApplicationController
 	layout :resolve_layout
  
 	def index 
-		@approved_users = User.where(approved: true).order("approved ASC")
-		@unapproved_users = User.where(approved: false, guest: false)
+		all_user_states
 	end
 
 	def member_index
@@ -34,6 +33,9 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		@admin_roles = Role.all
+		@regular_roles = Role.find(:all, :conditions => ["name not IN (?)", ["Admin", "SuperAdmin"]])
+		@guest_roles = Role.find(:all, :conditions => ["name not IN (?)", ["Admin", "SuperAdmin"]])
 		if members_page(@user) 
 			@roles = Role.find(:all, :conditions => ["name IN (?)", ["Student", "Staff"]])
 			users_path(@user) 
@@ -46,8 +48,9 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		all_user_states
 		@user = User.find(params[:id])
-		role = params(user[:id])
+		
 		if @user.update_attributes(params[:user])
 			if params[:user][:nav_menu]	
 				respond_to do |format|
@@ -85,5 +88,18 @@ class UsersController < ApplicationController
 		else	
 			render "new"
 		end
+	end
+
+	def sort
+    all_user_states
+    params[:user].each_with_index do |id, index|
+      User.update_all({position: index+1}, {id: id})
+    end
+    render "update.js"
+  end
+
+	def all_user_states
+		@approved_users = User.approved_users
+		@waiting_to_be_approved_users = User.waiting_to_be_approved_users
 	end
 end

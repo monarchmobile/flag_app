@@ -1,6 +1,8 @@
 Rod
 	-set all approved users to:
 	guest: false
+	-events
+	-dashboard users/ set into 3 categories
 
 
 

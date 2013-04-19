@@ -27,6 +27,7 @@ FlagApp::Application.routes.draw do
   match "member_index", to: "users#member_index"
 
   resources :users do 
+    collection { post :sort }
   	resources :images
     resources :journals
     resources :scrapbooks

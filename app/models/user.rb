@@ -1,7 +1,7 @@
-class User < ActiveRecord::Base 
+class User < ActiveRecord::Base  
   # attributes by row %w[ stock admin added virtual ]
   attr_accessible :email, :first_name, :last_name, :password_confirmation, :password
-  attr_accessible :user_type, :guest, :roles, :approved, :role_ids
+  attr_accessible :user_type, :guest, :roles, :approved, :role_ids, :position
   attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
   # attr_accessible :
   # has_secure_password
@@ -60,6 +60,28 @@ class User < ActiveRecord::Base
   has_many :journals
   has_many :scrapbooks
   has_many :votes
+
+  def role_is(role)
+    type = Role.find_by_name(role).id
+    where(self.role_ids.include?(type))
+  end
+
+  def is_approved?
+    self.approved == true
+  end
+
+  def is_published?
+    published = Status.find_by_status_name("published").id
+    self.current_state == published
+  end
+
+  def self.approved_users
+    where(approved: true)
+  end
+
+  def self.waiting_to_be_approved_users
+    where(approved: false, guest: false)
+  end
 
   # set nav_menu boolean to true
   def set_nav_menu_to_true

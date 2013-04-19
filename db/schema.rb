@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419132455) do
+ActiveRecord::Schema.define(:version => 20130419155835) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20130419132455) do
     t.boolean  "guest"
     t.string   "member_photo"
     t.boolean  "approved",               :default => false
+    t.integer  "position"
   end
 
   create_table "votes", :force => true do |t|
