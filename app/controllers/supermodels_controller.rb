@@ -1,5 +1,5 @@
 class SupermodelsController < ApplicationController
-
+ 
 	layout 'dashboard'
 
 	def new 
@@ -7,6 +7,7 @@ class SupermodelsController < ApplicationController
 	end
 
 	def index 
+		all_supermodel_states
 		@supermodels = Supermodel.all(:order => "visible ASC, name ASC")
 	end
 
@@ -35,7 +36,7 @@ class SupermodelsController < ApplicationController
 	def update
 		find_supermodel
 		authorize! :update, @supermodel
-
+		all_supermodel_states
 		respond_to do |format|
 	      if @supermodel.update_attributes(params[:supermodel])
 	        format.html { redirect_to dashboard_path, notice: 'model was successfully updated.' }
@@ -49,11 +50,34 @@ class SupermodelsController < ApplicationController
 	end
 
 
-
-
 	def find_supermodel
 		@supermodel = Supermodel.find(params[:id])
 	end
 
+	def sort
+		all_supermodel_states
+		params[:supermodel].each_with_index do |id, index|
+			Supermodel.update_all({ position: index+1}, {id: id })
+		end
+		render 'update.js'
+
+	end
+
+	def model_status
+		find_supermodel
+		all_supermodel_states
+		visible = params[:supermodel][:visible]
+		@supermodel.update_attributes({visible: visible})
+		Supermodel.visible.each_with_index do |id, index|
+			Supermodel.update_all({position: index+1}, {id: id})
+		end
+		render 'update.js'
+
+	end
+
+	def all_supermodel_states
+		@visible_supermodels = Supermodel.visible.order("name ASC")
+		@hidden_supermodels = Supermodel.hidden.order("name ASC")
+	end
 
 end
