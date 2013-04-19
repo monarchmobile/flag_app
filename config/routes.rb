@@ -66,7 +66,11 @@ FlagApp::Application.routes.draw do
   resources :votes
   resources :links
   resources :sessions
-  resources :supermodels
+  # supermodels
+  resources :supermodels do
+    collection { post :sort }
+  end
+  match "supermodels/:id/model_status", :to => "supermodels#model_status", :as => "model_status"
   
 
   root :to => "pages#show", :id => 'home'
