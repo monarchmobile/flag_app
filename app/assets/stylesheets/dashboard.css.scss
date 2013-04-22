@@ -610,6 +610,32 @@ cursor:pointer;
   color: red;
 }
 
+.ui-datepicker-calendar, .ui-datepicker-header  {
+  background:#fff;
+  border:1px solid orange;
+  border-radius: 5px;
+  webkit-border-radius: 5px;
+  moz-border-radius: 5px;
+}
+
+.instance_detail .profile_title {
+  color:orange;
+  clear:both
+}
+
+// Dashboard
+
+.super_tables {
+  cursor: pointer;
+  background: orange;
+  border-radius: 5px;
+  text-align: center;
+  webkit-border-radius: 5px;
+  moz-border-radius: 5px;
+  color: white;
+  margin-top:15px;
+}
+
 // event
 .event_details {
   width:730px;

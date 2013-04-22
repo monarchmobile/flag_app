@@ -27,18 +27,9 @@ class StaticPagesController < ApplicationController
 
   def dashboard
     @pages = Page.all
-    # @page = Page.new
-    @announcements = Announcement.all 
-    # @announcement = Announcement.new
-    @events = Event.all 
-    # @event = Event.new
-    @users = User.where({approved: false, guest: false})
-    @visible_models = Supermodel.where(visible: true).order("name ASC")
+    static_array = %w[Link Partial Profile Role Supermodel]
+    @active_models = Supermodel.where("visible = true AND name NOT IN (?)", static_array).order("name ASC")
+    @static_models = Supermodel.where("visible = true AND name IN (?)", static_array).order("name ASC")
   end
-
- 
-
-  
-  
 
 end

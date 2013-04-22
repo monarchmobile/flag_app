@@ -2,9 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  
-  $.fn.close_form = ->
-    $(this).append("what")
+  $(".super_tables").click ->
+    list = $(this).next()
+    if list.is(":visible")
+      $(this).next().hide()
+    else if list.is(":hidden")
+      $(this).next().show()
+
+  $("body").delegate ".close_form", "click", ->
+    $(this).parent().hide()
 
   $("#journal_form").addClass("hide")
 

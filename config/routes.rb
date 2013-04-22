@@ -66,6 +66,7 @@ FlagApp::Application.routes.draw do
   resources :votes
   resources :links
   resources :sessions
+  resources :roles
   # supermodels
   resources :supermodels do
     collection { post :sort }

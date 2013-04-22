@@ -37,4 +37,8 @@ jQuery ->
 	        dateFormat: 'yy-mm-dd'
 	$("#page_ends_at").datepicker
 	        dateFormat: 'yy-mm-dd'
+
+	$("body").delegate ".close_form", "click", ->
+		console.log("clicked")
+		$(this).parent().hide()
 	    

@@ -10,3 +10,31 @@ Rod
 andrew
 	-style the close button on signin.
 		scaffold.css
+
+
+4 of 5 events on front page
+	click here for more photos
+
+	no landing page
+	home, community page side with event list, last 5
+	link to list of all event that kids have done
+
+	add caption to community page
+	make title mandatory on image
+
+	make sure pencil not hidden
+
+
+	ability to upload more than one picture at a time ?
+
+	student, coordinator
+
+	staff
+
+	separate within dashboard/index
+
+	student sign up 
+		choose
+		
+	
+

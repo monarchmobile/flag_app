@@ -1,21 +1,21 @@
-<% update_list %>
+<% update_list %> 
 <div class="dash_main">
 
-		<div class="l_col">
-			<div class="dash_nav">
-				<ul>
-					<% @visible_models.each do |visible| %>
-						<% count = visible.name.constantize.all.count %>
-						<% model_name = visible.name.downcase %>
-						<%= content_tag :li, link_to("#{visible.name}s (#{count})", send("#{model_name}s_path")) %>
-					<% end %>
-					<%= content_tag :li, link_to("Supermodel", supermodels_path) if current_user.role? :SuperAdmin %>
-				</ul>
+	<div class="l_col">
+		<div class="dash_nav">
 
-				
+			<%= content_tag :h3, "Dynamic Tables", class: "dynamic_tables super_tables" %>
+			<ul class= "dynamic_tables_list">
+				<%= render 'static_pages/table_list', :models_list => @active_models %>
+			</ul>
+
+			<%= content_tag :h3, "Static Tables", class: "static_tables super_tables" %>
+			<ul class= "static_tables_list hidden">
+				<%= render 'static_pages/table_list', :models_list => @static_models %>
+			</ul>
 			
-			</div>
 		</div>
+	</div>
 
 		<div class="m_col">
 			<h2>Welcome to your dashboard!</h2>

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController 
+class UsersController < ApplicationController  
 	respond_to :html, :json 
 	include ApplicationHelper  
 	layout :resolve_layout
