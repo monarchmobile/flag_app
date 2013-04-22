@@ -32,6 +32,12 @@ class AnnouncementsController < ApplicationController
 		end
 	end
 
+	def announcement_partial
+    @announcements_partial = Describe.new(Announcement).partial
+    @model_name = "Announcement"
+    render 'shared/quick_partial_view', model_name: @model_name
+  end
+
 	def edit
 		find_announcement
 		respond_to do |format|

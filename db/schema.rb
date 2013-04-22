@@ -105,6 +105,11 @@ ActiveRecord::Schema.define(:version => 20130422183623) do
     t.integer "page_id"
   end
 
+  create_table "page_partials", :id => false, :force => true do |t|
+    t.integer "page_id"
+    t.integer "partial_id"
+  end
+
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -113,6 +118,13 @@ ActiveRecord::Schema.define(:version => 20130422183623) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "current_state"
+  end
+
+  create_table "partials", :force => true do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|

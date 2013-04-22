@@ -2,7 +2,7 @@ FlagApp::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-   match 'signup', to: "users#new"
+  match 'signup', to: "users#new"
   match 'login', to: "sessions#new"
   match 'logout', to: "sessions#destroy"
   match 'profile', to: "users#show"
@@ -26,12 +26,17 @@ FlagApp::Application.routes.draw do
   match "users/create", to: "users#create", as: "create_guest"
   match "member_index", to: "users#member_index"
 
+  match "announcement_partial", :to => "announcements#announcement_partial"
+  
+  match "event_partial", :to => "events#event_partial"
+
   resources :users do 
     collection { post :sort }
   	resources :images
     resources :journals
     resources :scrapbooks
   end 
+  resources :partials
 
   # announcements
   match 'announcements/:id/hide', as: 'hide_announcement', to: 'announcements#hide'

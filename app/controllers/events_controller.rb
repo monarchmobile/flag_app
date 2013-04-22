@@ -20,6 +20,12 @@
     end
   end
 
+  def event_partial
+    @events_partial = Describe.new(Event).partial
+    @model_name = "Event"
+    render 'shared/quick_partial_view', model_name: @model_name
+  end
+
   def new
     @event = Event.new
 

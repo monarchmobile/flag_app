@@ -5,9 +5,9 @@ jQuery ->
   $(".super_tables").click ->
     list = $(this).next()
     if list.is(":visible")
-      $(this).next().hide()
+      list.addClass("hidden")
     else if list.is(":hidden")
-      $(this).next().show()
+      list.removeClass("hidden")
 
   $("body").delegate ".close_form", "click", ->
     $(this).parent().hide()

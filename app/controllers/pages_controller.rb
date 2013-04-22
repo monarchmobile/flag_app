@@ -1,7 +1,7 @@
 class PagesController < ApplicationController 
 	
 	before_filter :find_page, :only => [:show, :edit, :update, :destroy, :status ]
-	before_filter :allPageStates, :only => [:index, :update, :sort, :status ]
+	before_filter :all_page_states, :only => [:index, :update, :sort, :status ]
 	layout :resolve_layout
 	def new 
 		@page = Page.new
@@ -13,11 +13,14 @@ class PagesController < ApplicationController
 	end
 
 	def show 
-
+		all_page_states
+		@announcements_partial = Announcement.limit(5).order("starts_at DESC")
+		@events_partial = Event.limit(5).order("starts_at DESC")
 	end
 
 	def edit 
 		@links = Link.all
+		all_page_states
 	end
 
 	def create 
@@ -88,10 +91,12 @@ class PagesController < ApplicationController
 	  
 	end
 
-	def allPageStates
+	def all_page_states
 		@published_pages = Page.published.order_by_position
 		@scheduled_pages = Page.scheduled.order_by_position
 		@draft_pages = Page.draft.order_by_position
+		@links = Link.all
+		@partials = Partial.all
 	end
 
 end
