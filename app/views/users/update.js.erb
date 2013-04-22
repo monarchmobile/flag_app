@@ -1,4 +1,4 @@
-if (<%= @boolean %> == false) {
+if (<%= @boolean %> == false) { 
 	// $(".time_navigation").hide()
 	$(".gray_nav_btn").show()
 	$(".delete_nav_btn").hide()
@@ -9,10 +9,5 @@ else if (<%= @boolean %> == true) {
 	$(".gray_nav_btn").hide()
 }
 
-
-
-// # <% if @user.approved? %>
-// #   $('#edit_user_<%= @user.id %>').appendTo('#complete_users');
-// # <% else %>
-// #   $('#edit_user_<%= @user.id %>').appendTo('#incomplete_users');
-// # <% end %>
+$("#users_waiting_to_be_approved").html("<%= j render @users_waiting_to_be_approved %>").prepend("<h3>Users Waiting To Be Approved (<%=@users_waiting_to_be_approved.count%>)")
+$("#approved_users").html("<%= j render @approved_users %>").prepend("<h3>Approved Users(<%=@approved_users.count%>)")

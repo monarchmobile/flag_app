@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
     where(approved: true)
   end
 
-  def self.waiting_to_be_approved_users
+  def self.users_waiting_to_be_approved
     where(approved: false, guest: false)
   end
 

@@ -652,4 +652,22 @@ module ApplicationHelper
       "hidden"
     end
   end
+
+  # user index
+  def user_approved_status(user)
+    if user.approved == true
+      "Approved"
+    elsif user.approved == false
+      "Not Approved"
+    end
+  end
+
+  def green_if_approved(user)
+    if user.approved == true
+      "green_background"
+    else
+      "red_background"
+    end
+  end
+
 end

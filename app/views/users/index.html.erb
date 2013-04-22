@@ -1,31 +1,24 @@
-<script>
-$(document).ready(function() { 
-
-    $("#scheduled_status").hide()
-
-})
-</script>
   
-<h1>Members</h1>
+<h1>Users</h1>
 <div class="column_title pages">
     <%= content_tag :p, link_to("+ New", new_user_path), class: "new_instance_button" %>
-    <ul>
-        <%=content_tag :li, "First Name", class: "first_name" %>
-        <%=content_tag :li, "Last Name", class: "last_name" %>
-        <%=content_tag :li, "Email", class: "email" %>
-        <%=content_tag :li, "Approved", class: "approved" %>
-       
+    <ul class="user_index">
+        <li class="long">First Name</li>
+        <li class="long">Last Name</li>
+        <li class="long">Email</li>
+        
+        <li class="medium">Approved</li>
     </ul>
     
 </div>
 
-<ul class="model_table userStatus" id="waiting_to_be_approved_users" data-update-url="<%= sort_users_url %>">
-    <%= content_tag :h3, "Users Waiting to be approved (#{User.waiting_to_be_approved_users.count})" %>
-    <%= render @waiting_to_be_approved_users %>
+<ul class="model_table userStatus" id="users_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
+    <%= content_tag :h3, "Users Waiting To Be Approved (#{@users_waiting_to_be_approved.count})" %>
+    <%= render @users_waiting_to_be_approved %>
 </ul>
 
 <ul class="model_table userStatus" id="approved_users" data-update-url="<%= sort_users_url %>">
-    <%= content_tag :h3, "Schedule users (#{User.approved_users.count})" %>
+    <%= content_tag :h3, "Approved Users (#{@approved_users.count})" %>
     <%= render @approved_users %>
 </ul>
 

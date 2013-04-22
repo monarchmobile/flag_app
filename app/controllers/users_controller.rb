@@ -50,11 +50,19 @@ class UsersController < ApplicationController
 	def update
 		all_user_states
 		@user = User.find(params[:id])
+		if params[:user][:approved] == true
+			@user.guest = false
+		end
 		
 		if @user.update_attributes(params[:user])
 			if params[:user][:nav_menu]	
 				respond_to do |format|
 					@boolean = params[:user][:nav_menu]
+					format.js
+				end
+			elsif params[:user][:approved]
+				respond_to do |format|
+					format.html
 					format.js
 				end
 			else
@@ -100,6 +108,6 @@ class UsersController < ApplicationController
 
 	def all_user_states
 		@approved_users = User.approved_users
-		@waiting_to_be_approved_users = User.waiting_to_be_approved_users
+		@users_waiting_to_be_approved = User.users_waiting_to_be_approved
 	end
 end

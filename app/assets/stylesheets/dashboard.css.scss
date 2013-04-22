@@ -729,3 +729,71 @@ cursor:pointer;
   min-height: 40px;
 }
 
+// user
+
+.user_ajax_edit select {
+  display:none;
+}
+
+.user_approval_status {
+  margin-left: 138px;
+  width: 115px;
+}
+
+ul.user_index li {
+ 
+  font-size:15px;
+  width:155px;
+
+  .user_email {
+    width:200px;
+  }
+  
+}
+
+.user_roles {
+float: left;
+width: auto;
+height: 14px;
+border-radius: 15px;
+webkit-border-radius: 15px;
+moz-border-radius: 15px;
+padding: 7px;
+background: rgb(120, 143, 162);
+margin-left: 20px;
+margin-top: 2px;
+font-size: 10px;
+opacity: .8;
+color: rgb(247, 245, 255);
+}
+
+div.user_details {
+  width: 700px;
+  height: 33px;
+  float: left;
+
+  li {
+    width:100px;
+  } 
+
+  li.user_email {
+    width:285px;
+  }
+}
+
+.index_form_btns {
+  float: left;
+
+  height: 18px;
+  border-radius: 8px;
+  webkit-border-radius: 8px;
+  moz-border-radius: 8px;
+  -moz-box-shadow: 0px 0px 5px #ccc;
+  -webkit-box-shadow: 0px 0px 5px #ccc;
+  box-shadow: 0px 0px 5px #ccc;
+  padding: 5px;
+  margin-left: 20px;
+  margin-top: 2px;
+  font-size: 12px;
+  cursor:pointer;
+}

@@ -2,31 +2,32 @@
 	
 	<ul class="instance_detail">
 		<div class="user_details">
-			<%= content_tag :li, user.first_name, class: "first_name"  %>
-			<%= content_tag :li, user.last_name, class: "last_name" %>
-			<%= content_tag :li, user.email, class: "email" %>
-			<%= content_tag :li, user.position, class: "page_position" %>
+			<%= content_tag :li, user.first_name %>
+			<%= content_tag :li, user.last_name  %>
+			<%= content_tag :li, user.email, class: "user_email" %>
+
+
+			<!-- button to approve users -->
+			<%= form_for user, :html => {:class => 'user_ajax_edit'}, :url => { :controller => "users", :action => :update, id: user.id }, remote: true do |a| %>		
+				<%= a.select :approved, [['Approved', true], ['Not Approved Yet', false]] %>
+				<%= content_tag :div, user_approved_status(user), class: "user_approval_status index_form_btns #{green_if_approved(user)}" %>
+			<% end %>
 
 		</div>
 		
-		<ul class="crud_buttons">
-			<%= content_tag :li, link_to("edit", edit_user_path(user)), class: "edit" %>
-			<%= content_tag :li, link_to("view", user_path(user)), class: "view" %>
-			<%= content_tag :li, link_to("delete", user_path(user), :confirm => "are you sure?", :method => :delete ), class:"delete"  %>
-			
-		</ul>
+		<%= render "shared/crud_btns", object: user %>
+
 		<div class="user_message">
 			<!-- dynamic form for picking user status -->
 			<% @roles = Role.all %>
 			<% @roles.each do |role| %>
 				<% if user.role_ids.include?(role.id) %>
-					<%= content_tag :div, role.name, class: "user_role_name #{green_if_role(user, role.id)}" %>
+					<%= content_tag :div, role.name, class: "user_roles #{green_if_role(user, role.id)}" %>
 				<% end %>
 			<% end %>
 
 		</div>
-		
+
 	</ul>
-	<br class="clear"/>
 
 <% end %>
