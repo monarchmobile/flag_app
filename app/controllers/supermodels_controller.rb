@@ -8,7 +8,6 @@ class SupermodelsController < ApplicationController
 
 	def index 
 		all_supermodel_states
-		@supermodels = Supermodel.all(:order => "visible ASC, name ASC")
 	end
 
 	def show

@@ -35,6 +35,15 @@ andrew
 
 	student sign up 
 		choose
+
+-things to fix
+	-index of supermodels
+		not calculating hidden
+	-index of users
+		not calculating users waiting to be approved
+		set guest to false when someone signs up in form
+
+-- need message for forgot password
 		
 	
 

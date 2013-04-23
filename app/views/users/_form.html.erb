@@ -1,8 +1,13 @@
-<h1>Sign Up </h1> 
+
 
 <%= form_for @user, :validate => true do |f| %>
 	<%= render 'shared/errors', :object => f.object  %>
 	
-	<%= render 'users/authentication', f: f %>
+	<%= render 'users/shared/registration', f: f %>
+
+	<%= render 'users/shared/profile', f: f unless @user.new_record? %>
+
+	<%= render 'users/shared/choose_role', f: f  %>
+
 	<div class="actions"><%= f.submit "Sign Up" %></div>
 <% end %>

@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class StaticPagesController < ApplicationController 
   before_filter :current_user, :except => [:home]
 
   layout 'dashboard'
