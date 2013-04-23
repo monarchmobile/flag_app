@@ -52,14 +52,9 @@ class UsersController < ApplicationController
 		end
 		
 		if @user.update_attributes(params[:user])
-			if params[:user][:nav_menu]	
+			if params[:user][:nav_menu]	|| params[:user][:approved]
 				respond_to do |format|
 					@boolean = params[:user][:nav_menu]
-					format.js
-				end
-			elsif params[:user][:approved]
-				respond_to do |format|
-					format.html
 					format.js
 				end
 			else

@@ -1,6 +1,12 @@
 FlagApp::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
+  resources :users do 
+    collection { post :sort }
+    resources :images
+    resources :journals
+    resources :scrapbooks
+  end 
 
   match 'signup', to: "users#new"
   match 'login', to: "sessions#new"

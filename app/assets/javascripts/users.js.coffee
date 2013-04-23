@@ -33,38 +33,35 @@ jQuery ->
 		$(this).parent().next(".member_info").show()
 	), ->
 		$(this).parent().next(".member_info").hide()
-# user roles
-  $("body").delegate ".user_role_name", "change", ->
-    $(this).closest("form").submit ->
-    	return
-# user roles
-  $("body").delegate ".user_role_name", "click", ->
-  	console.log("checked")
-	  checkbox = $(this).prev()
-	  attr_checked = checkbox.attr("checked")
-	  console.log(attr_checked)
-	  if attr_checked && attr_checked == "checked"
-	    checkbox.removeAttr "checked"
-	    checkbox.closest("form").submit()
-	  else
-	    checkbox.attr "checked", "checked"
-	    checkbox.closest("form").submit()
 
-	$('.best_in_place').best_in_place()
 
+	# user approval status
 	$("body").delegate ".user_ajax_edit .user_approval_status", "change", ->
-		$(this).closest("form").submit ->
-			return
+		select = $(this).prev()
+		if select.val() == "true"
+			select.val("false")
+			console.log(select.val())
+			select.closest("form").submit()
+			$(this).html("Not Approved").removeClass("green_background").addClass("red_background")
+		else if select.val() == "false"
+			select.val("true")
+			select.closest("form").submit()
+			$(this).html("Approved").addClass("green_background").removeClass("red_background")
+
 	# user approval status
 	$("body").delegate ".user_ajax_edit .user_approval_status", "click", ->
 		select = $(this).prev()
 		if select.val() == "true"
 			select.val("false")
+			console.log(select.val())
 			select.closest("form").submit()
+			$(this).html("Not Approved").removeClass("green_background").addClass("red_background")
 		else if select.val() == "false"
 			select.val("true")
 			select.closest("form").submit()
+			$(this).html("Approved").addClass("green_background").removeClass("red_background")
 
+	$('.best_in_place').best_in_place()
 
 
 
