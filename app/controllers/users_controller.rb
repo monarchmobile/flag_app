@@ -1,7 +1,7 @@
-class UsersController < ApplicationController  
+class UsersController < ApplicationController   
 	respond_to :html, :json 
 	include ApplicationHelper  
-	layout :resolve_layout
+	layout :resolve_layout, :except => :new
  
 	def index 
 		all_user_states
@@ -14,10 +14,9 @@ class UsersController < ApplicationController
 	end
 	
 	def new 
-		
+		role_choices
 		@user = User.new
-		# @numbers =  number.find(:all, :conditions => ["number_type IN (?)",["Small", "Medium", "Large"]])
-		@roles = Role.find(:all, :conditions => ["name IN (?)", ["Student", "Staff"]])
+		
 	end
 	
 	def show
@@ -33,9 +32,7 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
-		@admin_roles = Role.all
-		@regular_roles = Role.find(:all, :conditions => ["name not IN (?)", ["Admin", "SuperAdmin"]])
-		@guest_roles = Role.find(:all, :conditions => ["name not IN (?)", ["Admin", "SuperAdmin"]])
+		role_choices
 		if members_page(@user) 
 			@roles = Role.find(:all, :conditions => ["name IN (?)", ["Student", "Staff"]])
 			users_path(@user) 
@@ -82,7 +79,12 @@ class UsersController < ApplicationController
 			cookies.delete(:auth_token)
 			# redirect_to { method: :delete )
 		end
+
 		@user = params[:user] ? User.new(params[:user]) : User.new_guest
+		if params[:user][:role_ids]
+      @user.role_ids = params[:user][:role_ids]
+      @user.guest = false
+    end
 		if @user.save 
 			if params[:user] #user filled out signup form
 				cookies[:auth_token] = @user.auth_token
@@ -109,5 +111,17 @@ class UsersController < ApplicationController
 	def all_user_states
 		@approved_users = User.approved_users
 		@users_waiting_to_be_approved = User.users_waiting_to_be_approved
+	end
+
+	def role_choices
+		@admin_roles = Role.all
+		@regular_roles = Role.find(:all, :conditions => ["name not IN (?)", ["Admin", "SuperAdmin"]])
+		@guest_roles = Role.find(:all, :conditions => ["name IN (?)", ["Student", "Coordinator", "Host-Family"]])
+
+		admin_id = Role.find_by_name("Admin").id
+		superadmin_id = Role.find_by_name("SuperAdmin").id
+	 	@master_ids = [admin_id, superadmin_id] 
+	  @role_ids = current_user.role_ids
+	 	@ids = @master_ids & @role_ids.to_a
 	end
 end

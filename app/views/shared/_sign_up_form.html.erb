@@ -1,27 +1,5 @@
+<!--SIGNUP  AJAX-->
 <div class="sign-up-form home_forms">  
-	<%= render("shared/close") %>
-	<%= form_for @user, :validate => true do |f| %>
-		<%= render 'shared/errors', :object => f.object  %> 
-		<div class="field">
-		    <%= f.label :first_name%><%= required_field %><br />
-		    <%= f.text_field :first_name %>
-		</div>
-		<div class="field">
-		    <%= f.label :last_name%><%= required_field %><br />
-		    <%= f.text_field :last_name %>
-		</div>
-		<div class="field">
-		    <%= f.label :email, "Email" %><br />
-		    <%= f.text_field :email %>
-		</div>
-		<div class="field">
-		    <%= f.label :password %><br />
-		    <%= f.password_field :password %>
-		</div>
-		<div class="field">
-		    <%= f.label :password_confirmation, "Confirm Password" %><br />
-		    <%= f.password_field :password_confirmation %>
-		</div>
-		<div class="actions"><%= f.submit "Sign Up" %></div>
+	<%= render 'form' %>
 	<% end %>
 </div>

@@ -7,7 +7,7 @@ class Supermodel < ActiveRecord::Base
 	end
 
 	def self.hidden
-		where(visible: false)
+		where("visible = (?)",false)
 	end
 
 end

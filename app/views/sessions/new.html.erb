@@ -1,21 +1,9 @@
-<div class="login_form"> 
-  <div class="separator_box"></div>
+<!--LOGIN -->
+<div class="login_form"> <br />
+	<%= render 'shared/flash_messages' if !flash.empty? %>
   <h1 class="login_title">Log In</h1>
 
   <%= form_tag sessions_path do %>
-    <div class="field">
-      <%= label_tag :email %><br />
-      <%= text_field_tag :email, params[:email] %>
-    </div>
-    <div class="field">
-      <%= label_tag :password %><br />
-      <%= password_field_tag :password %>
-    </div>
-
-    <div class="field">
-      <%= label_tag :remember_me %><br />
-      <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-    </div>
-    <div class="actions"><%= submit_tag "Log In" %></div>
+    <%= render 'authentication' %>
   <% end %>
 </div>
