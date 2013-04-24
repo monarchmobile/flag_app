@@ -57,8 +57,8 @@ class User < ActiveRecord::Base
   attr_reader :password
   include ActiveModel::SecurePassword::InstanceMethodsOnActivation
   
-  has_many :images 
-  has_many :journals
+  has_many :images, :dependent => :destroy
+  has_many :journals, :dependent => :destroy
   has_many :scrapbooks
   has_many :votes
 
