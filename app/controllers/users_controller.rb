@@ -116,7 +116,7 @@ class UsersController < ApplicationController
 		admin_id = Role.find_by_name("Admin").id
 		superadmin_id = Role.find_by_name("SuperAdmin").id
 	 	@master_ids = [admin_id, superadmin_id] 
-	  @role_ids = current_user.role_ids
+	  @role_ids = current_user.role_ids if current_user
 	 	@ids = @master_ids & @role_ids.to_a
 	end
 end
