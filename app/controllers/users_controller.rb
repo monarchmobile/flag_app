@@ -5,6 +5,7 @@ class UsersController < ApplicationController
  
 	def index 
 		all_user_states
+		restrict_access unless current_user && current_user.role_ids.include?(@ids[0] || @ids[1])
 	end
 
 	def member_index
