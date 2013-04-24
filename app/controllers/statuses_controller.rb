@@ -1,7 +1,7 @@
 class StatusesController < ApplicationController
 
 	before_filter :load_statusable
-
+	before_filter :authorize
 	def index
 		@statuses = @statusable.statuses
 	end

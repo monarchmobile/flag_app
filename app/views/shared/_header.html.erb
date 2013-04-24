@@ -24,7 +24,7 @@
                 <%= content_tag :li, link_to("Scrapbook", root_path+"users/"+current_user.id.to_s+"/scrapbook/day") %>
 
             <% else %>
-                <%= content_tag :li, link_to("Scrapbook", book_path) %>
+                <%= content_tag :li, link_to("Scrapbook", book_path) if current_user %>
 
             <% end %>
           </ul>

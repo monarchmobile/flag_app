@@ -1,5 +1,6 @@
 class RolesController < ApplicationController 
 	layout 'dashboard'
+	before_filter :authorize
 	def new 
 		@role = Role.new	
 	end

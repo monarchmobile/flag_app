@@ -1,7 +1,7 @@
 class AnnouncementsController < ApplicationController 
 
 	layout :resolve_layout
-	
+	before_filter :authorize
 	def index
 		all_announcement_states
 		@announcements = Announcement.all

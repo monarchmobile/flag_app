@@ -1,5 +1,6 @@
 class PartialsController < ApplicationController
 	layout :resolve_layout
+	before_filter :authorize
 	def new
 		@partial = Partial.new
 	end

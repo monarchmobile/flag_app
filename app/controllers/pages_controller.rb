@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 	before_filter :find_page, :only => [:show, :edit, :update, :destroy, :status ]
 	before_filter :all_page_states, :only => [:index, :update, :sort, :status ]
 	layout :resolve_layout
+	before_filter :authorize, :except => [:show]
 	def new 
 		@page = Page.new
 		@links = Link.all

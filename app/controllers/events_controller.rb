@@ -1,6 +1,6 @@
  class EventsController < ApplicationController 
   layout :resolve_layout
-
+  before_filter :authorize
   def index
     all_event_states
     @events = Event.all

@@ -1,7 +1,7 @@
 class SupermodelsController < ApplicationController
  
 	layout 'dashboard'
-
+	before_filter :authorize
 	def new 
 		@supermodel = Supermodel.new
 	end

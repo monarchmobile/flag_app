@@ -2,10 +2,10 @@ class UsersController < ApplicationController
 	respond_to :html, :json 
 	include ApplicationHelper  
 	layout :resolve_layout, :except => :new
- 
+ 	before_filter :authorize, :except => :new
 	def index 
 		all_user_states
-		restrict_access unless current_user && current_user.role_ids.include?(@ids[0] || @ids[1])
+		
 	end
 
 	def member_index
