@@ -38,6 +38,7 @@
           </ul> -->
 
           <ul class="right nav_bar">
+              <li><a class="movie" href="/"><%= image_tag "movie.png", :size => "35x30", class:"right" %></a></li>
               <%= content_tag :li, link_to(current_user.first_name, user_path(current_user.id)) if current_user && current_user.guest == false %>
               <% if current_user %>
                   <% if current_user.guest? %>
