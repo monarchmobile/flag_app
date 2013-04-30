@@ -1,6 +1,6 @@
 <div class="field">
     <%= f.label :geo_area, "Area you represent in the US" %><br />
-    <%= f.select :geo_area, options_for_select(Arrays::Geo_area, Arrays::Geo_area[@user.geo_area] ) %>
+    <%= f.select :geo_area, options_for_select(Arrays::Geo_area, show_area_if_area(@user)), {:prompt => 'Select a Region'} %>
 </div>
 <div class="field">
     <%= f.label :program_ids, "Programs you are involved with" %><br />

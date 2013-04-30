@@ -674,4 +674,10 @@ module ApplicationHelper
   	user.approved 
   end
 
+  def show_area_if_area(user)
+  	if !user.geo_area.blank?
+  		Arrays::Geo_area[user.geo_area]
+  	end
+  end
+
 end

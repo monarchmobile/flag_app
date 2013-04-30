@@ -45,7 +45,7 @@
                         <% end %>
                     <% end %>
                 
-                    <%= content_tag :li, "I work with #{programs.join(', ')}" %>
+                    <%= content_tag :li, "I work with #{programs.join(', ')}" if !@user.program_ids.blank?%>
                     <%= content_tag :li, "email: #{@user.email}" %>
                     <%= content_tag :li, "phone: #{@user.phone}" %>
                     <%= content_tag :li, "What I love about FLAG: #{@user.flag_comments}" %>
