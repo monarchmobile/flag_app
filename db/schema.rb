@@ -129,13 +129,10 @@ ActiveRecord::Schema.define(:version => 20130430171522) do
 
   create_table "programs", :force => true do |t|
     t.string   "name"
-    t.integer  "programmable_id"
-    t.string   "programmable_type"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "programs", ["programmable_id", "programmable_type"], :name => "index_programs_on_programmable_id_and_programmable_type"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -173,6 +170,11 @@ ActiveRecord::Schema.define(:version => 20130430171522) do
     t.boolean  "visible"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_programs", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "program_id"
   end
 
   create_table "users", :force => true do |t|

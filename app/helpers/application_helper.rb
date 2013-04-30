@@ -670,4 +670,8 @@ module ApplicationHelper
     end
   end
 
+  def user_approved(user)
+  	user.approved 
+  end
+
 end

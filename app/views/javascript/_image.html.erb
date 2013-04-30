@@ -106,7 +106,7 @@ $(document).ready(function() {
     // *** Timeline add image to scrap page ***
     if (<%= members_page(@user) %>) {
         $(".thumb_drag").draggable({
-            containment: ".master_container",
+            containment: ".master_container .main #day_images",
             revert: "valid"
         })
     }
@@ -332,7 +332,7 @@ $(document).ready(function() {
     if (<%= members_page(@user) %>) {
         $(".image_container").draggable({
             disabled: false,
-            containment: $(".master_container"),
+            containment: $(".master_container .main"),
             stop: function() {
                 $(this).get_vars()
                 // new vars

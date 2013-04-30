@@ -1,7 +1,11 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
+updateCountdown = ->
+  
+  # 140 is the max message length
+  remaining = 140 - jQuery(".message").val().length
+  jQuery(".countdown").text remaining + " characters remaining."
 
 jQuery ->
 	$(".flag_feed ul li:nth-child(3n+1)").addClass "first"
@@ -62,6 +66,10 @@ jQuery ->
 			$(this).html("Approved").addClass("green_background").removeClass("red_background")
 
 	$('.best_in_place').best_in_place()
+
+	updateCountdown()
+	$(".message").change updateCountdown
+	$(".message").keyup updateCountdown
 
 
 

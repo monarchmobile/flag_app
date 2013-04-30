@@ -1,63 +1,19 @@
-Rod
-	-set all approved users to:
-	guest: false
-	-events
-	-dashboard users/ set into 3 categories
 
-
-
-
-andrew
-	-style the close button on signin.
-		scaffold.css
-
-
-4 of 5 events on front page
-	click here for more photos
-
-	no landing page
-	home, community page side with event list, last 5
-	link to list of all event that kids have done
-
-	add caption to community page
-	make title mandatory on image
-
-	make sure pencil not hidden
-
-
-	ability to upload more than one picture at a time ?
-
-	student, coordinator
-
-	staff
-
-	separate within dashboard/index
-
-	student sign up 
-		choose
-
--things to fix
-	-index of supermodels
-		not calculating hidden
-	-index of users
-		not calculating users waiting to be approved
-		set guest to false when someone signs up in form
-
--- need message for forgot password
 
 april 29
 
+**ROD**
 -- coordinator "learn more about me"
 --coordinator profile landing page
 
---next 2 textbox should be 140 char or less
-
---form checkbox
---list of programs on coordinator profile: "I work with YES, FLEX, CBYX"
+--browser resize keep images in containing container  -- *** not really working
+-- need message for forgot password
 
 
---browser resize keep images in containing container
---unapproved user limit abilities to read only, not upload pics
+**Andrew**
+	style the character left for flag comments on users/shared/_profile.html.erb
+	-style the close button on signin.
+		scaffold.css
 		
 	
 

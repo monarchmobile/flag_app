@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		@programs = Program.all
 		role_choices
 		if members_page(@user) 
 			@roles = Role.find(:all, :conditions => ["name IN (?)", ["Student", "Staff"]])
@@ -47,6 +48,8 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		@programs = Program.all
+		@program_ids = params[:user][:program_ids]
 		all_user_states
 		@user = User.find(params[:id])
 		if params[:user][:programs]
@@ -100,6 +103,16 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def destroy
+		@user = User.find(params[:id])
+		@user.destroy
+		@user.program_ids=[]
+		respond_to do |format|
+			format.html {redirect_to dashboard_path}
+			format.js
+		end
+	end
+	
 	def sort
     all_user_states
     params[:user].each_with_index do |id, index|

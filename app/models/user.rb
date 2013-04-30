@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base  
   # attributes by row %w[ stock admin added virtual ]
   attr_accessible :email, :first_name, :last_name, :password_confirmation, :password, :username
-  attr_accessible :roles, :approved, :role_ids, :position
+  attr_accessible :roles, :approved, :role_ids, :position, :program_ids
   attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
   attr_accessible :user_type, :guest, :host_state, :host_country
-  attr_accessible :geo_area, :programs, :flag_comments, :hobbies
+  attr_accessible :geo_area, :flag_comments, :hobbies
   # attr_accessible :
   # has_secure_password
   before_create { generate_token(:auth_token) }
@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   before_create :setup_role
 
   has_and_belongs_to_many :roles
+  has_many :user_programs
+  has_many :programs, :through => :user_programs
     
   validates_presence_of :password_digest, :first_name, :last_name, unless: :guest?
   validates_confirmation_of :password
