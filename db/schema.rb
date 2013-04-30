@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430123540) do
+ActiveRecord::Schema.define(:version => 20130430171522) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -127,6 +127,16 @@ ActiveRecord::Schema.define(:version => 20130430123540) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "programs", :force => true do |t|
+    t.string   "name"
+    t.integer  "programmable_id"
+    t.string   "programmable_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "programs", ["programmable_id", "programmable_type"], :name => "index_programs_on_programmable_id_and_programmable_type"
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",  :null => false
@@ -194,6 +204,10 @@ ActiveRecord::Schema.define(:version => 20130430123540) do
     t.string   "username"
     t.string   "host_state"
     t.string   "host_country"
+    t.integer  "geo_area"
+    t.integer  "programs"
+    t.text     "flag_comments"
+    t.text     "hobbies"
   end
 
   create_table "votes", :force => true do |t|

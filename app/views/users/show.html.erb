@@ -2,6 +2,8 @@
 <%= flash[:notice] %>
 <%= link_to "create announcement", new_announcement_path if admin?(current_user) %>
 <h1>Profile Page</h1>
+<% student = Role.find_by_name("Student").id %>
+<% if @user.role_ids.include?(student) %>
     <div class="sidebar">
         <% if !@user.guest? %>
             <div class="profile_container sidbar_tables">
@@ -9,34 +11,64 @@
                     
                     <%= content_tag :li, @user.username %>
                     <%= content_tag :li, "Host State: #{@user.host_state}" if !@user.host_state.blank? %>
-                    <%= content_tag :li, "Country of Origin: #{@user.host_country}" if !@user.host_country.blank?%>
+                    <%= content_tag :li, "Country of Origin: #{@user.host_country}" if !@user.host_country.blank? %>
                     
                     <% if admin?(current_user) %>
-                        <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %><li>
+                        <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %></li>
                     <% end %>
                 	<li><%= link_to "update profile", edit_user_path if members_page(@user) %></li>
-                    <li><%= link_to "Scrapbook", day_path() if !@user.guest? %>
+                    <li><%= link_to "Scrapbook", day_path() if !@user.guest? %></li>
                 </ul>    
             </div>
         <% end %>
         <br class="clear">
     </div>
-<div class="flag_feed">
-    <% @random_images = Image.order("date_taken DESC").limit(9) %>
-    <% n = 0 %>
-    <ul>
-    <% @random_images.each do |image| %>
-        <li class="img_feed_container" data-counter = "<%= n+=1 %>" >
-            <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
-            <div class="img_content_container hide image_desc">
-                <%= content_tag :div, image.content, class: "image_content" %>
-                <%= link_to content_tag(:div, "Image taken by #{image.user.last_name} on #{image.date_taken.strftime("%B %d, %Y")}"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
+<% end %>
+<% coordinator = Role.find_by_name("Coordinator").id %>
+<% if @user.role_ids.include?(coordinator) %>
+    <div class="sidebar">
+        
+            <div class="profile_container sidbar_tables">
+                <ul>
+                    
+                    <%= content_tag :li, @user.username %>
+                    
+                    <% Arrays::Geo_area.each_with_index do |value, index|  %>
+                      <% if index == @user.geo_area %>
+                        <%= content_tag :li,"Region: #{value[0]}" %>
+                      <% end %>
+                    <% end %>
+                    <%= content_tag :li, "email: #{@user.email}" %>
+                    <%= content_tag :li, "phone: #{@user.phone}" %>
+                    <%= content_tag :li, "What I love about FLAG: #{@user.flag_comments}" %>
+                    <%= content_tag :li, "Hobbies #{@user.hobbies}" %>
+                    <% if admin?(current_user) %>
+                        <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %></li>
+                    <% end %>
+                    <li><%= link_to "update profile", edit_user_path if members_page(@user) %></li>
+                    <li><%= link_to "Scrapbook", day_path() if !@user.guest? %></li>
+                </ul>    
             </div>
-        </li>
-    <% end %>
-    </ul> 
+       
+        <br class="clear">
+    </div>
+<% end %>
+<div class="flag_feed">
+    <div class="col_one columns">
+        <%= render @column_one_images %>
+    </div>
+
+    <div class="col_two columns">
+        <%= render @column_two_images %>
+    </div>
+
+    <div class="col_three columns">
+        <%= render @column_three_images %>
+    </div>
+
     <br class="clear"/>
 </div>
+
 <br class="clear">
 
 

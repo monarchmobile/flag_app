@@ -46,16 +46,20 @@ andrew
 -- need message for forgot password
 
 april 29
--- hide journal and create a tab to show for user only
--- put pencil below sign_out, not on red
--- one click show div and writable
--- only user sees the diary icon
+
 -- coordinator "learn more about me"
 	coordinator profile landing page
 		info in task #1375
 		checkboxes for programs part of
 		dropdown for regions
 		next 2 textbox should be 140 char or less
+
+		checkbox : "I work with YES, FLEX, CBYX"
+Also: geographic area, email, telephone #, Programs (YES, FLEX, CBYX), what I love most about exchange, hobbies.
+geo_area
+programs
+flag_comments
+hobbies
 
 --browser resize keep images in containing container
 --unapproved user limit abilities to read only, not upload pics

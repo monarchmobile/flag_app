@@ -44,9 +44,25 @@
 </div>
 <div class="field">
     <%= f.label :host_state%><br />
-    <%= f.select :host_state, Arrays::STATES %>
+    <%= f.select :host_state, Arrays::STATES  %>
 </div>
 <div class="field">
     <%= f.label :host_country%><br />
     <%= f.text_field :host_country, :value => "USA" %>
 </div>
+
+<div class="field">
+    <%= f.label :geo_area %><br />
+    <%= f.select :geo_area, options_for_select(Arrays::Geo_area, Arrays::Geo_area[@user.geo_area] ) %>
+</div>
+
+
+<div class="field">
+    <%= f.label :flag_comments %><br />
+    <%= f.text_area :flag_comments, :length => 140 %>
+</div>
+<div class="field">
+    <%= f.label :hobbies %><br />
+    <%= f.text_area :hobbies, :length => 140 %>
+</div>
+
