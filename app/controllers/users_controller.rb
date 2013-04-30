@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 	def member_index
 		@announcements = Announcement.all
 		@events = Event.all
-		
+		last_50_images
 	end
 	
 	def new 
@@ -22,22 +22,7 @@ class UsersController < ApplicationController
 	
 	def show
 		@user = User.find(params[:id])
-		image_ids = Image.order("date_taken DESC").limit(50).select("id")
-		
-		col1 = (0..(image_ids.count-1)).step(3)
-		col1_array = []
-		col1.each do |c1| col1_array.push(image_ids[c1]) end
-		@column_one_images = Image.where("id In (?)", col1_array)
-
-		col2 = (1..(image_ids.count-1)).step(3)
-		col2_array = []
-		col2.each do |c2| col2_array.push(image_ids[c2]) end
-		@column_two_images = Image.where("id In (?)", col2_array)
-
-		col3 = (2..(image_ids.count-1)).step(3)
-		col3_array = []
-		col3.each do |c3| col3_array.push(image_ids[c3]) end
-		@column_three_images = Image.where("id In (?)", col3_array)
+		last_50_images
 		if @user.guest?
 			restrict_access
 		else
@@ -138,5 +123,24 @@ class UsersController < ApplicationController
 	 	@master_ids = [admin_id, superadmin_id] 
 	  @role_ids = current_user.role_ids if current_user
 	 	@ids = @master_ids & @role_ids.to_a
+	end
+
+	def last_50_images
+		image_ids = Image.order("date_taken DESC").limit(50).select("id")
+		
+		col1 = (0..(image_ids.count-1)).step(3)
+		col1_array = []
+		col1.each do |c1| col1_array.push(image_ids[c1]) end
+		@column_one_images = Image.where("id In (?)", col1_array)
+
+		col2 = (1..(image_ids.count-1)).step(3)
+		col2_array = []
+		col2.each do |c2| col2_array.push(image_ids[c2]) end
+		@column_two_images = Image.where("id In (?)", col2_array)
+
+		col3 = (2..(image_ids.count-1)).step(3)
+		col3_array = []
+		col3.each do |c3| col3_array.push(image_ids[c3]) end
+		@column_three_images = Image.where("id In (?)", col3_array)
 	end
 end

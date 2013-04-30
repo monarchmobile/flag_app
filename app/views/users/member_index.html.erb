@@ -1,18 +1,16 @@
-<h1>Community</h1> 
+<h1>Community</h1>  
 <%= render 'shared/sidebar' %>
 <div class="flag_feed">
-    <% @random_images = Image.order("date_taken DESC").limit(9) %>
-    <% n = 0 %>
-    <ul>
-    <% @random_images.each do |image| %>
-        <li class="img_feed_container" data-counter = "<%= n+=1 %>" >
-            <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
-            <div class="img_content_container hide image_desc">
-                <%= content_tag :div, image.content, class: "image_content" %>
-                <%= link_to content_tag(:div, "Image taken by #{image.user.last_name} on #{image.date_taken.strftime("%B %d, %Y")}"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
-            </div>
-        </li>
-    <% end %>
-    </ul> 
+    <div class="col_one columns">
+        <%= render @column_one_images %>
+    </div>
+
+    <div class="col_two columns">
+        <%= render @column_two_images %>
+    </div>
+
+    <div class="col_three columns">
+        <%= render @column_three_images %>
+    </div>
     <br class="clear"/>
 </div>
