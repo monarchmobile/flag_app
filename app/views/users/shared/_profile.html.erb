@@ -50,29 +50,6 @@
     <%= f.label :host_country%><br />
     <%= f.text_field :host_country, :value => "USA" %>
 </div>
-
-<div class="field">
-    <%= f.label :geo_area, "Area you represent in the US" %><br />
-    <%= f.select :geo_area, options_for_select(Arrays::Geo_area, Arrays::Geo_area[@user.geo_area] ) %>
-</div>
-<div class="field">
-    <%= f.label :program_ids, "Programs you are involved with" %><br />
-    <%= hidden_field_tag "user[program_ids][]", nil %>
-    <% Program.all.each do |program| %>
-      <%= check_box_tag "user[program_ids][]", program.id, @user.program_ids.include?(program.id), id: dom_id(program) %>  
-        <%= label_tag dom_id(program), program.name, class: "check_box_label"%><br>
-    <% end %>
-</div>
-
-<div class="field">
-    <%= f.label :flag_comments, "What I love most about exchange (140 character or less)" %><br />
-    <%= f.text_area :flag_comments, :maxlength => 140, class: "message", :rows => "3", :cols => "35" %><br />
-    <span class="countdown" style="color:#fff;"></span>
-</div>
-
-
-<div class="field">
-    <%= f.label :hobbies %><br />
-    <%= f.text_area :hobbies, :length => 140 %>
-</div>
+<% coordinator = Role.find_by_name("Coordinator").id %>
+<%= render 'users/shared/coordinators', f: f if @user.role_ids.include?(coordinator) %>
 
