@@ -671,7 +671,7 @@ module ApplicationHelper
   end
 
   def user_approved(user)
-  	user.approved 
+  	user.approved == true
   end
 
   def show_area_if_area(user)

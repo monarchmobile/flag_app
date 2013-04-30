@@ -1,9 +1,10 @@
-<!-- click on journal_btn and journal form shows in journal container -->
-<div id="photo_form"></div>  
-<%= content_tag :div, "", class: "photo_btn cont_btn_style", :"data-date" => @beg_range if members_page(@user) if user_approved(@user) %>
-
-<div id="journal_form"></div>
+<!-- click on journal_btn and journal form shows in journal container --> 
 <% if user_approved(@user) %>
+	<div id="photo_form"></div>  
+	<%= content_tag :div, "", class: "photo_btn cont_btn_style", :"data-date" => @beg_range if members_page(@user) %>
+
+	<div id="journal_form"></div>
+
 	<% if !@journal.any? %> 	
 		<%= content_tag :div, "", class: "journal_btn cont_btn_style", :"data-date" => @beg_range, :"data-range" => page, :"data-root" => root_path if members_page(@user) %>
 	<% else %>
