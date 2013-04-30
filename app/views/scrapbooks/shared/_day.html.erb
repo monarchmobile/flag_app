@@ -7,7 +7,7 @@
 </div>
 
 <%= render('scrapbooks/shared/up_down_prev_next_links') %>
-<%= render('journals/journal_script')  %>
+<%= render('journals/journal_script') if members_page(@user) %>
 
 <!-- Nav_menu toggling through form submission changing nav_menu boolean -->
 <div class="nav_btns delete_nav_btn nav_btn_style" data-root="<%= root_path %>" ></div>

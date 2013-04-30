@@ -524,21 +524,30 @@ height:42px;
 	background: url("icons.png") no-repeat -344px -170px;
 }
 
-.journal_btn {
-	width:30px;
-	height:30px;
+.show_journal_entry {
+	width: 30px;
+	height: 30px;
+	z-index: 99999;
 	position: absolute;
-	margin-left: 697px;
-	z-index:1;
-	top: 122px;
+	top: 11px;
+	margin-left: 646px;
 	background: url("icons.png") no-repeat -130px -36px;
 }
 
-.journal_btn:hover {
+.journal_btn {
+	width: 30px;
+height: 30px;
+z-index: 99999;
+top: 11px;
+margin-left: 646px;
+background: url("icons.png") no-repeat -130px -36px;
+}
+
+.journal_btn:hover, .show_journal_entry:hover {
 	background: url("icons.png") no-repeat -130px -117px;
 }
 
-.journal_btn:active {
+.journal_btn:active, .show_journal_entry:active {
 	background: url("icons.png") no-repeat -130px -185px;
 }
 	
@@ -704,6 +713,7 @@ margin-left: 300px;
 	margin-left: 660px;
 	position: absolute;
 	background:url('/assets/journal.png') no-repeat;
+	display:none;
 
 	.journal_content {
 		width:250px;

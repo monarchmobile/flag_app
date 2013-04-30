@@ -7,10 +7,10 @@
             <div class="profile_container sidbar_tables">
                 <ul>
                     
-                    <li><%= best_in_place_if members_page(@user), @user, :first_name %> <%= best_in_place_if members_page(@user), @user, :last_name %></li>
-                    <li>City:<%= best_in_place_if members_page(@user), @user, :city %></li>
-                    <li>School Attending:<%= best_in_place_if members_page(@user), @user, :school %></li>
-                    <li>Email:<%= best_in_place_if members_page(@user), @user, :email %></li>
+                    <%= content_tag :li, @user.username %>
+                    <%= content_tag :li, "Host State: #{@user.host_state}" if !@user.host_state.blank? %>
+                    <%= content_tag :li, "Country of Origin: #{@user.host_country}" if !@user.host_country.blank?%>
+                    
                     <% if admin?(current_user) %>
                         <li>User Type: <%= best_in_place @user, :user_type, :type => :select, :collection => [[1, "Admin"], [2, "Student"]] %><li>
                     <% end %>

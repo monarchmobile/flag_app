@@ -172,8 +172,15 @@ $(document).ready(function() {
         background_fadeOut.fadeOut("slow")
     })
 
+    $(".show_journal_entry").toggle(function() {
+        $("#journal_container .journal_container").show()
+    }, function() {
+        $("#journal_container .journal_container").hide()
+    })
+
     // add journal
     $(".journal_btn").toggle(function() {
+        $("#journal_container .journal_container").show()
         $(this).get_vars()
         // new vars 
         date = $(this).attr("data-date")
@@ -189,6 +196,7 @@ $(document).ready(function() {
         });
         return false;
     }, function() {
+        $("#journal_container .journal_container").hide()
         $(this).prev("#journal_form").hide()
     })
     // *** END New Entries END ***

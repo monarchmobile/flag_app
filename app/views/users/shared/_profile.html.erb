@@ -42,3 +42,11 @@
 	<%= f.label :family%><br />
 	<%= f.text_field :family %>
 </div>
+<div class="field">
+    <%= f.label :host_state%><br />
+    <%= f.select :host_state, Arrays::STATES %>
+</div>
+<div class="field">
+    <%= f.label :host_country%><br />
+    <%= f.text_field :host_country, :value => "USA" %>
+</div>

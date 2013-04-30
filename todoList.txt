@@ -44,6 +44,21 @@ andrew
 		set guest to false when someone signs up in form
 
 -- need message for forgot password
+
+april 29
+-- hide journal and create a tab to show for user only
+-- put pencil below sign_out, not on red
+-- one click show div and writable
+-- only user sees the diary icon
+-- coordinator "learn more about me"
+	coordinator profile landing page
+		info in task #1375
+		checkboxes for programs part of
+		dropdown for regions
+		next 2 textbox should be 140 char or less
+
+--browser resize keep images in containing container
+--unapproved user limit abilities to read only, not upload pics
 		
 	
 

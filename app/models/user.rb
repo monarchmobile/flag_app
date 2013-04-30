@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base  
   # attributes by row %w[ stock admin added virtual ]
-  attr_accessible :email, :first_name, :last_name, :password_confirmation, :password
+  attr_accessible :email, :first_name, :last_name, :password_confirmation, :password, :username
   attr_accessible :roles, :approved, :role_ids, :position
   attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
-  attr_accessible :user_type, :guest, 
+  attr_accessible :user_type, :guest, :host_state, :host_country
   # attr_accessible :
   # has_secure_password
   before_create { generate_token(:auth_token) }
