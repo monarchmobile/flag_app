@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422183623) do
+ActiveRecord::Schema.define(:version => 20130430123540) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -191,6 +191,9 @@ ActiveRecord::Schema.define(:version => 20130422183623) do
     t.string   "member_photo"
     t.boolean  "approved",               :default => false
     t.integer  "position"
+    t.string   "username"
+    t.string   "host_state"
+    t.string   "host_country"
   end
 
   create_table "votes", :force => true do |t|
