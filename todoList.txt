@@ -19,3 +19,4 @@ april 29
 	need an gmail address to send these notices from
 
 ** announcement mailer only works on new, not update on announcements/index
+** needs place to put message
