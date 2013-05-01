@@ -1,7 +1,9 @@
 <!-- click on journal_btn and journal form shows in journal container --> 
-<div id="learn_more">
-	<%= link_to "Learn more about me", "/users/#{@user.id}" if @user.role? :Coordinator %>
-</div>
+<% unless current_user.role? :Coordinator %>
+	<div id="learn_more">
+		<%= link_to "Learn more about me", "/users/#{@user.id}" if @user.role? :Coordinator  %>
+	</div>
+<% end %>
 
 <% if user_approved(@user) %>
 	<div id="photo_form"></div>  
