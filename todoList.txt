@@ -14,3 +14,8 @@ april 29
 	style the character left for flag comments on users/shared/_profile.html.erb
 	-style the close button on signin.
 		scaffold.css
+
+*FLAG
+	need an gmail address to send these notices from
+
+** announcement mailer only works on new, not update on announcements/index
