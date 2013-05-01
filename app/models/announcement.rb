@@ -1,6 +1,7 @@
 class Announcement < ActiveRecord::Base
   attr_accessible :message, :title
   attr_accessible :starts_at, :ends_at, :current_state, :position
+  attr_accessible :send_at, :send_list, :sent, :send_list_array
 
   before_create :set_position
   include MyDateFormats
@@ -11,6 +12,30 @@ class Announcement < ActiveRecord::Base
   	result = where("starts_at <= :now and ends_at >= :now", now: Time.zone.now)
   	result = result.where("id not in (?)", hidden_ids) if hidden_ids.present?
   	result
+  end
+
+  def send_list_array=(ids)
+    self.send_list = ids.join(',')
+  end
+
+  # turn into array
+  def send_list_array
+    new_array = []
+    if self.send_list.length > 0
+      group_array = self.send_list.split(',').to_a
+      group_array.each do |g|
+        new_array.push(g.to_i)
+      end
+    end
+      
+    return new_array
+  end
+
+  # send email to user to reset password
+  def send_announcement_email
+    self.send_at = Time.zone.now
+    save!
+    UserMailer.announcement_notice(self).deliver
   end
 
   def is_published?

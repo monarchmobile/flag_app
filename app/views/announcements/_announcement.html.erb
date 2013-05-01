@@ -13,13 +13,13 @@
 			<%= form_for announcement, :html => {:class=> "announcement_ajax_starts_at"}, :url => {controller: "announcements", action: "announcement_starts_at", id: announcement.id }, :params => [:announcement], remote: true do |a| %>
 				<%= a.text_field :starts_at, :id => "message_#{announcement.id}_starts_at", :class => "announcement_message_starts_at" %>
 			<% end %>
-			<%= content_tag :li, announcement.month_day_year(announcement.starts_at), class: "starts_at_date at_date #{check_if_draft(announcement)}", id: "message_#{announcement.id}_starts_at_text"  %>
+			<%= content_tag :li, announcement.month_day_year(announcement.starts_at), class: "starts_at_date at_date #{check_if_draft(announcement)}", id: "message_#{announcement.id}_starts_at_text" if announcement.starts_at %>
 
 			<!-- dynamic form for picking ends_at -->
 			<%= form_for announcement, :html => {:class=> "announcement_ajax_ends_at"}, :url => {controller: "announcements", action: "announcement_ends_at", id: announcement.id }, :params => [:announcement], remote: true do |a| %>
 				<%= a.text_field :ends_at, :id => "message_#{announcement.id}_start_at", :class => "announcement_message_ends_at" %>
 			<% end %>
-			<%= content_tag :li, announcement.month_day_year(announcement.ends_at), class: "ends_at_date at_date #{check_if_draft(announcement)}", id: "message_#{announcement.id}_ends_at_text"  %>
+			<%= content_tag :li, announcement.month_day_year(announcement.ends_at), class: "ends_at_date at_date #{check_if_draft(announcement)}", id: "message_#{announcement.id}_ends_at_text" if announcement.ends_at %>
 
 		</div>
 		

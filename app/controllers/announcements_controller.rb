@@ -9,12 +9,16 @@ class AnnouncementsController < ApplicationController
 
 	def new
 		@announcement = Announcement.new
+		@recipients = Role.all
+		@announcement.send_list = []
 	end
 
 	def create
 		@announcement = Announcement.new(params[:announcement])
 		respond_to do |format|
 			if @announcement.save
+				# published = Status.find_by_status_name("published").id
+				@announcement.send_announcement_email if @announcement.is_published?
 				format.html { redirect_to dashboard_path }
 				format.js
 			else
@@ -39,6 +43,7 @@ class AnnouncementsController < ApplicationController
   end
 
 	def edit
+		@recipients = Role.all
 		find_announcement
 		respond_to do |format|
 			format.html { render 'edit' }
@@ -49,6 +54,7 @@ class AnnouncementsController < ApplicationController
 	def update
 		all_announcement_states
 		find_announcement
+		@announcement.send_list = params[:announcement][:send_list_array]
 		position = params[:announcement][:position]
 		current_state = params[:announcement][:current_state]
 		published = Status.find_by_status_name("published").id
@@ -57,7 +63,7 @@ class AnnouncementsController < ApplicationController
 		end
 		respond_to do |format|
 			if @announcement.update_attributes(params[:announcement])
-				format.html { redirect_to users_path, notice: "changes saved" }
+				format.html { redirect_to announcements_path, notice: "changes saved" }
 				format.js
 			end
 		end

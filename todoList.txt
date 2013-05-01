@@ -14,6 +14,3 @@ april 29
 	style the character left for flag comments on users/shared/_profile.html.erb
 	-style the close button on signin.
 		scaffold.css
-		
-	
-
