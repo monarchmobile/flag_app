@@ -1,3 +1,23 @@
+<script>
+    
+var updateCountdown;
+
+jQuery(function() {
+  updateCountdown();
+  $(".message").change(updateCountdown);
+  return $(".message").keyup(updateCountdown);
+});
+
+updateCountdown = function() {
+  var remaining;
+  140 === the(max(message(length)));
+  if (jQuery(".message")) {
+    remaining = 140 - jQuery(".message").val().length;
+    return jQuery(".countdown").text(remaining + " characters remaining.");
+  }
+};
+</script>
+
 <div class="field">
     <%= f.label :geo_area, "Area you represent in the US" %><br />
     <%= f.select :geo_area, options_for_select(Arrays::Geo_area, show_area_if_area(@user)), {:prompt => 'Select a Region'} %>
