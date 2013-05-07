@@ -2,7 +2,7 @@ jQuery ->
 # index
 	$("#published_announcements").sortable
     axis: "y"
-    handle: ".handle"
+    handle: ".handle" 
     update: ->
       $.post $(this).data("update-url"), $(this).sortable("serialize")
 

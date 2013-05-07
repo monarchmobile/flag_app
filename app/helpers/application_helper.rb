@@ -681,14 +681,21 @@ module ApplicationHelper
   def reset_current_state(model)
   	scheduled = Status.find_by_status_name("scheduled").id
 		published = Status.find_by_status_name("published").id
+		draft = Status.find_by_status_name("draft").id
 		anns = Describe.new(model).partial
 		anns.each do |a|
-			if !a.starts_at.blank? && a.starts_at <= Date.today && a.current_state == scheduled
+			if !a.starts_at.blank? && a.starts_at <= Date.today
 				a.update_attributes(current_state: published)
+			elsif !a.starts_at.blank? && a.starts_at > Date.today
+				a.update_attributes(current_state: scheduled)
 			end
 			
-			if !a.ends_at.blank? && a.ends_at <= Date.today-1 && a.current_state == published
-				a.update_attributes(current_state: scheduled)
+			if !a.ends_at.blank? && a.ends_at <= Date.today-1
+				a.update_attributes(current_state: draft)
+			end
+
+			if a.starts_at.blank?
+				a.update_attributes(current_state: draft)
 			end
 		end
   end
