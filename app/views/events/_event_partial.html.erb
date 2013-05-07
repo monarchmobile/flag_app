@@ -1,14 +1,16 @@
-<div class="sidbar_tables">
-	<h2>Upcoming Events</h2>
-	<% @events_partial.each do |e| %>
-		<div class="item">
-			<ul class="table_row">
-				<%= content_tag :li, e.title, class: "title" %>
-				<%= content_tag :li, e.body, class: "message" %>
-				
-			</ul>
-			<br class="clear">
-		</div>
-	<% end %>
+<div class="sidebar">
+	<div class="sidbar_tables">
+		<h2>Upcoming Events</h2>
+		<% @events_partial.each do |e| %>
+			<div class="item">
+				<ul class="table_row">
+					<%= content_tag :li, e.title, class: "title" %>
+					<%= content_tag :li, e.body, class: "message" %>
+					
+				</ul>
+				<br class="clear">
+			</div>
+		<% end %>
+	</div>
 </div>
 

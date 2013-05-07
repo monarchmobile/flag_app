@@ -9,8 +9,10 @@ class UsersController < ApplicationController
 	end
 
 	def member_index
-		@announcements = Announcement.all
-		@events = Event.all
+		reset_current_state(Announcement)
+		reset_current_state(Event)
+		@announcements = Announcement.limit(5).order("starts_at DESC").published
+		@events = Event.limit(5).order("starts_at DESC").published
 		last_50_images
 	end
 	

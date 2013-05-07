@@ -4,7 +4,7 @@ class AnnouncementsController < ApplicationController
 	before_filter :authorize
 	def index
 		all_announcement_states
-		@announcements = Announcement.all
+		@announcements = Announcement.published
 	end
 
 	def new
@@ -37,7 +37,9 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def announcement_partial
-    @announcements_partial = Describe.new(Announcement).partial
+		reset_current_state(Announcement)
+
+    @announcements_partial = Describe.new(Announcement).partial.published
     @model_name = "Announcement"
     render 'shared/quick_partial_view', model_name: @model_name
   end

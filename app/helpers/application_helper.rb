@@ -675,9 +675,22 @@ module ApplicationHelper
   end
 
   def show_area_if_area(user)
-  	if !user.geo_area.blank?
-  		Arrays::Geo_area[user.geo_area]
-  	end
+  		user.geo_area unless user.geo_area.blank?
+  end
+
+  def reset_current_state(model)
+  	scheduled = Status.find_by_status_name("scheduled").id
+		published = Status.find_by_status_name("published").id
+		anns = Describe.new(model).partial
+		anns.each do |a|
+			if !a.starts_at.blank? && a.starts_at <= Date.today && a.current_state == scheduled
+				a.update_attributes(current_state: published)
+			end
+			
+			if !a.ends_at.blank? && a.ends_at <= Date.today-1 && a.current_state == published
+				a.update_attributes(current_state: scheduled)
+			end
+		end
   end
 
 end

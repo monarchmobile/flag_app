@@ -27,7 +27,7 @@ module Arrays
 		'year_add' => 'add image to year gallery',
 		'year_remove' => 'remove image from this year\'s gallery'
 	}
-
+ 
 	Geo_area = [
 		['region 1', 0],
 		['region 2', 1],

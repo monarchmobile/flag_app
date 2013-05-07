@@ -1,16 +1,17 @@
 
-
-<div class="sidbar_tables">
-	<h2>Latest News</h2>
-	<% @announcements_partial.each do |a| %>
-		<div class="item">
-			<ul class="table_row">
-				<%= content_tag :li, a.title, class: "title"  %>
-				<%= content_tag :li, a.message, class: "message" %>
-				
-			</ul>
-			<br class="clear">
-		</div>
-	<% end %>
-	<br class="clear">
+<div class="sidebar">
+	<div class="sidbar_tables">
+		<h2>Latest News</h2>
+		<% @announcements_partial.each do |a| %>
+			<div class="item">
+				<ul class="table_row">
+					<%= content_tag :li, a.title, class: "title"  %>
+					<%= content_tag :li, a.message, class: "message" %>
+					
+				</ul>
+				<br class="clear">
+			</div>
+		<% end %>
+		<br class="clear">
+	</div>
 </div>

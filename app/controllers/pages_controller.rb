@@ -14,9 +14,12 @@ class PagesController < ApplicationController
 	end
 
 	def show 
+		reset_current_state(Announcement)
+		reset_current_state(Event)
+		
 		all_page_states
-		@announcements_partial = Announcement.limit(5).order("starts_at DESC")
-		@events_partial = Event.limit(5).order("starts_at DESC")
+		@announcements_partial = Announcement.limit(5).order("starts_at DESC").published
+		@events_partial = Event.limit(5).order("starts_at DESC").published
 	end
 
 	def edit 

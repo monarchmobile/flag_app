@@ -2,10 +2,7 @@
 $(document).ready(function() { 
 
 	$(".edit_announcement select").change(function() {
-		console.log($(this).val())
 		cur_value = $(this).children('option:selected').text();
-		console.log( cur_value)
-		Select.init()
 	})
 
 	$("#scheduled_status").hide()

@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
     images.find(:all, :conditions => {month: true})
   end
 
-  def self.new_guest
+  def self.new_guest 
     guest = Role.find_by_name("Guest").id
     new { |u| u.role_ids = [guest] }
   end

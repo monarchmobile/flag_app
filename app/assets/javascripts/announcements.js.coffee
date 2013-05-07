@@ -1,4 +1,4 @@
-jQuery ->
+jQuery -> 
 # index
 	$("#published_announcements").sortable
     axis: "y"

@@ -1,37 +1,12 @@
-announcement form
+ 
 
-one set of checkboxes to send email to 
-	-student
-	-staff
-	-coordinator
+May 2, Thursdsay
 
-checkboxes value go into an array called send_to_list
 
-sent_to_list
+first name on image hover shows date
 
-<div class="field">
-			<% group_array = @announcement.send_list_array.to_a %>
-			<% new_array = [] %>
-			<% group_array.each do |g| %>
-				<% new_array.push(g.to_i) if g %>
-			<% end %>
-			
-	    <%= f.label :send_list_array, "Check a group to send an email about this announcement" %><br />
-    	<% @recipients.each do |rec| %>
-	      <%= check_box_tag "announcement[send_list_array][]", rec.id, new_array.include?(rec.id), id: dom_id(rec) %>  
-      	<%= label_tag dom_id(rec), rec.name, class: "check_box_label" %><br> 
-	    <% end %>
-		    
-	</div>
 
-def send_list_array=(ids)
-    id_array = []
-    ids.each do |id|
-      id_array.push(id)
-    end
-    if id_array.length > 1
-      self.send_list = id_array.join(',')
-    else
-      self.send_list = id_array.join('')
-    end
-  end
+if today = start_date && current_state = sheduled
+	update_attribute(current_state: published)
+if today = end_date + 1 && current_state = published
+	update_attributes(current_state: sheduled)

@@ -7,7 +7,7 @@
 	<% end %>
 <% end %>
 
-<% if user_approved(@user) %>
+<% if user_approved(@user) && members_page(@user)%>
 	<div id="photo_form"></div>  
 	<%= content_tag :div, "", class: "photo_btn cont_btn_style", :"data-date" => @beg_range if members_page(@user) %>
 

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  include ApplicationHelper
 
   helper_method :converted_date, :correct_image, :restrict_access, :current_vote, :resolve_layout
   def converted_date(date)
