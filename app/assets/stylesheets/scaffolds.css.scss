@@ -1,4 +1,5 @@
 $theme_color: rgb(159,21,15);
+
 .super_admin {
   width:300px;
   height:auto;
@@ -25,7 +26,7 @@ $theme_color: rgb(159,21,15);
 }
 
 body {
-  background:url("background-camera.jpg") 50% 3% no-repeat;
+  background:url("background-camera.jpg") 50% -1% repeat-y;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;

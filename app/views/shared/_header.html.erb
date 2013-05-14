@@ -1,7 +1,9 @@
 <div class="header_container">  
  	<div class="thousand_wide_container ">
     <div class="flag_header_logo">
-        <%= image_tag "logo.png", class:"right students" %> 
+        <a href="/">
+          <%= image_tag "logo.png", class:"right students" %>
+        </a?   
     </div>
       <!-- Start of the nav bar content -->   
             <ul class="left nav_bar">
@@ -38,7 +40,7 @@
           </ul> -->
 
           <ul class="right nav_bar">
-              <li><a class="movie" href="/"><%= image_tag "movie.png", :size => "35x30", class:"right" %></a></li>
+              <li><a target="_blank" class="movie" href="https://www.youtube.com/watch?v=5aU97TvFPHM"><%= image_tag "movie.png", :size => "35x30", class:"right" %></a></li>
               <%= content_tag :li, link_to(current_user.first_name, user_path(current_user.id)) if current_user && current_user.guest == false %>
               <% if current_user %>
                   <% if current_user.guest? %>
