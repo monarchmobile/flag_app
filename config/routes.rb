@@ -35,6 +35,7 @@ FlagApp::Application.routes.draw do
   match "announcement_partial", :to => "announcements#announcement_partial"
   
   match "event_partial", :to => "events#event_partial"
+  match "image_partial", :to => "images#image_partial"
 
   resources :users do 
     collection { post :sort }

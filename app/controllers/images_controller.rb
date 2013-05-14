@@ -23,6 +23,12 @@ class ImagesController < ApplicationController
     end
   end
 
+  def image_partial
+    @images_partial = Image.order("RANDOM()").limit(10).last
+    @model_name = "Image"
+    render 'shared/quick_partial_view', model_name: @model_name
+  end
+
   # NEW
   def new
     @user = current_user
