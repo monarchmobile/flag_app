@@ -1,0 +1,15 @@
+<div class="sidebar">
+	<div class="sidbar_tables">
+		<h2>Upcoming Images</h2>
+		<% image = @images_partial %>
+		<li class="img_feed_container" >
+      <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
+      <div class="img_content_container hide image_desc">
+          <%= content_tag :div, image.content, class: "image_content" %>
+          <%= link_to content_tag(:div, "Image taken by #{image.user.first_name} on #{image.date_taken.strftime("%B %d, %Y")}"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
+      </div>
+	  </li>
+		
+	</div>
+</div>
+
