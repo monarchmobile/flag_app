@@ -20,6 +20,7 @@ class PagesController < ApplicationController
 		all_page_states
 		@announcements_partial = Announcement.limit(5).order("starts_at DESC").published
 		@events_partial = Event.limit(5).order("starts_at DESC").published
+		@images_partial = Image.order("RANDOM()").limit(10).last
 	end
 
 	def edit 
