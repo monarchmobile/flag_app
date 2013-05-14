@@ -5,6 +5,7 @@ class PagesController < ApplicationController
 	layout :resolve_layout
 	before_filter :authorize, :except => [:show]
 	def new 
+		all_page_states
 		@page = Page.new
 		@links = Link.all
 	end
