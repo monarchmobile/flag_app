@@ -2,7 +2,7 @@
 	<div class="sidbar_tables">
 		<h2>Featured Image</h2>
 		<% image = @images_partial %>
-		<li class="img_feed_container" >
+		<li class="img_feed_container featured_image" >
       <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
       <div class="img_content_container hide image_desc">
           <%= content_tag :div, image.content, class: "image_content" %>
