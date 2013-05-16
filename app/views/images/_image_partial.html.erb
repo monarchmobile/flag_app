@@ -8,6 +8,7 @@
           <%= content_tag :div, image.content, class: "image_content" %>
           <%= link_to content_tag(:div, "Image taken by #{image.user.first_name} on #{image.date_taken.strftime("%B %d, %Y")}"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
       </div>
+      <br class="clear">
 	  </li>
 		<br class="clear">
 	</div>
