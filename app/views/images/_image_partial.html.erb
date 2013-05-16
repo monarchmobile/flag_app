@@ -1,6 +1,6 @@
 <div class="sidebar">
 	<div class="sidbar_tables">
-		<h2>Upcoming Images</h2>
+		<h2>Featured Image</h2>
 		<% image = @images_partial %>
 		<li class="img_feed_container" >
       <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
@@ -11,5 +11,6 @@
 	  </li>
 		
 	</div>
+	<br class="clear">
 </div>
 

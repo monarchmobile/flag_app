@@ -113,7 +113,7 @@ cursor: pointer;
 	}
 	h1 {
 		margin: 10px auto;
-	    text-align: left;
+	    text-align: center;
 	    width: 821px;
 	}
 }
@@ -296,7 +296,7 @@ ul.nav_bar a.movie {
 // Start in application layouts, hold all yield //
 .master_container {
 	margin:auto;
-	background:url("background2.jpg") 50% -4% repeat-y;
+	background:url("background2.jpg") 50% 0% repeat-y;
 	width:1000px; 
 	min-height:668px;
 	padding-bottom: 20px;
