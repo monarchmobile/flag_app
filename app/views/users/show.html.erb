@@ -31,7 +31,9 @@
             <div class="profile_container sidbar_tables">
                 <ul>
                     
-                    <%= content_tag :li, @user.username %>
+                    <%= content_tag :li, @user.first_name %>
+                    <%= content_tag :li, @user.last_name %>
+
                     
                     <% Arrays::Geo_area.each_with_index do |value, index|  %>
                       <% if index == @user.geo_area %>
@@ -46,8 +48,7 @@
                     <% end %>
                 
                     <%= content_tag :li, "I work with #{programs.join(', ')}" if !@user.program_ids.blank?%>
-                    <%= content_tag :li, "email: #{@user.email}" %>
-                    <%= content_tag :li, "phone: #{@user.phone}" %>
+                    
                     <%= content_tag :li, "What I love about FLAG: #{@user.flag_comments}" %>
                     <%= content_tag :li, "Hobbies #{@user.hobbies}" %>
                     <% if admin?(current_user) %>

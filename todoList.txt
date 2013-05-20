@@ -22,3 +22,47 @@ april 29
 ** needs place to put message
 
 
+1407-coordinator index page  **DONE **
+	list of coordinators
+		first_name, last_name, picture, state, image is hot
+		organize by state if state has coordinator
+
+
+1408-dashboard
+	regional coordinators
+		dropdown to choose a reg coordinator for coordinator in edit profile page for admin only
+
+#1410
+	image to coor profile page
+		hide telephone and email
+		adding in state
+		button	"text"
+			sends a email to coor and regional coord
+			form (ajax)
+				from: first_name, last_name, email, telephone #  (all required)
+				to: first_name, last_name
+				message (limit to 500 character)
+			flash message with success
+
+#1412
+	coor profile
+		last 50 pics that coor has uploaded
+
+
+#1413
+	learn about me button is dissappearing
+
+#1414
+	do not run timer
+	images wierd
+
+
+
+
+
+
+
+
+
+
+

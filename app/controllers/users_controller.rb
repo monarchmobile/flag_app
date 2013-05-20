@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	respond_to :html, :json 
 	include ApplicationHelper  
 	layout :resolve_layout, :except => :new
- 	before_filter :authorize, :except => [:new, :create]
+ 	before_filter :authorize, :except => [:new, :create, :coordinators ]
 	def index 
 		all_user_states
 		
@@ -138,6 +138,13 @@ class UsersController < ApplicationController
 	 	@master_ids = [admin_id, superadmin_id] 
 	  @role_ids = current_user.role_ids if current_user
 	 	@ids = @master_ids & @role_ids.to_a
+	end
+
+	def coordinators
+		# @tasks = Task.find(:all, :order => 'due_at, id', :limit => 50)
+  # 	@task_months = @tasks.group_by { |t| t.due_at.beginning_of_month }
+		@coordinators = User.has_role(:Coordinator)
+		@states = @coordinators.group_by { |t| t.state }
 	end
 
 	def last_50_images

@@ -1,0 +1,26 @@
+<div class="coordinators">
+	<ul>
+		<% @states.sort.each do |state, coordinators| %>
+			<%= state %>
+			<% coordinators.each do |c| %>
+				<li class="coordinator">
+					<ul>
+						<div class="coordinator_image left">
+							<% if !c.member_photo.blank? %>
+								<%= link_to image_tag(c.member_photo, size: "75x75"), user_path(c) %>
+							<% else %>
+								<%= image_tag "blank.jpg", size: "75x75" %>
+							<% end %>
+						</div>
+						<div class="coordinator_attributes">
+							<%= content_tag :li, c.first_name %>
+							<%= content_tag :li, c.last_name %>
+							<%= content_tag :li, c.geo_area %>
+						</div>
+					</ul>
+				</li>
+			<% end %>
+		<% end %>
+	</ul>
+</div>
+
