@@ -1,0 +1,4 @@
+<div class="field">
+    <%= f.label :regional_coor, "Regional Coordinator" %><br />
+    <%= f.select :regional_coor, options_for_select(Arrays::Regional_coor, show_area_if_area(@user)), {:prompt => 'Select a Region'} %>
+</div>

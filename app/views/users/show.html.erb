@@ -35,8 +35,8 @@
                     <%= content_tag :li, @user.last_name %>
 
                     
-                    <% Arrays::Geo_area.each_with_index do |value, index|  %>
-                      <% if index == @user.geo_area %>
+                    <% Arrays::Regional_coor.each_with_index do |value, index|  %>
+                      <% if index == @user.regional_coor %>
                         <%= content_tag :li,"Region: #{value[0]}" %>
                       <% end %>
                     <% end %>

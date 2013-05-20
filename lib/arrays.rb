@@ -28,14 +28,11 @@ module Arrays
 		'year_remove' => 'remove image from this year\'s gallery'
 	}
  
-	Geo_area = [
+	Regional_coor = [
 		['region 1', 0],
 		['region 2', 1],
 		['region 3', 2],
 		['region 4', 3],
-		['region 5', 4],
-		['region 6', 5],
-		['region 7', 6],
 	]
 
 	Programs = [

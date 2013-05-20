@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507143615) do
+ActiveRecord::Schema.define(:version => 20130520213249) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -209,7 +209,7 @@ ActiveRecord::Schema.define(:version => 20130507143615) do
     t.string   "username"
     t.string   "host_state"
     t.string   "host_country"
-    t.string   "geo_area"
+    t.string   "regional_coor"
     t.integer  "programs"
     t.text     "flag_comments"
     t.text     "hobbies"

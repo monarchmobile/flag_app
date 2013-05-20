@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   attr_accessible :roles, :approved, :role_ids, :position, :program_ids
   attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
   attr_accessible :user_type, :guest, :host_state, :host_country
-  attr_accessible :geo_area, :flag_comments, :hobbies
+  attr_accessible :regional_coor, :flag_comments, :hobbies
   # attr_accessible :
   # has_secure_password
   before_create { generate_token(:auth_token) }

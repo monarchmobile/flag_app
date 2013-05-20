@@ -675,7 +675,7 @@ module ApplicationHelper
   end
 
   def show_area_if_area(user)
-  		user.geo_area unless user.geo_area.blank?
+  		user.regional_coor unless user.regional_coor.blank?
   end
 
   def reset_current_state(model)
