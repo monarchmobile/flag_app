@@ -143,7 +143,7 @@ class UsersController < ApplicationController
 	def coordinators
 		# @tasks = Task.find(:all, :order => 'due_at, id', :limit => 50)
   # 	@task_months = @tasks.group_by { |t| t.due_at.beginning_of_month }
-		@coordinators = User.has_role(:Coordinator)
+		@coordinators = User.has_role("Coordinator")
 		@states = @coordinators.group_by { |t| t.state }
 	end
 
