@@ -65,6 +65,8 @@ class User < ActiveRecord::Base
   has_many :scrapbooks
   has_many :votes
 
+  scope :has_role, lambda{|role| includes(:roles).where(:roles => { :name => role })}
+
   def role_is(role)
     type = Role.find_by_name(role).id
     where(self.role_ids.include?(type))

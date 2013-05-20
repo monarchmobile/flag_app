@@ -528,5 +528,49 @@ ul.table_row li {
 }
 
 
+// coordinators index page
+
+.coordinators {
+	width:800px;
+	clear:both;
+	height: auto;
+	ul {
+		padding:0px;
+		margin:0px;
+
+	}
+}
+
+.coordinator {
+	width: 800px;
+	margin:auto;
+	height:100px;
+	list-style:none;
+	ul {
+		padding:0px;
+		margin:0px;
+
+		.coordinator_image {
+			padding:10px;
+		}
+
+		.coordinator_attributes {
+			width:575px;
+			margin-top:25px;
+			float:left;
+
+			li {
+				float: left;
+				width: 150px;
+				margin-left: 15px;
+				list-style: none;
+				color: black;
+			}
+		}
+	}
+
+}
+
+
 
 
