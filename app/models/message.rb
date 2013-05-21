@@ -4,6 +4,8 @@ class Message < ActiveRecord::Base
 
 	belongs_to :user
 
+	validates_presence_of :from_first_name, :from_last_name, :from_email, :from_phone_number, :content
+
 	def send_coordinator_email
     UserMailer.coordinator_message(self).deliver
   end
