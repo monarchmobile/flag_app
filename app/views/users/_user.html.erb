@@ -13,6 +13,12 @@
 				<%= content_tag :div, user_approved_status(user), class: "user_approval_status index_form_btns #{green_if_approved(user)}" %>
 			<% end %>
 
+			<% if user.role? :Coordinator %>
+				<%= form_for user, :html => {:class => 'user_ajax_edit_regional_coor'}, :url => { :controller => "users", :action => :regional_coor, id: user.id }, remote: true do |a| %>		
+					<%= select_tag "regional_coor", options_for_select(Arrays::Regional_coor, user.regional_coor), class: "user_regional_coor_status index_form_btns" %>
+				<% end %>
+			<% end %>
+			
 		</div>
 		
 		<%= render "shared/crud_btns", object: user %>

@@ -29,8 +29,10 @@ FlagApp::Application.routes.draw do
   match "users/:id/images/:id/update", to: "images#update"
   match "users/:id/images/:id/edit", to: "images#edit"
   match "users/:id/update", to: "users#update"
+  match "users/:id/update_reg_coor", to: "users#update_reg_coor"
   match "users/create", to: "users#create", as: "create_guest"
   match "member_index", to: "users#member_index"
+  match "users/:id/regional_coor", to: "users#regional_coor"
 
   match "announcement_partial", :to => "announcements#announcement_partial"
   

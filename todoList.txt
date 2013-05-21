@@ -31,6 +31,7 @@ april 29
 1408-dashboard
 	regional coordinators
 		dropdown to choose a reg coordinator for coordinator in edit profile page for admin only
+		stopped at styling select button and making all ids unique on users/index page
 
 #1410
 	image to coor profile page
@@ -57,7 +58,11 @@ april 29
 	images wierd
 
 
+Andrew
 
+users/form
+	what state dropdown  -- correct text? and prompt
+	regional coordinator -- regions and promopt
 
 
 

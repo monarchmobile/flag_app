@@ -29,10 +29,10 @@ module Arrays
 	}
  
 	Regional_coor = [
-		['region 1', 0],
-		['region 2', 1],
-		['region 3', 2],
-		['region 4', 3],
+		['region 1', 1],
+		['region 2', 2],
+		['region 3', 3],
+		['region 4', 4],
 	]
 
 	Programs = [

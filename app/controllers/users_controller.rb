@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 	end
 	
 	def show
-		@user = User.find(params[:id])
+		load_user
 		last_50_images
 		if @user.guest?
 			restrict_access
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = User.find(params[:id])
+		load_user
 		@programs = Program.all
 		role_choices
 		if members_page(@user) 
@@ -51,10 +51,11 @@ class UsersController < ApplicationController
 
 	def update
 		@programs = Program.all
-		@program_ids = params[:user][:program_ids]
+		
 		all_user_states
-		@user = User.find(params[:id])
+		load_user
 		if params[:user][:programs]
+			@program_ids = params[:user][:program_ids]
 		  @user.programs = params[:user][:programs]
 		end
 		if params[:user][:approved] == true
@@ -106,7 +107,7 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		@user = User.find(params[:id])
+		load_user
 		@user.destroy
 		@user.program_ids=[]
 		respond_to do |format|
@@ -145,6 +146,19 @@ class UsersController < ApplicationController
   # 	@task_months = @tasks.group_by { |t| t.due_at.beginning_of_month }
 		@coordinators = User.has_role("Coordinator")
 		@states = @coordinators.group_by { |t| t.state }
+	end
+
+	def regional_coor
+		load_user
+		respond_to do |format|
+			if @user.update_attributes(regional_coor: params[:regional_coor])
+				format.js
+			end
+		end
+	end
+
+	def load_user 
+		@user = User.find(params[:id])
 	end
 
 	def last_50_images

@@ -637,6 +637,11 @@ module ApplicationHelper
     end
   end
 
+  def role_id(role)
+    role = role.to_s.camelize
+    Role.find_by_name(role).id
+  end
+
   def green_if_role(user, role_id)
     if user.role_ids.include?(role_id)
       "green_background"

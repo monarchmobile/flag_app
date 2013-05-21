@@ -1,22 +1,4 @@
-<script>
-    
-var updateCountdown;
 
-jQuery(function() {
-  updateCountdown();
-  $(".message").change(updateCountdown);
-  return $(".message").keyup(updateCountdown);
-});
-
-updateCountdown = function() {
-  var remaining;
-  140 === the(max(message(length)));
-  if (jQuery(".message")) {
-    remaining = 140 - jQuery(".message").val().length;
-    return jQuery(".countdown").text(remaining + " characters remaining.");
-  }
-};
-</script>
 
 <div class="field">
     <%= f.label :state, "State you represent in the US" %><br />

@@ -64,6 +64,10 @@ jQuery ->
 	$('.best_in_place').best_in_place()
 
 
+	$("body").delegate ".user_ajax_edit_regional_coor .user_regional_coor_status", "change", ->
+		$(this).closest("form").submit()
+
+
 
 
 
