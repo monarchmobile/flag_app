@@ -1,0 +1,3 @@
+$("#mailer_form").remove()
+$(".main").prepend("<div id='mailer_form'></div>")
+$("#mailer_form").html("<%= j render 'messages/form' %>")

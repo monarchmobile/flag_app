@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   before_create { set_nav_menu_to_true }
   before_create :setup_role
 
+  has_many :messages
+
   has_and_belongs_to_many :roles
   has_many :user_programs
   has_many :programs, :through => :user_programs

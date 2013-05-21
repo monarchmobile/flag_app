@@ -31,4 +31,11 @@ class UserMailer < ActionMailer::Base
  		@announcement.save!
   end
 
+  def coordinator_message(message)
+    @message = message
+    @user = @message.user
+    mail :to => @user.email, :subject => "message from student"
+
+  end
+
 end

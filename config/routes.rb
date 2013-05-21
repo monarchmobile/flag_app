@@ -33,7 +33,7 @@ FlagApp::Application.routes.draw do
   match "users/create", to: "users#create", as: "create_guest"
   match "member_index", to: "users#member_index"
   match "users/:id/regional_coor", to: "users#regional_coor"
-
+  
   match "announcement_partial", :to => "announcements#announcement_partial"
   
   match "event_partial", :to => "events#event_partial"
@@ -47,6 +47,7 @@ FlagApp::Application.routes.draw do
     resources :scrapbooks
   end 
   resources :partials
+  resources :messages
 
   # announcements
   match 'announcements/:id/hide', as: 'hide_announcement', to: 'announcements#hide'

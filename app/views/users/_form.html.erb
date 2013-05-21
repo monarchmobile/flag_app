@@ -1,7 +1,7 @@
 
 
 <%= form_for @user, :validate => true do |f| %>
-	<%= render 'shared/errors', :object => f.object  %>
+	<%= render 'shared/errors', :object => @user  %>
 	
 	<%= render 'users/shared/registration', f: f %>
 

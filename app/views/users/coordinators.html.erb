@@ -1,7 +1,7 @@
 <div class="coordinators">
 	<ul>
 		<% @states.sort.each do |state, coordinators| %>
-			<%= state %>
+			<%= content_tag :h2, state %>
 			<% coordinators.each do |c| %>
 				<li class="coordinator">
 					<ul>
@@ -15,6 +15,7 @@
 						<div class="coordinator_attributes">
 							<%= content_tag :li, c.first_name %>
 							<%= content_tag :li, c.last_name %>
+							<%= content_tag :li, link_to("send a message to me and my regional director", {:controller => "messages", :action => "new", :coor => c.id} , remote: true)%>
 						</div>
 					</ul>
 				</li>

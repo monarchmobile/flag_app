@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130520213249) do
+ActiveRecord::Schema.define(:version => 20130521122929) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -106,6 +106,17 @@ ActiveRecord::Schema.define(:version => 20130520213249) do
   create_table "links_pages", :id => false, :force => true do |t|
     t.integer "link_id"
     t.integer "page_id"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.text     "content"
+    t.string   "from_first_name"
+    t.string   "from_last_name"
+    t.string   "from_email"
+    t.string   "from_phone_number"
+    t.integer  "user_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "page_partials", :id => false, :force => true do |t|
