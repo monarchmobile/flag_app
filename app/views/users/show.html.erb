@@ -33,13 +33,9 @@
                     
                     <%= content_tag :li, @user.first_name %>
                     <%= content_tag :li, @user.last_name %>
-
+                    <%= content_tag :li, @user.state %>
                     
-                    <% Arrays::Regional_coor.each_with_index do |value, index|  %>
-                      <% if index == @user.regional_coor %>
-                        <%= content_tag :li,"Region: #{value[0]}" %>
-                      <% end %>
-                    <% end %>
+                    
                     <% programs = [] %>
                     <% Program.all.each do |p| %>
                         <% if @user.program_ids.include?(p.id) %>
@@ -63,19 +59,7 @@
     </div>
 <% end %>
 <div class="flag_feed">
-    <div class="col_one columns">
-        <%= render @column_one_images %>
-    </div>
-
-    <div class="col_two columns">
-        <%= render @column_two_images %>
-    </div>
-
-    <div class="col_three columns">
-        <%= render @column_three_images %>
-    </div>
-
-    <br class="clear"/>
+    <%= render 'users/shared/last_50_images'  %>
 </div>
 
 <br class="clear">

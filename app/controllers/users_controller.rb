@@ -24,12 +24,18 @@ class UsersController < ApplicationController
 	
 	def show
 		load_user
-		last_50_images
-		if @user.guest?
-			restrict_access
-		else
-			respond_to do |format|
-				format.html
+		if @user 
+			if @user.role? :Coordinator
+				coor_images
+			else
+				last_50_images
+			end
+			if @user.guest?
+				restrict_access
+			else
+				respond_to do |format|
+					format.html
+				end
 			end
 		end
 	end
@@ -159,6 +165,28 @@ class UsersController < ApplicationController
 
 	def load_user 
 		@user = User.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+  		redirect_to root_url, :flash => { :error => "Record not found." }
+	end
+
+	def coor_images
+
+		image_ids = Image.order("date_taken DESC").limit(50).select("id").where(user_id: @user.id)
+		
+		col1 = (0..(image_ids.count-1)).step(3)
+		col1_array = []
+		col1.each do |c1| col1_array.push(image_ids[c1]) end
+		@column_one_images = Image.where("id In (?)", col1_array)
+
+		col2 = (1..(image_ids.count-1)).step(3)
+		col2_array = []
+		col2.each do |c2| col2_array.push(image_ids[c2]) end
+		@column_two_images = Image.where("id In (?)", col2_array)
+
+		col3 = (2..(image_ids.count-1)).step(3)
+		col3_array = []
+		col3.each do |c3| col3_array.push(image_ids[c3]) end
+		@column_three_images = Image.where("id In (?)", col3_array)
 	end
 
 	def last_50_images
