@@ -1,6 +1,6 @@
  
 <div class="field"> 
-    <%= f.label :username, "Username" %><br />
+    <%= f.label :username, "Username" %><%= required_field %><br />
     <%= f.text_field :username %>
 </div>
 <div class="field"> 
@@ -14,6 +14,10 @@
 <div class="field"> 
     <%= f.label :email, "Email" %><br />
     <%= f.text_field :email %>
+</div>
+<div class="field"> 
+    <%= f.label :state, "State" %><br />
+    <%= f.text_field :state %>
 </div>
 <% if @user.new_record? %>
     <div class="field">

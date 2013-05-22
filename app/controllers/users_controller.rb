@@ -108,7 +108,8 @@ class UsersController < ApplicationController
 				redirect_to correct_page(@page), notice: "You are logged in as a guest"
 			end
 		else	
-			render "new"
+			role_choices
+			render :action => "new"
 		end
 	end
 
@@ -156,14 +157,16 @@ class UsersController < ApplicationController
 		admin_id = Role.find_by_name("Admin").id
 		superadmin_id = Role.find_by_name("SuperAdmin").id
 	 	@master_ids = [admin_id, superadmin_id] 
-	  @role_ids = current_user.role_ids if current_user
-	 	@ids = @master_ids & @role_ids.to_a
+	 	if current_user
+		  @role_ids = current_user.role_ids 
+		 	@ids = @master_ids & @role_ids.to_a
+		end
 	end
 
 	def coordinators
 		# @tasks = Task.find(:all, :order => 'due_at, id', :limit => 50)
   # 	@task_months = @tasks.group_by { |t| t.due_at.beginning_of_month }
-		@coordinators = User.has_role("Coordinator")
+		@coordinators = User.has_role("Coordinator").where(approved: true).where("state IS NOT NULL")
 		@states = @coordinators.group_by { |t| t.state }
 	end
 

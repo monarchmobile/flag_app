@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_many :user_programs
   has_many :programs, :through => :user_programs
     
-  validates_presence_of :password_digest, :first_name, :last_name, unless: :guest?
+  validates_presence_of :password_digest, :first_name, :last_name, :state, unless: :guest?
   validates_confirmation_of :password
   validates :email, :email_pattern => true, unless: :guest?
 
