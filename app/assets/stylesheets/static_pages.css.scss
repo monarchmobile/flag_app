@@ -73,9 +73,10 @@ z-index: 9000;
 margin-left: 300px;
 position: absolute;
 cursor: pointer;
+background-color: #9F150F;
 
 	&:hover {
-		background:blue;
+		box-shadow: 0px 0px 5px;
 	}
 }
 
@@ -902,8 +903,7 @@ img {
 
 .image_container {
 	display:inline-block;
-// 	padding: 2px;
-// border: 2px solid gray;
+	position: relative;
 }
 
 .image_frame {
@@ -1595,6 +1595,7 @@ ul.crud_buttons {
 .featured_image {
 	position: relative;
 }
+
 
 // Dashboard
 
