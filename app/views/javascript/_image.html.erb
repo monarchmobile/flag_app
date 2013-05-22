@@ -345,7 +345,10 @@ $(document).ready(function() {
                     success: function() {
 
                         $(".cp").show()
-                        this_obj.css("opacity", "1")
+                        this_obj.css({
+                            "opacity": "1",
+                            "position" : "relative"
+                        })
                         this_obj.children(".control_panel").children(".helper_box").html("New position saved").show().delay(1000).fadeOut(3000)
                     }
                 })

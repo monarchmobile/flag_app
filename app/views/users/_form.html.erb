@@ -9,8 +9,10 @@
 
 	<%= render 'users/shared/choose_role', f: f  %>
 
-	<% if current_user.role_ids && [role_id(:Admin)]  %>
-		<%= render 'users/shared/regional_coordinator', f: f if @user.role? :Coordinator %>
+	<% if current_user %>
+		<% if current_user.role_ids && [role_id(:Admin)]  %>
+			<%= render 'users/shared/regional_coordinator', f: f if @user.role? :Coordinator %>
+		<% end %>
 	<% end %>
 
 	<div class="actions"><%= f.submit %></div>

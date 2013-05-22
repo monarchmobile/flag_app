@@ -58,6 +58,9 @@ april 29
 	images wierd
 
 
+Rod
+	slide in regional coor/dir as a role
+	regional drop down should by dynamic grabbing roles with regional coor status
 Andrew
 
 users/form
