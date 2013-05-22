@@ -79,9 +79,10 @@ class UsersController < ApplicationController
 			end
 		else 
 			respond_to do |format|
-		      format.html { render :action => "edit" }
-		      format.json { render :json => @user.errors.full_messages, :status => :unprocessable_entity }
-		    end
+				role_choices
+	      format.html { render :action => "edit" }
+	      format.json { render :json => @user.errors.full_messages, :status => :unprocessable_entity }
+	    end
 		end
 	
 	end
