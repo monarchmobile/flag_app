@@ -45,7 +45,7 @@ april 29
 				message (limit to 500 character)
 			flash message with success
 
-#1412
+#1412	**DONE**
 	coor profile
 		last 50 pics that coor has uploaded
 
@@ -63,7 +63,9 @@ Andrew
 users/form
 	what state dropdown  -- correct text? and prompt
 	regional coordinator -- regions and promopt
-	sytle flash
+	style flash
+	how does one get to any users pages. no public index except for coords.
+
 
 
 
