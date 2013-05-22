@@ -45,6 +45,8 @@
   def create
     authorize! :create, @event
     @event = Event.new(params[:event])
+    @event.starts_at = params[:event][:starts_at].blank? ? Date.today : params[:event][:starts_at] 
+    # @event.ends_at = params[:event][:ends_at].blank? ? Date.today+30.days : params[:event][:ends_at]
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'event was successfully created.' }

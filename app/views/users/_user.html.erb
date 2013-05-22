@@ -15,7 +15,7 @@
 
 			<% if user.role? :Coordinator %>
 				<%= form_for user, :html => {:class => 'user_ajax_edit_regional_coor'}, :url => { :controller => "users", :action => :regional_coor, id: user.id }, remote: true do |a| %>	
-					<%= a.select :regional_coor, User.includes(:roles).where(:roles => {:name => "Regional Director"}).map {|u| [u.name,u.id]}%>	
+					<%= a.select :regional_coor, User.includes(:roles).where(:roles => {:name => "Regional Director"}).map {|u| [u.name,u.id]}, {:prompt => 'Select a Director'} %>	
 					
 				<% end %>
 			<% end %>
