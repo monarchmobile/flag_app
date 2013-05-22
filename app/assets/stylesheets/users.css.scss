@@ -75,7 +75,8 @@ $theme_color: rgb(159,21,15);
     margin:auto;
     color:#fff;
     padding:5px;
-
+	position: absolute;
+	margin-top: -33px;
     a div {
     	color:#fff;
     }
@@ -516,8 +517,9 @@ ul.table_row li {
 
 }
 
-.title {
+ul.table_row li.title {
 	font-weight: bold;
+	font-size: 17px;
 }
 
 .message {
