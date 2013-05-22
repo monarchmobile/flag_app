@@ -6,7 +6,7 @@
 			<div class="item">
 				<ul class="table_row">
 					<%= content_tag :li, a.title, class: "title"  %>
-					<%= content_tag :li, a.message, class: "message" %>
+					<%= content_tag :li, raw(a.message), class: "message" %>
 					
 				</ul>
 				<br class="clear">
