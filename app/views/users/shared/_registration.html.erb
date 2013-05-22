@@ -1,23 +1,19 @@
- 
+
 <div class="field"> 
-    <%= f.label :username, "Username" %><br />
-    <%= f.text_field :username %>
-</div>
-<div class="field"> 
-    <%= f.label :first_name, "First Name" %><br />
+    <%= f.label :first_name, "First Name" %> <%= required_field %><br />
     <%= f.text_field :first_name %>
 </div>
 <div class="field"> 
-    <%= f.label :last_name, "Last Name" %><br />
+    <%= f.label :last_name, "Last Name" %> <%= required_field %><br />
     <%= f.text_field :last_name %>
 </div>
 <div class="field"> 
-    <%= f.label :email, "Email" %><br />
+    <%= f.label :email, "Email" %> <%= required_field %><br />
     <%= f.text_field :email %>
 </div>
 <% if @user.new_record? %>
     <div class="field">
-        <%= f.label :password %><br />
+        <%= f.label :password %> <%= required_field %><br />
         <%= f.password_field :password %>
     </div>
 <% else %>
@@ -27,7 +23,7 @@
     </div>
 <% end %> 
 <div class="field">
-    <%= f.label :password_confirmation, "Confirm Password" %><br />
+    <%= f.label :password_confirmation, "Confirm Password" %> <%= required_field %><br />
     <%= f.password_field :password_confirmation %>
 </div>
 

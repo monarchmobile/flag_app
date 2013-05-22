@@ -514,10 +514,7 @@ z-index: 600;
 
 // Forms //
 
-.required_
-
-
-{
+.required_field {
 	margin-left:5px;
 	color:#FF9494;
 	display:inline-block;
@@ -1594,6 +1591,10 @@ ul.crud_buttons {
 
 .featured_image {
 	position: relative;
+}
+
+.full_field {
+	width: 804px;
 }
 
 

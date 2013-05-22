@@ -456,7 +456,7 @@ position: absolute;
 	margin-top:0px;
 	clear:both;
 	float: left;
-	margin-right: 20px;
+	margin-right: 0px;
 }
 
 .sidbar_tables {
@@ -549,10 +549,14 @@ ul.table_row li {
 
 		.coordinator_image {
 			padding:10px;
+			img{
+				border: 2px solid gray;
+    			border-radius: 5px 5px 5px 5px;
+			}
 		}
 
 		.coordinator_attributes {
-			width:575px;
+			width:800px;
 			margin-top:25px;
 			float:left;
 
@@ -562,10 +566,32 @@ ul.table_row li {
 				margin-left: 15px;
 				list-style: none;
 				color: black;
+				font-size: 20px;
 			}
 		}
+
 	}
 
+}
+
+
+.coordinator ul li.message_to_coordinator {
+	float: right;
+	width: 400px;
+	a{
+		background-color: #9F150F;
+	    border-radius: 10px 10px 10px 10px;
+	    color: white;
+	    font-size: 14px;
+	    padding: 20px;
+	    text-decoration: none;
+		&:hover{
+			box-shadow: 0px 0px 5px black;
+		}
+		&:active{
+			box-shadow: 0px 0px 7px black;
+		}
+	}
 }
 
 // mailer form for coordinator page
@@ -584,13 +610,4 @@ ul.table_row li {
     width: 880px;
     z-index: 500;
 }
-
-.full_field {
-	width: 804px;
-}
-
-.message_to_coordinator {
-	float: left;
-}
-
 
