@@ -23,7 +23,7 @@
             <%= content_tag :li, link_to("Community", member_index_path) if registered_member%>
             <% if registered_member %> 
 
-                <%= content_tag :li, link_to("Scrapbook", root_path+"users/"+current_user.id.to_s+"/scrapbook/day") %>
+                <%= content_tag :li, link_to("My Scrapbook", root_path+"users/"+current_user.id.to_s+"/scrapbook/day") %>
 
             <% else %>
                 <%= content_tag :li, link_to("Scrapbook", book_path) if current_user %>

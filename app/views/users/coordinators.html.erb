@@ -15,7 +15,7 @@
 						<div class="coordinator_attributes">
 							<%= content_tag :li, c.first_name %>
 							<%= content_tag :li, c.last_name %>
-							<%= content_tag :li, link_to("send a message to me and my regional director", {:controller => "messages", :action => "new", :coor => c.id} , remote: true)%>
+							<%= content_tag :li, link_to("send a message to me and my regional director", {:controller => "messages", :action => "new", :coor => c.id} , remote: true), class: "message_to_coordinator"%>
 						</div>
 					</ul>
 				</li>
