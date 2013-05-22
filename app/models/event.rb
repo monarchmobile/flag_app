@@ -37,6 +37,15 @@ class Event < ActiveRecord::Base
     order("position ASC")
   end
 
+  def create_date(date)
+    if date.to_s == "starts_at"
+      new_date = Date.today
+    elsif date.to_s == "ends_at"
+      new_date = Date.today+30.days
+    end
+    return new_date
+  end
+
 	private
 
 	def make_slug

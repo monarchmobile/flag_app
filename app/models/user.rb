@@ -123,11 +123,6 @@ class User < ActiveRecord::Base
     new { |u| u.role_ids = [guest] }
   end
 
-  def self.new_guest
-    # guest = Role.find_by_name("Guest").id
-    new { |u| u.guest = true }
-  end
-
   # current_user ? full_name : Guest
   def name
     guest ? "Guest" : fullname
