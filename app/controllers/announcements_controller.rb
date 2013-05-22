@@ -15,6 +15,7 @@ class AnnouncementsController < ApplicationController
 
 	def create
 		@announcement = Announcement.new(params[:announcement])
+		@announcement.starts_at = params[:announcement][:starts_at].blank? ? Date.today : params[:announcement][:starts_at] 
 		respond_to do |format|
 			if @announcement.save
 				# published = Status.find_by_status_name("published").id

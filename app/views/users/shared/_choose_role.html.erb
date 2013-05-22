@@ -3,7 +3,7 @@
 			<%= hidden_field_tag "user[role_ids][]", nil %>
 	    <% if current_user %>
 	    	
-		    <% if current_user.role_ids.include?(@ids[0] || @ids[1]) %>
+		    <% if current_user.role_ids && [role_id(:Admin), role_id(:SuperAdmin)] %>
 		    	<% @admin_roles.each do |role| %>
 			      <%= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id), id: dom_id(role) %>  
 		      	<%= label_tag dom_id(role), role.name %><br> 

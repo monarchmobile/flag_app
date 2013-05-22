@@ -3,11 +3,14 @@
 <%= form_for @user, :validate => true do |f| %>
 	<%= render 'shared/errors', :object => @user  %>
 	
-	<%= render 'users/shared/registration', f: f %>
+	<%= render 'users/shared/registration', f: f if @user.new_record? %>
 
 	<%= render 'users/shared/profile', f: f unless @user.new_record? %>
 
 	<%= render 'users/shared/choose_role', f: f  %>
+
+	
+	<%= render 'users/shared/coordinators', f: f if @user.role_ids && role_id(:Coordinator) %>
 
 	<% if current_user %>
 		<% if current_user.role_ids && [role_id(:Admin)]  %>

@@ -2,51 +2,86 @@
     <%= f.label :member_photo, "Upload profile photo" %><br />
     <%= f.file_field :member_photo %>
 </div>
-<div class="field">
-    <%= f.label :address1%><br />
-    <%= f.text_field :address1 %>
-</div>
-<div class="field">
-    <%= f.label :address2%><br />
-    <%= f.text_field :address2 %>
-</div>
-<div class="field">
-    <%= f.label :city%><%= required_field %><br />
-    <%= f.text_field :city %>
-</div>
+<fieldset>
+    <div class="field"> 
+        <%= f.label :first_name, "First Name" %> <%= required_field %><br />
+        <%= f.text_field :first_name %>
+    </div>
+    <div class="field"> 
+        <%= f.label :last_name, "Last Name" %> <%= required_field %><br />
+        <%= f.text_field :last_name %>
+    </div>
+    
+    
+</fieldset>
 
-<div class="field">
-    <%= f.label :zip%><br />
-    <%= f.text_field :zip %>
-</div>
-<div class="field">
-    <%= f.label :country%><br />
-    <%= f.text_field :country %>
-</div>
-<div class="field">
-    <%= f.label :cell%><br />
-    <%= f.text_field :cell %>
-</div>
-<div class="field">
-    <%= f.label :phone%><br />
-    <%= f.text_field :phone %>
-</div>
-<div class="field">
-    <%= f.label :school%><br />
-    <%= f.text_field :school %>
-</div>
-<div class="field">
-	<%= f.label :family%><br />
-	<%= f.text_field :family %>
-</div>
-<div class="field">
-    <%= f.label :host_state%><br />
-    <%= f.select :host_state, Arrays::STATES  %>
-</div>
-<div class="field">
-    <%= f.label :host_country%><br />
-    <%= f.text_field :host_country, :value => "USA" %>
-</div>
-<% coordinator = Role.find_by_name("Coordinator").id %>
-<%= render 'users/shared/coordinators', f: f if @user.role_ids.include?(coordinator) %>
+<fieldset>
+    <div class="field">
+        <%= f.label :address1%><br />
+        <%= f.text_field :address1 %>
+    </div>
+    <div class="field">
+        <%= f.label :address2%><br />
+        <%= f.text_field :address2 %>
+    </div>
+    <div class="field">
+        <%= f.label :city%><%= required_field %><br />
+        <%= f.text_field :city %>
+    </div>
+    <div class="field"> 
+        <%= f.label :state, "State" %><br />
+        <%= f.select :state, options_for_select(Arrays::STATES, @user.state), {:prompt => 'Select a State'} %>
+    </div>
+
+    <div class="field">
+        <%= f.label :zip%><br />
+        <%= f.text_field :zip %>
+    </div>
+    <div class="field">
+        <%= f.label :country%><br />
+        <%= f.text_field :country %>
+    </div>
+    
+</fieldset>
+
+<fieldset>
+    <div class="field"> 
+        <%= f.label :email, "Email" %> <%= required_field %><br />
+        <%= f.text_field :email %>
+    </div>
+
+    <div class="field">
+        <%= f.label :cell%><br />
+        <%= f.text_field :cell %>
+    </div>
+    <div class="field">
+        <%= f.label :phone%><br />
+        <%= f.text_field :phone %>
+    </div>
+    
+
+</fieldset>
+
+<fieldset>
+
+    <div class="field">
+        <%= f.label :school%><br />
+        <%= f.text_field :school %>
+    </div>
+    <div class="field">
+        <%= f.label :family%><br />
+        <%= f.text_field :family %>
+    </div>
+    <div class="field">
+        <%= f.label :host_state %><br />
+        <%= f.select :host_state, Arrays::STATES  %>
+    </div>
+    <div class="field">
+        <%= f.label :host_country%><br />
+        <%= f.text_field :host_country, :value => "USA" %>
+    </div>
+    
+
+</fieldset>
+
 
