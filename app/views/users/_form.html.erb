@@ -9,8 +9,8 @@
 
 	<%= render 'users/shared/choose_role', f: f  %>
 
-	
-	<%= render 'users/shared/coordinators', f: f if @user.role_ids && role_id(:Coordinator) %>
+	<%= render 'users/shared/student_and_host_family', f: f if (@user.role_ids & [role_id("Student"), role_id("Host-Family")]).count > 0 %>
+	<%= render 'users/shared/coordinators', f: f if (@user.role_ids & [role_id(:Coordinator)]).count > 0 %>
 
 	<% if current_user %>
 		<% if current_user.role_ids && [role_id(:Admin)]  %>

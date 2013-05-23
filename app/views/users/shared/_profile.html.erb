@@ -3,6 +3,7 @@
     <%= f.file_field :member_photo %>
 </div>
 <fieldset>
+    <LEGEND><b>Name</b></LEGEND>
     <div class="field"> 
         <%= f.label :first_name, "First Name" %> <%= required_field %><br />
         <%= f.text_field :first_name %>
@@ -16,6 +17,7 @@
 </fieldset>
 
 <fieldset>
+    <LEGEND><b>Where do you live</b></LEGEND>
     <div class="field">
         <%= f.label :address1%><br />
         <%= f.text_field :address1 %>
@@ -45,6 +47,7 @@
 </fieldset>
 
 <fieldset>
+    <LEGEND><b>Contact Info</b></LEGEND>
     <div class="field"> 
         <%= f.label :email, "Email" %> <%= required_field %><br />
         <%= f.text_field :email %>
@@ -62,26 +65,6 @@
 
 </fieldset>
 
-<fieldset>
 
-    <div class="field">
-        <%= f.label :school%><br />
-        <%= f.text_field :school %>
-    </div>
-    <div class="field">
-        <%= f.label :family%><br />
-        <%= f.text_field :family %>
-    </div>
-    <div class="field">
-        <%= f.label :host_state %><br />
-        <%= f.select :host_state, Arrays::STATES  %>
-    </div>
-    <div class="field">
-        <%= f.label :host_country%><br />
-        <%= f.text_field :host_country, :value => "USA" %>
-    </div>
-    
-
-</fieldset>
 
 
