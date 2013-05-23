@@ -781,6 +781,10 @@ div.user_details {
   }
 }
 
+div.user_details li.user_index_last_name {
+  margin-left: 73px;
+}
+
 .index_form_btns {
   float: left;
 
@@ -797,3 +801,9 @@ div.user_details {
   font-size: 12px;
   cursor:pointer;
 }
+
+ul.instance_detail form.user_ajax_edit {
+  width: 200px;
+}
+
+
