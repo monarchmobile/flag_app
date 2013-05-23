@@ -782,12 +782,13 @@ div.user_details {
 }
 
 div.user_details li.user_index_last_name {
-  margin-left: 73px;
+  margin-left: 60px;
+  width:200px;
 }
 
 .index_form_btns {
   float: left;
-
+  text-align: center;
   height: 18px;
   border-radius: 8px;
   webkit-border-radius: 8px;
@@ -806,4 +807,16 @@ ul.instance_detail form.user_ajax_edit {
   width: 200px;
 }
 
+legend {
+    background-color: gray;
+    border: 2px groove gray;
+    border-radius: 10px 10px 10px 10px;
+    color: white;
+    padding: 4px 9px 2px;
+    font-family: 'Michroma', sans-serif;
+}
 
+fieldset {
+    border-radius: 10px 10px 10px 10px;
+    margin-bottom: 20px;
+}
