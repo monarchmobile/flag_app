@@ -27,40 +27,7 @@ user sign in
 	email
 	password
 
-user sign up 
-	fields
-		f_name
-		l_name
-		password
-		password confirmation
-		email
-		state
-		choose role [student, host-family, coodinator]
-	scripts
-		form
-			shared/registration
 
-edit
-	student
-		normal fields
-		student fields
-	host-family
-		normal fields
-		host-family fields
-	coordinator
-		normal fields
-		coordinator fields
-
-
-		<%= render 'users/shared/registration', f: f %>
-		<%= render 'users/shared/profile', f: f unless @user.new_record? %>
-		<%= render 'users/shared/choose_role', f: f  %>
-
-		<% if current_user %>
-			<% if current_user.role_ids && [role_id(:Admin)]  %>
-				<%= render 'users/shared/regional_coordinator', f: f if @user.role? :Coordinator %>
-			<% end %>
-		<% end %>
 
 
 

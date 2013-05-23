@@ -1,4 +1,7 @@
-<div class="field">
-    <%= f.label :regional_coor, "Regional Coordinator" %><br />
-    <%= f.select :regional_coor, User.includes(:roles).where(:roles => {:name => "Regional Director"}).map {|u| [u.name,u.id]}%>
-</div>
+<fieldset>
+    <LEGEND><b>For Admin only</b></LEGEND>
+    <div class="field">
+	    <%= f.label :regional_coor, "Regional Coordinator" %><br />
+	    <%= f.select :regional_coor, User.includes(:roles).where(:roles => {:name => "Regional Director"}).map {|u| [u.name,u.id]}%>
+	</div>
+</fieldset>
