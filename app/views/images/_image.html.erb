@@ -1,6 +1,6 @@
 <%= content_tag_for :div, image do %>
 	<% if image.user.role? :Coordinator %>
-		<div class="coor_star"><%=image_tag "c-badge.png2" %></div>
+		<div class="coor_star"><%= image_tag "c-badge.png2" %></div>
 	<% end %>
 	<li class="img_feed_container" >
       <%= link_to image_tag(image.image_url(:scrap), width: "200px"), go_to_range(image.user, 0)+duration_params(image.date_taken, image.user, "day") %>
