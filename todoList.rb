@@ -1,0 +1,50 @@
+
+-- need message for forgot password
+
+
+*FLAG
+	need an gmail address to send these notices from
+
+** announcement mailer only works on new, not update on announcements/index
+** needs place to put message
+
+
+Rod
+	slide in regional coor/dir as a role
+	regional drop down should by dynamic grabbing roles with regional coor status
+Andrew
+
+users/form
+	what state dropdown  -- correct text? and prompt
+	regional coordinator -- regions and promopt
+	style flash
+	how does one get to any users pages. no public index except for coords.
+
+
+user registration
+
+user sign in
+	email
+	password
+
+add star to coor image  **DONE **
+	30x30 if then if coor on image partail
+
+light box for mail coord form
+yes to diff states for coor live and reps
+
+user edit cant add state
+page scheduling form page edit
+
+
+
+
+
+
+
+
+
+
+
+
+

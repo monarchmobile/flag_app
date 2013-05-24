@@ -86,6 +86,14 @@ $theme_color: rgb(159,21,15);
     }
 }
 
+.coor_star {
+	width: 30px;
+height: 30px;
+background: blue;
+position: absolute;
+z-index: 100;
+margin: 5px 0px 0px 192px;
+}
 
 .img_feed_container {
 position:absolute;

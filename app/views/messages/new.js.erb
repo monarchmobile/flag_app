@@ -1,3 +1,7 @@
 $("#mailer_form").remove()
-$(".main").prepend("<div id='mailer_form'></div>")
+$("#lightbox").remove()
+$(".master_container")
+	.prepend("<div id='mailer_form'></div>")
+	.append("<div id='lightbox'></div>")
+
 $("#mailer_form").html("<%= j render 'messages/form' %>")

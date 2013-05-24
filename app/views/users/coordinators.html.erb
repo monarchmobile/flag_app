@@ -9,7 +9,7 @@
 							<% if !c.member_photo.blank? %>
 								<%= link_to image_tag(c.member_photo, size: "75x75"), user_path(c) %>
 							<% else %>
-								<%= image_tag "blank.jpg", size: "75x75" %>
+								<%= link_to image_tag("blank.jpg", size: "75x75"), user_path(c) %>
 							<% end %>
 						</div>
 						<div class="coordinator_attributes">

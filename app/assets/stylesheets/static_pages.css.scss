@@ -327,12 +327,12 @@ ul.nav_bar a.movie {
 // Go to { time frame } [Week, Month, Year]
 ul.triangle {
 	height: 83px;
-position: absolute;
-width: 118px;
-margin-left: 447px;
-top: -13px;
-padding: 0px;
-z-index: 600;
+	position: absolute;
+	width: 118px;
+	margin-left: 447px;
+	top: 22px;
+	padding: 0px;
+	z-index: 600;
 
 	li {
 		list-style: none;
@@ -801,6 +801,18 @@ box-shadow: 1px 1px 5px gray
 	background: #9c9c9c;
 	display:none;
 
+}
+
+
+// click to send msg to coordinator, gray out background, put form on top
+#lightbox{
+   	position: absolute;
+		top: 0px;
+		min-height: 700px;
+		width: 970px;
+		padding: 0px 15px 30px;
+		background: gray;
+		z-index: 1;
 }
 // hover over image, gray background, image pops out
 
@@ -1397,6 +1409,7 @@ background: url("corner.png");
     margin: 5px 0px 10px;
     padding:2px 5px;
     color: #000;
+    width:96%;
 }
 
 .edit_user {
