@@ -3,6 +3,7 @@ class AnnouncementsController < ApplicationController
 	layout :resolve_layout
 	before_filter :authorize
 	def index
+		reset_current_state(Announcement)
 		all_announcement_states
 		@announcements = Announcement.published
 	end
@@ -39,7 +40,6 @@ class AnnouncementsController < ApplicationController
 
 	def announcement_partial
 		reset_current_state(Announcement)
-
     @announcements_partial = Describe.new(Announcement).partial.published
     @model_name = "Announcement"
     render 'shared/quick_partial_view', model_name: @model_name

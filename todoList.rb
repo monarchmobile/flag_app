@@ -30,10 +30,10 @@ user sign in
 add star to coor image  **DONE **
 	30x30 if then if coor on image partail
 
-light box for mail coord form
-yes to diff states for coor live and reps
+light box for mail coord form **Done **
 
-user edit cant add state
+yes to diff states for coor live and reps ** DONE **
+
 page scheduling form page edit
 
 
