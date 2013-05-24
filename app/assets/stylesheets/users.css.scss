@@ -8,17 +8,17 @@ $theme_color: rgb(159,21,15);
     background: none repeat scroll 0 0 #9F150F;
     border-radius: 7px 7px 7px 7px;
     font-size: 12px;
-    height: 20px;
-    margin-left: 849px;
-    padding: 5px;
+    height: auto;
+    margin-left: 790px;
+    padding: 5px 0 5px 66px;
     position: absolute;
     top: 53px;
     width: 135px;
     z-index: 1000;
-	
 	a {
 		text-decoration:none;
 		color:#fff;
+		float: right;
 		&:hover {
 			text-decoration:underline;
 		}
@@ -648,4 +648,11 @@ ul.table_row li.title {
 
 img.find_coordinator {
 margin: -10px 0px 0px -10px;
+}
+
+.medal {
+	background: url("find-coordinator.png") repeat scroll 0 0 transparent;
+	width: 30px;
+	height: 30px;
+	float: left;
 }
