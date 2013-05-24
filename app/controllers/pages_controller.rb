@@ -11,13 +11,14 @@ class PagesController < ApplicationController
 	end
 
 	def index
+		publish_page_if_in_range
 		@links = Link.all
 	end
 
 	def show 
 		reset_current_state(Announcement)
 		reset_current_state(Event)
-		
+		publish_page_if_in_range
 		all_page_states
 		@announcements_partial = Announcement.limit(5).order("starts_at DESC").published
 		@events_partial = Event.limit(5).order("starts_at DESC").published
@@ -46,9 +47,6 @@ class PagesController < ApplicationController
 		current_state = params[:page][:current_state]
 		@link_ids = params[:page][:link_ids]
 		published = Status.find_by_status_name("published").id
-		if (!current_state ==  published) 
-			@page.position = nil
-		end
 		respond_to do |format|
 			if @page.update_attributes(params[:page])
 				# reorder_pages(@page)

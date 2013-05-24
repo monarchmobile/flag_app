@@ -34,10 +34,22 @@ light box for mail coord form **Done **
 
 yes to diff states for coor live and reps ** DONE **
 
-page scheduling form page edit
+add scheduling for pages  **DONE**
 
+if pub or sch on form should show date, if draft should not show dates **DONE**
+	
+add an option to send no emails out
 
+church
+outpouring
+template
+	add scheduling for pages  **DONE**
+	date formats on form
 
+if pub or sch on form should show date, if draft should not show dates
+	value = $("#page_current_state").val()
+	if value == "1"
+		$(".schedule_container").hide()
 
 
 

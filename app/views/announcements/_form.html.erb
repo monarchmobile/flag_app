@@ -24,6 +24,7 @@ $(document).ready(function() {
 		<%= f.label :current_state %>
 		<%= collection_select(:announcement, :current_state, Status.all, :id, :status_name, option = { :selected => @announcement.current_state}) %>
 	</div>
+	
 	<div class="schedule_container">
 		<div class="field schedule_fields">
 			<%= f.label :starts_at %>

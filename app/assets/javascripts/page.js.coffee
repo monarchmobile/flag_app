@@ -1,4 +1,23 @@
 jQuery ->
+
+	value = $("#page_current_state").val()
+	if value == "1"
+		$(".schedule_container").hide()
+# edit form date_picker
+	$("#page_starts_at").datepicker(dateFormat: "dd-mm-yy")
+	$("#page_ends_at").datepicker(dateFormat: "dd-mm-yy")
+
+	$("body").delegate "select#page_current_state", "change", ->
+		if $(this).val() == "1"
+			$("input[type=submit]").val("Save Draft")
+			$(".schedule_container").hide()
+		if $(this).val() == "2"
+			$("input[type=submit]").val("Schedule For")
+			$(".schedule_container").show()
+		else if $(this).val() == "3"
+			$("input[type=submit]").val("Publish Now")
+			$(".schedule_container").hide()
+
 # index
   $("#published_pages").sortable
     axis: "y"

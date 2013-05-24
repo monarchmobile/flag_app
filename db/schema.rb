@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524170939) do
+ActiveRecord::Schema.define(:version => 20130524195748) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -132,6 +132,8 @@ ActiveRecord::Schema.define(:version => 20130524170939) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "current_state"
+    t.date     "starts_at"
+    t.date     "ends_at"
   end
 
   create_table "partials", :force => true do |t|

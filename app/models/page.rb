@@ -1,8 +1,9 @@
 class Page < ActiveRecord::Base 
-  attr_accessible :content, :position, :current_state, :slug, :title
+  attr_accessible :content, :position, :current_state, :slug, :title, :starts_at, :ends_at
   attr_accessible :link_ids, :partial_ids
   before_create :make_slug
   # validates :slug, :uniqueness => true
+  before_save :set_position
 
   has_many :links_pages, :dependent => :destroy
   has_many :links, :through => :links_pages
@@ -48,6 +49,11 @@ class Page < ActiveRecord::Base
     end
 
     def set_position
-      self.position = (Page.published.count)+1
+      if self.current_state == 3
+        self.position = (Describe.new(Page).published.count)+1
+      else
+        self.position = nil
+      end
     end
+
 end
