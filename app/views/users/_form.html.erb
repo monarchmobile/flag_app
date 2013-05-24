@@ -13,7 +13,7 @@
 	<%= render 'users/shared/coordinators', f: f if (@user.role_ids & [role_id(:Coordinator)]).count > 0 %>
 
 	<% if current_user %>
-		<% if current_user.role_ids && [role_id(:Admin)]  %>
+		<% if (current_user.role_ids && [role_id(:Admin)]).count > 0  %>
 			<%= render 'users/shared/regional_coordinator', f: f if @user.role? :Coordinator %>
 		<% end %>
 	<% end %>
