@@ -1,10 +1,18 @@
 class User < ActiveRecord::Base  
   # attributes by row %w[ stock admin added virtual ]
+  # sign_in attrs
   attr_accessible :email, :first_name, :last_name, :password_confirmation, :password, :username
-  attr_accessible :roles, :approved, :role_ids, :position, :program_ids
-  attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone, :school, :family, :nav_menu, :member_photo
-  attr_accessible :user_type, :guest, :host_state, :host_country
-  attr_accessible :regional_coor, :flag_comments, :hobbies
+  # address
+  attr_accessible :address1, :address2, :city, :state, :zip, :country, :cell, :phone
+  # students and host-family
+  attr_accessible :family, :host_state, :host_country, :school
+  # coordinator
+  attr_accessible :regional_coor, :flag_comments, :hobbies, :coor_state
+  # join tables
+  attr_accessible :roles, :role_ids, :program_ids
+  attr_accessible :position, :nav_menu, :member_photo, :user_type, :guest, :approved
+   
+  
   # attr_accessible :
   # has_secure_password
   before_create { generate_token(:auth_token) }

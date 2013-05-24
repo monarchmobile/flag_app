@@ -3,17 +3,24 @@
 <%= form_for @user, :validate => true do |f| %>
 	<%= render 'shared/errors', :object => @user  %>
 	
+	<!-- new record -->
 	<%= render 'users/shared/registration', f: f if @user.new_record? %>
 
+	<!-- edit profile -->
 	<%= render 'users/shared/profile', f: f unless @user.new_record? %>
 
+	<!-- choose role -->
 	<%= render 'users/shared/choose_role', f: f  %>
 
+	<!-- school and family info -->
 	<%= render 'users/shared/student_and_host_family', f: f if (@user.role_ids & [role_id("Student"), role_id("Host-Family")]).count > 0 %>
+
+	<!-- coordinator profile -->
 	<%= render 'users/shared/coordinators', f: f if (@user.role_ids & [role_id(:Coordinator)]).count > 0 %>
 
+	<!-- choose reg coord for coordinator-->
 	<% if current_user %>
-		<% if (current_user.role_ids && [role_id(:Admin)]).count > 0  %>
+		<% if (current_user.role_ids & [role_id(:Admin)]).count > 0  %>
 			<%= render 'users/shared/regional_coordinator', f: f if @user.role? :Coordinator %>
 		<% end %>
 	<% end %>

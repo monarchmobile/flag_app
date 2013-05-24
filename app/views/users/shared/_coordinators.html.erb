@@ -2,8 +2,8 @@
     <LEGEND><b>For Coordinators only</b></LEGEND>
 
     <div class="field">
-        <%= f.label :state, "State you represent in the US" %><br />
-        <%= f.select :state, options_for_select(Arrays::STATES, @user.state), {:prompt => 'Select a Region'} %>
+        <%= f.label :coor_state, "State you represent in the US" %><br />
+        <%= f.select :coor_state, options_for_select(Arrays::STATES, @user.coor_state), {:prompt => 'Select a Region'} %>
     </div>
     <div class="field">
         <%= f.label :program_ids, "Programs you are involved with" %><br />

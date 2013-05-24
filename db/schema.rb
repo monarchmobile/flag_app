@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521122929) do
+ActiveRecord::Schema.define(:version => 20130524170939) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -224,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20130521122929) do
     t.integer  "programs"
     t.text     "flag_comments"
     t.text     "hobbies"
+    t.string   "coor_state"
   end
 
   create_table "votes", :force => true do |t|
