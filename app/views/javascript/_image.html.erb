@@ -405,8 +405,8 @@ $(document).ready(function() {
     // grab the new image coordinates after drag and update db
     jQuery.fn.get_position = function() {
         var new_position = $(this).position()
-        var new_left = new_position.left
-        var new_top = new_position.top
+        var new_left = (new_position.left)-64.5
+        var new_top = new_position.top-87
         var coordinates = [new_left, new_top]
         var data = {};
         data[range+'_p'] = coordinates.join(",")
