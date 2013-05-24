@@ -2,8 +2,9 @@
 
 	<% if @user.role? :Coordinator %>
 		<div id="learn_more">
-			<div class="medal"><div>
+			<div class="medal"></div>
 			<%= link_to "I'm a local coordinator. Learn more about me.", "/users/#{@user.id}"   %>
+			<br class="clear" />
 		</div>
 	<% end %>
 
