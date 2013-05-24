@@ -10,15 +10,16 @@ $theme_color: rgb(159,21,15);
     font-size: 12px;
     height: auto;
     margin-left: 790px;
-    padding: 5px 0 5px 66px;
+    padding: 5px 0 5px 5px;
     position: absolute;
     top: 53px;
-    width: 135px;
+    width: 190px;
     z-index: 1000;
 	a {
 		text-decoration:none;
 		color:#fff;
 		float: right;
+		width: 105px;
 		&:hover {
 			text-decoration:underline;
 		}
@@ -642,7 +643,7 @@ margin: -10px 0px 0px -10px;
 
 .medal {
 	background: url("find-coordinator.png") repeat scroll 0 0 transparent;
-	width: 30px;
-	height: 30px;
-	float: left;
+    float: left;
+    height: 73px;
+    width: 60px;
 }
