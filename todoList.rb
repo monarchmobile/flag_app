@@ -46,10 +46,6 @@ template
 	add scheduling for pages  **DONE**
 	date formats on form
 
-if pub or sch on form should show date, if draft should not show dates
-	value = $("#page_current_state").val()
-	if value == "1"
-		$(".schedule_container").hide()
 
 
 
