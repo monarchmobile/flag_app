@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   attr_accessible :starts_at, :ends_at, :current_state, :position
 
 	before_create :make_slug, :set_position
-
+  before_update :check_current_state
   validates_presence_of :title, :body
 	validates_uniqueness_of :title
 
@@ -31,6 +31,21 @@ class Event < ActiveRecord::Base
   def self.draft
     draft = Status.find_by_status_name("draft").id
     where(current_state: draft)
+  end
+
+  def check_current_state
+    published = Status.find_by_status_name("published").id 
+    scheduled = Status.find_by_status_name("scheduled").id 
+    draft = Status.find_by_status_name("draft").id 
+    set_position
+    if (self.current_state ==  published)  
+      if self.starts_at.blank?
+        self.starts_at = Date.today
+      end
+    elsif self.current_state == draft
+      self.ends_at = nil
+      self.starts_at = nil
+    end
   end
 
   def self.order_by_position

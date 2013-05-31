@@ -13,7 +13,7 @@
 			<%= form_for event, :html => {:class=> "event_ajax_starts_at"}, :url => {controller: "events", action: "event_starts_at", id: event.id }, :params => [:event], remote: true do |a| %>
 				<%= a.text_field :starts_at, :id => "message_#{event.id}_starts_at", :class => "event_message_starts_at" %>
 			<% end %>
-			<%= content_tag :li, event.month_day_year(event.starts_at), class: "starts_at_date at_date #{check_if_draft(event)}", id: "message_#{event.id}_starts_at_text"  %>
+			<%= content_tag :li, event.starts_at ? event.month_day_year(event.starts_at) : "", class: "starts_at_date at_date #{check_if_draft(event)}", id: "message_#{event.id}_starts_at_text"  %>
 
 			<!-- dynamic form for picking ends_at -->
 			<%= form_for event, :html => {:class=> "event_ajax_ends_at"}, :url => {controller: "events", action: "event_ends_at", id: event.id }, :params => [:event], remote: true do |a| %>

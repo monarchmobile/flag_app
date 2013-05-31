@@ -66,9 +66,7 @@
     position = params[:event][:position]
     current_state = params[:event][:current_state]
     published = Status.find_by_status_name("published").id
-    if (!current_state ==  published) 
-      @event.position = nil
-    end
+    @event.check_current_state
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, notice: 'event was successfully updated.' }

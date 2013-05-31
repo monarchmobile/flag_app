@@ -36,22 +36,15 @@ class Announcement < ActiveRecord::Base
     published = Status.find_by_status_name("published").id 
     scheduled = Status.find_by_status_name("scheduled").id 
     draft = Status.find_by_status_name("draft").id 
-    if (self.current_state ==  published) 
-      set_position
+    set_position
+    if (self.current_state ==  published)  
       if self.starts_at.blank?
         self.starts_at = Date.today
       end
-    elsif self.current_state == scheduled
-      set_position
     elsif self.current_state == draft
-      set_position
       self.ends_at = nil
       self.starts_at = nil
     end
-  end
-
-  def expired?(date)
-    date < Date.today
   end
 
   # send email for published annoucement
