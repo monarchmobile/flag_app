@@ -57,6 +57,12 @@ label {
   clear: both;
 }
 
+.field .message {
+  width: 325px;
+  color: red;
+  margin-top: 5px;
+}
+
 input {
   border-radius: 5px 5px 5px 5px;
   color: black;
