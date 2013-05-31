@@ -3,39 +3,51 @@ CalculateDate =
 		start_date = @cleanDate(start_date)
 		end_date = @cleanDate(end_date)
 		this.clicked = clicked
-		@compareDate(start_date, end_date)
+		@prepDate(start_date, end_date)
 
 	cleanDate: (date) -> 
 		date_array = date.split("-")
 		new_date = date_array[1]+"/"+date_array[0]+"/"+date_array[2]
-		
-	compareDate: (start_date, end_date) ->
-		self = this
-		start_val = new Date(start_date).valueOf()
-		end_val = new Date(end_date).valueOf()
-		today = new Date()
+
+	resetCurrentState: (status, num) ->
+		$("input[type=submit]").val(status)
+		$("#page_current_state option").attr("selected", false)
+		$("#page_current_state option[value="+num+"]").attr("selected", "selected")
+
+	compareDates: ->
+		if this.start_val > this.end_val
+			console.log "crossed"
+			$("input#page_"+this.clicked+"s_at").parent().append("<div class='message'></div>")
+			$(".message").html("'Starts at' date is greater than the 'Ends at' date")
+
+	startWasClicked: ->
+		@compareDates()
+		if this.start_val <= this.today
+				@resetCurrentState("Publish", 3)
+		else if this.start_val > this.today
+				@resetCurrentState("Schedule", 2)
+
+	endWasClicked: ->
+		@compareDates()
+		if this.end_val < this.today
+			$("input#page_"+this.clicked+"s_at").parent().append("<div class='message'></div>")
+			$(".message").html("You must choose an "+this.clicked+" date that is after today")
+			$("input#page_"+this.clicked+"s_at").val("")
+		else if this.end_val >= this.today
+			if this.start_val < this.today
+				@resetCurrentState("Publish", 3)
+			else if this.start_val >= this.today
+				@resetCurrentState("Schedule", 2)
+
+	prepDate: (start_date, end_date) ->
+		this.start_val = new Date(start_date).valueOf()
+		this.end_val = new Date(end_date).valueOf()
+		this.today = new Date()
 		$(".message").remove()
-		if start_val != null && end_val is null
-			if start_val <= today
-					$("input[type=submit]").val("Publish")
-					$("#page_current_state").val("3")
-			else if start_val > today
-					$("input[type=submit]").val("Schedule")
-					$("#page_current_state").val("2")
-		if start_val != null && end_val != null
-			if start_val < end_val
-				if start_val <= today && end_val > today
-					$("input[type=submit]").val("Publish")
-				else if start_val > today && end_val > today
-					$("input[type=submit]").val("Schedule")
-				else if start_val < today && end_val < today
-					$("input#page_"+self.clicked+"s_at").parent().append("<div class='message'></div>")
-					$(".message").html("You must choose an "+self.clicked+" date that is after today")
-					$("input#page_"+self.clicked+"s_at").val("")
-			else if start_val > end_val
-				$("input#page_"+self.clicked+"s_at").parent().append("<div class='message'></div>")
-				$(".message").html("Starts at Date is greater than the Ends at Date")
-				$("input#page_"+self.clicked+"s_at").val("")
+		if this.clicked == "start"
+			@startWasClicked()
+		else if this.clicked == "end"
+			@endWasClicked()
 
 jQuery ->
 	# pages/index
