@@ -61,6 +61,12 @@ index
 
 form
 
+form dates make nice 
+
+image_container position reading from window not container
+thumbnail drag
+	needs cursor and drag feeling 
+
 
 
 
