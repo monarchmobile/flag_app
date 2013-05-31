@@ -313,11 +313,7 @@ ul.nav_bar a.movie {
 	margin-left:75px;
 }
 
-.message {
-	width: 325px;
-	color: red;
-	margin-top: 5px;
-}
+
 
 .notice {
 	width:200px;
@@ -1439,6 +1435,12 @@ label {
     margin-right: 41px;
     padding: 15px;
     width: 351px;
+}
+
+.field .message {
+	width: 325px;
+	color: red;
+	margin-top: 5px;
 }
 
 
