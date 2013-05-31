@@ -62,8 +62,9 @@ FlagApp::Application.routes.draw do
   # page
   resources :pages do
     collection { post :sort }
+    member { put :link, :status }
   end
-  match 'pages/:id/status', to: 'pages#status', as: 'status'
+  # match 'pages/:id/status', to: 'pages#status', as: 'status'
   
   # announcements
   resources :announcements do 

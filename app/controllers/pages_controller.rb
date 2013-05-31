@@ -1,6 +1,6 @@
 class PagesController < ApplicationController 
 	
-	before_filter :find_page, :only => [:show, :edit, :update, :destroy, :status ]
+	before_filter :load_page, :only => [:show, :edit, :update, :destroy, :status ]
 	before_filter :all_page_states, :only => [:index, :update, :sort, :status ]
 	layout :resolve_layout
 	before_filter :authorize, :except => [:show]
@@ -11,7 +11,7 @@ class PagesController < ApplicationController
 	end
 
 	def index
-		publish_page_if_in_range
+		# publish_page_if_in_range
 		@links = Link.all
 	end
 
@@ -67,7 +67,7 @@ class PagesController < ApplicationController
 		end
 	end
 
-	def find_page 
+	def load_page 
 		@page = Page.find(params[:id])
 	end
 
@@ -79,20 +79,33 @@ class PagesController < ApplicationController
 	end
 
 	def status
+		load_page
 		current_state = params[:page][:current_state]
-		total_published = Page.published.count
+		total_published = Describe.new(Page).published.count
 		published = Status.find_by_status_name("published").id
-		if (current_state ==  published) 
-			@page.update_attributes({current_state: current_state, position: total_published+1})
-		else
-			@page.update_attributes({current_state: current_state, position: nil })
+		scheduled = Status.find_by_status_name("scheduled").id
+		draft = Status.find_by_status_name("draft").id
+		if (current_state.to_i == published)
+			@page.update_attributes({current_state: current_state, position: total_published+1, starts_at: Date.today})
+		elsif (current_state.to_i == scheduled)
+			@page.update_attributes({current_state: current_state, position: nil, starts_at: nil })
+		elsif (current_state.to_i == draft)
+			@page.update_attributes({current_state: current_state, position: nil, starts_at: nil })
 		end
-
 		Page.published.each_with_index do |id, index|
 	    Page.published.update_all({position: index+1}, {id: id})
 	  end
+		all_page_states
 		render "update.js"
-	  
+			
+	end
+
+	def link
+	  load_page
+	  if @page.update_attributes(params[:page])
+	  	all_page_states
+	  	render "update.js"
+	  end
 	end
 
 	def all_page_states

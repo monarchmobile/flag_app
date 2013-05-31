@@ -47,6 +47,20 @@ template
 	date formats on form
 
 
+index
+	draft --> scheduling
+	draft --> publish
+
+	scheduling --> publish
+	scheduling --> draft
+
+	publish --> sch
+	publish --> draft
+	
+
+
+form
+
 
 
 

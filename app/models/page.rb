@@ -3,7 +3,7 @@ class Page < ActiveRecord::Base
   attr_accessible :link_ids, :partial_ids
   before_create :make_slug
   # validates :slug, :uniqueness => true
-  before_save :set_position
+  # before_save :set_position
 
   has_many :links_pages, :dependent => :destroy
   has_many :links, :through => :links_pages

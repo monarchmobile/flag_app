@@ -24,6 +24,12 @@ class Describe
     @model.current_state == published
   end
 
+  def self.is?(status)
+    status = status.to_s
+    published = Status.find_by_status_name(status).id
+    @model.current_state == published
+  end
+
   def starts_at(id)
       object = @model.find(id)
       if !object.starts_at.blank?
