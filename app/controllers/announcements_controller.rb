@@ -60,9 +60,7 @@ class AnnouncementsController < ApplicationController
 		position = params[:announcement][:position]
 		current_state = params[:announcement][:current_state]
 		published = Status.find_by_status_name("published").id
-		if (!current_state ==  published) 
-			@announcement.position = nil
-		end
+		@announcement.check_current_state
 		respond_to do |format|
 			if @announcement.update_attributes(params[:announcement])
 				format.html { redirect_to announcements_path, notice: "changes saved" }
@@ -113,7 +111,7 @@ class AnnouncementsController < ApplicationController
 		  end
 		end
 		
-	  allAnnouncementStates
+	  all_announcement_states
 		render "update.js"
 	end
 
@@ -131,7 +129,7 @@ class AnnouncementsController < ApplicationController
 		    Announcement.published.update_all({position: index+1}, {id: id})
 		  end
 		end
-	  allAnnouncementStates
+	  all_announcement_states
 		render "update.js"
 		
 	end

@@ -4,6 +4,7 @@ class Announcement < ActiveRecord::Base
   attr_accessible :send_at, :send_list, :sent, :send_list_array
 
   before_create :set_position
+  before_update :check_current_state
   include MyDateFormats
 
   
@@ -31,11 +32,33 @@ class Announcement < ActiveRecord::Base
     return new_array
   end
 
-  # send email to user to reset password
+  def check_current_state
+    published = Status.find_by_status_name("published").id 
+    scheduled = Status.find_by_status_name("scheduled").id 
+    draft = Status.find_by_status_name("draft").id 
+    if (self.current_state ==  published) 
+      set_position
+      if self.starts_at.blank?
+        self.starts_at = Date.today
+      end
+    elsif self.current_state == scheduled
+      set_position
+    elsif self.current_state == draft
+      set_position
+      self.ends_at = nil
+      self.starts_at = nil
+    end
+  end
+
+  def expired?(date)
+    date < Date.today
+  end
+
+  # send email for published annoucement
   def send_announcement_email
-    self.send_at = Time.zone.now
-    save!
-    UserMailer.announcement_notice(self).deliver
+    if self.sent == false
+      UserMailer.announcement_notice(self).deliver
+    end
   end
 
   def is_published?

@@ -27,8 +27,8 @@ class UserMailer < ActionMailer::Base
     	mail :to => user.email, :subject => "New announcement"
     end
 
-    @announcement.sent = true
- 		@announcement.save!
+    @announcement.update_attributes(sent: true, send_at: Date.today)
+ 		
   end
 
   def coordinator_message(message)
