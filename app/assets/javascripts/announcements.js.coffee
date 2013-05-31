@@ -1,6 +1,6 @@
 jQuery -> 
 	# announcement/index
-	if $('body.announcement_index').length > 0
+	if $('body.announcements_index').length > 0
 		#select current_state
 		$("body").delegate ".announcement_ajax_edit select", "change", ->
 			$(this).closest("form").unbind('submit').submit()

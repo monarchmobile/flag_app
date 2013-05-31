@@ -3,9 +3,8 @@ class AnnouncementsController < ApplicationController
 	layout :resolve_layout
 	before_filter :authorize
 	def index
-		reset_current_state(Announcement)
 		all_announcement_states
-		@announcements = Announcement.published
+		reset_current_state(Announcement)
 	end
 
 	def new
@@ -81,7 +80,7 @@ class AnnouncementsController < ApplicationController
 		end
 	end
 
-		def announcement_status
+	def announcement_status
 		all_announcement_states
 		find_announcement
 		current_state = params[:announcement][:current_state]

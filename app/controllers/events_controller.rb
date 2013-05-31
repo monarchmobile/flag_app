@@ -4,7 +4,6 @@
   def index
     all_event_states
     reset_current_state(Event)
-    @events = Event.all
 
     respond_to do |format|
       format.html # index.html.erb
