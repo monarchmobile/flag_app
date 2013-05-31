@@ -19,6 +19,7 @@ class PagesController < ApplicationController
 		reset_current_state(Announcement)
 		reset_current_state(Event)
 		publish_page_if_in_range
+		announcement_mailer # sends announcement mailer if start_at is today
 		all_page_states
 		@announcements_partial = Announcement.limit(5).order("starts_at DESC").published
 		@events_partial = Event.limit(5).order("starts_at DESC").published

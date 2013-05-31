@@ -19,7 +19,7 @@ class AnnouncementsController < ApplicationController
 		respond_to do |format|
 			if @announcement.save
 				# published = Status.find_by_status_name("published").id
-				@announcement.send_announcement_email if @announcement.is_published?
+				# @announcement.send_announcement_email if @announcement.is_published?
 				format.html { redirect_to dashboard_path }
 				format.js
 			else
