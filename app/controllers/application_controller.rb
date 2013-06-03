@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  # Don't let controllers get away with 
+  # any monkey business
+  
   protect_from_forgery
   include ApplicationHelper
 

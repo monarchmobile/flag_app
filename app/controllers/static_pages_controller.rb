@@ -2,7 +2,6 @@ class StaticPagesController < ApplicationController
   before_filter :current_user, :except => [:home]
 
   layout 'dashboard'
-  before_filter :authorize
   
   include ApplicationHelper
 

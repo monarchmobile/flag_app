@@ -1,6 +1,6 @@
 class PartialsController < ApplicationController
 	layout :resolve_layout
-	before_filter :authorize
+	authorize_resource
 	def new
 		@partial = Partial.new
 	end

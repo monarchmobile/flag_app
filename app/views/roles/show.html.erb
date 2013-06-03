@@ -4,12 +4,7 @@
 		<ul class="instance_detail">
 			<%= content_tag :li, @role.name, class:"name" %><br />
 			<%= content_tag :div, raw(@role.description), class: "view_all" %>
-			<ul class="crud_buttons">
-
-				<%= content_tag :li, link_to("edit", edit_role_path(@role)), class:"edit" %>
-				
-				<%= content_tag :li, link_to("delete", role_path(@role), :confirm => "are you sure?", :method => :delete ), class:"delete" %>
-			</ul>
+			<%= render 'shared/crud_btns', object: @role %>
 		</ul>
 		<br class="clear">
 	</li>

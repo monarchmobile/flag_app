@@ -1,8 +1,9 @@
 class UsersController < ApplicationController   
 	respond_to :html, :json 
+	authorize_resource
 	include ApplicationHelper  
 	layout :resolve_layout, :except => :new
- 	before_filter :authorize, :except => [:new, :create, :coordinators ]
+ 	
 	def index 
 		all_user_states
 		

@@ -1,5 +1,6 @@
 class JournalsController < ApplicationController
   # INDEX
+  authorize_resource
   respond_to :html, :json
   def index
     @user = current_user

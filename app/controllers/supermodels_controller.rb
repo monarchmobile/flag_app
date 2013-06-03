@@ -1,5 +1,5 @@
 class SupermodelsController < ApplicationController
- 
+ 	authorize_resource
 	layout 'dashboard'
 	before_filter :authorize
 	def new 

@@ -1,6 +1,6 @@
  class EventsController < ApplicationController 
   layout :resolve_layout
-  before_filter :authorize
+  authorize_resource
   def index
     all_event_states
     reset_current_state(Event)

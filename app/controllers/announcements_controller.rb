@@ -1,5 +1,5 @@
 class AnnouncementsController < ApplicationController 
-
+	authorize_resource
 	layout :resolve_layout
 	before_filter :authorize
 	def index

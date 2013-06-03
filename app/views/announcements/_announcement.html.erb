@@ -25,11 +25,7 @@
 
 		</div>
 		
-		<ul class="crud_buttons">
-			<%= content_tag :li, link_to("edit", edit_announcement_path(announcement)), class:"edit" %>
-			<%= content_tag :li, link_to("delete", announcement_path(announcement), :confirm => "are you sure?", :method => :delete ), class:"delete"  %>
-			
-		</ul>
+		<%= render 'shared/crud_btns_without_view', object: announcement %>
 		<div class="announcement_message">
 			<%= content_tag :li, raw(announcement.message), class: "message"  %>
 		</div>

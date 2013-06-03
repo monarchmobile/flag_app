@@ -51,7 +51,7 @@ image_container position reading from window not container
 thumbnail drag
 	needs cursor and drag feeling 
 
-
+filling out abilities.  Did first two Admin and Staff
 
 
 

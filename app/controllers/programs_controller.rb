@@ -1,6 +1,6 @@
 class ProgramsController < ApplicationController 
 	layout 'dashboard'
-	before_filter :authorize
+	authorize_resource
 	def new 
 		@program = Program.new	
 	end

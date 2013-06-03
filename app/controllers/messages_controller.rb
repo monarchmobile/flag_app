@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-	
+	authorize_resource
 	def new
 		coor = params[:coor]
 		@user = User.find(coor)

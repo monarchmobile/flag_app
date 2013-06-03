@@ -26,11 +26,8 @@
 
 		</div>
 		
-		<ul class="crud_buttons">
-			<%= content_tag :li, link_to("edit", edit_event_path(event)), class:"edit" %>
-			<%= content_tag :li, link_to("delete", event_path(event), :confirm => "are you sure?", :method => :delete ), class:"delete"  %>
-			
-		</ul>
+		<%= render 'shared/crud_btns_without_view', object: event %>
+
 		<div class="event_message">
 			<%= content_tag :li, raw(event.body), class: "message"  %>
 		</div>
