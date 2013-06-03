@@ -12,16 +12,16 @@
 </div>
 
 <ul class="model_table eventStatus" id="published_events" data-update-url="<%= sort_events_url %>">
-	<%= content_tag :h3, "Published events (#{Event.published.count})" %>
+	<%= content_tag :h3, "Published Events (#{Event.published.count})" %>
 	<%= render @published_events %>
 </ul>
 
 <ul class="model_table eventStatus" id="scheduled_events" data-update-url="<%= sort_events_url %>">
-	<%= content_tag :h3, "Schedule events (#{Event.scheduled.count})" %>
+	<%= content_tag :h3, "Scheduled Events (#{Event.scheduled.count})" %>
 	<%= render @scheduled_events %>
 </ul>
 
 <ul class="model_table eventStatus" id="draft_events" data-update-url="<%= sort_events_url %>">
-	<%= content_tag :h3, "Draft events (#{Event.draft.count})" %>
+	<%= content_tag :h3, "Draft Events (#{Event.draft.count})" %>
 	<%= render @draft_events %>
 </ul>

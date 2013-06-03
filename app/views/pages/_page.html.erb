@@ -24,11 +24,7 @@
 			<% end %>
 		<% end %>
 
-		<ul class="crud_buttons">
-			<%= content_tag :li, link_to("edit", edit_page_path(page)), class:"edit" %>
-			<%= content_tag :li, link_to("view", page_path(page)), class:"view" %>
-			<%= content_tag :li, link_to("delete", page_path(page), :confirm => "are you sure?", :method => :delete ), class:"delete" %>
-		</ul>
+		<%= render "shared/crud_btns", object: page %>
 	</ul>
 	<br class="clear">
 

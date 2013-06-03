@@ -62,7 +62,7 @@
   def update
     find_event
     authorize! :update, @event
-    all_event_states
+    
     position = params[:event][:position]
     current_state = params[:event][:current_state]
     published = Status.find_by_status_name("published").id

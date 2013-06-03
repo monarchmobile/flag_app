@@ -62,3 +62,24 @@ jQuery ->
 		# date format
 		$("#event_starts_at").datepicker(dateFormat: "dd-mm-yy")
 		$("#event_ends_at").datepicker(dateFormat: "dd-mm-yy")
+
+		# dynamically change dropdown, submit button text and date validation
+		$("body").delegate "#event_starts_at", "change", ->
+			start_date = $(this).val()
+			end_date = $("#event_ends_at").val()
+			CalculateDate.init(start_date, end_date, "start", "event")
+
+		$("body").delegate "#event_starts_at", "click", ->
+			start_date = $(this).val()
+			end_date = $("#event_ends_at").val()
+			CalculateDate.init(start_date, end_date, "start", "event")
+
+		$("body").delegate "#event_ends_at", "change", ->
+			start_date = $("#event_starts_at").val()
+			end_date = $(this).val()
+			CalculateDate.init(start_date, end_date, "end", "event")
+
+		$("body").delegate "#event_ends_at", "click", ->
+			start_date = $("#event_starts_at").val()
+			end_date = $(this).val()
+			CalculateDate.init(start_date, end_date, "end", "event")

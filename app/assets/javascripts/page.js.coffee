@@ -1,5 +1,3 @@
-
-
 jQuery ->
 	# pages/index
 	if $('body.pages_index').length > 0
