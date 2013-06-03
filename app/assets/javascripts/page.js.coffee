@@ -19,6 +19,7 @@ CalculateDate =
 			console.log "crossed"
 			$("input#page_"+this.clicked+"s_at").parent().append("<div class='message'></div>")
 			$(".message").html("'Starts at' date is greater than the 'Ends at' date")
+			$("input#page_"+this.clicked+"s_at").val("")
 
 	startWasClicked: ->
 		@compareDates()

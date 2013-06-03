@@ -47,22 +47,6 @@ template
 	date formats on form
 
 
-index
-	draft --> scheduling
-	draft --> publish
-
-	scheduling --> publish
-	scheduling --> draft
-
-	publish --> sch
-	publish --> draft
-	
-
-
-form
-
-form dates make nice 
-
 image_container position reading from window not container
 thumbnail drag
 	needs cursor and drag feeling 
