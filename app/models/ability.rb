@@ -8,7 +8,7 @@ class Ability
     # Performed checks for actions:
     can [:read, :create, :destroy], Ckeditor::Picture
     can [:read, :create, :destroy], Ckeditor::AttachmentFile
-
+    can :read, Page
     can [:create], User
               # allow everyone to read everything
               # add ability to create comments
