@@ -51,20 +51,20 @@ jQuery ->
 			end_date = $("#page_ends_at").val()
 			CalculateDate.init(start_date, end_date, "start", "page")
 
-		$("body").delegate "#page_starts_at", "click", ->
-			start_date = $(this).val()
-			end_date = $("#page_ends_at").val()
-			CalculateDate.init(start_date, end_date, "start", "page")
+		# $("body").delegate "#page_starts_at", "click", ->
+		# 	start_date = $(this).val()
+		# 	end_date = $("#page_ends_at").val()
+		# 	CalculateDate.init(start_date, end_date, "start", "page")
 
 		$("body").delegate "#page_ends_at", "change", ->
 			start_date = $("#page_starts_at").val()
 			end_date = $(this).val()
 			CalculateDate.init(start_date, end_date, "end", "page")
 
-		$("body").delegate "#page_ends_at", "click", ->
-			start_date = $("#page_starts_at").val()
-			end_date = $(this).val()
-			CalculateDate.init(start_date, end_date, "end", "page")
+		# $("body").delegate "#page_ends_at", "click", ->
+		# 	start_date = $("#page_starts_at").val()
+		# 	end_date = $(this).val()
+		# 	CalculateDate.init(start_date, end_date, "end", "page")
 			
 			# console.log()
 
