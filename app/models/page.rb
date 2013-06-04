@@ -2,6 +2,7 @@ class Page < ActiveRecord::Base
   attr_accessible :content, :position, :current_state, :slug, :title, :starts_at, :ends_at
   attr_accessible :link_ids, :partial_ids
   before_create :make_slug
+  before_update :check_start_date
   # validates :slug, :uniqueness => true
   # before_save :set_position
 
@@ -10,6 +11,19 @@ class Page < ActiveRecord::Base
 
   has_many :page_partials 
   has_many :partials, :through => :page_partials
+
+  # on update, this checks to see whether a page about to be published has a start date that is valid
+  def check_start_date
+    if self.current_state == 3
+      if self.starts_at.blank?
+        self.starts_at = Date.today
+      else
+        if self.starts_at > Date.today
+          self.starts_at = Date.today
+        end
+      end
+    end
+  end
 
   def locations?(location)
      return !!self.links.find_by_location(location.to_s)

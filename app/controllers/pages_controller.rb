@@ -48,6 +48,7 @@ class PagesController < ApplicationController
 		current_state = params[:page][:current_state]
 		@link_ids = params[:page][:link_ids]
 		published = Status.find_by_status_name("published").id
+		@page.check_start_date
 		respond_to do |format|
 			if @page.update_attributes(params[:page])
 				# reorder_pages(@page)
@@ -87,7 +88,11 @@ class PagesController < ApplicationController
 		scheduled = Status.find_by_status_name("scheduled").id
 		draft = Status.find_by_status_name("draft").id
 		if (current_state.to_i == published)
-			@page.update_attributes({current_state: current_state, position: total_published+1, starts_at: Date.today})
+			if @page.starts_at.blank?
+				@page.update_attributes({current_state: current_state, starts_at: Date.today})
+			else
+				@page.update_attributes({current_state: current_state})
+			end
 		elsif (current_state.to_i == scheduled)
 			@page.update_attributes({current_state: current_state, position: nil, starts_at: nil })
 		elsif (current_state.to_i == draft)

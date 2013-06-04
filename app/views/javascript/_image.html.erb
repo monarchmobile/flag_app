@@ -107,7 +107,8 @@ $(document).ready(function() {
     if (<%= members_page(@user) %>) {
         $(".thumb_drag").draggable({
             containment: "parent",
-            revert: "valid"
+            opacity: 0.7, 
+            helper: "clone"
         })
     }
 
@@ -404,8 +405,12 @@ $(document).ready(function() {
 
     // grab the new image coordinates after drag and update db
     jQuery.fn.get_position = function() {
+        var browserW = $(window).width()
+        var browserH = $(window).height()
+        diffW = (browserW - 1000)/2
+      
         var new_position = $(this).position()
-        var new_left = (new_position.left)-23.5
+        var new_left = (new_position.left-diffW)
         var new_top = new_position.top-87
         var coordinates = [new_left, new_top]
         var data = {};
