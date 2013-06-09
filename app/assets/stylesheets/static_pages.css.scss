@@ -919,10 +919,12 @@ img {
 #scrapbook_template {
 	width:1000px;
 	min-height:500px;
+	position:relative;
 }
 .image_container {
 	display:inline-block;
-	position: relative;
+	position: absolute;
+	float:left;
 }
 
 .image_frame {

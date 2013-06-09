@@ -410,8 +410,8 @@ $(document).ready(function() {
         diffW = (browserW - 1000)/2
       
         var new_position = $(this).position()
-        var new_left = (new_position.left-diffW)
-        var new_top = new_position.top-87
+        var new_left = new_position.left
+        var new_top = new_position.top
         var coordinates = [new_left, new_top]
         var data = {};
         data[range+'_p'] = coordinates.join(",")
