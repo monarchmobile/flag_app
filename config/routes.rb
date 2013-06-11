@@ -33,6 +33,7 @@ FlagApp::Application.routes.draw do
   match "users/create", to: "users#create", as: "create_guest"
   match "member_index", to: "users#member_index"
   match "users/:id/regional_coor", to: "users#regional_coor"
+  match "static_pages/intro_movie", to: "static_pages#intro_movie", as: "intro_movie"
   
   match "announcement_partial", :to => "announcements#announcement_partial"
   

@@ -36,11 +36,11 @@
               <%= content_tag :li, "Guest pass", class: "guest_btns guest_pass" if current_user && current_user.guest? %>
 
               <%= content_tag :li, link_to(current_user.last_name, user_path(current_user.id)) if current_user %>
-
+              <a target="_blank" class="movie" href="https://www.youtube.com/watch?v=5aU97TvFPHM"><%= image_tag "movie.png", :size => "35x30", class:"right" %></a>
           </ul> -->
 
           <ul class="right nav_bar">
-              <li><a target="_blank" class="movie" href="https://www.youtube.com/watch?v=5aU97TvFPHM"><%= image_tag "movie.png", :size => "35x30", class:"right" %></a></li>
+              <%= content_tag :li, link_to( image_tag("movie.png", :size => "35x30", class:"right"), intro_movie_path, remote: true) %>
               <%= content_tag :li, link_to(current_user.first_name, user_path(current_user.id)) if current_user && current_user.guest == false %>
               <% if current_user %>
                   <% if current_user.guest? %>

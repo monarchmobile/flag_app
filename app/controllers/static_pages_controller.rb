@@ -32,4 +32,10 @@ class StaticPagesController < ApplicationController
     @static_models = Supermodel.where("visible = true AND name IN (?)", static_array).order("name ASC")
   end
 
+  def intro_movie
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end

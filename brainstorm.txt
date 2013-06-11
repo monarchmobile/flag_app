@@ -1,0 +1,18 @@
+browser ?
+
+container of parent
+	we can calculate exact position within parent
+
+	(bW -1000)/2
+
+	2000 -1000/2 => 500
+
+	postion = 560
+
+	stored position
+		60
+
+	view
+		left: 60px within parent
+		position:absolute
+
